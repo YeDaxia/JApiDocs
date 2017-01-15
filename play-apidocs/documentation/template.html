@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>${title}</title>
+        <link rel="stylesheet" href='files/manual.css' type="text/css" media="screen">
+        <link rel="stylesheet" href='files/wiki.css' type="text/css" media="screen">
+    </head>
+    <body>
+        <div class="wrapper">
+
+            <div id="docSidebar">
+
+                <div id="logo">
+                    <img src='images/logo.png'>
+                    <h2 id="version">Play ${play.version}</h2>
+                </div>
+
+                <h2>Contents</h2>
+                <div id="toc">
+					<ui>
+						#{list sections, as: 'section'}
+							<li><a href="${section.href}">${section.title}</a>
+						#{/list}
+					</ul>
+				</div>
+            </div>
+
+            <div id="pageContent">
+
+                <div class="wikistyle">${html.raw()}</div>
+
+            </div>
+
+        </div>
+    </body>
+</html>

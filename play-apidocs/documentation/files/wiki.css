@@ -1,0 +1,29 @@
+.wikistyle h1,.wikistyle h2,.wikistyle h3,.wikistyle h4,.wikistyle h5,.wikistyle h6{border:0!important;text-shadow: #fff 1px 1px 0px;}
+.wikistyle h1{font-size:170%!important;border-top:4px solid #aaa!important;padding-top:.5em!important;margin-top:1.5em!important;}
+.wikistyle h1:first-child{margin-top:0!important;padding-top:.25em!important;border-top:none!important;}
+.wikistyle h2{font-size:150%!important;margin-top:1.5em!important;border-top:4px solid #e0e0e0!important;padding-top:.5em!important;}
+.wikistyle h3{margin-top:1em!important;}
+.wikistyle p{margin:1em 0!important;line-height:1.5em!important;}
+.wikistyle ul{margin:1em 0 1em 2em!important; list-style: square; line-height: 24px;}
+.wikistyle ol{margin:1em 0 1em 2em!important; list-style-position: outside; list-style-type: decimal; line-height: 24px;}
+.wikistyle ul ul,.wikistyle ul ol,.wikistyle ol ol,.wikistyle ol ul{margin-top:0!important;margin-bottom:0!important;}
+.wikistyle blockquote{margin:1em 0 2em 0!important;border-left:5px solid #ddd!important;padding-left:.6em!important;color:#666!important;}
+.wikistyle dt{font-weight:bold!important;margin-left:1em!important;}
+.wikistyle dd{margin-left:2em!important;margin-bottom:1em!important;}
+.wikistyle table{margin:1em 0!important;width:650px;}
+.wikistyle table th{border-bottom:1px solid #bbb!important;padding:.2em 1em!important;}
+.wikistyle table td{border-bottom:1px solid #ddd!important;padding:.2em 1em!important;}
+.wikistyle table td:first-child{padding-left:0!important;}
+.wikistyle table td:last-child{padding-right:0!important;}
+.wikistyle pre{margin:1em 0 2em 0!important;font-size:90%!important;background-color:#f8f8ff!important;border-left:4px solid #e0e0e0!important;padding:.5em!important;line-height:1.5em!important;color:#444!important;overflow:auto!important;}
+.wikistyle code{font-family:Consolas,"Andale Mono",monospace;font-size:90%;color:#444;background-color:#f8f8ff;border:1px solid #e0e0e0;padding:0 0.2em!important;}
+.wikistyle pre code{display:block;padding:0!important;padding-left:10px!important;font-size:100%!important;border:none!important;}
+.wikistyle pre.console{margin:1em 0!important;font-size:90%!important;background-color:black!important;padding:.5em!important;line-height:1.5em!important;color:white!important;}
+.wikistyle pre.console code{padding:0!important;font-size:100%!important;background-color:black!important;border:none!important;color:white!important;}
+.wikistyle pre.console span{color:#888!important;}
+.wikistyle pre.console span.command{color:yellow!important;}
+.wikistyle h1:after, .wikistyle h2:after, .wikistyle h3:after {content: '';}
+.wikistyle a{color: #444;}
+.wikistyle hr{height: 1px; border: none; background: #e0e0e0; margin: 30px 0;}
+.wikistyle img {max-width: 642px; border:4px solid #e0e0e0!important;}
+.wikistyle p.note {background:#FFF9D8!important; padding: 10px!important;color:#333!important;border-left:6px solid #F3E378!important;}

@@ -1,0 +1,13 @@
+h1. How to add project documentation
+
+*Welcome to your project documentation page.*
+
+You can edit it in @documentation@ folder of your project using "textile":http://en.wikipedia.org/wiki/Textile_%28markup_language%29 markup.
+
+Every textile file in documentation folder will automatically be added to your documentation index. Just make sure you start it with some @h1.@ header, as it's being used as chapter name.
+
+You can customize the way it looks by editing @template.html@ file, but it's not mandatory so you can remove this file if plain black on white page is ok for you.
+
+h2. Export documentation to htmls
+
+If you want to export your documentation just execute @play doc:export@ command in project root. This will generate zip file in @documentation@ folder with all your textile files rendered to html and files from @images@ and @files@ included.

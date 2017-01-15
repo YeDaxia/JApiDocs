@@ -1,0 +1,153 @@
+
+html {
+    overflow-y: scroll;
+}
+
+html, body {
+    background: #F7F7F7;
+    font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em !important;
+}
+
+html {
+    border-top: 5px solid #67A927;    
+}
+
+a {
+    color: #000;
+}
+
+.wrapper {
+    padding: 20px 0;
+    width: 900px;
+    margin: auto;
+    position: relative; 
+}
+
+.wrapped {
+    width: 650px;
+}
+
+/** Manual **/
+
+#logo {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#logo #version {
+    font-size: 10px;
+    margin-top: 0;
+    font-weight: normal;
+}
+
+#pageContent {
+    width: 650px;
+}
+
+#docSidebar {
+    width: 200px;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    padding: 10px;
+}
+
+#docSidebar {
+    font-size: 12px;
+    overflow: hidden;
+    -webkit-box-shadow: #eee -1px 1px 2px;
+    -moz-box-shadow: #eee -1px 1px 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#docSidebar h2 {
+    font-weight: bold;
+    color: #666;
+    font-size: 120%;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+#docSidebar p {
+    margin: 1em 0;
+}
+
+#docSidebar h2:first-child {
+    margin-top: 0;
+}
+
+#docSidebar ul, #docSidebar ol {
+    list-style: square;
+    color: #888;
+    line-height: 1.3em;
+}
+#docSidebar ol {
+    padding-left: 2.4em;
+}
+#docSidebar ul {
+    padding-left: 1.5em;
+}
+
+#docSidebar li {
+    padding: 3px 0;
+}
+
+#docSidebar ol {
+    list-style-type: decimal;
+}
+
+#docSidebar ul .selected {
+    font-weight: bold !important;
+}
+
+#docSidebar a {
+    color: #568C00;
+}
+
+#docSidebar ol.keywords {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#docSidebar ol ol {
+    list-style-type: square;
+    margin-top: 0.5em;
+    padding-left: 1.5em;
+}
+
+.index ol {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.index ol {
+    overflow: auto;
+}
+
+.index ol li {
+    display: block;
+    float: left;
+}
+
+.index ol li a {
+    display: block;
+    border: 1px solid #ddd;
+    width: 130px;
+    margin: 5px;
+    padding: 1px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #fff;
+    -webkit-box-shadow: #EEE -1px 1px 2px;
+    -moz-box-shadow: #EEE -1px 1px 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
