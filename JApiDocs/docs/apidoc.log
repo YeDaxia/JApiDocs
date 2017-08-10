@@ -1,0 +1,12 @@
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: find java src path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/playDemo/app/
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: found it a play framework project, tell us if we are wrong.
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: generate api docs start...
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: start to generate docs for controller file : UserApi.java
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: success to generate docs for controller file : UserApi.java
+八月 10, 2017 6:29:51 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: generate api docs done !!!

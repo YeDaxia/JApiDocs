@@ -1,4 +1,4 @@
-rootProject.name = 'apidocs'
+rootProject.name = 'JApiDocs'
 include 'library'
 include 'playDemo'
 include 'springDemo'
