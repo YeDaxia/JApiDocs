@@ -29,4 +29,8 @@ public @interface ApiDoc {
      * request method
      */
 	String method() default "get";
+
+    final class Null{
+
+    }
 }

@@ -1,6 +1,7 @@
 /**
  * @author yeguozhong yedaxia.github.com
  */
+
 public class Projects {
     public static String SpringProject = "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/";
     public static String PlayProject = "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/playDemo/";

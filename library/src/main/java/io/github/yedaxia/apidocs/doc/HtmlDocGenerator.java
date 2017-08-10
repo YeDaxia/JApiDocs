@@ -41,8 +41,20 @@ public class HtmlDocGenerator extends AbsDocGenerator {
             indexTemplate = indexTemplate.replace("${API_LIST}", indexBuilder.toString());
             Utils.writeToDisk(new File(DocContext.getDocPath(), "index.html"), indexTemplate);
         } catch (IOException e) {
-            LogUtils.info("generate index html fail. ",e);
+            LogUtils.error("generate index html fail. ",e);
         }
+
+        copyCssStyle();
     }
 
+    private void copyCssStyle(){
+        try{
+            String cssFileName = "style.css";
+            File cssFile = new File(DocContext.getDocPath(), cssFileName);
+            Utils.writeToDisk(cssFile, Utils.streamToString(Resources.getTemplateFile(cssFileName)));;
+        }catch (IOException  e){
+            LogUtils.error("copyCssStyle fail",e);
+        }
+
+    }
 }
