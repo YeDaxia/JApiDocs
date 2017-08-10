@@ -1,0 +1,35 @@
+
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
+group 'io.github.yedaxia'
+version '1.0-min'
+
+sourceCompatibility = 1.8
+
+jar {
+    baseName "io.github.yedaxia.apidocs"
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": version)
+    }
+}
+
+shadowJar {
+    baseName = 'io.github.yedaixa.apidocs'
+    classifier = "all"
+    version = 1.0
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.github.javaparser:javaparser-core:3.3.0'
+}

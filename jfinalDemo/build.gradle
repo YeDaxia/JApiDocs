@@ -1,0 +1,6 @@
+apply plugin: 'java'
+
+dependencies {
+    compile project(":library")
+    compile group: 'com.jfinal', name: 'jfinal', version: '3.2'
+}

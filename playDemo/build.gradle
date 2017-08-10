@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['app']
+        }
+        resources {
+            srcDirs = ['conf']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+        resources {
+            srcDirs = ['test']
+        }
+    }
+}
+
+dependencies {
+    compile project(":library")
+    compile group: 'com.google.code.maven-play-plugin.org.playframework', name: 'play', version: '1.4.4'
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BookDetailVO</title>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=java&amp;skin=sunburst"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=m&amp;skin=sunburst"></script>
+</head>
+<body>
+<pre class="prettyprint lang-java">
+public class BookDetailVO implements Serializable{
+
+    private long bookId; //图书id
+    private String bookName; //图书名称
+    private int storeCount; //馆藏数量
+    private string[] pictures; //图片
+    private UserVO owner; //
+
+    @JSONField(name="bookId")
+    public long getBookId(){
+        return bookId;
+    }
+
+    @JSONField(name="bookId")
+    public void setBookId(long bookId){
+        this.bookId = bookId;
+    }
+
+    @JSONField(name="bookName")
+    public String getBookName(){
+        return bookName;
+    }
+
+    @JSONField(name="bookName")
+    public void setBookName(String bookName){
+        this.bookName = bookName;
+    }
+
+    @JSONField(name="storeCount")
+    public int getStoreCount(){
+        return storeCount;
+    }
+
+    @JSONField(name="storeCount")
+    public void setStoreCount(int storeCount){
+        this.storeCount = storeCount;
+    }
+
+    @JSONField(name="pictures")
+    public string[] getPictures(){
+        return pictures;
+    }
+
+    @JSONField(name="pictures")
+    public void setPictures(string[] pictures){
+        this.pictures = pictures;
+    }
+
+    @JSONField(name="owner")
+    public UserVO getOwner(){
+        return owner;
+    }
+
+    @JSONField(name="owner")
+    public void setOwner(UserVO owner){
+        this.owner = owner;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class UserVO implements Serializable{
+
+    private String userId; //用户id
+    private String userName; //用户名
+    private SimpleUser[] friends; //好友
+    private BookVO[] readBooks; //阅读图书
+    private boolean isFollow; //是否关注
+
+    @JSONField(name="userId")
+    public String getUserId(){
+        return userId;
+    }
+
+    @JSONField(name="userId")
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
+
+    @JSONField(name="userName")
+    public String getUserName(){
+        return userName;
+    }
+
+    @JSONField(name="userName")
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    @JSONField(name="friends")
+    public SimpleUser[] getFriends(){
+        return friends;
+    }
+
+    @JSONField(name="friends")
+    public void setFriends(SimpleUser[] friends){
+        this.friends = friends;
+    }
+
+    @JSONField(name="readBooks")
+    public BookVO[] getReadBooks(){
+        return readBooks;
+    }
+
+    @JSONField(name="readBooks")
+    public void setReadBooks(BookVO[] readBooks){
+        this.readBooks = readBooks;
+    }
+
+    @JSONField(name="isFollow")
+    public boolean getIsFollow(){
+        return isFollow;
+    }
+
+    @JSONField(name="isFollow")
+    public void setIsFollow(boolean isFollow){
+        this.isFollow = isFollow;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class SimpleUser implements Serializable{
+
+    private String userId; //用户id
+    private String userName; //用户名
+
+    @JSONField(name="userId")
+    public String getUserId(){
+        return userId;
+    }
+
+    @JSONField(name="userId")
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
+
+    @JSONField(name="userName")
+    public String getUserName(){
+        return userName;
+    }
+
+    @JSONField(name="userName")
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookVO implements Serializable{
+
+    private long bookId; //图书id
+    private String bookName; //图书名称
+
+    @JSONField(name="bookId")
+    public long getBookId(){
+        return bookId;
+    }
+
+    @JSONField(name="bookId")
+    public void setBookId(long bookId){
+        this.bookId = bookId;
+    }
+
+    @JSONField(name="bookName")
+    public String getBookName(){
+        return bookName;
+    }
+
+    @JSONField(name="bookName")
+    public void setBookName(String bookName){
+        this.bookName = bookName;
+    }
+
+}
+</pre>
+
+
+
+</body>
+</html>
