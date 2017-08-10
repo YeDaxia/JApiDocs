@@ -1,7 +1,9 @@
 
+> [English ReadMe](README-EN.md)
+
 # 简介
 
-一个简单的[示例](https://yedaxia.github.io/play-apidocs/)。
+一个简单的[示例](https://yedaxia.github.io/play-apidocs/)。 
 
 JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程度地利用 Java 的语法特性，你只管用心设计好接口，添加必要的注释，JApiDocs 会帮你导出一份漂亮的 Html 文档，并生成相关的 Java 和 Object-C 相关数据模型代码，从此，Android 和 IOS 的同学可以少敲很多代码了，你也不需要费力维护接口文档的变化，只需要维护好你的代码就可以了。
 
@@ -139,3 +141,5 @@ class BookKVO{
 # License
 
 JApiDocs is available under the Apache 2 License. Please see the [Licensing section](http://docs.hazelcast.org/docs/latest-dev/manual/html-single/index.html#licensing) for more information.
+
+
