@@ -18,12 +18,13 @@ jar {
     baseName "io.github.yedaxia.apidocs"
     manifest {
         attributes("Implementation-Title": "Gradle",
-                   "Implementation-Version": version)
+                   "Implementation-Version": version,
+                   "Main-Class":"io.github.yedaxia.apidocs.Docs")
     }
 }
 
 shadowJar {
-    baseName = 'io.github.yedaixa.apidocs'
+    baseName = 'io.github.yedaxia.apidocs'
     classifier = "all"
     version = 1.0
 }
