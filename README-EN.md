@@ -70,9 +70,10 @@ mvcFramework = [spring, play, jfinal, generic](not required，JApiDocs will try 
 
 **java code mode**
 
-(1) use the `all` jar or the `min` jar, if you use the `min` version, don't forge to include the libraries below:
+(1) add dependencies below:
 
 ```
+compile 'io.github.yedaxia:japidocs:1.0'
 compile 'com.google.code.gson:gson:2.8.0'
 compile 'com.github.javaparser:javaparser-core:3.3.0'
 ```

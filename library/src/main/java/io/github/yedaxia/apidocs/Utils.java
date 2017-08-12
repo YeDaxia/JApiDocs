@@ -152,7 +152,6 @@ public class Utils {
      * @param filter
      * @param result
      * @param stopAtFirstResult stop when first file matches
-     * @return
      */
 	public static void wideSearchFile(File rootPath, FilenameFilter filter, List<File> result, boolean stopAtFirstResult){
 	    File[] fileList = rootPath.listFiles();

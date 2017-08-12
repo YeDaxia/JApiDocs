@@ -59,7 +59,7 @@ public class ResponseNode {
         if(childNodes == null || childNodes.isEmpty()){
             return "";
         }
-        Map jsonRootMap = new LinkedHashMap<>();
+        Map<String, Object> jsonRootMap = new LinkedHashMap<>();
         for (FieldNode recordNode : childNodes) {
             toJsonApiMap(recordNode,jsonRootMap);
         }
@@ -70,10 +70,10 @@ public class ResponseNode {
         }
     }
 
-    public void toJsonApiMap(FieldNode recordNode, Map map){
+    public void toJsonApiMap(FieldNode recordNode, Map<String, Object> map){
         ResponseNode childResponseNode = recordNode.getChildResponseNode();
         if(childResponseNode != null){
-            Map childMap = new LinkedHashMap<>();
+            Map<String, Object> childMap = new LinkedHashMap<>();
             for (FieldNode childNode : childResponseNode.childNodes) {
                 if(childNode.getChildResponseNode() != null){
                     toJsonApiMap(childNode,childMap);

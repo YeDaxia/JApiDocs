@@ -42,7 +42,7 @@ public class ModelCodeGenerator extends CodeGenerator{
 	public String generateNodeCode(ResponseNode respNode) throws IOException {
 		String className = respNode.getClassName();
 		IFieldProvider entryProvider = ProviderFactory.createProvider();
-		List<FieldModel> entryFields = entryProvider.provideEntryFields(respNode);
+		List<FieldModel> entryFields = entryProvider.provideFields(respNode);
 		if(entryFields == null || entryFields.isEmpty()){
 			return "";
 		}

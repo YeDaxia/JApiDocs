@@ -62,7 +62,7 @@ public @interface ApiDoc {
 
 如果你用的是我们深度支持的 MVC 框架，那么你只需要写好返回的视图模型就可以了。
 
-3. 你可以在项目的目录下找到有两个，一个是`all`结尾的，里面包含了第三方的依赖包，一个是`min`结尾的，不含第三方的依赖包。
+3. 集成依赖和运行程序
 
 **命令行模式:**
 
@@ -83,9 +83,10 @@ java -jar ***-all.jar
 
 **代码模式**
 
-如果想做一些持续集成的话，代码模式还是比较方便的，根据你的需要可以选择`all`包或者`min`包，相关第三方依赖如下：
+如果想做一些持续集成的话，代码模式还是比较方便的，直接添加依赖或者下载相关`jar`包，其中`min`包是不包含第三方依赖的。
 
 ```
+compile 'io.github.yedaxia:japidocs:1.0'
 compile 'com.google.code.gson:gson:2.8.0'
 compile 'com.github.javaparser:javaparser-core:3.3.0'
 ```

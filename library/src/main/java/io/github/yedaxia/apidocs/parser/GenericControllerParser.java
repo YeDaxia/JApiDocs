@@ -6,7 +6,7 @@ import io.github.yedaxia.apidocs.Utils;
 
 /**
  *
- * can apply to any java project, but you have to set the request url and method in annotation ${@link ApiDoc} by yourself.
+ * can apply to any java project, but you have to set the request url and method in annotation ${@link io.github.yedaxia.apidocs.ApiDoc} by yourself.
  *
  * @author yeguozhong yedaxia.github.com
  */

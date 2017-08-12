@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IFieldProvider {
 	/**
-	 *
-	 * @param
+	 * get response fields
+	 * @param respNode
 	 * @return
 	 */
-	List<FieldModel> provideEntryFields(ResponseNode respNode);
+	List<FieldModel> provideFields(ResponseNode respNode);
 }

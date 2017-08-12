@@ -49,8 +49,8 @@ public class JavaCodeGenerator extends CodeGenerator{
 		String className = respNode.getClassName();
 
 		IFieldProvider entryProvider = ProviderFactory.createProvider();
-		List<FieldModel> entryFields = entryProvider.provideEntryFields(respNode);
-		
+		List<FieldModel> entryFields = entryProvider.provideFields(respNode);
+
 		if(entryFields == null || entryFields.isEmpty()){
 			return "";
 		}

@@ -14,7 +14,7 @@ import java.util.List;
 public class DocFieldProvider implements IFieldProvider {
 
 	@Override
-	public List<FieldModel> provideEntryFields(ResponseNode respNode) {
+	public List<FieldModel> provideFields(ResponseNode respNode) {
 		List<FieldNode>recordNodes = respNode.getChildNodes();
 		if(recordNodes == null || recordNodes.isEmpty()){
 			return null;
