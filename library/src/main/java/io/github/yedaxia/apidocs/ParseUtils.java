@@ -267,7 +267,10 @@ public class ParseUtils {
             return "double";
         } else if("boolean".equalsIgnoreCase(rawType)){
             return "boolean";
-        } else if("String".equalsIgnoreCase(rawType)){
+        } else if("char".equalsIgnoreCase(rawType)
+                || "Character".equalsIgnoreCase(rawType)){
+            return "char";
+        }else if("String".equalsIgnoreCase(rawType)){
             return "string";
         } else if("date".equalsIgnoreCase(rawType)){
             return "date";
