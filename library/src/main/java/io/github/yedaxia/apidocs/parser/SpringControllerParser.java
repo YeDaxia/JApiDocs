@@ -24,7 +24,7 @@ public class SpringControllerParser extends AbsControllerParser {
             }
             if(a instanceof NormalAnnotationExpr){
                 ((NormalAnnotationExpr)a).getPairs().stream()
-                        .filter(v -> v.getNameAsString().equals("path"))
+                        .filter(v -> isUrlPathKey(v.getNameAsString()))
                         .findFirst()
                         .ifPresent(p -> {
                             controllerNode.setBaseUrl(Utils.cleanUrl(p.getValue().toString()));
@@ -45,7 +45,7 @@ public class SpringControllerParser extends AbsControllerParser {
             if(m instanceof NormalAnnotationExpr){
                 ((NormalAnnotationExpr)m).getPairs().forEach(p ->{
                     String name = p.getNameAsString();
-                    if("path".equals(name)){
+                    if(isUrlPathKey(name)){
                         requestNode.setUrl(Utils.cleanUrl(p.getValue().toString()));
                     }
 
@@ -82,5 +82,9 @@ public class SpringControllerParser extends AbsControllerParser {
                 });
             }
         });
+    }
+
+    private boolean isUrlPathKey(String name){
+        return name.equals("path") || name.equals("value");
     }
 }
