@@ -27,7 +27,7 @@ public class ResponseNode {
         this.description = description;
     }
 
-    public Boolean getList() {
+    public Boolean isList() {
         return isList;
     }
 
@@ -64,9 +64,9 @@ public class ResponseNode {
             toJsonApiMap(recordNode,jsonRootMap);
         }
         if(isList){
-            return Utils.toJson(new Map[]{jsonRootMap});
+            return Utils.toPrettyJson(new Map[]{jsonRootMap});
         }else{
-            return Utils.toJson(jsonRootMap);
+            return Utils.toPrettyJson(jsonRootMap);
         }
     }
 

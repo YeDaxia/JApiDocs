@@ -15,6 +15,12 @@ class Page {
     private Set<Action> actionList = new HashSet<Action>();
     private String template;
 
+    public static Page newPage(){
+        Page page = new Page();
+        page.setId(-1);
+        return page;
+    }
+
     public int getId() {
         return id;
     }

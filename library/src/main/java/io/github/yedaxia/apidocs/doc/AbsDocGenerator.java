@@ -16,6 +16,7 @@ public abstract class AbsDocGenerator{
     private AbsControllerParser controllerParser;
     private IControllerDocBuilder controllerDocBuilder;
     private List<String> docFileNameList = new ArrayList<>();
+    private List<ControllerNode> controllerNodeList = new ArrayList<>();
 
     public AbsDocGenerator(AbsControllerParser controllerParser, IControllerDocBuilder controllerDocBuilder) {
         this.controllerParser = controllerParser;
@@ -40,6 +41,7 @@ public abstract class AbsDocGenerator{
                 if(controllerNode.getRequestNodes().isEmpty()){
                     continue;
                 }
+                controllerNodeList.add(controllerNode);
                 LogUtils.info("start to generate docs for controller file : %s", controllerFile.getName());
                 String controllerDocs = controllerDocBuilder.buildDoc(controllerNode);
                 String docName = controllerNode.getDescription();
@@ -51,6 +53,10 @@ public abstract class AbsDocGenerator{
             }
         }
 
+    }
+
+    public List<ControllerNode> getControllerNodeList(){
+        return controllerNodeList;
     }
 
 	abstract void generateIndex(List<String> docFileNameList);

@@ -10,31 +10,33 @@ public class DocsTest {
     @Test
     public void test_generatePlayApiDocs(){
         Resources.setDebug();
-        Docs.buildHtmlDocs(getDocsConfig(Projects.PlayProject,Projects.DocsPath));
+        Docs.buildHtmlDocs(getDocsConfig(Projects.PlayProject));
     }
 
     @Test
     public void test_generateSpringApiDocs(){
         Resources.setDebug();
-        Docs.buildHtmlDocs(getDocsConfig(Projects.SpringProject,Projects.DocsPath));
+        Docs.buildHtmlDocs(getDocsConfig(Projects.SpringProject));
     }
 
     @Test
     public void test_generateGenericApiDocs(){
         Resources.setDebug();
-        Docs.buildHtmlDocs(getDocsConfig(Projects.GenericProject,Projects.DocsPath));
+        Docs.buildHtmlDocs(getDocsConfig(Projects.GenericProject));
     }
 
     @Test
     public void test_generateJFinalApiDocs(){
         Resources.setDebug();
-        Docs.buildHtmlDocs(getDocsConfig(Projects.JFinalProject,Projects.DocsPath));
+        Docs.buildHtmlDocs(getDocsConfig(Projects.JFinalProject));
     }
 
-    private Docs.DocsConfig getDocsConfig(String projectPath, String doscPath){
+    private Docs.DocsConfig getDocsConfig(String projectPath){
         Docs.DocsConfig config = new Docs.DocsConfig();
         config.setProjectPath(projectPath);
-        config.setDocsPath(doscPath);
+        config.setRapProjectId("1");
+        config.setRapHost("http://localhost:8080");
+        config.setRapLoginCookie("Idea-a5a2275=b1c68fb9-9388-4f6b-b60d-da7ffd3dec41; _ga=GA1.1.834603554.1485884157; UM_distinctid=15ddab01c37246-08a9a90e29f9f7-143a6d54-13c680-15ddab01c38328; JSESSIONID=262683FFACEB823D6EF879AED8CC0C81; CNZZDATA5879641=cnzz_eid%3D2117386803-1502607789-http%253A%252F%252Flocalhost%253A8080%252F%26ntime%3D1502804904");
         return config;
     }
 }

@@ -11,14 +11,36 @@ import java.util.List;
 public class Utils {
 
     /**
-     * object to json
+     * object to pretty json
+     * @param map
+     * @return
+     */
+	public static String toPrettyJson(Object map){
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(map);
+	}
+
+    /**
+     * object to simple json
      * @param map
      * @return
      */
 	public static String toJson(Object map){
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(map);
-	}
+        Gson gson = new Gson();
+        return gson.toJson(map);
+    }
+
+    /**
+     * json string to object
+     * @param json
+     * @param type
+     * @param <T>
+     * @return
+     */
+	public static<T> T jsonToObject(String json, Class<T> type){
+	    Gson gson = new Gson();
+	    return gson.fromJson(json, type);
+    }
 
 	/**
 	 * write content to file
@@ -78,7 +100,7 @@ public class Utils {
      * @param rawUrl
      * @return
      */
-    public static String cleanUrl(String rawUrl){
+    public static String removeQuotations(String rawUrl){
         return rawUrl.replace("\"","").trim();
     }
 
@@ -241,4 +263,16 @@ public class Utils {
 		}, result, true);
 		return result.size() > 0;
 	}
+
+
+    /**
+     * is value type or not
+     * @param value
+     * @return
+     */
+	public static boolean isValueType(Object value){
+	    return value instanceof Number
+                || value instanceof String
+                || value instanceof java.util.Date;
+    }
 }

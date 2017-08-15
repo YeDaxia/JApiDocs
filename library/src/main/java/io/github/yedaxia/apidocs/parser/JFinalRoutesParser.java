@@ -84,7 +84,7 @@ public class JFinalRoutesParser {
                                                });
                                            });
                                }else{
-                                   String basicUrl = Utils.cleanUrl(arguments.get(0).toString());
+                                   String basicUrl = Utils.removeQuotations(arguments.get(0).toString());
                                    String controllerClass = arguments.get(1).toString();
                                    String controllerFilePath = getControllerFilePath(inJavaFile, controllerClass);
                                    routeNodeList.add(new RouteNode(basicUrl, controllerFilePath));

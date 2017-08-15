@@ -20,6 +20,12 @@ class Action {
     private Set<Page> pageList = new HashSet<Page>();
     private String remarks;
 
+    public static Action newAction(){
+        Action action = new Action();
+        action.setId(-1);
+        return action;
+    }
+
     public int getId() {
         return id;
     }

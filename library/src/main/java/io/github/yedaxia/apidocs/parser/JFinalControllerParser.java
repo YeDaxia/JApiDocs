@@ -19,7 +19,7 @@ public class JFinalControllerParser extends AbsControllerParser{
         md.getAnnotationByName("ActionKey").ifPresent(an -> {
             if(an instanceof SingleMemberAnnotationExpr){
                 String url = ((SingleMemberAnnotationExpr)an).getMemberValue().toString();
-                requestNode.setUrl(Utils.cleanUrl(url));
+                requestNode.setUrl(Utils.removeQuotations(url));
             }
         });
     }

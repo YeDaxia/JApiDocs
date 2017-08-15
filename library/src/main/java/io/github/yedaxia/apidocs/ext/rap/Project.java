@@ -1,16 +1,14 @@
 package io.github.yedaxia.apidocs.ext.rap;
 
-import io.github.yedaxia.apidocs.parser.ControllerNode;
-import io.github.yedaxia.apidocs.parser.ParamNode;
-import io.github.yedaxia.apidocs.parser.RequestNode;
+import io.github.yedaxia.apidocs.DocContext;
+import io.github.yedaxia.apidocs.IResponseWrapper;
+import io.github.yedaxia.apidocs.ParseUtils;
+import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.parser.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
- *
  * @author yeguozhong yedaxia.github.com
  */
 class Project {
@@ -160,37 +158,110 @@ class Project {
         this.version = version;
     }
 
-    public static Project valueOf(int id, ControllerNode controllerNode){
+    public static Project valueOf(int id, List<ControllerNode> controllerNodeList) {
         Project project = new Project();
         project.setId(id);
-        Module module = new Module();
-        module.setId(-10);
-        module.setName("API 列表");
+        Module module = Module.newModule();
         project.getModuleList().add(module);
-        Page page = new Page();
-        page.setId(-11);
-        page.setName(controllerNode.getDescription());
-        int actionId = -12;
 
-        for(RequestNode requestNode : controllerNode.getRequestNodes()){
-            Action action = new Action();
-            action.setId(actionId--);
-            action.setName(requestNode.getDescription());
-            action.setRequestUrl(requestNode.getUrl());
-            action.setRequestType("get".equalsIgnoreCase(requestNode.getMethod()) ? "1" : "2");
+        for(ControllerNode controllerNode : controllerNodeList){
+            Page page = Page.newPage();
+            module.getPageList().add(page);
+            page.setName(controllerNode.getDescription());
 
-            for(ParamNode paramNode : requestNode.getParamNodes()){
-                Parameter parameter = new Parameter();
-                parameter.setIdentifier(paramNode.getName());
-                parameter.setName(paramNode.getDescription());
-                parameter.setDataType(DataType.rapTypeOfNode(paramNode.getType()));
-                //parameter.setRemark(""); mock data
+            for (RequestNode requestNode : controllerNode.getRequestNodes()) {
+                Action action = Action.newAction();
+                action.setName(requestNode.getDescription());
+                action.setRequestUrl(requestNode.getUrl());
+                action.setRequestType("get".equalsIgnoreCase(requestNode.getMethod()) ? "1" : "2");
+
+                for (ParamNode paramNode : requestNode.getParamNodes()) {
+                    Parameter parameter = Parameter.newParameter();
+                    if (DataType.isArrayType(paramNode.getType())) {
+                        parameter.setIdentifier(getArrayIdentifier(paramNode.getName()));
+                    } else {
+                        parameter.setIdentifier(paramNode.getName());
+                    }
+                    parameter.setName(paramNode.getDescription());
+                    parameter.setDataType(DataType.rapTypeOfNode(paramNode.getType()));
+//                  parameter.setRemark(DataType.mockTypeOfNode(paramNode.getType()));
+                    action.getRequestParameterList().add(parameter);
+                }
+
+                IResponseWrapper responseWrapper = DocContext.getResponseWrapper();
+                Map<String, Object> resultMap = responseWrapper.wrapResponse(requestNode.getResponseNode());
+                setResultMapToAction(resultMap, action.getResponseParameterList());
+
+                page.getActionList().add(action);
             }
-
-            page.getActionList().add(action);
         }
+
         return project;
     }
 
+    private static void setResultMapToAction(Map<String, Object> resultMap, Set<Parameter> parameterSet) {
+        for (Map.Entry<String, Object> entry : resultMap.entrySet()) {
+            Parameter parameter = Parameter.newParameter();
+            parameter.setIdentifier(entry.getKey());
+            if (Utils.isValueType(entry.getValue())) {
+                String uType = unifyType(entry.getValue());
+                parameter.setDataType(DataType.rapTypeOfNode(uType));
+                parameter.setRemark(DataType.mockValue(entry.getValue()));
+                parameterSet.add(parameter);
+            } else if (entry.getValue() instanceof Map) {
+                parameter.setDataType(DataType.OBJECT);
+                parameterSet.add(parameter);
+                setResultMapToAction((Map) entry.getValue(), parameter.getParameterList());
+            } else if (entry.getValue() instanceof ResponseNode){
+                ResponseNode responseNode = (ResponseNode)entry.getValue();
+                if(responseNode.isList()){
+                    parameter.setIdentifier(getArrayIdentifier(entry.getKey()));
+                    parameter.setDataType(DataType.ARRAY_OBJECT);
+                }else{
+                    parameter.setDataType(DataType.OBJECT);
+                }
+                parameterSet.add(parameter);
+                setResponseToAction(responseNode, parameter.getParameterList());
+            }
+        }
+    }
 
+    private static void setResponseToAction(ResponseNode responseNode, Set<Parameter> parameterSet) {
+        for(FieldNode fieldNode : responseNode.getChildNodes()){
+            Parameter parameter = Parameter.newParameter();
+            parameter.setName(fieldNode.getDescription());
+            MockNode mockNode = fieldNode.getMockNode();
+
+            if (DataType.isArrayType(fieldNode.getType())) {
+                parameter.setIdentifier(getArrayIdentifier(fieldNode.getName()));
+            } else {
+                parameter.setIdentifier(fieldNode.getName());
+            }
+            parameter.setRemark(DataType.mockTypeOfNode(fieldNode.getType()));
+            parameter.setDataType(DataType.rapTypeOfNode(fieldNode.getType()));
+
+            // cover
+            if(mockNode != null){
+                if(Utils.isNotEmpty(mockNode.getLimit())){
+                    parameter.setIdentifier(String.format("%s|%s", fieldNode.getName(), mockNode.getLimit()));
+                }
+                if(Utils.isNotEmpty(mockNode.getValue())){
+                    parameter.setRemark(DataType.mockValue(mockNode.getValue()));
+                }
+            }
+
+            parameterSet.add(parameter);
+            if(fieldNode.getChildResponseNode() != null){
+                setResponseToAction(fieldNode.getChildResponseNode(), parameter.getParameterList());
+            }
+        }
+    }
+
+    private static String unifyType(Object value) {
+        return ParseUtils.unifyType(value.getClass().getSimpleName());
+    }
+
+    private static String getArrayIdentifier(String name){
+        return String.format("%s|1-10", name);
+    }
 }

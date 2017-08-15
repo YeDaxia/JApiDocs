@@ -7,10 +7,14 @@ import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.expr.MemberValuePair;
+import com.github.javaparser.ast.expr.NormalAnnotationExpr;
+import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import com.github.javaparser.ast.type.ArrayType;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
 import io.github.yedaxia.apidocs.parser.FieldNode;
+import io.github.yedaxia.apidocs.parser.MockNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 
 import java.io.File;
@@ -18,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -204,6 +209,26 @@ public class ParseUtils {
                             FieldNode fieldNode = new FieldNode();
                             responseNode.addChildNode(fieldNode);
                             fd.getComment().ifPresent(c -> fieldNode.setDescription(c.getContent()));
+                            fd.getAnnotationByName("RapMock").ifPresent(an -> {
+                                if(an instanceof NormalAnnotationExpr){
+                                    NormalAnnotationExpr normalAnExpr = (NormalAnnotationExpr)an;
+                                    MockNode mockNode = new MockNode();
+                                    for(MemberValuePair mvPair : normalAnExpr.getPairs()){
+                                        String name = mvPair.getName().asString();
+                                        if("limit".equalsIgnoreCase(name)){
+                                            mockNode.setLimit(Utils.removeQuotations(mvPair.getValue().toString()));
+                                        }else if("value".equalsIgnoreCase(name)){
+                                            mockNode.setValue(Utils.removeQuotations(mvPair.getValue().toString()));
+                                        }
+                                    }
+                                    fieldNode.setMockNode(mockNode);
+                                }else if(an instanceof SingleMemberAnnotationExpr){
+                                    SingleMemberAnnotationExpr singleAnExpr = (SingleMemberAnnotationExpr)an;
+                                    MockNode mockNode = new MockNode();
+                                    mockNode.setValue(Utils.removeQuotations(singleAnExpr.getMemberValue().toString()));
+                                    fieldNode.setMockNode(mockNode);
+                                }
+                            });
                             fieldNode.setName(v.getNameAsString());
                             Type elType = fd.getElementType();
                             String type = elType.asString();

@@ -17,104 +17,127 @@ class DataType {
     public static String ARRAY_BOOLEAN = "array<boolean>";
     public static String ARRAY_OBJECT = "array<object>";
 
+    public static final String MOCK = "@mock=";
+
     /**
      * get rap type of param node
+     *
      * @param nodeType
      * @return
      */
-    public static String rapTypeOfNode(String nodeType){
+    public static String rapTypeOfNode(String nodeType) {
         String pType = nodeType;
-        if(pType == null || pType.length() == 0){
+        if (pType == null || pType.length() == 0) {
             return STRING;
         }
 
-        if(isBooleanType(pType)){
+        if (isBooleanType(pType)) {
             return BOOLEAN;
         }
 
-        if(isStringType(pType)){
+        if (isStringType(pType)) {
             return STRING;
         }
 
-        if(isNumberType(pType)){
+        if (isNumberType(pType)) {
             return NUMBER;
         }
 
-        if(pType.endsWith("[]")){
-            String cType = pType.replace("[]","");
+        if (pType.endsWith("[]")) {
+            String cType = pType.replace("[]", "");
 
-            if(isBooleanType(cType)){
+            if (isBooleanType(cType)) {
                 return ARRAY_BOOLEAN;
             }
 
-            if(isStringType(cType)){
+            if (isStringType(cType)) {
                 return ARRAY_STRING;
             }
 
-            if(isNumberType(cType)){
+            if (isNumberType(cType)) {
                 return ARRAY_NUMBER;
             }
 
-            return ARRAY;
+            return ARRAY_OBJECT;
 
-        }else{
+        } else {
             return OBJECT;
         }
     }
 
     /**
-     * get mock type of param node
+     * is nodeType string an array or not
      * @param nodeType
      * @return
      */
-    public static String mockTypeOfNode(String nodeType){
-        if(nodeType.endsWith("[]")){
+    public static boolean isArrayType(String nodeType){
+        return nodeType != null && nodeType.endsWith("[]");
+    }
 
-        }else{
-            if(isBooleanType(nodeType)){
-                return "@boolean";
-            }else if(isFloatType(nodeType)){
-                return "@float";
-            }else if(isIntType(nodeType)){
-                return "@integer";
-            }else if(isCharType(nodeType)){
-                return "@character";
-            }else if(nodeType.equalsIgnoreCase("date")){
-                return "@datetime";
-            }else{
-                return "@string";
-            }
+    /**
+     * get mock type of param node
+     *
+     * @param nodeType
+     * @return
+     */
+    public static String mockTypeOfNode(String nodeType) {
+        if(isArrayType(nodeType)){
+            nodeType = nodeType.replace("[]", "");
         }
-        return "";
+
+        if (isBooleanType(nodeType)) {
+            return MOCK + "@boolean".toUpperCase();
+        } else if (isFloatType(nodeType)) {
+            return MOCK + "@float".toUpperCase();
+        } else if (isIntType(nodeType)) {
+            return MOCK + "@integer".toUpperCase();
+        } else if (isCharType(nodeType)) {
+            return MOCK + "@character".toUpperCase();
+        } else if ("date".equalsIgnoreCase(nodeType)) {
+            return MOCK + "@datetime".toUpperCase();
+        } else if("string".equalsIgnoreCase(nodeType)){
+            return MOCK+ "@string".toUpperCase();
+        } else {
+            return "";
+        }
     }
 
-    private static boolean isBooleanType(String pType){
-        return pType.equalsIgnoreCase("boolean");
+    /**
+     * return mock value
+     * @param value
+     * @return
+     */
+    public static String mockValue(Object value){
+        return MOCK + value;
     }
 
-    private static boolean isNumberType(String pType){
-        return isFloatType(pType) || isIntType(pType);
+    private static boolean isBooleanType(String pType) {
+        return pType != null && pType.equalsIgnoreCase("boolean");
     }
 
-    private static boolean isFloatType(String pType){
-        return pType.equalsIgnoreCase("float")
-                || pType.equalsIgnoreCase("double");
+    private static boolean isNumberType(String pType) {
+        return pType != null && isFloatType(pType) || isIntType(pType);
     }
 
-    private static boolean isIntType(String pType){
-        return pType.equalsIgnoreCase("int")
+    private static boolean isFloatType(String pType) {
+        return pType != null && (pType.equalsIgnoreCase("float")
+                || pType.equalsIgnoreCase("double"));
+    }
+
+    private static boolean isIntType(String pType) {
+        return pType != null && (pType.equalsIgnoreCase("int")
                 || pType.equalsIgnoreCase("byte")
                 || pType.equalsIgnoreCase("short")
-                || pType.equalsIgnoreCase("long");
+                || pType.equalsIgnoreCase("long"));
     }
 
-    private static boolean isStringType(String pType){
-        return pType.equalsIgnoreCase("date")
-                || pType.equalsIgnoreCase("string");
+    private static boolean isStringType(String pType) {
+        return pType != null && (pType.equalsIgnoreCase("date")
+                || pType.equalsIgnoreCase("string"));
     }
 
-    private static boolean isCharType(String pType){
-        return "char".equalsIgnoreCase(pType)
-                || "Character".equalsIgnoreCase(pType);
+    private static boolean isCharType(String pType) {
+        return pType != null && ("char".equalsIgnoreCase(pType)
+                || "Character".equalsIgnoreCase(pType));
     }
 }

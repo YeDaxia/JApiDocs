@@ -19,7 +19,7 @@ public class SpringControllerParser extends AbsControllerParser {
         clazz.getAnnotationByName("RequestMapping").ifPresent( a -> {
             if(a instanceof SingleMemberAnnotationExpr){
                 String baseUrl = ((SingleMemberAnnotationExpr)a).getMemberValue().toString();
-                controllerNode.setBaseUrl(Utils.cleanUrl(baseUrl));
+                controllerNode.setBaseUrl(Utils.removeQuotations(baseUrl));
                 return;
             }
             if(a instanceof NormalAnnotationExpr){
@@ -27,7 +27,7 @@ public class SpringControllerParser extends AbsControllerParser {
                         .filter(v -> isUrlPathKey(v.getNameAsString()))
                         .findFirst()
                         .ifPresent(p -> {
-                            controllerNode.setBaseUrl(Utils.cleanUrl(p.getValue().toString()));
+                            controllerNode.setBaseUrl(Utils.removeQuotations(p.getValue().toString()));
                         });
             }
         });
@@ -46,7 +46,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 ((NormalAnnotationExpr)m).getPairs().forEach(p ->{
                     String name = p.getNameAsString();
                     if(isUrlPathKey(name)){
-                        requestNode.setUrl(Utils.cleanUrl(p.getValue().toString()));
+                        requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
                     }
 
                     if("method".equals(name)){

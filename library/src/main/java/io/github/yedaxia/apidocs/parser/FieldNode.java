@@ -9,6 +9,7 @@ public class FieldNode {
     private String name;
     private String type;
     private String description;
+    private MockNode mockNode;
     private ResponseNode childResponseNode;
 
     public String getName() {
@@ -33,6 +34,14 @@ public class FieldNode {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MockNode getMockNode() {
+        return mockNode;
+    }
+
+    public void setMockNode(MockNode mockNode) {
+        this.mockNode = mockNode;
     }
 
     public ResponseNode getChildResponseNode() {

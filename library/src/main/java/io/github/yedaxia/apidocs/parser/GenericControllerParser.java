@@ -19,9 +19,9 @@ public class GenericControllerParser extends AbsControllerParser {
                 ((NormalAnnotationExpr)an).getPairs().forEach(p -> {
                     String n = p.getNameAsString();
                     if(n.equals("url")){
-                        requestNode.setUrl(Utils.cleanUrl(p.getValue().toString()));
+                        requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
                     }else if(n.equals("method")){
-                        requestNode.setMethod(Utils.cleanUrl(p.getValue().toString()));
+                        requestNode.setMethod(Utils.removeQuotations(p.getValue().toString()));
                     }
                 });
             }

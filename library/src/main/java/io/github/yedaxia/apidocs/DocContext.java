@@ -21,8 +21,11 @@ public class DocContext {
     private static String javaSrcPath;
     private static AbsControllerParser controllerParser;
     private static List<File> controllerFiles;
+    private static IResponseWrapper responseWrapper;
+    private static Docs.DocsConfig config;
 
     public static void init(Docs.DocsConfig config){
+        DocContext.config = config;
         setProjectPath(config.projectPath);
         setDocPath(config.docsPath);
         Resources.setUserCodeTplPath(config.codeTplPath);
@@ -192,7 +195,7 @@ public class DocContext {
 
     private static void setDocPath(String docPath) {
 
-        if(docPath == null){
+        if(docPath == null || docPath.isEmpty()){
             docPath = projectPath + "apidocs";
         }
 
@@ -225,5 +228,29 @@ public class DocContext {
      */
     public static AbsControllerParser controllerParser(){
         return controllerParser;
+    }
+
+    public static IResponseWrapper getResponseWrapper() {
+        if(responseWrapper == null){
+            responseWrapper = new IResponseWrapper() {
+                @Override
+                public Map<String,Object> wrapResponse(ResponseNode responseNode) {
+                    Map<String,Object> resultMap = new HashMap<>();
+                    resultMap.put("code", 0);
+                    resultMap.put("data", responseNode);
+                    resultMap.put("msg","success");
+                    return resultMap;
+                }
+            };
+        }
+        return responseWrapper;
+    }
+
+    public static Docs.DocsConfig getDocsConfig(){
+        return DocContext.config;
+    }
+
+    static void setResponseWrapper(IResponseWrapper responseWrapper) {
+        DocContext.responseWrapper = responseWrapper;
     }
 }

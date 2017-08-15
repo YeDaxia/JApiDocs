@@ -1,6 +1,7 @@
 package io.github.yedaxia.apidocs;
 
 import io.github.yedaxia.apidocs.doc.HtmlDocGenerator;
+import io.github.yedaxia.apidocs.ext.rap.RapSupport;
 
 import java.io.File;
 import java.io.FileReader;
@@ -24,8 +25,28 @@ public class Docs {
      */
     public static void buildHtmlDocs(DocsConfig config){
         DocContext.init(config);
-		new HtmlDocGenerator().generateDocs();
+        HtmlDocGenerator docGenerator = new HtmlDocGenerator();
+        docGenerator.generateDocs();
+        RapSupport rapSupport = new RapSupport(docGenerator.getControllerNodeList());
+        rapSupport.postToRap();
 	}
+
+    /**
+     * wrap response into a common structure,don't forget to put responseNode into map.
+     *
+     * default is:
+     *
+     * {
+     *     code : 0,
+     *     data: ${response}
+     *     msg: 'success'
+     * }
+     *
+     * @param responseWrapper
+     */
+	public static void setResponseWrapper(IResponseWrapper responseWrapper){
+        DocContext.setResponseWrapper(responseWrapper);
+    }
 
 	private static DocsConfig loadProps(){
         try{
@@ -63,6 +84,10 @@ public class Docs {
         String codeTplPath; // if empty, use the default resources
         String mvcFramework; //spring, play, jfinal, generic, can be empty
 
+        String rapHost;
+        String rapLoginCookie;
+        String rapProjectId;
+
         boolean isSpringMvcProject(){
             return mvcFramework != null && mvcFramework.equals("spring");
         }
@@ -93,6 +118,30 @@ public class Docs {
 
         public void setMvcFramework(String mvcFramework) {
             this.mvcFramework = mvcFramework;
+        }
+
+        public String getRapHost() {
+            return rapHost;
+        }
+
+        public void setRapHost(String rapHost) {
+            this.rapHost = rapHost;
+        }
+
+        public String getRapLoginCookie() {
+            return rapLoginCookie;
+        }
+
+        public void setRapLoginCookie(String rapLoginCookie) {
+            this.rapLoginCookie = rapLoginCookie;
+        }
+
+        public String getRapProjectId() {
+            return rapProjectId;
+        }
+
+        public void setRapProjectId(String rapProjectId) {
+            this.rapProjectId = rapProjectId;
         }
     }
 }

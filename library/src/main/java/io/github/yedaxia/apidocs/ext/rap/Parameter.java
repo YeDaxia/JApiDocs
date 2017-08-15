@@ -22,6 +22,12 @@ class Parameter {
     private Set<Parameter> parameterList = new HashSet<Parameter>();
     private Set<Parameter> complexParamerterList = new HashSet<Parameter>();
 
+    public static Parameter newParameter(){
+        Parameter p = new Parameter();
+        p.setId(-1);
+        return p;
+    }
+
     public int getId() {
         return id;
     }
