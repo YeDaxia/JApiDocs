@@ -1,11 +1,16 @@
 package result.user;
 
+import io.github.yedaxia.apidocs.RapMock;
+
 /**
  * @author yeguozhong yedaxia.github.com
  */
 public class SimpleUser {
 
+    @RapMock(value="@ID")
     private String userId; //用户id
+
+    @RapMock("@NAME")
     private String userName; //用户名
 
     public String getUserId() {

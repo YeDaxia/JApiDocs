@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * rap mock support annotation
  */
 @Retention(RetentionPolicy.SOURCE)
-@Target({ElementType.METHOD})
+@Target({ElementType.FIELD})
 public @interface RapMock {
 
     /**

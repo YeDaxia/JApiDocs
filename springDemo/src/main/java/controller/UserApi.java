@@ -43,7 +43,7 @@ public class UserApi {
      */
     @ApiDoc(result = BookDetailVO.class)
     @RequestMapping(path = "/u/favorite", method = RequestMethod.POST)
-    public void favoriteBook(){
+    public void favoriteBook(@RequestParam String bookId){
 
     }
 }
