@@ -11,7 +11,7 @@ apply plugin: 'java'
 apply from: '../uploadMaven.gradle'
 
 group 'io.github.yedaxia'
-version '1.0-min'
+version VERSION_NAME + '-min'
 
 sourceCompatibility = 1.8
 
@@ -27,7 +27,7 @@ jar {
 shadowJar {
     baseName = 'io.github.yedaxia.apidocs'
     classifier = "all"
-    version = 1.0
+    version = VERSION_NAME
 }
 
 dependencies {
