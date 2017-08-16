@@ -15,6 +15,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 4. 支持一般的 Java Web 工程，需要在相关方法添加额外的路由。
 5. 支持接口声明过时(`@Deprecated`)，方便的文档目录等。
 6. 支持自定义代码生成模板。
+7. [:new: 支持集成发布到 rap](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95) (测试阶段)。
 
 # 快速使用
 
