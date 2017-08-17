@@ -13,7 +13,9 @@ public class UserVO extends SimpleUser {
 
     @RapMock(limit = "1-10")
     private SimpleUser[] friends; //好友
+
     private List<BookVO> readBooks; //阅读图书
+
     private Boolean isFollow; //是否关注
 
     public SimpleUser[] getFriends() {

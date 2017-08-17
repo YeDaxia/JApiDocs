@@ -172,7 +172,8 @@ class Project {
             for (RequestNode requestNode : controllerNode.getRequestNodes()) {
                 Action action = Action.newAction();
                 action.setName(requestNode.getDescription());
-                action.setRequestUrl(requestNode.getUrl());
+                String requestUrl = controllerNode.getBaseUrl() == null ? requestNode.getUrl() : controllerNode.getBaseUrl() + requestNode.getUrl();
+                action.setRequestUrl(requestUrl);
                 action.setRequestType("get".equalsIgnoreCase(requestNode.getMethod()) ? "1" : "2");
 
                 for (ParamNode paramNode : requestNode.getParamNodes()) {

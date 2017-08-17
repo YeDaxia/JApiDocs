@@ -41,7 +41,7 @@ public class DocsTest {
         config.setProjectPath(projectPath);
         config.setRapProjectId("1");
         config.setRapHost("http://localhost:8080");
-        config.setRapLoginCookie("Idea-a5a2275=b1c68fb9-9388-4f6b-b60d-da7ffd3dec41; _ga=GA1.1.834603554.1485884157; UM_distinctid=15ddab01c37246-08a9a90e29f9f7-143a6d54-13c680-15ddab01c38328; JSESSIONID=B496AD40F79B6E74334B65BBAA9A0123; CNZZDATA5879641=cnzz_eid%3D2117386803-1502607789-http%253A%252F%252Flocalhost%253A8080%252F%26ntime%3D1502853789");
+        config.setRapLoginCookie("Idea-a5a2275=b1c68fb9-9388-4f6b-b60d-da7ffd3dec41; _ga=GA1.1.834603554.1485884157; UM_distinctid=15ddab01c37246-08a9a90e29f9f7-143a6d54-13c680-15ddab01c38328; JSESSIONID=DB69653C26E8346AC60F769370D6B765; CNZZDATA5879641=cnzz_eid%3D2117386803-1502607789-http%253A%252F%252Flocalhost%253A8080%252F%26ntime%3D1502891624");
         return config;
     }
 }

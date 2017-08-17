@@ -36,4 +36,5 @@ public class AdminController {
     public void emailLogin(@RequestParam String email, String password){
 
     }
+
 }

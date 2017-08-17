@@ -14,7 +14,7 @@ import result.user.UserVO;
  */
 @RequestMapping("/api/v1")
 @RestController
-public class UserApi {
+public class UserController {
 
     /**
      * 用户列表
