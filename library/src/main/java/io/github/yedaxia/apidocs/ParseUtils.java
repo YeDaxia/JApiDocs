@@ -1,12 +1,8 @@
 package io.github.yedaxia.apidocs;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.ImportDeclaration;
-import com.github.javaparser.ast.Modifier;
-import com.github.javaparser.ast.NodeList;
-import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.*;
+import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
@@ -21,10 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * some util methods during parse
@@ -70,9 +63,7 @@ public class ParseUtils {
         }
 
         //inner class
-        Optional<ClassOrInterfaceDeclaration> innerClassOp = getOpInnerClass(compilationUnit, className);
-
-        if(innerClassOp.isPresent()){
+        if(getInnerClassNode(compilationUnit, className).isPresent()){
             return inJavaFile;
         }
 
@@ -109,7 +100,7 @@ public class ParseUtils {
 
             if(javaFiles != null && javaFiles.length > 0){
                 File javaFile = javaFiles[0];
-                if(getOpInnerClass(compilationUnit(javaFile), className).isPresent()){
+                if(getInnerClassNode(compilationUnit(javaFile), className).isPresent()){
                     return javaFile;
                 }
             }
@@ -140,16 +131,17 @@ public class ParseUtils {
     }
 
     /**
-     * get inner class declaration, it has bugs.
+     * get inner class node
      *
      * @param compilationUnit
      * @param className
      * @return
      */
-    private static Optional<ClassOrInterfaceDeclaration> getOpInnerClass(CompilationUnit compilationUnit ,String className){
-        return compilationUnit.getChildNodesByType(ClassOrInterfaceDeclaration.class)
+    private static Optional<TypeDeclaration> getInnerClassNode(CompilationUnit compilationUnit , String className){
+        return compilationUnit.getChildNodesByType(TypeDeclaration.class)
                 .stream()
-                .filter(c -> className.endsWith(c.getNameAsString()))
+                .filter( c -> c instanceof ClassOrInterfaceDeclaration ||  c instanceof EnumDeclaration)
+                .filter( c -> className.endsWith(c.getNameAsString()))
                 .findFirst();
     }
 
@@ -213,7 +205,7 @@ public class ParseUtils {
                         fd.getVariables().forEach(v -> {
                             FieldNode fieldNode = new FieldNode();
                             responseNode.addChildNode(fieldNode);
-                            fd.getComment().ifPresent(c -> fieldNode.setDescription(c.getContent()));
+                            fd.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
                             fd.getAnnotationByName("RapMock").ifPresent(an -> {
                                 if(an instanceof NormalAnnotationExpr){
                                     NormalAnnotationExpr normalAnExpr = (NormalAnnotationExpr)an;
@@ -263,12 +255,33 @@ public class ParseUtils {
     private static void parseChildResponseNode(FieldNode parentNode, File inJavaFile, String type, Boolean isList){
         String unifyType = unifyType(type);
         if(TYPE_MODEL.equals(unifyType)){
-            ResponseNode childResponse = new ResponseNode();
-            parentNode.setChildResponseNode(childResponse);
-            childResponse.setList(isList);
-            parentNode.setType(isList ? type + "[]" : type);
-            childResponse.setClassName(type);
-            parseResponseNode(searchJavaFile(inJavaFile, type), childResponse);
+            File childJavaFile = searchJavaFile(inJavaFile, type);
+            Optional<EnumDeclaration> ed = compilationUnit(childJavaFile)
+                    .getChildNodesByType(EnumDeclaration.class)
+                    .stream()
+                    .filter( em -> type.endsWith(em.getNameAsString()))
+                    .findFirst();
+            if(ed.isPresent()){
+                parentNode.setType("string");
+                List<EnumConstantDeclaration> constants = ed.get().getChildNodesByType(EnumConstantDeclaration.class);
+                StringBuilder sb = new StringBuilder(parentNode.getDescription() == null ? "" : parentNode.getDescription());
+                sb.append(" [");
+                for(int i = 0 , size = constants.size(); i != size ; i++){
+                    sb.append(constants.get(i).getNameAsString());
+                    if(i != size -1){
+                        sb.append(",");
+                    }
+                }
+                sb.append("]");
+                parentNode.setDescription(sb.toString());
+            }else{
+                ResponseNode childResponse = new ResponseNode();
+                parentNode.setChildResponseNode(childResponse);
+                childResponse.setList(isList);
+                parentNode.setType(isList ? type + "[]" : type);
+                childResponse.setClassName(type);
+                parseResponseNode(searchJavaFile(inJavaFile, type), childResponse);
+            }
         } else {
             parentNode.setType(isList ? unifyType + "[]" : unifyType);
         }

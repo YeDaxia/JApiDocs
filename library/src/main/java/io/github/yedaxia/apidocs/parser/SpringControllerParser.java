@@ -31,25 +31,38 @@ public class SpringControllerParser extends AbsControllerParser {
                         });
             }
         });
+
     }
 
     @Override
     protected void afterHandleMethod(RequestNode requestNode, MethodDeclaration md) {
-        md.getAnnotationByName("RequestMapping").ifPresent(m -> {
-            if(m instanceof SingleMemberAnnotationExpr){
-                String url = ((SingleMemberAnnotationExpr)m).getMemberValue().toString();
+        md.getAnnotations().forEach( an -> {
+            String name = an.getNameAsString();
+
+            if( !"GetMapping".equals(name) && !"PostMapping".equals(name) && !"RequestMapping".equals(name)){
+                return;
+            }
+
+            if("GetMapping".equals(name)){
+                requestNode.setMethod(RequestMethod.GET);
+            }else if("PostMapping".equals(name)){
+                requestNode.setMethod(RequestMethod.POST);
+            }
+
+            if(an instanceof SingleMemberAnnotationExpr){
+                String url = ((SingleMemberAnnotationExpr)an).getMemberValue().toString();
                 requestNode.setUrl(url);
                 return;
             }
 
-            if(m instanceof NormalAnnotationExpr){
-                ((NormalAnnotationExpr)m).getPairs().forEach(p ->{
-                    String name = p.getNameAsString();
-                    if(isUrlPathKey(name)){
+            if(an instanceof NormalAnnotationExpr){
+                ((NormalAnnotationExpr)an).getPairs().forEach(p ->{
+                    String key = p.getNameAsString();
+                    if(isUrlPathKey(key)){
                         requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
                     }
 
-                    if("method".equals(name)){
+                    if("method".equals(key)){
                         if(p.getValue().toString().contains("POST")){
                             requestNode.setMethod(RequestMethod.POST);
                         }else{
@@ -58,6 +71,7 @@ public class SpringControllerParser extends AbsControllerParser {
                     }
                 });
             }
+
         });
 
         md.getParameters().forEach(p -> {

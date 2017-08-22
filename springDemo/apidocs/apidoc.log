@@ -1,20 +1,20 @@
-八月 22, 2017 12:01:17 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:44 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: find java src path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-八月 22, 2017 12:01:17 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:44 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: found it a spring mvc project, tell us if we are wrong.
-八月 22, 2017 12:01:17 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:44 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs start...
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:44 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : UserController.java
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : UserController.java
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : AdminController.java
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : AdminController.java
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils info
+八月 22, 2017 4:28:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs done !!!
-八月 22, 2017 12:01:18 下午 io.github.yedaxia.apidocs.LogUtils error
+八月 22, 2017 4:28:45 下午 io.github.yedaxia.apidocs.LogUtils error
 严重: get rap models fail
 java.net.ConnectException: Connection refused (Connection refused)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)

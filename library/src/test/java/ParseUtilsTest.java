@@ -3,6 +3,7 @@ import io.github.yedaxia.apidocs.parser.ResponseNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import result.ResultVO;
 
 import java.io.File;
 
@@ -46,7 +47,8 @@ public class ParseUtilsTest {
     @Test
     public void test_parseResponseNode(){
         ResponseNode responseNode = new ResponseNode();
-        File resultJavaFile = new File(javaSrcPath + "io/github/yedaxia/apidocs/result/KoResult.java");
+        responseNode.setClassName("ResultVO");
+        File resultJavaFile = Projects.getTestJavaFile(ResultVO.class);
         ParseUtils.parseResponseNode(resultJavaFile, responseNode);
         System.out.println(responseNode);
     }

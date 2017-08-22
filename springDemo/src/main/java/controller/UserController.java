@@ -1,10 +1,7 @@
 package controller;
 
 import io.github.yedaxia.apidocs.ApiDoc;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import result.book.BookDetailVO;
 import result.user.UserVO;
 
@@ -32,7 +29,7 @@ public class UserController {
      * @param userId 用户id
      */
     @ApiDoc(UserVO.class)
-    @RequestMapping(path = "/u/info", method = RequestMethod.GET)
+    @GetMapping(path = "/u/info")
     public void userInfo(@RequestParam String userId){
 
     }
@@ -42,7 +39,7 @@ public class UserController {
      * @param bookId 图书id
      */
     @ApiDoc(result = BookDetailVO.class)
-    @RequestMapping(path = "/u/favorite", method = RequestMethod.POST)
+    @PostMapping(path = "/u/favorite")
     public void favoriteBook(@RequestParam String bookId){
 
     }

@@ -104,6 +104,15 @@ public class Utils {
         return rawUrl.replace("\"","").trim();
     }
 
+	/**
+	 * remove some characters like [* \n]
+	 * @param content
+	 * @return
+	 */
+	public static String cleanCommentContent(String content){
+		return content.replace("*","").replace("\n", "").trim();
+	}
+
     /**
      * make first word lower case
      * @param name
