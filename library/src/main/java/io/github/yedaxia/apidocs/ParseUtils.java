@@ -206,6 +206,9 @@ public class ParseUtils {
                             FieldNode fieldNode = new FieldNode();
                             responseNode.addChildNode(fieldNode);
                             fd.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
+                            if(!Utils.isNotEmpty(fieldNode.getDescription())){
+                                v.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
+                            }
                             fd.getAnnotationByName("RapMock").ifPresent(an -> {
                                 if(an instanceof NormalAnnotationExpr){
                                     NormalAnnotationExpr normalAnExpr = (NormalAnnotationExpr)an;

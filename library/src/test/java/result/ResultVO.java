@@ -3,7 +3,7 @@ package result;
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class ResultVO {
+public class ResultVO extends SimpleResult{
 
     /**
      * 性别
