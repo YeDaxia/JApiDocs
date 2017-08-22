@@ -7,15 +7,7 @@ url: ${APIURL}
 
 <p><strong>参数列表</strong></p>
 
-<table>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>必需</th>
-<th>描述</th>
-</tr>
-${PARAM_LIST}
-</table>
+${PARAM_BODY}
 
 <p>返回结果: <a href="${ANDROID_CODE}">Android Code</a> | <a href="${IOS_CODE}">IOS Code</a></p>
 

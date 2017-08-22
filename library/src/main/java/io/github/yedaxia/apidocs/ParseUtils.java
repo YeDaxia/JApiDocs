@@ -9,6 +9,7 @@ import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import com.github.javaparser.ast.type.ArrayType;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
+import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.FieldNode;
 import io.github.yedaxia.apidocs.parser.MockNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
@@ -16,7 +17,6 @@ import io.github.yedaxia.apidocs.parser.ResponseNode;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -178,7 +178,7 @@ public class ParseUtils {
      * @param modelJavaFile
      * @param responseNode
      */
-    public static void parseResponseNode(File modelJavaFile, ResponseNode responseNode){
+    public static void parseResponseNode(File modelJavaFile, ClassNode responseNode){
         String resultClassName = responseNode.getClassName();
 
         ParseUtils.compilationUnit(modelJavaFile).
@@ -288,6 +288,15 @@ public class ParseUtils {
     }
 
     /**
+     * is model type or not
+     * @param className
+     * @return
+     */
+    public static boolean isModelType(String className){
+        return TYPE_MODEL.equals(unifyType(className));
+    }
+
+    /**
      * unify the type show in docs
      *
      * @param className
@@ -325,7 +334,13 @@ public class ParseUtils {
         }
     }
 
-    private static boolean isCollectionType(String className){
+    /**
+     *  is implements from Collection or not
+     *
+     * @param className
+     * @return
+     */
+    public static boolean isCollectionType(String className){
         String[] cPaths = className.split("\\.");
         String genericType = cPaths[cPaths.length - 1];
         int genericLeftIndex = genericType.indexOf("<");

@@ -9,6 +9,7 @@ import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.RequestNode;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -51,13 +52,22 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
             }
             if (requestNode.getParamNodes() != null) {
                 StringBuilder paramListBuilder = new StringBuilder();
+                boolean isJsonBody = false;
+                String paramHtmlBody = "";
+
                 for (ParamNode paramNode : requestNode.getParamNodes()) {
-                    paramListBuilder.append("<tr>");
-                    paramListBuilder.append(String.format("<td>%s</td><td>%s</td><td>%s</td><td>%s</td>",
-                            paramNode.name, paramNode.type, paramNode.required, paramNode.description));
-                    paramListBuilder.append("</tr>");
+                    if(paramNode.isJsonBody()){
+                        paramHtmlBody = buildParamJsonCode(paramNode);
+                        isJsonBody = true;
+                        break;
+                    }
                 }
-                actionDoc = actionDoc.replace("${PARAM_LIST}", paramListBuilder.toString());
+
+                if(!isJsonBody){
+                    paramHtmlBody = buildParamTable(requestNode.getParamNodes());
+                }
+
+                actionDoc = actionDoc.replace("${PARAM_BODY}", paramHtmlBody);
             }
 
             if (requestNode.getResponseNode() != null) {
@@ -74,6 +84,30 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
         ctrlDoc = ctrlDoc.replace("${TOC}", tocBuilder.toString());
         ctrlDoc = ctrlDoc.replace("${ACTION_LIST}", actionsBuilder.toString());
         return ctrlDoc;
+    }
+
+    private String buildParamJsonCode(ParamNode paramNode){
+        StringBuilder codeBuilder = new StringBuilder();
+        codeBuilder.append("<pre class=\"prettyprint lang-json\">");
+        codeBuilder.append('\n');
+        codeBuilder.append(paramNode.getDescription());
+        codeBuilder.append('\n');
+        codeBuilder.append("</pre>");
+        return codeBuilder.toString();
+    }
+
+    private String buildParamTable(List<ParamNode> paramNodeList){
+        StringBuilder paramTableBuilder = new StringBuilder();
+        paramTableBuilder.append("<table>");
+        paramTableBuilder.append("<tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr>");
+        for (ParamNode paramNode : paramNodeList) {
+            paramTableBuilder.append("<tr>");
+            paramTableBuilder.append(String.format("<td>%s</td><td>%s</td><td>%s</td><td>%s</td>",
+                    paramNode.name, paramNode.type, paramNode.required, paramNode.description));
+            paramTableBuilder.append("</tr>");
+        }
+        paramTableBuilder.append("</table>");
+        return paramTableBuilder.toString();
     }
 
     private String getControllerTpl() throws IOException{

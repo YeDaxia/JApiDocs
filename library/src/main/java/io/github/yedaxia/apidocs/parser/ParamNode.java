@@ -9,6 +9,7 @@ public class ParamNode {
 	public String type;
 	public boolean required;
 	public String description;
+	public boolean jsonBody;// when true ,the json body set to description
 
 	public String getName() {
 		return name;
@@ -40,5 +41,13 @@ public class ParamNode {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isJsonBody() {
+		return jsonBody;
+	}
+
+	public void setJsonBody(boolean jsonBody) {
+		this.jsonBody = jsonBody;
 	}
 }

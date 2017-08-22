@@ -1,11 +1,12 @@
 package controller.admin;
 
+import form.AdminForm;
 import io.github.yedaxia.apidocs.ApiDoc;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import result.user.AdminVO;
+
+import java.util.List;
 
 /**
  * 管理员接口
@@ -37,4 +38,25 @@ public class AdminController {
 
     }
 
+    /**
+     * 添加管理员
+     *
+     * @param adminForm 管理员信息
+     */
+    @PostMapping("/api/v1/admin/add")
+    @ApiDoc(AdminVO.class)
+    public void addAdmin(@RequestBody(required = false) AdminForm adminForm){
+
+    }
+
+    /**
+     * 添加多个管理员
+     *
+     * @param adminForms 管理员信息
+     */
+    @PostMapping("/api/v1/admin/addMany")
+    @ApiDoc(AdminVO[].class)
+    public void addAdmins(@RequestBody List<AdminForm> adminForms){
+
+    }
 }
