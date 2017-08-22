@@ -20,6 +20,7 @@ import io.github.yedaxia.apidocs.parser.ResponseNode;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -45,6 +46,14 @@ public class ParseUtils {
      * @return
      */
     public static File searchJavaFile(File inJavaFile, String className){
+       File file = searchJavaFileInner(inJavaFile, className);
+       if(file == null){
+           throw new RuntimeException("cannot find java file , in java file : " + inJavaFile.getAbsolutePath() + ", className : " +className);
+       }
+       return file;
+    }
+
+    private static File searchJavaFileInner(File inJavaFile, String className){
         CompilationUnit compilationUnit = compilationUnit(inJavaFile);
 
         String[] cPaths;
@@ -125,10 +134,6 @@ public class ParseUtils {
                     }
                 }
             }
-        }
-
-        if(javaFile == null){
-            throw new RuntimeException("cannot find java file , in java file : " + inJavaFile.getAbsolutePath() + ", className : " +className);
         }
 
         return javaFile;
@@ -297,7 +302,8 @@ public class ParseUtils {
             return "char";
         }else if("String".equalsIgnoreCase(rawType)){
             return "string";
-        } else if("date".equalsIgnoreCase(rawType)){
+        } else if("date".equalsIgnoreCase(rawType)
+                || "ZonedDateTime".equalsIgnoreCase(rawType)){
             return "date";
         } else if("file".equalsIgnoreCase(rawType)){
             return "file";

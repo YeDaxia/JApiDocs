@@ -69,7 +69,9 @@ public @interface ApiDoc {
 
 下载`all`包，然后在和这个`jar`包相同目录下创建名称是`docs.config`的配置文件，里面可以配置这几个参数：
 
-```json
+```
+# windows用户注意用双斜杠'\\'或者反斜杠'/'
+
 projectPath = 工程目录（必须）
 docsPath = 文档输出目录（非必须，默认是${projectPath}/apidocs）
 codeTplPath = 代码模版目录 (非必须，如果你需要自定义生成的代码才会用到。)
