@@ -7,7 +7,6 @@ import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
-import sun.net.www.ParseUtil;
 
 /**
  * use for spring mvc
