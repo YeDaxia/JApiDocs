@@ -31,6 +31,7 @@ public class DHttpUtils {
         URL url = new URL(request.getUrl());
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         httpConn.setRequestMethod("POST");
+        httpConn.setInstanceFollowRedirects(request.isAutoRedirect());
 
         Map<String,String> headers = request.getHeaders();
         if(headers != null){

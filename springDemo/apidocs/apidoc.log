@@ -1,73 +1,19 @@
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:31 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: find java src path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:31 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: found it a spring mvc project, tell us if we are wrong.
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:31 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs start...
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:32 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : UserController.java
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:32 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : UserController.java
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:32 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : AdminController.java
-八月 23, 2017 1:27:12 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:32 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : AdminController.java
-八月 23, 2017 1:27:13 上午 io.github.yedaxia.apidocs.LogUtils info
+八月 23, 2017 4:09:32 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs done !!!
-八月 23, 2017 1:27:13 上午 io.github.yedaxia.apidocs.LogUtils error
-严重: get rap models fail
-java.net.ConnectException: Connection refused (Connection refused)
-	at java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
-	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
-	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
-	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.net.Socket.connect(Socket.java:589)
-	at java.net.Socket.connect(Socket.java:538)
-	at sun.net.NetworkClient.doConnect(NetworkClient.java:180)
-	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432)
-	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527)
-	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211)
-	at sun.net.www.http.HttpClient.New(HttpClient.java:308)
-	at sun.net.www.http.HttpClient.New(HttpClient.java:326)
-	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1202)
-	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1138)
-	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1032)
-	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:966)
-	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1546)
-	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1474)
-	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480)
-	at io.github.yedaxia.apidocs.http.DHttpUtils.toResponse(DHttpUtils.java:85)
-	at io.github.yedaxia.apidocs.http.DHttpUtils.httpGet(DHttpUtils.java:80)
-	at io.github.yedaxia.apidocs.ext.rap.RapSupport.getModuleList(RapSupport.java:78)
-	at io.github.yedaxia.apidocs.ext.rap.RapSupport.postToRap(RapSupport.java:52)
-	at io.github.yedaxia.apidocs.Docs.buildHtmlDocs(Docs.java:31)
-	at DocsTest.test_generateSpringApiDocs(DocsTest.java:24)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
-	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
-	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
-	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
-
+八月 23, 2017 4:09:34 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: post project to rap success, response : {"projectData":{"createDateStr":"2017-08-23","user":{"name":"叶大侠","id":2},"id":1,"version":"0.0.0.1","introduction":"","name":"AProject","moduleList":[{"id":1,"introduction":"","name":"API List","pageList":[{"id":1,"introduction":"","name":"用户接口","actionList":[{"id":1,"name":"用户信息","description":"","requestType":"1","requestUrl":"\/api\/v1\/u\/info","responseTemplate":"","requestParameterList":[{"id":1,"identifier":"userId","name":"用户id","remark":"","parameterList":[],"validator":"","dataType":"string"}],"responseParameterList":[{"id":2,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"},{"id":3,"identifier":"data","name":"","remark":"","parameterList":[{"id":4,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":5,"identifier":"friends|1-10","name":"好友","remark":"","parameterList":[{"id":6,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":7,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"},{"id":8,"identifier":"isFollow","name":"是否关注","remark":"@mock=@BOOLEAN","parameterList":[],"validator":"","dataType":"boolean"},{"id":9,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":10,"identifier":"readBooks|1-10","name":"阅读图书","remark":"","parameterList":[{"id":11,"identifier":"bookId","name":"图书id","remark":"@mock=@INTEGER","parameterList":[],"validator":"","dataType":"number"},{"id":12,"identifier":"bookName","name":"图书名称","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"}],"validator":"","dataType":"object"},{"id":13,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"}]},{"id":2,"name":"用户列表","description":"","requestType":"1","requestUrl":"\/api\/v1\/u\/list","responseTemplate":"","requestParameterList":[{"id":14,"identifier":"pageSize","name":"每页条数","remark":"","parameterList":[],"validator":"","dataType":"number"},{"id":15,"identifier":"page","name":"页数","remark":"","parameterList":[],"validator":"","dataType":"number"}],"responseParameterList":[{"id":16,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"},{"id":17,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"},{"id":18,"identifier":"data|1-10","name":"","remark":"","parameterList":[{"id":19,"identifier":"readBooks|1-10","name":"阅读图书","remark":"","parameterList":[{"id":20,"identifier":"bookName","name":"图书名称","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"},{"id":21,"identifier":"bookId","name":"图书id","remark":"@mock=@INTEGER","parameterList":[],"validator":"","dataType":"number"}],"validator":"","dataType":"array<object>"},{"id":22,"identifier":"isFollow","name":"是否关注","remark":"@mock=@BOOLEAN","parameterList":[],"validator":"","dataType":"boolean"},{"id":23,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":24,"identifier":"friends|1-10","name":"好友","remark":"","parameterList":[{"id":25,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":26,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"},{"id":27,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"}]},{"id":3,"name":"收藏图书","description":"","requestType":"2","requestUrl":"\/api\/v1\/u\/favorite","responseTemplate":"","requestParameterList":[{"id":28,"identifier":"bookId","name":"图书id","remark":"","parameterList":[],"validator":"","dataType":"string"}],"responseParameterList":[{"id":29,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"},{"id":30,"identifier":"data","name":"","remark":"","parameterList":[{"id":31,"identifier":"bookName","name":"图书名称","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"},{"id":32,"identifier":"owner","name":"","remark":"","parameterList":[{"id":33,"identifier":"isFollow","name":"是否关注","remark":"@mock=@BOOLEAN","parameterList":[],"validator":"","dataType":"boolean"},{"id":34,"identifier":"readBooks|1-10","name":"阅读图书","remark":"","parameterList":[{"id":35,"identifier":"bookName","name":"图书名称","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"},{"id":36,"identifier":"bookId","name":"图书id","remark":"@mock=@INTEGER","parameterList":[],"validator":"","dataType":"number"}],"validator":"","dataType":"array<object>"},{"id":37,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":38,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":39,"identifier":"friends|1-10","name":"好友","remark":"","parameterList":[{"id":40,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":41,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"}],"validator":"","dataType":"object"},{"id":42,"identifier":"bookId","name":"图书id","remark":"@mock=@INTEGER","parameterList":[],"validator":"","dataType":"number"},{"id":43,"identifier":"storeCount","name":"馆藏数量","remark":"@mock=@INTEGER","parameterList":[],"validator":"","dataType":"number"},{"id":44,"identifier":"pictures|1-10","name":"图片","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"array<string>"}],"validator":"","dataType":"object"},{"id":45,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"}]}]},{"id":2,"introduction":"","name":"管理员接口","actionList":[{"id":4,"name":"管理员登录","description":"","requestType":"2","requestUrl":"\/api\/v1\/admin\/login","responseTemplate":"","requestParameterList":[{"id":46,"identifier":"name","name":"登录名","remark":"","parameterList":[],"validator":"","dataType":"string"},{"id":47,"identifier":"password","name":"密码","remark":"","parameterList":[],"validator":"","dataType":"string"}],"responseParameterList":[{"id":48,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"},{"id":49,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"},{"id":50,"identifier":"data","name":"","remark":"","parameterList":[{"id":51,"identifier":"password","name":"密码","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"},{"id":52,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":53,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"object"}]},{"id":5,"name":"添加多个管理员","description":"","requestType":"2","requestUrl":"\/api\/v1\/admin\/addMany","responseTemplate":"","requestParameterList":[{"id":54,"identifier":"adminForms","name":"[\n  {\n    \"name\": \"string \/\/名字\",\n    \"password\": \"string \/\/密码\"\n  }\n]","remark":"","parameterList":[],"validator":"","dataType":"object"}],"responseParameterList":[{"id":55,"identifier":"data|1-10","name":"","remark":"","parameterList":[{"id":56,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":57,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":58,"identifier":"password","name":"密码","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"array<object>"},{"id":59,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"},{"id":60,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"}]},{"id":6,"name":"邮箱登录","description":"","requestType":"2","requestUrl":"\/api\/v1\/admin\/emailLogin","responseTemplate":"","requestParameterList":[{"id":61,"identifier":"password","name":"","remark":"","parameterList":[],"validator":"","dataType":"string"},{"id":62,"identifier":"email","name":"","remark":"","parameterList":[],"validator":"","dataType":"string"}],"responseParameterList":[{"id":63,"identifier":"data","name":"","remark":"","parameterList":[{"id":64,"identifier":"password","name":"密码","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"},{"id":65,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":66,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"object"},{"id":67,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"},{"id":68,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"}]},{"id":7,"name":"添加管理员","description":"","requestType":"2","requestUrl":"\/api\/v1\/admin\/add","responseTemplate":"","requestParameterList":[{"id":69,"identifier":"adminForm","name":"{\n  \"name\": \"string \/\/名字\",\n  \"password\": \"string \/\/密码\"\n}","remark":"","parameterList":[],"validator":"","dataType":"object"}],"responseParameterList":[{"id":70,"identifier":"data","name":"","remark":"","parameterList":[{"id":71,"identifier":"userName","name":"用户名","remark":"@mock=@NAME","parameterList":[],"validator":"","dataType":"string"},{"id":72,"identifier":"userId","name":"用户id","remark":"@mock=@ID","parameterList":[],"validator":"","dataType":"string"},{"id":73,"identifier":"password","name":"密码","remark":"@mock=@STRING","parameterList":[],"validator":"","dataType":"string"}],"validator":"","dataType":"object"},{"id":74,"identifier":"msg","name":"","remark":"@mock=success","parameterList":[],"validator":"","dataType":"string"},{"id":75,"identifier":"code","name":"","remark":"@mock=0","parameterList":[],"validator":"","dataType":"number"}]}]}]}]},"checkList":[{"id":1,"version":"0.0.0.2","userName":"叶大侠","createDateStr":"2017-08-23 08:09:33","description":""}],"actionIdMap":{},"isOk":true}
+ 
