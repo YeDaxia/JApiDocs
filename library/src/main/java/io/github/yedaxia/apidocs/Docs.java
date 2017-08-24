@@ -87,6 +87,8 @@ public class Docs {
         String rapHost;
         String rapLoginCookie;
         String rapProjectId;
+        String rapAccount;
+        String rapPassword;
 
         boolean isSpringMvcProject(){
             return mvcFramework != null && mvcFramework.equals("spring");
@@ -132,6 +134,12 @@ public class Docs {
             return rapLoginCookie;
         }
 
+        /**
+         * use http://rap.yedaxia.me , just set account and password would be better
+         *
+         * @param rapLoginCookie
+         */
+        @Deprecated
         public void setRapLoginCookie(String rapLoginCookie) {
             this.rapLoginCookie = rapLoginCookie;
         }
@@ -142,6 +150,22 @@ public class Docs {
 
         public void setRapProjectId(String rapProjectId) {
             this.rapProjectId = rapProjectId;
+        }
+
+        public String getRapAccount() {
+            return rapAccount;
+        }
+
+        public void setRapAccount(String rapAccount) {
+            this.rapAccount = rapAccount;
+        }
+
+        public String getRapPassword() {
+            return rapPassword;
+        }
+
+        public void setRapPassword(String rapPassword) {
+            this.rapPassword = rapPassword;
         }
     }
 }

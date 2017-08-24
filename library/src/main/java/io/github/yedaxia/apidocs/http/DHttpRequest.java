@@ -9,7 +9,8 @@ import java.util.Map;
 public class DHttpRequest {
 
     private String url;
-    private Map<String, String> params;
+    private boolean autoRedirect = true; //自动重定向
+    private Map<String, String> params = new HashMap<>();
     private Map<String, String> headers;
 
     public String getUrl() {
@@ -34,5 +35,17 @@ public class DHttpRequest {
 
     public void setHeaders(Map<String, String> headers) {
         this.headers = headers;
+    }
+
+    public void addParam(String name, String value){
+        params.put(name, value);
+    }
+
+    public boolean isAutoRedirect() {
+        return autoRedirect;
+    }
+
+    public void setAutoRedirect(boolean autoRedirect) {
+        this.autoRedirect = autoRedirect;
     }
 }

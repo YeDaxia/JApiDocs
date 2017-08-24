@@ -45,6 +45,10 @@ public class DHttpResponse {
         this.headers.put(key, value);
     }
 
+    public String getHeader(String header){
+        return headers.get(header);
+    }
+
     public String streamAsString(){
         try{
             return Utils.streamToString(stream);

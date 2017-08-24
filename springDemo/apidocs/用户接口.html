@@ -23,27 +23,19 @@ url: /api/v1/u/list
 
 <p><strong>参数列表</strong></p>
 
-<table>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>必需</th>
-<th>描述</th>
-</tr>
-<tr><td>page</td><td>int</td><td>false</td><td>页数</td></tr><tr><td>pageSize</td><td>int</td><td>false</td><td>每页条数</td></tr>
-</table>
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>page</td><td>int</td><td>false</td><td>页数</td></tr><tr><td>pageSize</td><td>int</td><td>false</td><td>每页条数</td></tr></table>
 
 <p>返回结果: <a href="javaCodes/UserVO.html">Android Code</a> | <a href="iosCodes/UserVO.html">IOS Code</a></p>
 
 <pre class="prettyprint lang-json">
 [
   {
-    "userId": "string",
-    "userName": "string",
+    "userId": "string //用户id",
+    "userName": "string //用户名",
     "friends": [
       {
-        "userId": "string",
-        "userName": "string"
+        "userId": "string //用户id",
+        "userName": "string //用户名"
       }
     ],
     "readBooks": [
@@ -66,26 +58,18 @@ url: /api/v1/u/info
 
 <p><strong>参数列表</strong></p>
 
-<table>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>必需</th>
-<th>描述</th>
-</tr>
-<tr><td>userId</td><td>string</td><td>true</td><td>用户id</td></tr>
-</table>
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>userId</td><td>string</td><td>true</td><td>用户id</td></tr></table>
 
 <p>返回结果: <a href="javaCodes/UserVO.html">Android Code</a> | <a href="iosCodes/UserVO.html">IOS Code</a></p>
 
 <pre class="prettyprint lang-json">
 {
-  "userId": "string",
-  "userName": "string",
+  "userId": "string //用户id",
+  "userName": "string //用户名",
   "friends": [
     {
-      "userId": "string",
-      "userName": "string"
+      "userId": "string //用户id",
+      "userName": "string //用户名"
     }
   ],
   "readBooks": [
@@ -107,15 +91,7 @@ url: /api/v1/u/favorite
 
 <p><strong>参数列表</strong></p>
 
-<table>
-<tr>
-<th>参数名</th>
-<th>类型</th>
-<th>必需</th>
-<th>描述</th>
-</tr>
-<tr><td>bookId</td><td>string</td><td>true</td><td>图书id</td></tr>
-</table>
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>bookId</td><td>string</td><td>true</td><td>图书id</td></tr></table>
 
 <p>返回结果: <a href="javaCodes/BookDetailVO.html">Android Code</a> | <a href="iosCodes/BookDetailVO.html">IOS Code</a></p>
 
@@ -126,12 +102,12 @@ url: /api/v1/u/favorite
   "storeCount": "int //馆藏数量",
   "pictures": "string[] //图片",
   "owner": {
-    "userId": "string",
-    "userName": "string",
+    "userId": "string //用户id",
+    "userName": "string //用户名",
     "friends": [
       {
-        "userId": "string",
-        "userName": "string"
+        "userId": "string //用户id",
+        "userName": "string //用户名"
       }
     ],
     "readBooks": [

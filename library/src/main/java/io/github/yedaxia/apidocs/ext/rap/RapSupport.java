@@ -39,8 +39,7 @@ public class RapSupport {
                 || controllerNodeList.isEmpty()
                 || docsConfig == null
                 || docsConfig.getRapHost() == null
-                || docsConfig.getRapProjectId() == null
-                || docsConfig.getRapLoginCookie() == null){
+                || docsConfig.getRapProjectId() == null){
             LogUtils.warn("docs config properties miss, we don't think you want to post to rap!");
             return;
         }
@@ -48,6 +47,13 @@ public class RapSupport {
         this.rapHost = docsConfig.getRapHost();
         this.projectId = Integer.valueOf(docsConfig.getRapProjectId());
         this.cookie = docsConfig.getRapLoginCookie();
+
+        if(!Utils.isNotEmpty(cookie)){
+            String account = docsConfig.getRapAccount();
+            String password = docsConfig.getRapPassword();
+            DHttpResponse response = doLogin(loginUrl(rapHost),account, password);
+            this.cookie = response.getHeader("Set-Cookie");
+        }
 
         Set<Module> moduleSet = getModuleList();
 
@@ -71,6 +77,20 @@ public class RapSupport {
         projectForm.setProjectData(Utils.toJson(project));
 
         postProject(projectForm);
+    }
+
+    public DHttpResponse doLogin(String loginUrl, String userName, String password){
+        DHttpRequest request = new DHttpRequest();
+        request.setAutoRedirect(false);
+        request.setUrl(loginUrl);
+        request.addParam("account", userName);
+        request.addParam("password", password);
+        try {
+            return DHttpUtils.httpPost(request);
+        }catch (IOException ex){
+            LogUtils.error("login rap fail , userName : %s, pass : %s", userName, password);
+            throw new RuntimeException(ex);
+        }
     }
 
     private Set<Module> getModuleList(){
@@ -130,5 +150,9 @@ public class RapSupport {
 
     private String checkInUrl(String host){
         return String.format("%s/workspace/checkIn.do", host);
+    }
+
+    private String loginUrl(String host){
+        return String.format("%s/account/doLogin.do", host);
     }
 }

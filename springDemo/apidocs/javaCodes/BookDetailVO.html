@@ -74,9 +74,9 @@ public class BookDetailVO implements Serializable{
 <pre class="prettyprint lang-java">
 public class UserVO implements Serializable{
 
-    private String userId; //
-    private String userName; //
-    private SimpleUser[] friends; //
+    private String userId; //用户id
+    private String userName; //用户名
+    private SimpleUser[] friends; //好友
     private BookVO[] readBooks; //阅读图书
     private boolean isFollow; //是否关注
 
@@ -137,8 +137,8 @@ public class UserVO implements Serializable{
 <pre class="prettyprint lang-java">
 public class SimpleUser implements Serializable{
 
-    private String userId; //
-    private String userName; //
+    private String userId; //用户id
+    private String userName; //用户名
 
     @JSONField(name="userId")
     public String getUserId(){
