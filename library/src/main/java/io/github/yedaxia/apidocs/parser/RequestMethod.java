@@ -5,7 +5,8 @@ package io.github.yedaxia.apidocs.parser;
  *
  * @author yeguozhong yedaxia.github.com
  */
-interface RequestMethod {
-    String GET = "get";
-    String POST = "post";
+public enum RequestMethod {
+
+    GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE
+
 }

@@ -174,7 +174,7 @@ class Project {
                 action.setName(requestNode.getDescription());
                 String requestUrl = controllerNode.getBaseUrl() == null ? requestNode.getUrl() : controllerNode.getBaseUrl() + requestNode.getUrl();
                 action.setRequestUrl(requestUrl);
-                action.setRequestType("get".equalsIgnoreCase(requestNode.getMethod()) ? "1" : "2");
+                action.setRequestType(Arrays.toString(requestNode.getMethod().toArray()));
 
                 for (ParamNode paramNode : requestNode.getParamNodes()) {
                     Parameter parameter = Parameter.newParameter();

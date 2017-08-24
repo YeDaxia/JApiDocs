@@ -1,6 +1,7 @@
 package io.github.yedaxia.apidocs.parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -10,18 +11,19 @@ import java.util.List;
  */
 public class RequestNode {
 
-    private String method;
+    private List<String> method = new ArrayList<>();
     private String url;
     private String description;
     private List<ParamNode> paramNodes = new ArrayList<>();
-    private Boolean deprecated;
+    private List<HeaderNode> header = new ArrayList<>();
+    private Boolean deprecated = Boolean.FALSE;
     private ResponseNode responseNode;
 
-    public String getMethod() {
-        return method == null ? "get|post" : method;
+    public List<String> getMethod() {
+        return method;
     }
 
-    public void setMethod(String method) {
+    public void setMethod(List<String> method) {
         this.method = method;
     }
 
@@ -45,21 +47,20 @@ public class RequestNode {
         return paramNodes;
     }
 
-    public void addParamNode(ParamNode paramNode){
-        paramNodes.add(paramNode);
+    public void setParamNodes(List<ParamNode> paramNodes) {
+        this.paramNodes = paramNodes;
     }
 
-    public ParamNode getParamNodeByName(String name){
-        for(ParamNode node : paramNodes){
-            if(node.getName().equals(name)){
-                return node;
-            }
-        }
-        return null;
+    public List<HeaderNode> getHeader() {
+        return header;
+    }
+
+    public void setHeader(List<HeaderNode> header) {
+        this.header = header;
     }
 
     public Boolean getDeprecated() {
-        return deprecated == null ? Boolean.FALSE : deprecated;
+        return deprecated;
     }
 
     public void setDeprecated(Boolean deprecated) {
@@ -72,5 +73,26 @@ public class RequestNode {
 
     public void setResponseNode(ResponseNode responseNode) {
         this.responseNode = responseNode;
+    }
+
+    public void addMethod(String method) {
+        this.method.add(method);
+    }
+
+    public void addHeaderNode(HeaderNode headerNode){
+        header.add(headerNode);
+    }
+
+    public void addParamNode(ParamNode paramNode){
+        paramNodes.add(paramNode);
+    }
+
+    public ParamNode getParamNodeByName(String name){
+        for(ParamNode node : paramNodes){
+            if(node.getName().equals(name)){
+                return node;
+            }
+        }
+        return null;
     }
 }

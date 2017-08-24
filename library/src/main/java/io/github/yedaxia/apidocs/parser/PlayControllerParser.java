@@ -16,7 +16,7 @@ public class PlayControllerParser extends AbsControllerParser {
             return;
         }
 
-        requestNode.setMethod(routeNode.method.contains("POST")? RequestMethod.POST : RequestMethod.GET);
+        requestNode.addMethod(RequestMethod.valueOf(routeNode.method).name());
         requestNode.setUrl(routeNode.routeUrl);
 
         md.getParameters().forEach(p -> {
