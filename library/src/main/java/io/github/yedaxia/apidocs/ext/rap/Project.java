@@ -173,7 +173,7 @@ class Project {
                 Action action = Action.newAction();
                 action.setName(requestNode.getDescription());
                 String requestUrl = controllerNode.getBaseUrl() == null ? requestNode.getUrl() : controllerNode.getBaseUrl() + requestNode.getUrl();
-                action.setRequestUrl(requestUrl);
+                action.setRequestUrl(supportRestfulUrl(requestUrl));
                 action.setRequestType(Arrays.toString(requestNode.getMethod().toArray()));
 
                 for (ParamNode paramNode : requestNode.getParamNodes()) {
@@ -264,5 +264,12 @@ class Project {
 
     private static String getArrayIdentifier(String name){
         return String.format("%s|1-10", name);
+    }
+
+    private static String supportRestfulUrl(String url){
+        if(url.contains("{") && url.contains("}")){
+            url = "reg:" + url.replaceAll("\\{.+?\\}", ".+");
+        }
+        return url;
     }
 }

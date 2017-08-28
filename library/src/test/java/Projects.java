@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.io.File;
 
 /**
@@ -23,4 +25,5 @@ public class Projects {
     public static File getTestJavaFile(Class clazz){
         return new File(LibraryTestPath + clazz.getName().replace(".","/") + ".java");
     }
+
 }

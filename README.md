@@ -7,6 +7,8 @@
 
 JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程度地利用 Java 的语法特性，你只管用心设计好接口，添加必要的注释，JApiDocs 会帮你导出一份漂亮的 Html 文档，并生成相关的 Java 和 Object-C 相关数据模型代码，从此，Android 和 IOS 的同学可以少敲很多代码了，你也不需要费力维护接口文档的变化，只需要维护好你的代码就可以了。
 
+反馈交流Q群：70948803
+
 # 特性
 
 1. 以一个 Controller 作为一组接口导出到一个 Html 文件中。
@@ -15,7 +17,21 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 4. 支持一般的 Java Web 工程，需要在相关方法添加额外的路由。
 5. 支持接口声明过时(`@Deprecated`)，方便的文档目录等。
 6. 支持自定义代码生成模板。
-7. [:new: 支持集成发布到 rap](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95) (测试阶段)。
+7. :new: 支持集成发布到 [RAP](http://rap.yedaxia.me/)。
+
+# Maven 和 Gradle
+
+```
+<dependency>
+  <groupId>io.github.yedaxia</groupId>
+  <artifactId>japidocs</artifactId>
+  <version>1.1</version>
+</dependency>
+```
+
+```
+compile 'io.github.yedaxia:japidocs:1.1'
+```
 
 # 快速使用
 
@@ -25,7 +41,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 
 这里你可能会对`@ApiDoc`注解感到迷惑，这也是唯一需要一点额外工作的地方，别急，下面马上就讲到它。
 
-2. `@ApiDoc` 是我们定义的一个注解，除非程序运行起来，否则我们是没办法知道 `response` 里面都包含有哪些内容，但是我们明明有了相关的视图类，为了解决这个问题，我们折衷设计了这个基于`RetentionPolicy.SOURCE`的注解，它不会给现有的代码造成任何的负担。由于是基于 Java 源码进行解析的，所以你不需要依赖我们的 Jar 包，你可以在你自己的工程任意地方添加这个简单的类即可，当然，如果你连这个也不愿意也是没关系的，你只需要直接添加我们的 Jar 包即可，里面已经为你准备好这个类了。
+2. `@ApiDoc` 是我们定义的一个注解，除非程序运行起来，否则我们是没办法知道 `response` 里面都包含有哪些内容。为了解决这个问题，我们折衷设计了这个基于`RetentionPolicy.SOURCE`的注解，它不会给现有的代码造成任何的负担。由于是基于 Java 源码进行解析的，所以你不需要依赖我们的 Jar 包，你可以在你自己的工程里面新建一个同名的类即可，当然你也可以直接添加我们的 Jar 包即可，里面已经为你准备好这个类了。
 
 ``` java
 
@@ -61,7 +77,7 @@ public @interface ApiDoc {
 
 ```
 
-如果你用的是我们深度支持的 MVC 框架，那么你只需要写好返回的视图模型就可以了。
+如果你用的是我们深度支持的 MVC 框架，那么你只需要写好返回的视图模型就可以了，这里不清楚的话可以看下 `SpringDemo` 下的例子写法，相信很容易就明白了。
 
 3. 集成依赖和运行程序
 
@@ -78,7 +94,7 @@ codeTplPath = 代码模版目录 (非必须，如果你需要自定义生成的�
 mvcFramework = [spring, play, jfinal, generic](非必须，代码内部有判断，如果出现误判的情况，可以通过这个强制指定)
 
 ```
-配置好之后，运行该`jar`包就可以了。
+配置好之后，在命令行窗口用 `cd` 把当前目录换成 jar 包所在的目录，运行该`jar`包就可以了。
 
 ```java
 java -jar ***-all.jar
@@ -89,9 +105,7 @@ java -jar ***-all.jar
 如果想做一些持续集成的话，代码模式还是比较方便的，直接添加依赖或者下载相关`jar`包，其中`min`包是不包含第三方依赖的。
 
 ```
-compile 'io.github.yedaxia:japidocs:1.0'
-compile 'com.google.code.gson:gson:2.8.0'
-compile 'com.github.javaparser:javaparser-core:3.3.0'
+compile 'io.github.yedaxia:japidocs:1.1'
 ```
 
 只需要调用下面一句代码即可：
@@ -105,7 +119,11 @@ Docs.buildHtmlDocs(DocsConfig config);
 你可以把工程里面相关的代码模板文件拷贝出来，然后在配置参数声明好该路径即可，具体的模板文件如下：
 ![code template files](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_apidocs-code-tpls.png)
 
-5. 更多的用法和不同的框架可以参考我们的示例代码。
+5. 如何集成到 RAP 进行接口测试：
+
+为了方便大家的集成，我自己搭建了一个 RAP 服务，去掉了验证码和支持中文 mock ，欢迎大家使用，当然如果你不嫌麻烦，也可以用官方的。
+
+具体的集成请查看 [Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)
 
 # 注意的地方
 
@@ -131,6 +149,23 @@ class BookKVO{
         me.add(new AmdinRoutes());
     }
 ```
+
+3. JApiDocs 的使用必须配合视图模型类(JavaBean)，JApiDocs 是通过静态解析源码来工作的，你返回给客户端的字段都必须在视图模型类中声明。
+
+4. 生成文档可以不需要依赖包，集成到 Rap 是需要依赖的，关于集成到 Rap 查看[Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)。
+
+# ChangeLog
+
+## 1.1 版本
+
+- 支持集成接口到 Rap。
+- 支持 spring 更多特性。
+- 修复若干bug。
+
+## 1.0 版本
+
+- 支持导出Html文档。
+- 支持生成 Response 的 Java 和 Object-C 代码。
 
 # 支持和反馈
 
