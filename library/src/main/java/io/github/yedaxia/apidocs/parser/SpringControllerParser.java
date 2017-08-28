@@ -1,12 +1,14 @@
 package io.github.yedaxia.apidocs.parser;
 
+import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
-import com.github.javaparser.ast.expr.NormalAnnotationExpr;
-import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
+import com.github.javaparser.ast.expr.*;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
+
+import java.util.Arrays;
 
 /**
  * use for spring mvc
@@ -15,16 +17,21 @@ import io.github.yedaxia.apidocs.Utils;
  */
 public class SpringControllerParser extends AbsControllerParser {
 
+    private final static String[] MAPPING_ANNOTATIONS = {
+            "GetMapping", "PostMapping", "PutMapping",
+            "PatchMapping", "DeleteMapping", "RequestMapping"
+    };
+
     @Override
     protected void afterHandleController(ControllerNode controllerNode, ClassOrInterfaceDeclaration clazz) {
-        clazz.getAnnotationByName("RequestMapping").ifPresent( a -> {
-            if(a instanceof SingleMemberAnnotationExpr){
-                String baseUrl = ((SingleMemberAnnotationExpr)a).getMemberValue().toString();
+        clazz.getAnnotationByName("RequestMapping").ifPresent(a -> {
+            if (a instanceof SingleMemberAnnotationExpr) {
+                String baseUrl = ((SingleMemberAnnotationExpr) a).getMemberValue().toString();
                 controllerNode.setBaseUrl(Utils.removeQuotations(baseUrl));
                 return;
             }
-            if(a instanceof NormalAnnotationExpr){
-                ((NormalAnnotationExpr)a).getPairs().stream()
+            if (a instanceof NormalAnnotationExpr) {
+                ((NormalAnnotationExpr) a).getPairs().stream()
                         .filter(v -> isUrlPathKey(v.getNameAsString()))
                         .findFirst()
                         .ifPresent(p -> {
@@ -37,66 +44,79 @@ public class SpringControllerParser extends AbsControllerParser {
 
     @Override
     protected void afterHandleMethod(RequestNode requestNode, MethodDeclaration md) {
-        md.getAnnotations().forEach( an -> {
+        md.getAnnotations().forEach(an -> {
             String name = an.getNameAsString();
+            if (Arrays.asList(MAPPING_ANNOTATIONS).contains(name)) {
+                String method = name.replaceAll(".*\\.", "").toUpperCase().replace("MAPPING", "");
+                if (!"REQUEST".equals(method)) {
+                    requestNode.addMethod(RequestMethod.valueOf(method).name());
+                }
 
-            if( !"GetMapping".equals(name) && !"PostMapping".equals(name) && !"RequestMapping".equals(name)){
-                return;
-            }
-
-            if("GetMapping".equals(name)){
-                requestNode.setMethod(RequestMethod.GET);
-            }else if("PostMapping".equals(name)){
-                requestNode.setMethod(RequestMethod.POST);
-            }
-
-            if(an instanceof SingleMemberAnnotationExpr){
-                String url = ((SingleMemberAnnotationExpr)an).getMemberValue().toString();
-                requestNode.setUrl(Utils.removeQuotations(url));
-                return;
-            }
-
-            if(an instanceof NormalAnnotationExpr){
-                ((NormalAnnotationExpr)an).getPairs().forEach(p ->{
-                    String key = p.getNameAsString();
-                    if(isUrlPathKey(key)){
-                        requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
-                    }
-
-                    if("method".equals(key)){
-                        if(p.getValue().toString().contains("POST")){
-                            requestNode.setMethod(RequestMethod.POST);
-                        }else{
-                            requestNode.setMethod(RequestMethod.GET);
+                if (an instanceof NormalAnnotationExpr) {
+                    ((NormalAnnotationExpr) an).getPairs().forEach(p -> {
+                        String key = p.getNameAsString();
+                        if (isUrlPathKey(key)) {
+                            requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
                         }
-                    }
-                });
-            }
 
+                        if ("headers".equals(key)) {
+                            Expression methodAttr = p.getValue();
+                            if (methodAttr instanceof ArrayInitializerExpr) {
+                                NodeList<Expression> values = ((ArrayInitializerExpr) methodAttr).getValues();
+                                for (Node n : values) {
+                                    String[] h = n.toString().split("=");
+                                    requestNode.addHeaderNode(new HeaderNode(h[0], h[1]));
+                                }
+                            } else {
+                                String[] h = p.getValue().toString().split("=");
+                                requestNode.addHeaderNode(new HeaderNode(h[0], h[1]));
+                            }
+                        }
+
+                        if ("method".equals(key)) {
+                            Expression methodAttr = p.getValue();
+                            if (methodAttr instanceof ArrayInitializerExpr) {
+                                NodeList<Expression> values = ((ArrayInitializerExpr) methodAttr).getValues();
+                                for (Node n : values) {
+                                    requestNode.addMethod(RequestMethod.valueOf(n.toString().replaceAll(".*\\.", "")).name());
+                                }
+                            } else {
+                                requestNode.addMethod(RequestMethod.valueOf(p.getValue().toString().replaceAll(".*\\.", "")).name());
+                            }
+                        }
+                    });
+                }
+                if (an instanceof SingleMemberAnnotationExpr) {
+                    String url = ((SingleMemberAnnotationExpr) an).getMemberValue().toString();
+                    requestNode.setUrl(Utils.removeQuotations(url));
+                    return;
+                }
+
+            }
         });
 
         md.getParameters().forEach(p -> {
-            String paraName  = p.getName().asString();
+            String paraName = p.getName().asString();
             ParamNode paramNode = requestNode.getParamNodeByName(paraName);
-            if(paramNode != null){
+            if (paramNode != null) {
 
                 p.getAnnotations().forEach(an -> {
                     String name = an.getNameAsString();
-                    if(!"RequestParam".equals(name) && !"RequestBody".equals(name)){
+                    if (!"RequestParam".equals(name) && !"RequestBody".equals(name)) {
                         return;
                     }
 
-                    if("RequestBody".equals(name)){
+                    if ("RequestBody".equals(name)) {
                         String type = p.getType().asString();
                         setRequestBody(paramNode, type);
                     }
 
-                    if(an instanceof MarkerAnnotationExpr){
+                    if (an instanceof MarkerAnnotationExpr) {
                         paramNode.setRequired(true);
                         return;
                     }
 
-                    if(an instanceof NormalAnnotationExpr){
+                    if (an instanceof NormalAnnotationExpr) {
                         ((NormalAnnotationExpr) an).getPairs().stream()
                                 .filter(n -> n.getNameAsString().equals("required"))
                                 .findFirst()
@@ -110,22 +130,21 @@ public class SpringControllerParser extends AbsControllerParser {
         });
     }
 
-    private void setRequestBody(ParamNode paramNode, String rawType){
-
+    private void setRequestBody(ParamNode paramNode, String rawType) {
         String modelType;
         boolean isList;
-        if(rawType.endsWith("[]")){
+        if (rawType.endsWith("[]")) {
             isList = true;
-            modelType = rawType.replace("[]","");
-        }else if(ParseUtils.isCollectionType(rawType)){
+            modelType = rawType.replace("[]", "");
+        } else if (ParseUtils.isCollectionType(rawType)) {
             isList = true;
             modelType = rawType.substring(rawType.indexOf("<") + 1, rawType.length() - 1);
-        }else{
+        } else {
             isList = false;
             modelType = rawType;
         }
 
-        if(ParseUtils.isModelType(modelType)){
+        if (ParseUtils.isModelType(modelType)) {
             ClassNode classNode = new ClassNode();
             classNode.setClassName(modelType);
             classNode.setList(isList);
@@ -135,7 +154,7 @@ public class SpringControllerParser extends AbsControllerParser {
         }
     }
 
-    private boolean isUrlPathKey(String name){
+    private boolean isUrlPathKey(String name) {
         return name.equals("path") || name.equals("value");
     }
 }

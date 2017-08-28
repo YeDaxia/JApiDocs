@@ -174,7 +174,13 @@ class Project {
                 action.setName(requestNode.getDescription());
                 String requestUrl = controllerNode.getBaseUrl() == null ? requestNode.getUrl() : controllerNode.getBaseUrl() + requestNode.getUrl();
                 action.setRequestUrl(supportRestfulUrl(requestUrl));
-                action.setRequestType("get".equalsIgnoreCase(requestNode.getMethod()) ? "1" : "2");
+
+                List<String> methods = requestNode.getMethod();
+                if(methods != null && methods.contains(RequestMethod.GET)) {
+                    action.setRequestType("1");
+                } else {
+                    action.setRequestType("2");
+                }
 
                 for (ParamNode paramNode : requestNode.getParamNodes()) {
                     Parameter parameter = Parameter.newParameter();

@@ -19,7 +19,7 @@ public class UserController {
      * @param pageSize 每页条数
      */
     @ApiDoc(UserVO[].class)
-    @RequestMapping(path = "/u/list", method = RequestMethod.GET)
+    @RequestMapping(path = "/u/list", method = {RequestMethod.GET,  RequestMethod.OPTIONS}  )
     public void list(Integer page, int pageSize){
 
     }
