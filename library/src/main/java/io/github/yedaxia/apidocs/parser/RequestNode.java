@@ -1,6 +1,7 @@
 package io.github.yedaxia.apidocs.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +19,11 @@ public class RequestNode {
     private List<HeaderNode> header = new ArrayList<>();
     private Boolean deprecated = Boolean.FALSE;
     private ResponseNode responseNode;
+
+    public RequestNode() {
+        super();
+        this.setMethod(new ArrayList<String>(Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name())));
+    }
 
     public List<String> getMethod() {
         return method;

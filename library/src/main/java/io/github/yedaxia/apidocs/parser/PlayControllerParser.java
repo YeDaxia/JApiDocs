@@ -2,6 +2,8 @@ package io.github.yedaxia.apidocs.parser;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 
+import java.util.Arrays;
+
 /**
  * user for play framework
  *
@@ -16,7 +18,13 @@ public class PlayControllerParser extends AbsControllerParser {
             return;
         }
 
-        requestNode.addMethod(RequestMethod.valueOf(routeNode.method).name());
+        String method = routeNode.method.toUpperCase();
+        if("*".equals(method)) {
+            requestNode.setMethod(Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name()));
+        } else {
+            requestNode.addMethod(RequestMethod.valueOf(method).name());
+        }
+
         requestNode.setUrl(routeNode.routeUrl);
 
         md.getParameters().forEach(p -> {

@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public class SpringControllerParser extends AbsControllerParser {
 
-    private final static String[] mappingAnnotations = {
+    private final static String[] MAPPING_ANNOTATIONS = {
             "GetMapping", "PostMapping", "PutMapping",
             "PatchMapping", "DeleteMapping", "RequestMapping"
     };
@@ -46,11 +46,12 @@ public class SpringControllerParser extends AbsControllerParser {
     protected void afterHandleMethod(RequestNode requestNode, MethodDeclaration md) {
         md.getAnnotations().forEach(an -> {
             String name = an.getNameAsString();
-            if (Arrays.asList(mappingAnnotations).contains(name)) {
-                name = name.toUpperCase().replace("MAPPING", "");
-                if (!"REQUEST".equals(name)) {
-                    requestNode.addMethod(RequestMethod.valueOf(name).name());
+            if (Arrays.asList(MAPPING_ANNOTATIONS).contains(name)) {
+                String method = name.replaceAll(".*\\.", "").toUpperCase().replace("MAPPING", "");
+                if (!"REQUEST".equals(method)) {
+                    requestNode.addMethod(RequestMethod.valueOf(method).name());
                 }
+
                 if (an instanceof NormalAnnotationExpr) {
                     ((NormalAnnotationExpr) an).getPairs().forEach(p -> {
                         String key = p.getNameAsString();
@@ -77,10 +78,10 @@ public class SpringControllerParser extends AbsControllerParser {
                             if (methodAttr instanceof ArrayInitializerExpr) {
                                 NodeList<Expression> values = ((ArrayInitializerExpr) methodAttr).getValues();
                                 for (Node n : values) {
-                                    requestNode.addMethod(RequestMethod.valueOf(n.toString().replace("RequestMethod.", "")).name());
+                                    requestNode.addMethod(RequestMethod.valueOf(n.toString().replaceAll(".*\\.", "")).name());
                                 }
                             } else {
-                                requestNode.addMethod(RequestMethod.valueOf(p.getValue().toString().replace("RequestMethod.", "")).name());
+                                requestNode.addMethod(RequestMethod.valueOf(p.getValue().toString().replaceAll(".*\\.", "")).name());
                             }
                         }
                     });
