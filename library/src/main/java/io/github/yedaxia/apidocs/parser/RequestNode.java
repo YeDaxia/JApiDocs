@@ -20,12 +20,10 @@ public class RequestNode {
     private Boolean deprecated = Boolean.FALSE;
     private ResponseNode responseNode;
 
-    public RequestNode() {
-        super();
-        this.setMethod(new ArrayList<String>(Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name())));
-    }
-
     public List<String> getMethod() {
+        if(method == null || (method != null && method.size() == 0)) {
+            return Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name());
+        }
         return method;
     }
 
