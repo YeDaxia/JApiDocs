@@ -21,7 +21,7 @@ public class GenericControllerParser extends AbsControllerParser {
                     if(n.equals("url")){
                         requestNode.setUrl(Utils.removeQuotations(p.getValue().toString()));
                     }else if(n.equals("method")){
-                        requestNode.setMethod(Utils.removeQuotations(p.getValue().toString()));
+                        requestNode.addMethod(Utils.removeQuotations(p.getValue().toString()));
                     }
                 });
             }

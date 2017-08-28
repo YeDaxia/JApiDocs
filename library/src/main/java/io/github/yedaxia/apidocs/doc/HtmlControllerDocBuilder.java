@@ -9,6 +9,7 @@ import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.RequestNode;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,9 +45,9 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
                 tocBuilder.append(String.format(tocActionHtml, requestNode.getDescription(),
                         requestNode.getDescription()));
             }
-            if (Utils.isNotEmpty(requestNode.getMethod())) {
-                actionDoc = actionDoc.replace("${METHOD}", requestNode.getMethod());
-            }
+            String methonStr = Arrays.toString(requestNode.getMethod().toArray());
+            actionDoc = actionDoc.replace("${METHOD}", methonStr.substring(1, methonStr.length() - 1));
+
             if (Utils.isNotEmpty(requestNode.getUrl())) {
                 actionDoc = actionDoc.replace("${APIURL}", controllerNode.getBaseUrl() + requestNode.getUrl());
             }
