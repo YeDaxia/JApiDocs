@@ -37,6 +37,7 @@ public abstract class AbsDocGenerator{
         File[] controllerFiles = DocContext.getControllerFiles();
         for (File controllerFile : controllerFiles) {
             try {
+                LogUtils.info("start to parse controller file : %s", controllerFile.getName());
                 ControllerNode controllerNode = controllerParser.parse(controllerFile);
                 if(controllerNode.getRequestNodes().isEmpty()){
                     continue;
