@@ -47,7 +47,7 @@ public class SpringControllerParser extends AbsControllerParser {
         md.getAnnotations().forEach(an -> {
             String name = an.getNameAsString();
             if (Arrays.asList(MAPPING_ANNOTATIONS).contains(name)) {
-                String method = name.replaceAll(".*\\.", "").toUpperCase().replace("MAPPING", "");
+                String method = Utils.getClassName(name).toUpperCase().replace("MAPPING", "");
                 if (!"REQUEST".equals(method)) {
                     requestNode.addMethod(RequestMethod.valueOf(method).name());
                 }
@@ -78,10 +78,10 @@ public class SpringControllerParser extends AbsControllerParser {
                             if (methodAttr instanceof ArrayInitializerExpr) {
                                 NodeList<Expression> values = ((ArrayInitializerExpr) methodAttr).getValues();
                                 for (Node n : values) {
-                                    requestNode.addMethod(RequestMethod.valueOf(n.toString().replaceAll(".*\\.", "")).name());
+                                    requestNode.addMethod(RequestMethod.valueOf(Utils.getClassName(n.toString())).name());
                                 }
                             } else {
-                                requestNode.addMethod(RequestMethod.valueOf(p.getValue().toString().replaceAll(".*\\.", "")).name());
+                                requestNode.addMethod(RequestMethod.valueOf(Utils.getClassName(p.getValue().toString())).name());
                             }
                         }
                     });

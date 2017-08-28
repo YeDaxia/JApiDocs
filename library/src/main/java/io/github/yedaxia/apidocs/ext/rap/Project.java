@@ -176,12 +176,8 @@ class Project {
                 action.setRequestUrl(supportRestfulUrl(requestUrl));
 
                 List<String> methods = requestNode.getMethod();
-                if(methods != null && methods.contains(RequestMethod.GET)) {
-                    action.setRequestType("1");
-                } else {
-                    action.setRequestType("2");
-                }
-
+                action.setRequestType(ActionType.valueOf(methods.get(0)).type);
+                
                 for (ParamNode paramNode : requestNode.getParamNodes()) {
                     Parameter parameter = Parameter.newParameter();
                     if (DataType.isArrayType(paramNode.getType())) {

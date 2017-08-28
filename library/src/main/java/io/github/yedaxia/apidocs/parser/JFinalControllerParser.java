@@ -24,6 +24,7 @@ public class JFinalControllerParser extends AbsControllerParser{
                 String url = ((SingleMemberAnnotationExpr)an).getMemberValue().toString();
                 requestNode.setMethod(Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name()));
                 requestNode.setUrl(Utils.removeQuotations(url));
+                return;
             }
         });
     }

@@ -284,4 +284,15 @@ public class Utils {
                 || value instanceof String
                 || value instanceof java.util.Date;
     }
+
+	/**
+	 * get simple class name
+	 *
+	 * @param packageClass
+	 * @return
+	 */
+	public static String getClassName(String packageClass){
+		String[] parts = packageClass.split("\\.");
+		return parts[parts.length - 1];
+	}
 }
