@@ -1,22 +1,22 @@
-八月 28, 2017 10:58:10 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:23 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: find java src path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-八月 28, 2017 10:58:10 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:23 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: found it a spring mvc project, tell us if we are wrong.
-八月 28, 2017 10:58:10 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:23 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs start...
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:23 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to parse controller file : UserController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : UserController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : UserController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to parse controller file : AdminController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: start to generate docs for controller file : AdminController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: success to generate docs for controller file : AdminController.java
-八月 28, 2017 10:58:11 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:24 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: generate api docs done !!!
-八月 28, 2017 10:58:14 下午 io.github.yedaxia.apidocs.LogUtils info
+九月 06, 2017 9:54:26 上午 io.github.yedaxia.apidocs.LogUtils info
 信息: post project to rap success, response : ﻿{"errMsg":"您登录过期啦，不要乱动哦，请打开新页面登录后再提交吧 &gt;  。&lt;", "isOk":false} 

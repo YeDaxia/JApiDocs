@@ -49,7 +49,7 @@ public class Utils {
 	 * @throws IOException
 	 */
 	public static void writeToDisk(File f,String content) throws IOException{
-		FileWriter writer = new FileWriter(f);
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f),"utf-8"));
 		writer.write(content);
 		writer.close();
 	}
