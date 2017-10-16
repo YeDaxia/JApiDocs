@@ -312,13 +312,16 @@ public class ParseUtils {
             return "byte";
         } else if("short".equalsIgnoreCase(rawType)){
             return "short";
-        } else if("int".equals(rawType) || "Integer".equals(rawType)){
+        } else if("int".equalsIgnoreCase(rawType)
+                || "Integer".equalsIgnoreCase(rawType)
+                || "BigInteger".equalsIgnoreCase(rawType)){
             return "int";
         } else if("long".equalsIgnoreCase(rawType)){
             return "long";
         } else if("float".equalsIgnoreCase(rawType)){
             return "float";
-        } else if("double".equalsIgnoreCase(rawType)){
+        } else if("double".equalsIgnoreCase(rawType)
+                ||"BigDecimal".equalsIgnoreCase(rawType)){
             return "double";
         } else if("boolean".equalsIgnoreCase(rawType)){
             return "boolean";
