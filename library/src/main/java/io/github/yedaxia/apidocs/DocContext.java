@@ -95,6 +95,8 @@ public class DocContext {
                 projectType = ProjectType.JFINAL;
             }else if(Utils.isSpringFramework(javaSrcDir)){
                 projectType = ProjectType.SPRING;
+            }else{
+                projectType = ProjectType.GENERIC;
             }
         }
 
