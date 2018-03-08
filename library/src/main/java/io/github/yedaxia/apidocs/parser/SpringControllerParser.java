@@ -102,7 +102,7 @@ public class SpringControllerParser extends AbsControllerParser {
 
                 p.getAnnotations().forEach(an -> {
                     String name = an.getNameAsString();
-                    if (!"RequestParam".equals(name) && !"RequestBody".equals(name)) {
+                    if (!"RequestParam".equals(name) && !"RequestBody".equals(name) && !"PathVariable".equals(name)) {
                         return;
                     }
 
@@ -116,13 +116,22 @@ public class SpringControllerParser extends AbsControllerParser {
                         return;
                     }
 
+                    if(an instanceof SingleMemberAnnotationExpr){
+                        paramNode.setName(((StringLiteralExpr) ((SingleMemberAnnotationExpr) an).getMemberValue()).getValue());
+                        return;
+                    }
+
                     if (an instanceof NormalAnnotationExpr) {
-                        ((NormalAnnotationExpr) an).getPairs().stream()
-                                .filter(n -> n.getNameAsString().equals("required"))
-                                .findFirst()
-                                .ifPresent(v -> {
-                                    paramNode.setRequired(Boolean.valueOf(v.getValue().toString()));
-                                });
+                        ((NormalAnnotationExpr) an).getPairs().forEach(pair -> {
+                            String exprName = pair.getNameAsString();
+                            if("required".equals(exprName)){
+                                Boolean exprValue = ((BooleanLiteralExpr) pair.getValue()).getValue();
+                                paramNode.setRequired(Boolean.valueOf(exprValue));
+                            }else if("value".equals(exprName)){
+                                String exprValue = ((StringLiteralExpr) pair.getValue()).getValue();
+                                paramNode.setName(exprValue);
+                            }
+                        });
                     }
 
                 });
