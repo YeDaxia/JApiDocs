@@ -73,7 +73,7 @@ mvcFramework = [spring, play, jfinal, generic](not required，JApiDocs will try 
 (1) add dependencies below:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.0'
+compile 'io.github.yedaxia:japidocs:1.1.2'
 compile 'com.google.code.gson:gson:2.8.0'
 compile 'com.github.javaparser:javaparser-core:3.3.0'
 ```

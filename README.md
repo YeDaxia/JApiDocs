@@ -25,7 +25,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.1</version>
+  <version>1.1.2</version>
 </dependency>
 
 <dependency>
@@ -42,7 +42,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 ```
 
 ```
-compile 'io.github.yedaxia:japidocs:1.1'
+compile 'io.github.yedaxia:japidocs:1.1.2'
 compile 'com.google.code.gson:gson:2.8.0'
 compile 'com.github.javaparser:javaparser-core:3.3.0'
 ```
@@ -119,7 +119,7 @@ java -jar ***-all.jar
 如果想做一些持续集成的话，代码模式还是比较方便的，直接添加依赖或者下载相关`jar`包，其中`min`包是不包含第三方依赖的。
 
 ```
-compile 'io.github.yedaxia:japidocs:1.1'
+compile 'io.github.yedaxia:japidocs:1.1.2'
 ```
 
 只需要调用下面一句代码即可：
@@ -175,7 +175,7 @@ class BookKVO{
 - 修复 spring mvc 若干bug。
 - 支持多module。
 
-## 1.1 版本
+## 1.1.2 版本
 
 - 支持集成接口到 Rap。
 - 支持 spring 更多特性。
