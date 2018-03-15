@@ -170,12 +170,12 @@ class BookKVO{
 
 # ChangeLog
 
-## 1.2 版本
+## 1.1.2 版本
 
 - 修复 spring mvc 若干bug。
 - 支持多module。
 
-## 1.1.2 版本
+## 1.1 版本
 
 - 支持集成接口到 Rap。
 - 支持 spring 更多特性。
