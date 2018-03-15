@@ -39,14 +39,23 @@ public class ParseUtils {
      * @return
      */
     public static File searchJavaFile(File inJavaFile, String className){
-       File file = searchJavaFileInner(inJavaFile, className);
+       File file = null;
+
+       for(String javaSrcPath : DocContext.getJavaSrcPaths()){
+           file = searchJavaFileInner(javaSrcPath, inJavaFile, className);
+           if(file != null){
+               break;
+           }
+       }
+
        if(file == null){
            throw new RuntimeException("cannot find java file , in java file : " + inJavaFile.getAbsolutePath() + ", className : " +className);
        }
+
        return file;
     }
 
-    private static File searchJavaFileInner(File inJavaFile, String className){
+    private static File searchJavaFileInner(String javaSrcPath, File inJavaFile, String className){
         CompilationUnit compilationUnit = compilationUnit(inJavaFile);
 
         String[] cPaths;
@@ -59,7 +68,7 @@ public class ParseUtils {
         //found in import
         if(idOp.isPresent()){
             cPaths = idOp.get().getNameAsString().split("\\.");
-            return backTraceJavaFileByName(cPaths);
+            return backTraceJavaFileByName(javaSrcPath, cPaths);
         }
 
         //inner class
@@ -107,7 +116,7 @@ public class ParseUtils {
         }
 
         //maybe a complete class name
-        File javaFile = backTraceJavaFileByName(cPaths);
+        File javaFile = backTraceJavaFileByName(javaSrcPath, cPaths);
         if(javaFile != null){
             return javaFile;
         }
@@ -119,7 +128,7 @@ public class ParseUtils {
                 if(importDeclaration.toString().contains(".*")){
                     String packageName = importDeclaration.getNameAsString();
                     cPaths = (packageName + "." + className).split("\\.");
-                    javaFile = backTraceJavaFileByName(cPaths);
+                    javaFile = backTraceJavaFileByName(javaSrcPath, cPaths);
                     if(javaFile != null){
                         break;
                     }
@@ -145,16 +154,16 @@ public class ParseUtils {
                 .findFirst();
     }
 
-    private static File backTraceJavaFileByName(String[] cPaths){
+    private static File backTraceJavaFileByName(String javaSrcPath, String[] cPaths){
         if(cPaths.length == 0){
             return null;
         }
-        String javaFilePath = DocContext.getJavaSrcPath() + Utils.joinArrayString(cPaths, "/") +".java";
+        String javaFilePath = javaSrcPath + Utils.joinArrayString(cPaths, "/") +".java";
         File javaFile = new File(javaFilePath);
         if(javaFile.exists() && javaFile.isFile()){
             return javaFile;
         }else{
-            return backTraceJavaFileByName(Arrays.copyOf(cPaths, cPaths.length - 1));
+            return backTraceJavaFileByName(javaSrcPath, Arrays.copyOf(cPaths, cPaths.length - 1));
         }
     }
 

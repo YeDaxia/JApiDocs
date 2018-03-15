@@ -12,6 +12,8 @@ import io.github.yedaxia.apidocs.LogUtils;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
 
+import javax.print.Doc;
+import javax.swing.plaf.ListUI;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -32,21 +34,29 @@ public class JFinalRoutesParser {
 
     private JFinalRoutesParser(){
         List<File> result = new ArrayList<>();
-        Utils.wideSearchFile(new File(DocContext.getJavaSrcPath()), new FilenameFilter() {
-            @Override
-            public boolean accept(File f, String name) {
-                return ParseUtils.compilationUnit(f).getChildNodesByType(ClassOrInterfaceDeclaration.class)
-                        .stream()
-                        .anyMatch(cl -> cl.getMethodsByName("configRoute")
-                                .stream()
-                                .anyMatch(m -> {
-                                    mdConfigRoute = m;
-                                    return m.getParameters()
-                                            .stream()
-                                            .anyMatch(p -> p.getType().asString().endsWith("Routes"));
-                                }));
+
+        for(String javaSrcPath : DocContext.getJavaSrcPaths()){
+            Utils.wideSearchFile(new File(javaSrcPath), new FilenameFilter() {
+                @Override
+                public boolean accept(File f, String name) {
+                    return ParseUtils.compilationUnit(f).getChildNodesByType(ClassOrInterfaceDeclaration.class)
+                            .stream()
+                            .anyMatch(cl -> cl.getMethodsByName("configRoute")
+                                    .stream()
+                                    .anyMatch(m -> {
+                                        mdConfigRoute = m;
+                                        return m.getParameters()
+                                                .stream()
+                                                .anyMatch(p -> p.getType().asString().endsWith("Routes"));
+                                    }));
+                }
+            },result, true);
+
+            if(!result.isEmpty()){
+                break;
             }
-        },result, true);
+        }
+
 
         if(result.isEmpty()){
             throw new RuntimeException("cannot find JFinalConfig File");

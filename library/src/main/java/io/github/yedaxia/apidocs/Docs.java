@@ -6,6 +6,9 @@ import io.github.yedaxia.apidocs.ext.rap.RapSupport;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -80,6 +83,7 @@ public class Docs {
 	public static class DocsConfig {
 
         String projectPath; // must set
+        List<String> javaSrcPaths = new ArrayList<>(); //multi modules support
         String docsPath; // default equals projectPath
         String codeTplPath; // if empty, use the default resources
         String mvcFramework; //spring, play, jfinal, generic, can be empty
@@ -166,6 +170,19 @@ public class Docs {
 
         public void setRapPassword(String rapPassword) {
             this.rapPassword = rapPassword;
+        }
+
+        public List<String> getJavaSrcPaths() {
+            return javaSrcPaths;
+        }
+
+        /**
+         * if cannot find the java file from other module, you can try to config the java src path yourself.
+         *
+         * @param javaSrcPath
+         */
+        public void addJavaSrcPath(String javaSrcPath){
+            javaSrcPaths.add(javaSrcPath);
         }
     }
 }

@@ -2,9 +2,16 @@ package io.github.yedaxia.apidocs;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -295,4 +302,93 @@ public class Utils {
 		String[] parts = packageClass.split("\\.");
 		return parts[parts.length - 1];
 	}
+
+	/**
+	 * get project build tool type
+	 * @param projectDir
+	 * @return
+	 */
+	private static BuildToolType getProjectBuildTool(File projectDir){
+		if(new File(projectDir,"settings.gradle").exists()){
+			return BuildToolType.GRADLE;
+		}
+
+		if(new File(projectDir,"pom.xml").exists()){
+			return BuildToolType.MAVEN;
+		}
+
+		return BuildToolType.UNKOWN;
+	}
+
+    /**
+     * get project modules name
+     * @param projectDir
+     * @return
+     */
+	public static List<String> getModuleNames(File projectDir){
+        BuildToolType buildToolType = getProjectBuildTool(projectDir);
+
+        List<String> moduleNames = new ArrayList<>();
+
+        //gradle
+        if(buildToolType == BuildToolType.GRADLE){
+            try{
+                BufferedReader settingReader = new BufferedReader(new InputStreamReader(new
+                        FileInputStream(new File(projectDir, "settings.gradle"))));
+                String lineText;
+                String keyword = "include ";
+                while((lineText = settingReader.readLine()) != null){
+                    int inIndex = lineText.indexOf(keyword);
+                    if(inIndex != -1){
+                        moduleNames.add(lineText.substring(inIndex + keyword.length()).replace("'","").replace("\"",""));
+                    }
+                }
+                Utils.closeSilently(settingReader);
+            }catch (IOException ex){
+                LogUtils.error("read setting.gradle error", ex);
+            }
+        }
+
+        // maven
+        if(buildToolType == BuildToolType.MAVEN){
+            try{
+                SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
+                saxParser.parse(new File(projectDir,"pom.xml"), new DefaultHandler(){
+
+                    String moduleName;
+                    boolean isModuleTag;
+
+                    @Override
+                    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                        if("module".equalsIgnoreCase(qName)){
+                            isModuleTag = true;
+                        }
+                    }
+
+                    @Override
+                    public void endElement(String uri, String localName, String qName) throws SAXException {
+                        if("module".equalsIgnoreCase(qName)){
+                            moduleNames.add(moduleName);
+                            isModuleTag = false;
+                        }
+                    }
+
+                    @Override
+                    public void characters(char[] ch, int start, int length) throws SAXException {
+                        if(isModuleTag){
+                            moduleName = new String(ch, start, length);
+                        }
+                    }
+                });
+            }catch (Exception ex){
+                LogUtils.error("read pom.xml error", ex);
+            }
+        }
+
+        if(!moduleNames.isEmpty()){
+            LogUtils.info("find multi modules in this project: %s", Arrays.toString(moduleNames.toArray()));
+        }
+
+	    return moduleNames;
+    }
 }

@@ -1,0 +1,173 @@
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: project
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: modelVersion
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 4.0.0
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: modelVersion
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: groupId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : com.cmajor
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: groupId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: artifactId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : jap
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: artifactId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: packaging
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : pom
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: packaging
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: version
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 1.0-SNAPSHOT
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: version
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: modules
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+    
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: module
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : webapi
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: module
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+    
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: module
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : model
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: module
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: modules
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: name
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : jap Maven Webapp
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: name
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: url
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : http://maven.apache.org
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: url
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: dependencies
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+    
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: dependency
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+      
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: groupId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : junit
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: groupId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+      
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: artifactId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : junit
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: artifactId
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+      
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: version
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 3.8.1
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: version
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+      
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: scope
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : test
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: scope
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+    
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: dependency
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: dependencies
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: build
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+    
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: startElement uri: , localName: , qName: finalName
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : jap
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: finalName
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+  
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: build
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: characters : 
+
+三月 15, 2018 2:58:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: endElement uri: , localName: , qName: project

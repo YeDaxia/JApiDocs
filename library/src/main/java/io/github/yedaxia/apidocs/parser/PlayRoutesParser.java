@@ -20,11 +20,13 @@ import java.util.Optional;
 public class PlayRoutesParser {
 
     private String routeFile;
+    private String javaSrcPath;
 
     private List<RouteNode> routeNodeList = new ArrayList<>();
 
     private PlayRoutesParser(){
         this.routeFile = DocContext.getProjectPath().concat("conf/routes");
+        javaSrcPath = DocContext.getJavaSrcPaths().get(0);
         parse();
     }
 
@@ -84,7 +86,7 @@ public class PlayRoutesParser {
     }
 
     private String getControllerFile(String relativePath){
-        return DocContext.getJavaSrcPath()+ relativePath + ".java";
+        return javaSrcPath + relativePath + ".java";
     }
 
     public static class RouteNode {
