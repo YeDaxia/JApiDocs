@@ -45,10 +45,10 @@ public class DocsTest {
     private Docs.DocsConfig getDocsConfig(String projectPath){
         Docs.DocsConfig config = new Docs.DocsConfig();
         config.setProjectPath(projectPath);
-        config.setRapProjectId("1");
-        config.setRapHost("http://rap.yedaxia.me");
-        config.setRapAccount("***");
-        config.setRapPassword("123456");
+        //config.setRapProjectId("1");
+        //config.setRapHost("http://rap.yedaxia.me");
+        //config.setRapAccount("***");
+        //config.setRapPassword("123456");
         return config;
     }
 }

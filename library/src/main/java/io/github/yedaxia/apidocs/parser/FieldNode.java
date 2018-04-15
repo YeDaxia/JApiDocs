@@ -12,6 +12,8 @@ public class FieldNode {
     private MockNode mockNode;
     private ResponseNode childResponseNode;
 
+    private ClassNode classNode; //field node at this class node
+
     public String getName() {
         return name;
     }
@@ -50,5 +52,13 @@ public class FieldNode {
 
     public void setChildResponseNode(ResponseNode childResponseNode) {
         this.childResponseNode = childResponseNode;
+    }
+
+    public ClassNode getClassNode() {
+        return classNode;
+    }
+
+    public void setClassNode(ClassNode classNode) {
+        this.classNode = classNode;
     }
 }

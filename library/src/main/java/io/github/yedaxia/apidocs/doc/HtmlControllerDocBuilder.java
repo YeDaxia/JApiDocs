@@ -10,6 +10,7 @@ import io.github.yedaxia.apidocs.parser.RequestNode;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,13 +32,13 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
             ctrlDoc = ctrlDoc.replace("${CONTROLLER_DESCRIPTION}", controllerNode.getDescription());
         }
 
-        final String actionTemplte = getActionTpl();
+        final String actionTemplate = getActionTpl();
 
         StringBuilder actionsBuilder = new StringBuilder();
         StringBuilder tocBuilder = new StringBuilder();
         String actionDoc;
         for (RequestNode requestNode : controllerNode.getRequestNodes()) {
-            actionDoc = actionTemplte;
+            actionDoc = actionTemplate;
             if (Utils.isNotEmpty(requestNode.getDescription())) {
                 String descriptionHtml = requestNode.getDeprecated() ? String.format("<STRIKE>%s</STRIKE>", requestNode.getDescription()) : requestNode.getDescription();
                 actionDoc = actionDoc.replace("${ACTION_DESCRIPTION}", descriptionHtml);
@@ -52,7 +53,6 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
                 actionDoc = actionDoc.replace("${APIURL}", controllerNode.getBaseUrl() + requestNode.getUrl());
             }
             if (requestNode.getParamNodes() != null) {
-                StringBuilder paramListBuilder = new StringBuilder();
                 boolean isJsonBody = false;
                 String paramHtmlBody = "";
 
@@ -73,12 +73,21 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
 
             if (requestNode.getResponseNode() != null) {
                 actionDoc = actionDoc.replace("${RESPONSE}", requestNode.getResponseNode().toJsonApi());
-                JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
-                String javaurl = javaCodeGenerator.generateCode();
-                actionDoc = actionDoc.replace("${ANDROID_CODE}", javaurl);
-                ModelCodeGenerator iosCodeGenerator = new ModelCodeGenerator(requestNode.getResponseNode());
-                String iosUrl = iosCodeGenerator.generateCode();
-                actionDoc = actionDoc.replace("${IOS_CODE}", iosUrl);
+                if(requestNode.getResponseNode().getChildNodes().isEmpty()){
+                    actionDoc = actionDoc.replace("${IOS_CODE}", "#");
+                    actionDoc = actionDoc.replace("${ANDROID_CODE}", "#");
+                }else{
+                    JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
+                    String javaurl = javaCodeGenerator.generateCode();
+                    actionDoc = actionDoc.replace("${ANDROID_CODE}", javaurl);
+                    ModelCodeGenerator iosCodeGenerator = new ModelCodeGenerator(requestNode.getResponseNode());
+                    String iosUrl = iosCodeGenerator.generateCode();
+                    actionDoc = actionDoc.replace("${IOS_CODE}", iosUrl);
+                }
+            }else{
+                actionDoc = actionDoc.replace("${RESPONSE}", "");
+                actionDoc = actionDoc.replace("${IOS_CODE}", "#");
+                actionDoc = actionDoc.replace("${ANDROID_CODE}", "#");
             }
             actionsBuilder.append(actionDoc);
         }

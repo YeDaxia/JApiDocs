@@ -1,22 +1,32 @@
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: find java src path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: found it a spring mvc project, tell us if we are wrong.
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: generate api docs start...
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: start to parse controller file : UserController.java
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: start to generate docs for controller file : UserController.java
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: success to generate docs for controller file : UserController.java
-三月 08, 2018 7:44:28 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: start to parse controller file : AdminController.java
-三月 08, 2018 7:44:29 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: start to generate docs for controller file : AdminController.java
-三月 08, 2018 7:44:29 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: success to generate docs for controller file : AdminController.java
-三月 08, 2018 7:44:29 下午 io.github.yedaxia.apidocs.LogUtils info
-信息: generate api docs done !!!
-三月 08, 2018 7:44:29 下午 io.github.yedaxia.apidocs.LogUtils error
-严重: login rap fail , userName : ***, pass : 123456
+四月 15, 2018 3:51:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : UserController.java
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : AdminController.java
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think M should not be an enum type
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/user/Result.java, className : M, we cannot found more information of it, you've better to make it a JavaBean
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/user/Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+四月 15, 2018 3:51:28 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : AdminController.java
+四月 15, 2018 3:51:29 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : AdminController.java
+四月 15, 2018 3:51:29 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : AdminController.java
+四月 15, 2018 3:51:29 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+四月 15, 2018 3:51:29 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!

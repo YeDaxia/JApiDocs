@@ -24,15 +24,15 @@ public class LogUtils {
     }
 
     public static void info(String message, Object... args){
-        LOGGER.info(String.format(message, args));
+        LOGGER.info(String.format("info: " +message, args));
     }
 
     public static void warn(String message, Object... args){
-        LOGGER.warning(String.format(message, args));
+        LOGGER.warning(String.format("warning!! " +message, args));
     }
 
     public static void error(String message, Object... args){
-        LOGGER.severe(String.format(message, args));
+        LOGGER.severe(String.format("error!!! " + message, args));
     }
 
     public static void error(String message, Throwable e){

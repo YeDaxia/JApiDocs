@@ -12,6 +12,10 @@ public class ResultVO extends SimpleResult{
 
     private Inner inner; //内部类
 
+    private String[] stringArray;
+
+    private GenericResult<Studuent[], Integer> result;
+
     public enum  Gender {
         MALE, FEMALE
     }

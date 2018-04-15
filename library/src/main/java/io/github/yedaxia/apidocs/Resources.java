@@ -47,7 +47,7 @@ public class Resources {
                 return Resources.class.getClass().getResourceAsStream("/" + fileName);
             }
         }else{
-            return Resources.class.getClass().getResourceAsStream("/" + fileName);
+            return getTemplateFile(fileName);
         }
     }
 

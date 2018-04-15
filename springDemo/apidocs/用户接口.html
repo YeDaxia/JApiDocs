@@ -11,7 +11,7 @@
 <div id="wmd-preview" class="wmd-preview">
 <h1><a href="index.html">《首页</a> 用户接口:</h1>
 <ul class="toc">
-<li><a href="#用户列表">用户列表</a></li><li><a href="#用户信息">用户信息</a></li><li><a href="#收藏图书">收藏图书</a></li>
+<li><a href="#用户列表">用户列表</a></li><li><a href="#用户信息">用户信息</a></li><li><a href="#收藏图书">收藏图书</a></li><li><a href="#保存用户">保存用户</a></li><li><a href="#获取用户列表2">获取用户列表2</a></li><li><a href="#获取用户列表[无类型信息]">获取用户列表[无类型信息]</a></li><li><a href="#消息列表">消息列表</a></li>
 </ul>
 <hr>
 <h2 id="用户列表">用户列表</h2>
@@ -119,6 +119,127 @@ url: /api/v1/u/favorite
     "isFollow": "boolean //是否关注"
   }
 }
+</pre>
+
+<hr><h2 id="保存用户">保存用户</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/u/saveUser
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<pre class="prettyprint lang-json">
+{
+  "pictures": "string[] //照片",
+  "model": {
+    "name": "string //名字"
+  }
+}
+</pre>
+
+<p>返回结果: <a href="javaCodes/BookDetailVO.html">Android Code</a> | <a href="iosCodes/BookDetailVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "bookId": "long //图书id",
+  "bookName": "string //图书名称",
+  "storeCount": "int //馆藏数量",
+  "pictures": "string[] //图片",
+  "owner": {
+    "userId": "string //用户id",
+    "userName": "string //用户名",
+    "friends": [
+      {
+        "userId": "string //用户id",
+        "userName": "string //用户名"
+      }
+    ],
+    "readBooks": [
+      {
+        "bookId": "long //图书id",
+        "bookName": "string //图书名称"
+      }
+    ],
+    "isFollow": "boolean //是否关注"
+  }
+}
+</pre>
+
+<hr><h2 id="获取用户列表2">获取用户列表2</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/u/list-new
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>page</td><td>int</td><td>false</td><td>页数</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Result.html">Android Code</a> | <a href="iosCodes/Result.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "message": "string //消息",
+  "list": [
+    {
+      "userId": "string //用户id",
+      "userName": "string //用户名",
+      "friends": [
+        {
+          "userId": "string //用户id",
+          "userName": "string //用户名"
+        }
+      ],
+      "readBooks": [
+        {
+          "bookId": "long //图书id",
+          "bookName": "string //图书名称"
+        }
+      ],
+      "isFollow": "boolean //是否关注"
+    }
+  ]
+}
+</pre>
+
+<hr><h2 id="获取用户列表[无类型信息]">获取用户列表[无类型信息]</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/u/list-new-notype
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>page</td><td>int</td><td>false</td><td>页数</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Result.html">Android Code</a> | <a href="iosCodes/Result.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "message": {},
+  "list": []
+}
+</pre>
+
+<hr><h2 id="消息列表">消息列表</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/u/message-list
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="#">Android Code</a> | <a href="#">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+string[]
 </pre>
 
 <hr>

@@ -112,23 +112,15 @@ public abstract class AbsControllerParser {
                         }
 
                         if(resultClassType == null){
-                            return;
+                            if(m.getType() == null){
+                                return;
+                            }
+                            resultClassType = m.getType();
                         }
 
                         ResponseNode responseNode = new ResponseNode();
-                        File resultJavaFile;
-                        if(resultClassType.asString().endsWith("[]")){
-                            responseNode.setList(Boolean.TRUE);
-                            String type = resultClassType.getElementType().asString();
-                            resultJavaFile = ParseUtils.searchJavaFile(javaFile, type);
-                        }else{
-                            responseNode.setList(Boolean.FALSE);
-                            resultJavaFile = ParseUtils.searchJavaFile(javaFile, resultClassType.asString());
-                        }
-                        responseNode.setClassName(Utils.getJavaFileName(resultJavaFile));
-                        ParseUtils.parseResponseNode(resultJavaFile, responseNode);
+                        ParseUtils.parseClassNodeByType(javaFile, responseNode, resultClassType.getElementType());
                         requestNode.setResponseNode(responseNode);
-
                         controllerNode.addRequestNode(requestNode);
                     });
                 });

@@ -14,10 +14,11 @@ import java.util.Map;
  */
 public class ClassNode {
 
-    private String className;
+    private String className = "";
     private String description;
     private Boolean isList = Boolean.FALSE;
     private List<FieldNode> childNodes = new ArrayList<>();
+    private List<GenericNode> genericNodes = new ArrayList<>();
 
     public String getDescription() {
         return description;
@@ -55,9 +56,34 @@ public class ClassNode {
         this.className = className;
     }
 
+    public List<GenericNode> getGenericNodes() {
+        return genericNodes;
+    }
+
+    public void setGenericNodes(List<GenericNode> genericNodes) {
+        this.genericNodes = genericNodes;
+    }
+
+    public void addGenericNode(GenericNode genericNode){
+        this.genericNodes.add(genericNode);
+    }
+
+    public GenericNode getGenericNode(int index){
+        return genericNodes.get(index);
+    }
+
+    public GenericNode getGenericNode(String  type){
+        for(GenericNode genericNode : genericNodes){
+            if(genericNode.getPlaceholder().equals(type)){
+                return genericNode;
+            }
+        }
+        return null;
+    }
+
     public String toJsonApi(){
         if(childNodes == null || childNodes.isEmpty()){
-            return "";
+            return isList? className + "[]": className + "{}";
         }
         Map<String, Object> jsonRootMap = new LinkedHashMap<>();
         for (FieldNode recordNode : childNodes) {
@@ -82,7 +108,7 @@ public class ClassNode {
                 }
             }
             if(recordNode.getType().endsWith("[]")){
-                map.put(recordNode.getName(), new Map[]{childMap});
+                map.put(recordNode.getName(), childMap.isEmpty()? new Map[]{}: new Map[]{childMap});
             }else{
                 map.put(recordNode.getName(), childMap);
             }
@@ -98,4 +124,5 @@ public class ClassNode {
             return recordNode.getType();
         }
     }
+
 }

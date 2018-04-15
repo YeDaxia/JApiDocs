@@ -1,8 +1,15 @@
+import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.type.TypeParameter;
+import com.github.javaparser.utils.Utils;
+import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import result.GenericResult;
 import result.ResultVO;
 
 import java.io.File;
@@ -20,7 +27,7 @@ public class ParseUtilsTest {
 
     @Before
     public void setup(){
-        //DocContext.setProjectPath(projectPath);
+        DocContext.getJavaSrcPaths().add(Projects.LibraryTestPath);
     }
 
     @Test
@@ -45,11 +52,29 @@ public class ParseUtilsTest {
     }
 
     @Test
-    public void test_parseResponseNode(){
+    public void test_parseClassNode(){
         ResponseNode responseNode = new ResponseNode();
         responseNode.setClassName("ResultVO");
         File resultJavaFile = Projects.getTestJavaFile(ResultVO.class);
-        ParseUtils.parseResponseNode(resultJavaFile, responseNode);
-        System.out.println(responseNode);
+        ParseUtils.parseClassNode(resultJavaFile, responseNode);
+        System.out.println(responseNode.toJsonApi());
+    }
+
+    @Test
+    public void test_parseGenericClassNode(){
+        File resultJavaFile = Projects.getTestJavaFile(GenericResult.class);
+
+        ParseUtils.compilationUnit(resultJavaFile).getChildNodesByType(MethodDeclaration.class).forEach(md->{
+             md.getType();
+        });
+
+
+        ParseUtils.compilationUnit(resultJavaFile).getClassByName("GenericResult")
+                .ifPresent(classDeclaration -> {
+                    NodeList<TypeParameter> typeParameters = classDeclaration.getTypeParameters();
+                    for(int i = 0, len = typeParameters.size(); i != len; i++){
+                        System.out.println(typeParameters.get(i).getName());
+                    }
+                });
     }
 }

@@ -6,13 +6,9 @@ import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
-import com.github.javaparser.ast.type.ArrayType;
-import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.github.javaparser.ast.type.Type;
-import io.github.yedaxia.apidocs.parser.ClassNode;
-import io.github.yedaxia.apidocs.parser.FieldNode;
-import io.github.yedaxia.apidocs.parser.MockNode;
-import io.github.yedaxia.apidocs.parser.ResponseNode;
+import com.github.javaparser.ast.type.*;
+import io.github.yedaxia.apidocs.exception.JavaFileNotFoundException;
+import io.github.yedaxia.apidocs.parser.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,7 +45,7 @@ public class ParseUtils {
        }
 
        if(file == null){
-           throw new RuntimeException("cannot find java file , in java file : " + inJavaFile.getAbsolutePath() + ", className : " +className);
+           throw new JavaFileNotFoundException("Cannot find java file , in java file : " + inJavaFile.getAbsolutePath() + ", className : " +className);
        }
 
        return file;
@@ -182,23 +178,74 @@ public class ParseUtils {
     }
 
     /**
-     * parse response of model java file
+     * parse class model java file
+     *
+     * @param inJavaFile
+     * @param classType
+     */
+    public static void parseClassNodeByType(File inJavaFile,  ClassNode rootClassNode, Type classType){
+        if(classType.getParentNode().get() instanceof ArrayType){
+            rootClassNode.setList(true);
+        }else if(classType instanceof ArrayType){
+            rootClassNode.setList(true);
+            classType = ((ArrayType) classType).getComponentType();
+        }else if(isCollectionType(classType.asString())){
+            rootClassNode.setList(true);
+            List<ClassOrInterfaceType> collectionType = classType.getChildNodesByType(ClassOrInterfaceType.class);
+            if(collectionType.isEmpty()){
+                LogUtils.warn("We found Collection without specified Class Type, Please check ! java file : %s", inJavaFile.getName());
+                rootClassNode.setClassName("Object");
+                return;
+            }else{
+                classType = collectionType.get(0);
+            }
+        }
+
+        String unifyClassType = unifyType(classType.asString());
+        if(TYPE_MODEL.equals(unifyClassType)){
+            if(classType instanceof  ClassOrInterfaceType){
+                ((ClassOrInterfaceType) classType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+                    GenericNode rootGenericNode = new GenericNode();
+                    rootGenericNode.setFromJavaFile(inJavaFile);
+                    rootGenericNode.setClassType(argType);
+                    rootClassNode.addGenericNode(rootGenericNode);
+                }));
+            }
+
+            String className = ((ClassOrInterfaceType)classType).getName().getIdentifier();
+            rootClassNode.setClassName(className);
+            parseClassNode(searchJavaFile(inJavaFile, className), rootClassNode);
+        }else{
+            rootClassNode.setClassName(unifyClassType);
+        }
+    }
+
+    /**
+     * parse class model java file
      *
      * @param modelJavaFile
-     * @param responseNode
+     * @param classNode
      */
-    public static void parseResponseNode(File modelJavaFile, ClassNode responseNode){
-        String resultClassName = responseNode.getClassName();
+    public static void parseClassNode(File modelJavaFile, ClassNode classNode){
+        String resultClassName = classNode.getClassName();
 
         ParseUtils.compilationUnit(modelJavaFile).
                 getChildNodesByType(ClassOrInterfaceDeclaration.class).
                 stream().filter(f -> resultClassName.endsWith(f.getNameAsString())).findFirst().ifPresent(cl -> {
 
+                    //handle generic type
+                    NodeList<TypeParameter> typeParameters = cl.getTypeParameters();
+                    if(typeParameters.isNonEmpty() && classNode.getGenericNodes().size() == typeParameters.size()){
+                        for(int i = 0, len = typeParameters.size(); i != len; i++){
+                            classNode.getGenericNode(i).setPlaceholder(typeParameters.get(i).getName().getIdentifier());
+                        }
+                    }
+
                     NodeList<ClassOrInterfaceType> exClassTypeList =  cl.getExtendedTypes();
                     if(!exClassTypeList.isEmpty()){
                         String extendClassName = exClassTypeList.get(0).getNameAsString();
-                        responseNode.setClassName(extendClassName);
-                        parseResponseNode(ParseUtils.searchJavaFile(modelJavaFile, extendClassName), responseNode);
+                        classNode.setClassName(extendClassName);
+                        parseClassNode(ParseUtils.searchJavaFile(modelJavaFile, extendClassName), classNode);
                     }
 
                     cl.getChildNodesByType(FieldDeclaration.class)
@@ -211,13 +258,17 @@ public class ParseUtils {
                             return;
                         }
 
-                        fd.getVariables().forEach(v -> {
+                        fd.getVariables().forEach(field -> {
                             FieldNode fieldNode = new FieldNode();
-                            responseNode.addChildNode(fieldNode);
+                            fieldNode.setClassNode(classNode);
+
+                            classNode.addChildNode(fieldNode);
                             fd.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
+
                             if(!Utils.isNotEmpty(fieldNode.getDescription())){
-                                v.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
+                                field.getComment().ifPresent(c -> fieldNode.setDescription(Utils.cleanCommentContent(c.getContent())));
                             }
+
                             fd.getAnnotationByName("RapMock").ifPresent(an -> {
                                 if(an instanceof NormalAnnotationExpr){
                                     NormalAnnotationExpr normalAnExpr = (NormalAnnotationExpr)an;
@@ -238,64 +289,148 @@ public class ParseUtils {
                                     fieldNode.setMockNode(mockNode);
                                 }
                             });
-                            fieldNode.setName(v.getNameAsString());
-                            Type elType = fd.getElementType();
-                            String type = elType.asString();
-                            if(elType.getParentNode().get() instanceof ArrayType){
-                                parseChildResponseNode(fieldNode, modelJavaFile, type, Boolean.TRUE);
-                            }else{
-                                if(isCollectionType(type)){
-                                    elType.getChildNodesByType(ClassOrInterfaceType.class)
-                                            .stream()
-                                            .findFirst()
-                                            .ifPresent(t ->{
-                                                String genericType = t.getNameAsString();
-                                                parseChildResponseNode(fieldNode, modelJavaFile, genericType, Boolean.TRUE);
-                                            });
-                                }else{
-                                    parseChildResponseNode(fieldNode, modelJavaFile, type, Boolean.FALSE);
-                                }
-                            }
+
+                            fieldNode.setName(field.getNameAsString());
+
+                            Type fieldType = fd.getElementType();
+                            parseFieldNode(fieldNode, modelJavaFile, fieldType);
                         });
                     });
         });
 
         //恢复原来的名称
-        responseNode.setClassName(resultClassName);
+        classNode.setClassName(resultClassName);
     }
 
-    private static void parseChildResponseNode(FieldNode parentNode, File inJavaFile, String type, Boolean isList){
-        String unifyType = unifyType(type);
-        if(TYPE_MODEL.equals(unifyType)){
-            File childJavaFile = searchJavaFile(inJavaFile, type);
-            Optional<EnumDeclaration> ed = compilationUnit(childJavaFile)
-                    .getChildNodesByType(EnumDeclaration.class)
-                    .stream()
-                    .filter( em -> type.endsWith(em.getNameAsString()))
-                    .findFirst();
-            if(ed.isPresent()){
-                parentNode.setType("string");
-                List<EnumConstantDeclaration> constants = ed.get().getChildNodesByType(EnumConstantDeclaration.class);
-                StringBuilder sb = new StringBuilder(parentNode.getDescription() == null ? "" : parentNode.getDescription());
-                sb.append(" [");
-                for(int i = 0 , size = constants.size(); i != size ; i++){
-                    sb.append(constants.get(i).getNameAsString());
-                    if(i != size -1){
-                        sb.append(",");
+    private static void parseFieldNode(FieldNode fieldNode, File inJavaFile, Type fieldType){
+
+        final GenericNode genericNode = fieldNode.getClassNode().getGenericNode(fieldType.asString());
+
+        //Enum
+        if(genericNode == null && !fieldType.asString().contains("<")){
+            final String fieldClassType = fieldType.asString();
+            if(TYPE_MODEL.equals(unifyType(fieldClassType))){
+
+                Optional<EnumDeclaration> ed = null;
+                try{
+                    File childJavaFile = searchJavaFile(inJavaFile, fieldClassType);
+                    ed = compilationUnit(childJavaFile)
+                            .getChildNodesByType(EnumDeclaration.class)
+                            .stream()
+                            .filter( em -> fieldClassType.endsWith(em.getNameAsString()))
+                            .findFirst();
+                }catch (JavaFileNotFoundException ex){
+                    LogUtils.info("we think %s should not be an enum type", fieldClassType);
+                }
+
+                if(ed != null && ed.isPresent()){
+                    fieldNode.setType("string");
+                    List<EnumConstantDeclaration> constants = ed.get().getChildNodesByType(EnumConstantDeclaration.class);
+                    StringBuilder sb = new StringBuilder(fieldNode.getDescription() == null ? "" : fieldNode.getDescription());
+                    sb.append(" [");
+                    for(int i = 0 , size = constants.size(); i != size ; i++){
+                        sb.append(constants.get(i).getNameAsString());
+                        if(i != size -1){
+                            sb.append(",");
+                        }
+                    }
+                    sb.append("]");
+                    fieldNode.setDescription(sb.toString());
+                    return;
+                }
+            }
+        }
+
+        // generic type field, do replacement
+        if(genericNode != null){
+            fieldType = genericNode.getClassType();
+            inJavaFile = genericNode.getFromJavaFile();
+        }
+
+        Boolean isList;
+
+        if(fieldType.getParentNode().get() instanceof ArrayType){
+            isList = true;
+        }else if(fieldType instanceof ArrayType){
+            isList = true;
+            fieldType = ((ArrayType) fieldType).getComponentType();
+            GenericNode arrayTypeNode = fieldNode.getClassNode().getGenericNode(fieldType.asString());
+            if(arrayTypeNode != null){
+                fieldType = arrayTypeNode.getClassType();
+                inJavaFile = arrayTypeNode.getFromJavaFile();
+            }
+        }else{
+            if(isCollectionType(fieldType.asString())){
+                isList = true;
+                List<ClassOrInterfaceType> collectionType = fieldType.getChildNodesByType(ClassOrInterfaceType.class);
+                if(collectionType.isEmpty()){
+                    LogUtils.warn("We found Collection without specified Class Type, Please check ! java file : %s", inJavaFile.getName());
+                    fieldNode.setType("Object[]");
+                    return;
+                }else{
+                    // 是否在泛型列表中
+                    GenericNode collectionGenericNode = fieldNode.getClassNode().getGenericNode(collectionType.get(0).asString());
+                    if(collectionGenericNode != null){
+                        fieldType = collectionGenericNode.getClassType();
+                        inJavaFile = collectionGenericNode.getFromJavaFile();
+                    }else{
+                        fieldType = collectionType.get(0);
                     }
                 }
-                sb.append("]");
-                parentNode.setDescription(sb.toString());
             }else{
-                ResponseNode childResponse = new ResponseNode();
-                parentNode.setChildResponseNode(childResponse);
-                childResponse.setList(isList);
-                parentNode.setType(isList ? type + "[]" : type);
-                childResponse.setClassName(type);
-                parseResponseNode(searchJavaFile(inJavaFile, type), childResponse);
+                isList = false;
+            }
+        }
+
+
+        String fieldClassType;
+
+        if(fieldType instanceof ClassOrInterfaceType){
+            fieldClassType = ((ClassOrInterfaceType) fieldType).getName().getIdentifier();
+        }else{
+            fieldClassType = fieldType.asString();
+        }
+
+        final String unifyType = unifyType(fieldClassType);
+
+        if(TYPE_MODEL.equals(unifyType)){
+
+            ResponseNode childClassNode = new ResponseNode();
+            fieldNode.setChildResponseNode(childClassNode);
+            childClassNode.setList(isList);
+            fieldNode.setType(isList ? fieldClassType + "[]" : fieldClassType);
+            childClassNode.setClassName(fieldClassType);
+
+            final File childJavaFile = inJavaFile;
+            ((ClassOrInterfaceType)fieldType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+                GenericNode childClassGenericNode = new GenericNode();
+
+                if(argType instanceof ArrayType){
+                    GenericNode arrayTypeNode = fieldNode.getClassNode().getGenericNode(((ArrayType) argType).getComponentType().asString());
+                    if(arrayTypeNode != null){
+                        ((ArrayType) argType).setComponentType(arrayTypeNode.getClassType());
+                    }
+                }else{
+                    GenericNode arrayTypeNode = fieldNode.getClassNode().getGenericNode(argType.asString());
+                    if(arrayTypeNode != null){
+                        argType = arrayTypeNode.getClassType();
+                    }
+                }
+
+                childClassGenericNode.setClassType(argType);
+                childClassGenericNode.setFromJavaFile(childJavaFile);
+                childClassNode.addGenericNode(childClassGenericNode);
+            }));
+
+            try{
+                File childNodeJavaFile = searchJavaFile(inJavaFile, fieldClassType);
+                parseClassNode(childNodeJavaFile, childClassNode);
+            }catch (JavaFileNotFoundException ex){
+                LogUtils.warn(ex.getMessage()+", we cannot found more information of it, you've better to make it a JavaBean");
+                fieldNode.setType(isList? "Object[]": "Object");
             }
         } else {
-            parentNode.setType(isList ? unifyType + "[]" : unifyType);
+            fieldNode.setType(isList ? unifyType + "[]" : unifyType);
         }
     }
 
