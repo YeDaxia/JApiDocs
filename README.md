@@ -27,24 +27,10 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
   <artifactId>japidocs</artifactId>
   <version>1.1.2</version>
 </dependency>
-
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.0</version>
-</dependency>
-
-<dependency>
-    <groupId>com.github.javaparser</groupId>
-    <artifactId>javaparser-core</artifactId>
-    <version>3.3.0</version>
-</dependency>
 ```
 
 ```
-compile 'io.github.yedaxia:japidocs:1.1.2'
-compile 'com.google.code.gson:gson:2.8.0'
-compile 'com.github.javaparser:javaparser-core:3.3.0'
+compile 'io.github.yedaxia:japidocs:1.2'
 ```
 
 # 快速使用
