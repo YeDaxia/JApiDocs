@@ -17,7 +17,8 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 4. 支持一般的 Java Web 工程，需要在相关方法添加额外的路由。
 5. 支持接口声明过时(`@Deprecated`)，方便的文档目录等。
 6. 支持自定义代码生成模板。
-7. :new: 支持集成发布到 [RAP](http://rap.yedaxia.me/)。
+7. 支持集成发布到 [RAP](http://rap.yedaxia.me/)。
+8. :new: 支持多模块、泛型。
 
 # Maven 和 Gradle
 
@@ -25,7 +26,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.1.2</version>
+  <version>1.2</version>
 </dependency>
 ```
 
