@@ -13,6 +13,7 @@ public class ControllerNode {
     private String author;
     private String description;
     private String baseUrl;
+    private String className;
 
     private List<RequestNode> requestNodes = new ArrayList<>();
 
@@ -50,5 +51,13 @@ public class ControllerNode {
 
     public void addRequestNode(RequestNode requestNode){
         requestNodes.add(requestNode);
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

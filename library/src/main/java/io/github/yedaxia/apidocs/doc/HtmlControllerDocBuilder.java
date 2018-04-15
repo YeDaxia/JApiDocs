@@ -78,11 +78,11 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder{
                     actionDoc = actionDoc.replace("${ANDROID_CODE}", "#");
                 }else{
                     JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
-                    String javaurl = javaCodeGenerator.generateCode();
-                    actionDoc = actionDoc.replace("${ANDROID_CODE}", javaurl);
+                    String javaSrcUrl = javaCodeGenerator.generateCode();
+                    actionDoc = actionDoc.replace("${ANDROID_CODE}", javaSrcUrl);
                     ModelCodeGenerator iosCodeGenerator = new ModelCodeGenerator(requestNode.getResponseNode());
-                    String iosUrl = iosCodeGenerator.generateCode();
-                    actionDoc = actionDoc.replace("${IOS_CODE}", iosUrl);
+                    String iosSrcUrl = iosCodeGenerator.generateCode();
+                    actionDoc = actionDoc.replace("${IOS_CODE}", iosSrcUrl);
                 }
             }else{
                 actionDoc = actionDoc.replace("${RESPONSE}", "");

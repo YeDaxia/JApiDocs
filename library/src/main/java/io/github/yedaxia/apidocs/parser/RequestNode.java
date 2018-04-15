@@ -14,11 +14,13 @@ public class RequestNode {
 
     private List<String> method = new ArrayList<>();
     private String url;
+    private String methodName; //方法名
     private String description;
     private List<ParamNode> paramNodes = new ArrayList<>();
     private List<HeaderNode> header = new ArrayList<>();
     private Boolean deprecated = Boolean.FALSE;
     private ResponseNode responseNode;
+    private ControllerNode controllerNode;
 
     public List<String> getMethod() {
         if(method == null || (method != null && method.size() == 0)) {
@@ -75,6 +77,14 @@ public class RequestNode {
         return responseNode;
     }
 
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
     public void setResponseNode(ResponseNode responseNode) {
         this.responseNode = responseNode;
     }
@@ -89,6 +99,14 @@ public class RequestNode {
 
     public void addParamNode(ParamNode paramNode){
         paramNodes.add(paramNode);
+    }
+
+    public ControllerNode getControllerNode() {
+        return controllerNode;
+    }
+
+    public void setControllerNode(ControllerNode controllerNode) {
+        this.controllerNode = controllerNode;
     }
 
     public ParamNode getParamNodeByName(String name){

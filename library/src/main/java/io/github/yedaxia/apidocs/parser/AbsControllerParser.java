@@ -34,6 +34,7 @@ public abstract class AbsControllerParser {
         this.controllerNode = new ControllerNode();
 
         String controllerName = Utils.getJavaFileName(javaFile);
+        controllerNode.setClassName(controllerName);
         compilationUnit.getClassByName(controllerName)
                 .ifPresent(c -> {
                     parseClassDoc(c);
@@ -74,6 +75,8 @@ public abstract class AbsControllerParser {
                 .forEach(m -> {
                     m.getAnnotationByName("ApiDoc").ifPresent(an -> {
                         RequestNode requestNode = new RequestNode();
+                        requestNode.setControllerNode(controllerNode);
+                        requestNode.setMethodName(m.getNameAsString());
                         m.getAnnotationByClass(Deprecated.class).ifPresent(f -> {requestNode.setDeprecated(true);});
                         m.getJavadoc().ifPresent( d -> {
                             String description = d.getDescription().toText();
@@ -119,6 +122,7 @@ public abstract class AbsControllerParser {
                         }
 
                         ResponseNode responseNode = new ResponseNode();
+                        responseNode.setRequestNode(requestNode);
                         ParseUtils.parseClassNodeByType(javaFile, responseNode, resultClassType.getElementType());
                         requestNode.setResponseNode(responseNode);
                         controllerNode.addRequestNode(requestNode);

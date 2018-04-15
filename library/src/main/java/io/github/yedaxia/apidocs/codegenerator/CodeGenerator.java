@@ -36,7 +36,8 @@ public abstract class CodeGenerator {
 		generateCodeForBuilder(responseNode,codeBodyBuilder);
 		String sCodeTemplate = getCodeTemplate();
 		CodeFileBuilder codeBuilder = new CodeFileBuilder(responseNode.getClassName(), codeBodyBuilder.toString(), sCodeTemplate);
-		String javaFileName = responseNode.getClassName() + ".html";
+		String javaFileName = responseNode.getRequestNode().getControllerNode().getClassName() + "_"
+				+ responseNode.getRequestNode().getMethodName()+"_"+responseNode.getClassName() + ".html";
 		Utils.writeToDisk(new File(codePath, javaFileName), codeBuilder.build());
 		String relateUrl = codeRelativePath + '/' + javaFileName;
 		return relateUrl;

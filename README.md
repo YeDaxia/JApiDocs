@@ -168,31 +168,12 @@ class BookKVO{
 
 4. 生成文档可以不需要依赖包，集成到 Rap 是需要依赖的，关于集成到 Rap 查看[Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)。
 
-# ChangeLog
-
-## 1.1.2 版本
-
-- 修复 spring mvc 若干bug。
-- 支持多module。
-
-## 1.1 版本
-
-- 支持集成接口到 Rap。
-- 支持 spring 更多特性。
-- 修复若干bug。
-
-## 1.0 版本
-
-- 支持导出Html文档。
-- 支持生成 Response 的 Java 和 Object-C 代码。
 
 # 支持和反馈
 
 由于每个人写代码的习惯可能都不一样，虽然已经尽可能考虑到了多种不同的情况，但由于作者本人的认知和精力有限，难免会疏忽或者本身就存在有 bug 的情况，如果你在使用的过程中有碰到困难或者疑问，欢迎提`issue`或者加扣扣群进行反馈：70948803。
 
-如果你觉得这个项目对你有用，请猛戳[:star: star](https://github.com/YeDaxia/JApiDocs)；开源不易，如果还不过瘾，你还可以小赏一下表示支持：
-
-![](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_zhifubao_qr.jpg)
+如果你觉得这个项目对你有用，不妨给个[:star: star](https://github.com/YeDaxia/JApiDocs)。
 
 你的支持是我前进的动力！
 
