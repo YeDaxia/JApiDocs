@@ -1,5 +1,6 @@
 package controller;
 
+import form.AdminForm;
 import form.ModelForm;
 import form.UserForm;
 import io.github.yedaxia.apidocs.ApiDoc;
@@ -15,6 +16,17 @@ import result.user.UserVO;
 @RequestMapping("/api/v1")
 @RestController
 public class UserController {
+
+    /**
+     * 关注用户
+     *
+     * @param user 用户
+     */
+    @ApiDoc(UserVO.class)
+    @RequestMapping(path = "/u/follow", method = {RequestMethod.POST}  )
+    public void follow(UserForm<String, AdminForm> user){
+
+    }
 
     /**
      * 用户列表

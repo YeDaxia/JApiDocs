@@ -229,7 +229,7 @@ class Project {
         }
     }
 
-    private static void setResponseToAction(ResponseNode responseNode, Set<Parameter> parameterSet) {
+    private static void setResponseToAction(ClassNode responseNode, Set<Parameter> parameterSet) {
         for(FieldNode fieldNode : responseNode.getChildNodes()){
             Parameter parameter = Parameter.newParameter();
             parameter.setName(fieldNode.getDescription());
@@ -254,8 +254,8 @@ class Project {
             }
 
             parameterSet.add(parameter);
-            if(fieldNode.getChildResponseNode() != null){
-                setResponseToAction(fieldNode.getChildResponseNode(), parameter.getParameterList());
+            if(fieldNode.getChildNode() != null){
+                setResponseToAction(fieldNode.getChildNode(), parameter.getParameterList());
             }
         }
     }

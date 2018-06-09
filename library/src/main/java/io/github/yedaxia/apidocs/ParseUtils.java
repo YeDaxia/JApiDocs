@@ -204,17 +204,18 @@ public class ParseUtils {
         String unifyClassType = unifyType(classType.asString());
         if(TYPE_MODEL.equals(unifyClassType)){
             if(classType instanceof  ClassOrInterfaceType){
+
                 ((ClassOrInterfaceType) classType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
                     GenericNode rootGenericNode = new GenericNode();
                     rootGenericNode.setFromJavaFile(inJavaFile);
                     rootGenericNode.setClassType(argType);
                     rootClassNode.addGenericNode(rootGenericNode);
                 }));
-            }
 
-            String className = ((ClassOrInterfaceType)classType).getName().getIdentifier();
-            rootClassNode.setClassName(className);
-            parseClassNode(searchJavaFile(inJavaFile, className), rootClassNode);
+                String className = ((ClassOrInterfaceType)classType).getName().getIdentifier();
+                rootClassNode.setClassName(className);
+                parseClassNode(searchJavaFile(inJavaFile, className), rootClassNode);
+            }
         }else{
             rootClassNode.setClassName(unifyClassType);
         }

@@ -97,7 +97,7 @@ public class ClassNode {
     }
 
     public void toJsonApiMap(FieldNode recordNode, Map<String, Object> map){
-        ResponseNode childResponseNode = recordNode.getChildResponseNode();
+        ClassNode childResponseNode = recordNode.getChildResponseNode();
         if(childResponseNode != null){
             Map<String, Object> childMap = new LinkedHashMap<>();
             for (FieldNode childNode : childResponseNode.getChildNodes()) {

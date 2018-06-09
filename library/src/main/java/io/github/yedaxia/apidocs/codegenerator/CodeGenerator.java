@@ -2,6 +2,7 @@ package io.github.yedaxia.apidocs.codegenerator;
 
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.FieldNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 
@@ -43,12 +44,12 @@ public abstract class CodeGenerator {
 		return relateUrl;
 	}
 	
-	private void generateCodeForBuilder(ResponseNode rootNode,StringBuilder codeBodyBuilder) throws IOException{
-		codeBodyBuilder.append(generateNodeCode(rootNode));
+	private void generateCodeForBuilder(ClassNode rootNode, StringBuilder codeBodyBuilder) throws IOException{
+		codeBodyBuilder.append(generateNodeCode((ResponseNode)rootNode));
 		codeBodyBuilder.append('\n');
 		for (FieldNode recordNode : rootNode.getChildNodes()) {
-			if (recordNode.getChildResponseNode()!= null) {
-				generateCodeForBuilder(recordNode.getChildResponseNode(), codeBodyBuilder);
+			if (recordNode.getChildNode()!= null) {
+				generateCodeForBuilder(recordNode.getChildNode(), codeBodyBuilder);
 			}
 		}
 	}

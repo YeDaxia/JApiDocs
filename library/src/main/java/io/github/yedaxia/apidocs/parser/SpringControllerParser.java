@@ -9,7 +9,9 @@ import com.github.javaparser.ast.type.Type;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * use for spring mvc
@@ -135,6 +137,16 @@ public class SpringControllerParser extends AbsControllerParser {
                     }
 
                 });
+
+                //如果参数是个对象
+                if(!paramNode.isJsonBody() && ParseUtils.isModelType(p.getType().asString())){
+                    ClassNode classNode = new ClassNode();
+                    ParseUtils.parseClassNodeByType(getControllerFile(), classNode, p.getType());
+                    List<ParamNode> paramNodeList = new ArrayList<>();
+                    toParamNodeList(paramNodeList, classNode, "");
+                    requestNode.getParamNodes().remove(paramNode);
+                    requestNode.getParamNodes().addAll(paramNodeList);
+                }
             }
         });
     }
@@ -146,6 +158,20 @@ public class SpringControllerParser extends AbsControllerParser {
             paramNode.setJsonBody(true);
             paramNode.setDescription(classNode.toJsonApi());
         }
+    }
+
+    private void toParamNodeList( List<ParamNode> paramNodeList, ClassNode formNode, String parentName){
+        formNode.getChildNodes().forEach(filedNode -> {
+            if(filedNode.getChildNode() != null){
+                toParamNodeList(paramNodeList, filedNode.getChildNode(), filedNode.getName() + ".");
+            }else{
+                ParamNode paramNode = new ParamNode();
+                paramNode.setName(parentName + filedNode.getName());
+                paramNode.setType(filedNode.getType());
+                paramNode.setDescription(filedNode.getDescription());
+                paramNodeList.add(paramNode);
+            }
+        });
     }
 
     private boolean isUrlPathKey(String name) {

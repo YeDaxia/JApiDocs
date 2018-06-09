@@ -11,10 +11,43 @@
 <div id="wmd-preview" class="wmd-preview">
 <h1><a href="index.html">《首页</a> 用户接口:</h1>
 <ul class="toc">
-<li><a href="#用户列表">用户列表</a></li><li><a href="#用户信息">用户信息</a></li><li><a href="#收藏图书">收藏图书</a></li><li><a href="#保存用户">保存用户</a></li><li><a href="#获取用户列表2">获取用户列表2</a></li><li><a href="#获取用户列表[无类型信息]">获取用户列表[无类型信息]</a></li><li><a href="#消息列表">消息列表</a></li>
+<li><a href="#关注用户">关注用户</a></li><li><a href="#用户列表">用户列表</a></li><li><a href="#用户信息">用户信息</a></li><li><a href="#收藏图书">收藏图书</a></li><li><a href="#保存用户">保存用户</a></li><li><a href="#获取用户列表2">获取用户列表2</a></li><li><a href="#获取用户列表[无类型信息]">获取用户列表[无类型信息]</a></li><li><a href="#消息列表">消息列表</a></li>
 </ul>
 <hr>
-<h2 id="用户列表">用户列表</h2>
+<h2 id="关注用户">关注用户</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/u/follow
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>pictures</td><td>string[]</td><td>false</td><td>照片</td></tr><tr><td>model.name</td><td>string</td><td>false</td><td>名字</td></tr><tr><td>model.password</td><td>string</td><td>false</td><td>密码</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/UserController_follow_UserVO.html">Android Code</a> | <a href="iosCodes/UserController_follow_UserVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "userId": "string //用户id",
+  "userName": "string //用户名",
+  "friends": [
+    {
+      "userId": "string //用户id",
+      "userName": "string //用户名"
+    }
+  ],
+  "readBooks": [
+    {
+      "bookId": "long //图书id",
+      "bookName": "string //图书名称"
+    }
+  ],
+  "isFollow": "boolean //是否关注"
+}
+</pre>
+
+<hr><h2 id="用户列表">用户列表</h2>
 
 <pre class="prettyprint lang-json">
 method：GET, OPTIONS

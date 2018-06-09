@@ -10,7 +10,7 @@ public class FieldNode {
     private String type;
     private String description;
     private MockNode mockNode;
-    private ResponseNode childResponseNode;
+    private ClassNode childNode;
 
     private ClassNode classNode; //field node at this class node
 
@@ -46,12 +46,21 @@ public class FieldNode {
         this.mockNode = mockNode;
     }
 
-    public ResponseNode getChildResponseNode() {
-        return childResponseNode;
+    /**
+     * @see #getChildNode
+     * @return
+     */
+    @Deprecated
+    public ClassNode getChildResponseNode() {
+        return childNode;
+    }
+
+    public ClassNode getChildNode(){
+        return childNode;
     }
 
     public void setChildResponseNode(ResponseNode childResponseNode) {
-        this.childResponseNode = childResponseNode;
+        this.childNode = childResponseNode;
     }
 
     public ClassNode getClassNode() {
