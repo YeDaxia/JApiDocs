@@ -33,5 +33,5 @@ shadowJar {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.github.javaparser:javaparser-core:3.3.0'
+    compile 'com.github.javaparser:javaparser-core:3.6.16'
 }

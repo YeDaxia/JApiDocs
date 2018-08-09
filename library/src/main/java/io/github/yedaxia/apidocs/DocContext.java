@@ -31,6 +31,11 @@ public class DocContext {
         setDocPath(config.docsPath);
         Resources.setUserCodeTplPath(config.codeTplPath);
 
+        if(config.projectPath == null || !new File(config.projectPath).exists()){
+            LogUtils.error("projectDir doesn't exists. %s", projectPath);
+            return;
+        }
+
         File logFile = getLogFile();
         if (logFile.exists()) {
             logFile.delete();

@@ -174,6 +174,8 @@ public class ParseUtils {
             return JavaParser.parse(javaFile);
         }catch (FileNotFoundException e){
             throw new RuntimeException("java file not exits , file path : " + javaFile.getAbsolutePath());
+        }catch (Exception e){
+            throw new RuntimeException("parser error , file path : " + javaFile.getAbsolutePath());
         }
     }
 
