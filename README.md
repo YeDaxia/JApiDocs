@@ -84,9 +84,30 @@ public @interface ApiDoc {
 
 详细的使用请参考 **`SpringDemo`** 这个例子。
 
-## 集成依赖和运行程序
+## 快速集成
 
-**1. 命令行模式:**
+**1. 代码模式**
+
+1）添加依赖，或者下载 jar 包到你的 libs 目录中。
+
+```
+compile 'io.github.yedaxia:japidocs:1.2'
+```
+
+2）设置好相关参数。
+
+```java
+main:
+
+    Docs.DocsConfig config = new Docs.DocsConfig();
+    config.setProjectPath(projectPath);
+    Docs.buildHtmlDocs(DocsConfig config);
+```
+
+更多参数支持请参考 `Docs.DocsConfig`；多模块项目目前是支持 maven 和 gradle 的，如果没有解析出来的话，可以通过 `addJavaSrcPath` 方法来添加。
+
+
+**2. 命令行模式:**
 
 下载`all`包，然后在和这个`jar`包相同目录下创建名称是`docs.config`的配置文件，里面可以配置这几个参数：
 
@@ -104,24 +125,6 @@ mvcFramework = [spring, play, jfinal, generic](非必须，代码内部有判断
 ```java
 java -jar ***-all.jar
 ```
-
-**2. 代码模式**
-
-1）添加依赖，或者下载 jar 包到你的 libs 目录中。
-
-```
-compile 'io.github.yedaxia:japidocs:1.2'
-```
-
-2）设置好相关参数。
-
-```java
-    Docs.DocsConfig config = new Docs.DocsConfig();
-    config.setProjectPath(projectPath);
-    Docs.buildHtmlDocs(DocsConfig config);
-```
-
-更多参数支持请参考 `Docs.DocsConfig`；多模块项目目前是支持 maven 和 gradle 的，如果没有解析出来的话，可以通过 `addJavaSrcPath` 方法来添加。
 
 ## 自定义输出 Java 和 IOS 代码：
 
@@ -164,6 +167,8 @@ class BookKVO{
 如果你在使用的过程中有碰到困难或者疑问，欢迎提 issue 和 PR。
 
 如果你觉得这个项目有用，可以推荐给你的朋友。你的支持是我前进的动力！
+
+我的个人博客：[叶大侠的主页](http://yedaxia.me/)
 
 # License
 
