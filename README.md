@@ -17,7 +17,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 4. 支持一般的 Java Web 工程，需要在相关方法添加额外的路由。
 5. 支持接口声明过时(`@Deprecated`)，方便的文档目录等。
 6. 支持自定义代码生成模板。
-7. 支持集成发布到 [RAP](http://rap.yedaxia.me/)。
+7. 支持集成发布到 [RAP](http://rapapi.org/org/index.do)。
 8. :new: 支持多模块、泛型。
 
 # Maven 和 Gradle
@@ -36,13 +36,17 @@ compile 'io.github.yedaxia:japidocs:1.2'
 
 # 快速使用
 
-1. 我们以 spring 为例，一张图很容易就明白了 JApidocs 是怎么工作的了，你在设计接口的时候可以顺便就把相关的注释给填好了，这和 Java 程序员的编程习惯是保持一致的。
+## 原理简介：
+
+我们以 spring 为例，一张图很容易就明白了 JApidocs 是怎么工作的了，你在设计接口的时候可以顺便就把相关的注释给填好了，这和 Java 程序员的编程习惯是保持一致的。
 
 ![spring controller](http://ohb4y25jk.bkt.clouddn.com/spring-controllers.png)
 
-这里你可能会对`@ApiDoc`注解感到迷惑，这也是唯一需要一点额外工作的地方，别急，下面马上就讲到它。
+## @ApiDoc 注解：
 
-2. `@ApiDoc` 是我们定义的一个注解，除非程序运行起来，否则我们是没办法知道 `response` 里面都包含有哪些内容。为了解决这个问题，我们折衷设计了这个基于`RetentionPolicy.SOURCE`的注解，它不会给现有的代码造成任何的负担。由于是基于 Java 源码进行解析的，所以你不需要依赖我们的 Jar 包，你可以在你自己的工程里面新建一个同名的类即可，当然你也可以直接添加我们的 Jar 包即可，里面已经为你准备好这个类了。
+**只有声明了 @ApiDoc 的接口才会导出文档。**
+
+`@ApiDoc` 是我们定义的一个 `RetentionPolicy.SOURCE` 注解，它不会给现有的代码造成任何的负担。另外 JApiDocs 是基于 Java 源码进行解析的，你可以不需要依赖我们的 Jar 包，在你自己的工程里面新建一个同名的类即可；也可以引入我们的 Jar 包即可，里面有这个类了。
 
 ``` java
 
@@ -78,11 +82,11 @@ public @interface ApiDoc {
 
 ```
 
-如果你用的是我们深度支持的 MVC 框架，那么你只需要写好返回的视图模型就可以了，这里不清楚的话可以看下 `SpringDemo` 下的例子写法，相信很容易就明白了。
+详细的使用请参考 **`SpringDemo`** 这个例子。
 
-3. 集成依赖和运行程序
+## 集成依赖和运行程序
 
-**命令行模式:**
+**1. 命令行模式:**
 
 下载`all`包，然后在和这个`jar`包相同目录下创建名称是`docs.config`的配置文件，里面可以配置这几个参数：
 
@@ -101,26 +105,30 @@ mvcFramework = [spring, play, jfinal, generic](非必须，代码内部有判断
 java -jar ***-all.jar
 ```
 
-**代码模式**
+**2. 代码模式**
 
-如果想做一些持续集成的话，代码模式还是比较方便的，直接添加依赖或者下载相关`jar`包，其中`min`包是不包含第三方依赖的。
+1）添加依赖，或者下载 jar 包到你的 libs 目录中。
 
 ```
-compile 'io.github.yedaxia:japidocs:1.1.2'
+compile 'io.github.yedaxia:japidocs:1.2'
 ```
 
-只需要调用下面一句代码即可：
+2) 设置好相关参数
 
 ```java
-Docs.buildHtmlDocs(DocsConfig config);
+    Docs.DocsConfig config = new Docs.DocsConfig();
+    config.setProjectPath(projectPath);
+    Docs.buildHtmlDocs(DocsConfig config);
 ```
 
-4. 自定义输出 Java 和 IOS 代码：
+更多参数支持请参考 `Docs.DocsConfig`；多模块项目目前是支持 maven 和 gradle 的，如果没有解析出来的话，可以通过 `addJavaSrcPath` 方法来添加。
+
+## 自定义输出 Java 和 IOS 代码：
 
 你可以把工程里面相关的代码模板文件拷贝出来，然后在配置参数声明好该路径即可，具体的模板文件如下：
 ![code template files](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_apidocs-code-tpls.png)
 
-5. 如何集成到 RAP 进行接口测试：
+## 如何集成到 RAP 进行接口测试：
 
 为了方便大家的集成，我自己搭建了一个 RAP 服务，去掉了验证码和支持中文 mock ，欢迎大家使用，当然如果你不嫌麻烦，也可以用官方的。
 
@@ -151,10 +159,9 @@ class BookKVO{
     }
 ```
 
-3. JApiDocs 的使用必须配合视图模型类(JavaBean)，JApiDocs 是通过静态解析源码来工作的，你返回给客户端的字段都必须在视图模型类中声明。
+3. JApiDocs 是通过静态解析源码来工作的，所有的 JavaBean 类源码必须在项目中，**不支持在 jar 包里面的对象类**。
 
-4. 生成文档可以不需要依赖包，集成到 Rap 是需要依赖的，关于集成到 Rap 查看[Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)。
-
+4. 支持集成到 [Rap](http://rapapi.org/org/index.do)，详细请查看[Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)。
 
 # 支持和反馈
 
