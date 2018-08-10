@@ -46,7 +46,7 @@ compile 'io.github.yedaxia:japidocs:1.2'
 
 **只有声明了 @ApiDoc 的接口才会导出文档。**
 
-`@ApiDoc` 是我们定义的一个 `RetentionPolicy.SOURCE` 注解，它不会给现有的代码造成任何的负担。另外 JApiDocs 是基于 Java 源码进行解析的，你可以不需要依赖我们的 Jar 包，在你自己的工程里面新建一个同名的类即可；也可以引入我们的 Jar 包即可，里面有这个类了。
+`@ApiDoc` 是我们定义的一个 `RetentionPolicy.SOURCE` 注解，它不会给现有的代码造成任何的负担。另外 JApiDocs 是基于 Java 源码进行解析的，你可以不需要依赖我们的 Jar 包，在你自己的工程里面新建一个同名的类即可；但我推荐你还是引入 Jar 包，这样省事一些。
 
 ``` java
 
@@ -113,7 +113,7 @@ java -jar ***-all.jar
 compile 'io.github.yedaxia:japidocs:1.2'
 ```
 
-2) 设置好相关参数
+2）设置好相关参数。
 
 ```java
     Docs.DocsConfig config = new Docs.DocsConfig();
@@ -129,8 +129,6 @@ compile 'io.github.yedaxia:japidocs:1.2'
 ![code template files](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_apidocs-code-tpls.png)
 
 ## 如何集成到 RAP 进行接口测试：
-
-为了方便大家的集成，我自己搭建了一个 RAP 服务，去掉了验证码和支持中文 mock ，欢迎大家使用，当然如果你不嫌麻烦，也可以用官方的。
 
 具体的集成请查看 [Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)
 
@@ -161,15 +159,11 @@ class BookKVO{
 
 3. JApiDocs 是通过静态解析源码来工作的，所有的 JavaBean 类源码必须在项目中，**不支持在 jar 包里面的对象类**。
 
-4. 支持集成到 [Rap](http://rapapi.org/org/index.do)，详细请查看[Wiki](https://github.com/YeDaxia/JApiDocs/wiki/%E9%9B%86%E6%88%90-Rap-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95)。
-
 # 支持和反馈
 
-由于每个人写代码的习惯可能都不一样，虽然已经尽可能考虑到了多种不同的情况，但由于作者本人的认知和精力有限，难免会疏忽或者本身就存在有 bug 的情况，如果你在使用的过程中有碰到困难或者疑问，欢迎提`issue`或者加扣扣群进行反馈：70948803。
+如果你在使用的过程中有碰到困难或者疑问，欢迎提 issue 和 PR。
 
-如果你觉得这个项目对你有用，不妨给个[:star: star](https://github.com/YeDaxia/JApiDocs)。
-
-你的支持是我前进的动力！
+如果你觉得这个项目有用，可以推荐给你的朋友。你的支持是我前进的动力！
 
 # License
 
