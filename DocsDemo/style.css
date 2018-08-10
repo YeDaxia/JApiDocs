@@ -1,0 +1,222 @@
+body, button, input, select {
+    font-family: Helvetica Neue,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: Helvetica Neue,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+	font-weight: 500;
+	color: #2c3e50;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 50px 0 20px;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 35px 0 20px;
+}
+
+hr{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #cfcfcf;
+    border-image: none;
+    border-style: none none dashed;
+    border-width: 0 0 1px;
+    margin: 30px 0;
+}
+
+a {
+    color: #08c;
+    text-decoration: none;
+}
+
+a:hover{
+	color: #5ba4e5;
+	text-decoration: underline;
+}
+
+.toc ul {
+    list-style-type: none;
+}
+
+ul, ol {
+    margin: 0 0 10px 25px;
+    padding: 0;
+	line-height: 27px;
+	color: #2c3e50;
+}
+
+
+p{
+	color: #2c3e50;
+	font-size: 16px;
+	line-height: 27px;
+}
+
+blockquote {
+    margin: 0 0 20px;
+	border-left-style: solid;
+    border-left-width: 10px;
+	background: rgba(102, 128, 153, 0.1) none repeat scroll 0 0;
+    border-color: #d6dbdf;
+    padding: 10px 15px;
+	font-size: 14px;
+    line-height: 27px;
+}
+
+blockquote::before, blockquote::after {
+    content: "";
+}
+
+blockquote p{
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size: 14px;
+}
+
+.white-blockquote {
+    background: rgba(102, 128, 153, 0.1) none repeat scroll 0 0;
+    border-color: #d6dbdf;
+}
+
+code, pre {
+	font-size: 14px;
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+}
+
+code {
+    background-color: #FFFFFF;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+	color: #c7254e;
+    padding: 2px 5px;
+    white-space: nowrap;
+	font-size: 12px;
+}
+
+.footnote {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    top: -8px;
+    vertical-align: baseline;
+}
+
+table {
+	margin-bottom: 20px;
+    width: auto;
+	border-spacing: 0;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-collapse: separate;
+    border-color: #ccc #ccc #ccc #ccc;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+}
+
+table th, table td {
+    border-left: 1px solid #ddd;
+}
+
+table th {
+    font-weight: 700;
+}
+
+table th, table td {
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+table td{
+	border-top: 1px solid #ddd;
+}
+
+.footnotes small {
+    color: #888;
+    font-size: 0.9em;
+	line-height: 25px;
+}
+
+.wmd-preview{
+	border: 0 none;
+    height: auto;
+    margin: 0 auto;
+    max-width: 850px;
+    overflow-x: hidden;
+    padding-bottom: 50px;
+}
+
+/* Doxy pretty-printing styles. Used with prettify.js.  */
+
+pre .str, code .str { color: #fec243; } /* string  - eggyolk gold */
+pre .kwd, code .kwd { color: #8470FF; } /* keyword - light slate blue */
+pre .com, code .com { color: #32cd32; font-style: italic; } /* comment - green */
+pre .typ, code .typ { color: #6ecbcc; } /* type - turq green */
+pre .lit, code .lit { color: #d06; } /* literal - cherry red */
+pre .pun, code .pun { color: #8B8970;  } /* punctuation - lemon chiffon4  */
+pre .pln, code .pln { color: #f0f0f0; } /* plaintext - white */
+pre .tag, code .tag { color: #9c9cff; } /* html/xml tag  (bluey)  */
+pre .htm, code .htm { color: #dda0dd; } /* html tag  light purply*/
+pre .xsl, code .xsl { color: #d0a0d0; } /* xslt tag  light purply*/
+pre .atn, code .atn { color: #46eeee; font-weight: normal;} /* html/xml attribute name  - lt turquoise */
+pre .atv, code .atv { color: #EEB4B4; } /* html/xml attribute value - rosy brown2 */
+pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
+
+a {
+    text-decoration: none;
+}
+pre.prettyprint, code.prettyprint {
+    font-family:'Droid Sans Mono','CPMono_v07 Bold','Droid Sans';
+    font-weight: bold;
+    font-size: 11pt;
+    background-color: #0f0f0f;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}  /*  background is black (well, just a tad less dark )  */
+
+pre.prettyprint {
+    width: 95%;
+    margin: 1em auto;
+    padding: 1em;
+    white-space: pre-wrap;
+}
+
+pre.prettyprint a, code.prettyprint a {
+    text-decoration:none;
+}
+/* Specify class=linenums on a pre to get line numbering; line numbers themselves are the same color as punctuation */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #8B8970; } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+/* print is mostly unchanged from default at present  */
+@media print {
+    pre.prettyprint, code.prettyprint { background-color: #fff;  }
+    pre .str, code .str { color: #088; }
+    pre .kwd, code .kwd { color: #006; font-weight: bold; }
+    pre .com, code .com { color: #oc3; font-style: italic; }
+    pre .typ, code .typ { color: #404; font-weight: bold; }
+    pre .lit, code .lit { color: #044; }
+    pre .pun, code .pun { color: #440; }
+    pre .pln, code .pln { color: #000; }
+    pre .tag, code .tag { color: #b66ff7; font-weight: bold; }
+    pre .htm, code .htm { color: #606; font-weight: bold; }
+    pre .xsl, code .xsl { color: #606; font-weight: bold; }
+    pre .atn, code .atn { color: #c71585;  font-weight: normal; }
+    pre .atv, code .atv { color: #088;  font-weight: normal; }
+}

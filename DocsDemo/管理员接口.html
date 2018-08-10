@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>管理员接口</title>
+<script src="https://cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+<link href="https://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<div id="wmd-preview" class="wmd-preview">
+<h1><a href="index.html">《首页</a> 管理员接口:</h1>
+<ul class="toc">
+<li><a href="#管理员登录">管理员登录</a></li><li><a href="#邮箱登录"><STRIKE>邮箱登录</STRIKE></a></li><li><a href="#添加管理员">添加管理员</a></li><li><a href="#添加多个管理员">添加多个管理员</a></li>
+</ul>
+<hr>
+<h2 id="管理员登录">管理员登录</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/admin/login
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>name</td><td>string</td><td>true</td><td>登录名</td></tr><tr><td>password</td><td>string</td><td>true</td><td>密码</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/AdminController_login_AdminVO.html">Android Code</a> | <a href="iosCodes/AdminController_login_AdminVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "userId": "string //用户id",
+  "userName": "string //用户名",
+  "password": "string //密码"
+}
+</pre>
+
+<hr><h2 id="<STRIKE>邮箱登录</STRIKE>"><STRIKE>邮箱登录</STRIKE></h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/admin/emailLogin
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>email</td><td>string</td><td>true</td><td></td></tr><tr><td>password</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/AdminController_emailLogin_AdminVO.html">Android Code</a> | <a href="iosCodes/AdminController_emailLogin_AdminVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "userId": "string //用户id",
+  "userName": "string //用户名",
+  "password": "string //密码"
+}
+</pre>
+
+<hr><h2 id="添加管理员">添加管理员</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/admin/add
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<pre class="prettyprint lang-json">
+{
+  "name": "string //名字",
+  "password": "string //密码"
+}
+</pre>
+
+<p>返回结果: <a href="javaCodes/AdminController_addAdmin_AdminVO.html">Android Code</a> | <a href="iosCodes/AdminController_addAdmin_AdminVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "userId": "string //用户id",
+  "userName": "string //用户名",
+  "password": "string //密码"
+}
+</pre>
+
+<hr><h2 id="添加多个管理员">添加多个管理员</h2>
+
+<pre class="prettyprint lang-json">
+method：POST
+url: /api/v1/admin/addMany
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<pre class="prettyprint lang-json">
+[
+  {
+    "name": "string //名字",
+    "password": "string //密码"
+  }
+]
+</pre>
+
+<p>返回结果: <a href="javaCodes/AdminController_addAdmins_AdminVO.html">Android Code</a> | <a href="iosCodes/AdminController_addAdmins_AdminVO.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+[
+  {
+    "userId": "string //用户id",
+    "userName": "string //用户名",
+    "password": "string //密码"
+  }
+]
+</pre>
+
+<hr>
+</div>
+</body>
+</html>
