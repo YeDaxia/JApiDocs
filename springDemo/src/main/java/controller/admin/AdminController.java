@@ -20,8 +20,8 @@ public class AdminController {
      * @param name 登录名
      * @param password 密码
      */
-    @RequestMapping(path = "/api/v1/admin/login", method = RequestMethod.POST)
-    @ApiDoc(AdminVO.class)
+    @RequestMapping(path = "/api/v1/admin/login", method = RequestMethod.GET)
+    @ApiDoc(result = AdminVO.class, url = "/api/v1/admin/login2", method = "post")
     public void login(@RequestParam String name, @RequestParam String password){
 
     }

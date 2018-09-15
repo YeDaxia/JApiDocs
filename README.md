@@ -162,6 +162,8 @@ class BookKVO{
 
 3. JApiDocs 是通过静态解析源码来工作的，所有的 JavaBean 类源码必须在项目中，**不支持在 jar 包里面的对象类**。
 
+4. 更多问题请参考：[常见问题记录](https://github.com/YeDaxia/JApiDocs/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95)。
+
 # 支持和反馈
 
 如果你在使用的过程中有碰到困难或者疑问，欢迎提 issue 和 PR。

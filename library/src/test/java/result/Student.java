@@ -3,7 +3,7 @@ package result;
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class Studuent {
+public class Student {
     private Long id;
     private String name;
     private Object value;

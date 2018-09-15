@@ -1,5 +1,7 @@
 package io.github.yedaxia.apidocs.parser;
 
+import io.github.yedaxia.apidocs.Utils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,7 +40,9 @@ public class RequestNode {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        if(this.url == null || this.url.isEmpty()){
+            this.url = url;
+        }
     }
 
     public String getDescription() {
@@ -90,6 +94,9 @@ public class RequestNode {
     }
 
     public void addMethod(String method) {
+        if(this.method.contains(method)){
+            return;
+        }
         this.method.add(method);
     }
 

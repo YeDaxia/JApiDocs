@@ -14,10 +14,10 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+    compile project(":library")
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile('org.springframework.boot:spring-boot-starter-actuator')
 //	compile('org.springframework.boot:spring-boot-starter-data-redis')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile 'io.github.yedaxia:japidocs:1.2'
 }

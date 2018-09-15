@@ -54,7 +54,7 @@ public class PlayRoutesParser {
                 }
 
                 StringBuilder ctrlPathBuilder = new StringBuilder();
-                ctrlPathBuilder.append("controller");
+                ctrlPathBuilder.append("controllers");
                 for (int i = 0; i != actions.length - 1; i++) {
                     ctrlPathBuilder.append('/');
                     ctrlPathBuilder.append(actions[i]);
