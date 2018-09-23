@@ -31,7 +31,7 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 ```
 
 ```
-compile 'io.github.yedaxia:japidocs:1.2'
+compile 'io.github.yedaxia:japidocs:1.2.2'
 ```
 
 # 快速使用
