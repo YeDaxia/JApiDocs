@@ -261,6 +261,11 @@ public class ParseUtils {
                             return;
                         }
 
+                        //忽略字段
+                        if(fd.getAnnotationByName("Ignore").isPresent()){
+                            return;
+                        }
+
                         fd.getVariables().forEach(field -> {
                             FieldNode fieldNode = new FieldNode();
                             fieldNode.setClassNode(classNode);

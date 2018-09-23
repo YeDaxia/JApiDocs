@@ -25,7 +25,7 @@ public class HtmlDocGenerator extends AbsDocGenerator {
     }
 
     @Override
-    void generateIndex(List<String> docFileNameList) {
+    void generateIndex(List<Link> docFileNameList) {
 
         if(docFileNameList.isEmpty()){
             return;
@@ -35,8 +35,8 @@ public class HtmlDocGenerator extends AbsDocGenerator {
             InputStream tplIndexSteam = Resources.getTemplateFile("api-index.html.tpl");
             String indexTemplate = Utils.streamToString(tplIndexSteam);
             StringBuilder indexBuilder = new StringBuilder();
-            for (String docName : docFileNameList) {
-                indexBuilder.append(String.format("<li><a href=\"%s\">%s</a></li>",docName+".html",docName));
+            for (Link link : docFileNameList) {
+                indexBuilder.append(String.format("<li><a href=\"%s\">%s</a></li>",link.getUrl(), link.getName()));
             }
             indexTemplate = indexTemplate.replace("${API_LIST}", indexBuilder.toString());
             Utils.writeToDisk(new File(DocContext.getDocPath(), "index.html"), indexTemplate);

@@ -15,7 +15,7 @@ public abstract class AbsDocGenerator{
 
     private AbsControllerParser controllerParser;
     private IControllerDocBuilder controllerDocBuilder;
-    private List<String> docFileNameList = new ArrayList<>();
+    private List<Link> docFileLinkList = new ArrayList<>();
     private List<ControllerNode> controllerNodeList = new ArrayList<>();
 
     public AbsDocGenerator(AbsControllerParser controllerParser, IControllerDocBuilder controllerDocBuilder) {
@@ -29,12 +29,17 @@ public abstract class AbsDocGenerator{
     public void generateDocs(){
         LogUtils.info("generate api docs start...");
         generateControllersDocs();
-        generateIndex(docFileNameList);
+        generateIndex(docFileLinkList);
         LogUtils.info("generate api docs done !!!");
     }
 
     private void generateControllersDocs(){
         File[] controllerFiles = DocContext.getControllerFiles();
+        final String docsPathName = "docs";
+        File docPath = new File(DocContext.getDocPath(),docsPathName);
+        if(!docPath.exists()){
+            docPath.mkdirs();
+        }
         for (File controllerFile : controllerFiles) {
             try {
                 LogUtils.info("start to parse controller file : %s", controllerFile.getName());
@@ -44,10 +49,10 @@ public abstract class AbsDocGenerator{
                 }
                 controllerNodeList.add(controllerNode);
                 LogUtils.info("start to generate docs for controller file : %s", controllerFile.getName());
-                String controllerDocs = controllerDocBuilder.buildDoc(controllerNode);
-                String docName = controllerNode.getDescription();
-                docFileNameList.add(docName);
-                Utils.writeToDisk(new File(DocContext.getDocPath(), docName+".html"),controllerDocs);
+                final String controllerDocs = controllerDocBuilder.buildDoc(controllerNode);
+                final String docName = String.format("%s_%s.html", controllerNode.getPackageName().replace(".","_"), controllerNode.getClassName());
+                docFileLinkList.add(new Link(controllerNode.getDescription(), String.format("%s/%s", docsPathName, docName)));
+                Utils.writeToDisk(new File(docPath, docName),controllerDocs);
                 LogUtils.info("success to generate docs for controller file : %s", controllerFile.getName());
             } catch (IOException e) {
                 LogUtils.error("generate docs for controller file : "+controllerFile.getName()+" fail", e);
@@ -60,5 +65,5 @@ public abstract class AbsDocGenerator{
         return controllerNodeList;
     }
 
-	abstract void generateIndex(List<String> docFileNameList);
+	abstract void generateIndex(List<Link> docFileLinkList);
 }

@@ -14,6 +14,15 @@ public class ControllerNode {
     private String description;
     private String baseUrl;
     private String className;
+    private String packageName;
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
     private List<RequestNode> requestNodes = new ArrayList<>();
 

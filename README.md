@@ -149,6 +149,8 @@ class BookKVO{
 }
 ```
 
+tips：可以通过 `@Ignore` 注解忽略字段来解决这个问题。
+
 2. JFinal 路由配置必须在 configRoute 方法体里，否则会解析失败。
 
 ```java

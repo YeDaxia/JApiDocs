@@ -1,5 +1,6 @@
 package result.user;
 
+import io.github.yedaxia.apidocs.Ignore;
 import io.github.yedaxia.apidocs.RapMock;
 
 /**
@@ -12,6 +13,28 @@ public class SimpleUser {
 
     @RapMock("@NAME")
     private String userName; //用户名
+
+    @Ignore
+    private String ignore; //忽略字段
+
+    @Ignore
+    private SimpleUser friend; //忽略字段
+
+    public SimpleUser getFriend() {
+        return friend;
+    }
+
+    public void setFriend(SimpleUser friend) {
+        this.friend = friend;
+    }
+
+    public String getIgnore() {
+        return ignore;
+    }
+
+    public void setIgnore(String ignore) {
+        this.ignore = ignore;
+    }
 
     public String getUserId() {
         return userId;

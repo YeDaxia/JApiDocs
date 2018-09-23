@@ -2,6 +2,7 @@ package io.github.yedaxia.apidocs.parser;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
+import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
@@ -47,6 +48,11 @@ public abstract class AbsControllerParser {
     }
 
     private void parseClassDoc(ClassOrInterfaceDeclaration c){
+
+        c.getParentNode().get().findFirst(PackageDeclaration.class).ifPresent(pd->{
+            controllerNode.setPackageName(pd.getNameAsString());
+        });
+
         c.getJavadoc().ifPresent( d -> {
             String description = d.getDescription().toText();
             controllerNode.setDescription(Utils.isNotEmpty(description)? description: c.getNameAsString());
@@ -63,7 +69,6 @@ public abstract class AbsControllerParser {
         if(controllerNode.getDescription() == null){
             controllerNode.setDescription(c.getNameAsString());
         }
-
     }
 
     private void parseMethodDocs(ClassOrInterfaceDeclaration c){

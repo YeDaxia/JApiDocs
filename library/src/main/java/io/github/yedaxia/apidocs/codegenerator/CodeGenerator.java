@@ -35,13 +35,14 @@ public abstract class CodeGenerator {
 		}
 		StringBuilder codeBodyBuilder = new StringBuilder();
 		generateCodeForBuilder(responseNode,codeBodyBuilder);
-		String sCodeTemplate = getCodeTemplate();
+		final String sCodeTemplate = getCodeTemplate();
 		CodeFileBuilder codeBuilder = new CodeFileBuilder(responseNode.getClassName(), codeBodyBuilder.toString(), sCodeTemplate);
-		String javaFileName = responseNode.getRequestNode().getControllerNode().getClassName() + "_"
-				+ responseNode.getRequestNode().getMethodName()+"_"+responseNode.getClassName() + ".html";
+		final String javaFileName = String.format("%s_%s_%s_%s.html",
+				responseNode.getRequestNode().getControllerNode().getPackageName().replace(".","_"),
+				responseNode.getRequestNode().getControllerNode().getClassName(),
+				responseNode.getRequestNode().getMethodName(), responseNode.getClassName());
 		Utils.writeToDisk(new File(codePath, javaFileName), codeBuilder.build());
-		String relateUrl = codeRelativePath + '/' + javaFileName;
-		return relateUrl;
+		return String.format("../%s/%s", codeRelativePath, javaFileName);
 	}
 	
 	private void generateCodeForBuilder(ClassNode rootNode, StringBuilder codeBodyBuilder) throws IOException{

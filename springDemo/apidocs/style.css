@@ -41,7 +41,7 @@ a:hover{
 }
 
 .toc ul {
-    list-style-type: none;
+    list-style-type: decimal;
 }
 
 ul, ol {
@@ -219,4 +219,10 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
     pre .xsl, code .xsl { color: #606; font-weight: bold; }
     pre .atn, code .atn { color: #c71585;  font-weight: normal; }
     pre .atv, code .atv { color: #088;  font-weight: normal; }
+}
+
+div.toc{
+    position: fixed;
+    right: 0;
+    margin-right: 10px;
 }
