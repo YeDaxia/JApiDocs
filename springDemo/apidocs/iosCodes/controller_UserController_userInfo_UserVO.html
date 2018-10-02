@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>UserVO</title>
-<script src="https://cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
-<link href="https://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/prettify@0.1.7/prettify.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/prettify@0.1.7/prettify.min.css" rel="stylesheet">
 <link href="../style.css" rel="stylesheet" />
 </head>
 <body onload="PR.prettyPrint()">
@@ -18,44 +18,6 @@
 @property (nonatomic, assign) NSString userId;
 //用户名
 @property (nonatomic, assign) NSString userName;
-//好友
-@property (nonatomic, strong) SimpleUser[] friends;
-//阅读图书
-@property (nonatomic, strong) BookVO[] readBooks;
-//是否关注
-@property (nonatomic, strong) BOOL isFollow;
-
-
-@end
-</xmp>
-</pre>
-
-<pre class="prettyprint">
-<xmp>
-#import <Foundation/Foundation>;
-
-@interface SimpleUser : NSObject
-
-//用户id
-@property (nonatomic, assign) NSString userId;
-//用户名
-@property (nonatomic, assign) NSString userName;
-
-
-@end
-</xmp>
-</pre>
-
-<pre class="prettyprint">
-<xmp>
-#import <Foundation/Foundation>;
-
-@interface BookVO : NSObject
-
-//图书id
-@property (nonatomic, strong) long bookId;
-//图书名称
-@property (nonatomic, assign) NSString bookName;
 
 
 @end

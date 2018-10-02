@@ -1,4 +1,4 @@
-package controller.user;
+package controllers.user;
 
 import io.github.yedaxia.apidocs.ApiDoc;
 import play.data.validation.Required;

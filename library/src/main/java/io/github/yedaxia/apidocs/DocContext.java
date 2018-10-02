@@ -47,6 +47,8 @@ public class DocContext {
             javaSrcPaths.addAll(config.getJavaSrcPaths());
         }
 
+        LogUtils.info("find java src paths:  %s", javaSrcPaths);
+
         ProjectType projectType = findOutProjectType();
         findOutControllers(projectType);
     }

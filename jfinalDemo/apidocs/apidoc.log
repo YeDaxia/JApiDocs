@@ -1,0 +1,212 @@
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/]
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: Jfinal config file path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/config/MyWebConfig.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: found child routes in file : KRoutes.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: found config() method, start to parse child routes in file : KRoutes.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find multi modules in this project: [webapi, model]
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/]
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/]
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/]
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十月 02, 2018 3:57:26 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : UserController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : BookController.java
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/, /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/]
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/jfinalDemo/src/main/java/
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/webapi/src/main/java/
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/svnLibrary/jap/model/src/main/java/
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! docs config properties miss, we don't think you want to post to rap!
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find multi modules in this project: [library, playDemo, springDemo, genericDemo, jfinalDemo]
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find multi modules in this project: [webapi, model]
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think Object should not be an enum type
+十月 02, 2018 3:57:27 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/test/java/result/Student.java, className : Object, we cannot found more information of it, you've better to make it a JavaBean
