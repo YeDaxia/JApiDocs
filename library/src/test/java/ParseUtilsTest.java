@@ -77,4 +77,10 @@ public class ParseUtilsTest {
                     }
                 });
     }
+
+
+    @Test
+    public void test_isCollectionType(){
+        Assert.assertTrue(ParseUtils.isCollectionType("List<Demo1.Demo2>"));
+    }
 }

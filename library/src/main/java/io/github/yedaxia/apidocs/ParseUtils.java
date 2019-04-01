@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.util.*;
 
+
 /**
  * some util methods during parse
  *
@@ -58,7 +59,7 @@ public class ParseUtils {
 
         Optional<ImportDeclaration> idOp = compilationUnit.getImports()
                 .stream()
-                .filter(im -> im.getNameAsString().endsWith(className))
+                .filter(im -> im.getNameAsString().endsWith("." + className))
                 .findFirst();
 
         //found in import
@@ -500,7 +501,16 @@ public class ParseUtils {
      */
     public static boolean isCollectionType(String className){
         String[] cPaths = className.split("\\.");
+
         String genericType = cPaths[cPaths.length - 1];
+
+        //fix List<Demo1.Demo2>
+        for(String cPath: cPaths){
+            if(cPath.contains("<")){
+                genericType = cPath;
+            }
+        }
+
         int genericLeftIndex = genericType.indexOf("<");
         String rawType = genericLeftIndex != -1 ? genericType.substring(0, genericLeftIndex) : genericType;
         String collectionClassName = "java.util."+rawType;

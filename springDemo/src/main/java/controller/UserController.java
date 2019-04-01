@@ -9,6 +9,8 @@ import result.book.BookDetailVO;
 import result.user.Result;
 import result.user.UserVO;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 用户接口
  * @author yeguozhong yedaxia.github.com
@@ -24,7 +26,7 @@ public class UserController {
      */
     @ApiDoc(UserVO.class)
     @RequestMapping(path = "/u/follow", method = {RequestMethod.POST}  )
-    public void follow(UserForm<String, AdminForm> user){
+    public void follow(HttpServletRequest request, UserForm<String, AdminForm> user){
 
     }
 
