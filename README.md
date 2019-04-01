@@ -18,7 +18,8 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 5. 支持接口声明过时(`@Deprecated`)，方便的文档目录等。
 6. 支持自定义代码生成模板。
 7. 支持集成发布到 [RAP](http://rapapi.org/org/index.do)。
-8. :new: 支持多模块、泛型。
+8. 支持多模块、泛型。
+9. :new: 支持实现自己的插件。
 
 # Maven 和 Gradle
 
@@ -86,45 +87,34 @@ public @interface ApiDoc {
 
 ## 快速集成
 
-**1. 代码模式**
+
 
 1）添加依赖，或者下载 jar 包到你的 libs 目录中。
 
 ```
-compile 'io.github.yedaxia:japidocs:1.2'
+compile 'io.github.yedaxia:japidocs:1.2.4'
 ```
 
 2）设置好相关参数。
 
 ```java
 main:
-
-    Docs.DocsConfig config = new Docs.DocsConfig();
+    DocsConfig config = new DocsConfig();
     config.setProjectPath(projectPath);
     Docs.buildHtmlDocs(DocsConfig config);
 ```
 
-更多参数支持请参考 `Docs.DocsConfig`；多模块项目目前是支持 maven 和 gradle 的，如果没有解析出来的话，可以通过 `addJavaSrcPath` 方法来添加。
-
-
-**2. 命令行模式:**
-
-下载`all`包，然后在和这个`jar`包相同目录下创建名称是`docs.config`的配置文件，里面可以配置这几个参数：
+参数说明
 
 ```
-# windows用户注意用双斜杠'\\'或者反斜杠'/'
-
-projectPath = 工程目录（必须）
-docsPath = 文档输出目录（非必须，默认是${projectPath}/apidocs）
-codeTplPath = 代码模版目录 (非必须，如果你需要自定义生成的代码才会用到。)
-mvcFramework = [spring, play, jfinal, generic](非必须，代码内部有判断，如果出现误判的情况，可以通过这个强制指定)
-
+projectPath： 工程目录 windows用户注意用双斜杠'\\'或者反斜杠'/'
+docsPath： 文档输出目录（非必须，默认是${projectPath}/apidocs）
+codeTplPath：代码模版目录 (非必须，如果你需要自定义生成的代码才会用到。)
+mvcFramework：[spring, play, jfinal, generic](非必须，代码内部有判断，如果出现误判的情况，可以通过这个强制指定)
+javaSrcPaths： (非必须)多模块项目目前是支持 maven 和 gradle 的，如果没有解析出来的话，可以通过 `addJavaSrcPath` 方法来添加源码目录。
+plugins：（非必须）自定义实现插件
 ```
-配置好之后，在命令行窗口用 `cd` 把当前目录换成 jar 包所在的目录，运行该`jar`包就可以了。
 
-```java
-java -jar ***-all.jar
-```
 
 ## 自定义输出 Java 和 IOS 代码：
 

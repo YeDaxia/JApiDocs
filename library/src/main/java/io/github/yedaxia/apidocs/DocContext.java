@@ -23,9 +23,9 @@ public class DocContext {
     private static AbsControllerParser controllerParser;
     private static List<File> controllerFiles;
     private static IResponseWrapper responseWrapper;
-    private static Docs.DocsConfig config;
+    private static DocsConfig config;
 
-    public static void init(Docs.DocsConfig config) {
+    public static void init(DocsConfig config) {
         DocContext.config = config;
         setProjectPath(config.projectPath);
         setDocPath(config.docsPath);
@@ -307,7 +307,7 @@ public class DocContext {
         return responseWrapper;
     }
 
-    public static Docs.DocsConfig getDocsConfig() {
+    public static DocsConfig getDocsConfig() {
         return DocContext.config;
     }
 

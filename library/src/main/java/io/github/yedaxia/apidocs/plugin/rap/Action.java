@@ -1,4 +1,4 @@
-package io.github.yedaxia.apidocs.ext.rap;
+package io.github.yedaxia.apidocs.plugin.rap;
 
 import java.util.HashSet;
 import java.util.Set;

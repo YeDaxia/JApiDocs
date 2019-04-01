@@ -1,9 +1,6 @@
-package io.github.yedaxia.apidocs.ext.rap;
+package io.github.yedaxia.apidocs.plugin.rap;
 
-import io.github.yedaxia.apidocs.DocContext;
-import io.github.yedaxia.apidocs.Docs;
-import io.github.yedaxia.apidocs.LogUtils;
-import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.*;
 import io.github.yedaxia.apidocs.http.DHttpRequest;
 import io.github.yedaxia.apidocs.http.DHttpResponse;
 import io.github.yedaxia.apidocs.http.DHttpUtils;
@@ -13,11 +10,11 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * post request to rap
+ * post request to rap : http://rapapi.org/
  *
  * @author yeguozhong yedaxia.github.com
  */
-public class RapSupport {
+public class RapSupportPlugin implements IPluginSupport {
 
     private String rapHost;
     private Integer projectId; // project id in rap
@@ -25,16 +22,18 @@ public class RapSupport {
 
     private List<ControllerNode> controllerNodeList;
 
-    public RapSupport(List<ControllerNode> controllerNodeList) {
+    @Override
+    public void execute(List<ControllerNode> controllerNodeList) {
         this.controllerNodeList = controllerNodeList;
+        postToRap();
     }
 
     /**
      * do post
      */
-    public void postToRap(){
+    private void postToRap(){
 
-        Docs.DocsConfig docsConfig = DocContext.getDocsConfig();
+        DocsConfig docsConfig = DocContext.getDocsConfig();
         if(controllerNodeList == null
                 || controllerNodeList.isEmpty()
                 || docsConfig == null

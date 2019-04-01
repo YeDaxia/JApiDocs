@@ -1,4 +1,4 @@
-package io.github.yedaxia.apidocs.ext.rap;
+package io.github.yedaxia.apidocs.plugin.rap;
 
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.IResponseWrapper;

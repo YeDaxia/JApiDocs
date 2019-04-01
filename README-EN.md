@@ -12,6 +12,9 @@ JApiDocs is a Java programming tool that complies with the Java programming conv
 4. Support the general Java Web project, need to add additional routing in the relevant annotation.
 5. Support interface statement outdated (@Deprecated), convenient document directory and so on.
 6. Support for custom code generation templates.
+7. Support Post to Rap[RAP](http://rapapi.org/org/index.do).
+8. Support multi module and generic type (List<User>).
+9.  :new: Support custom plugins to do what ever you want.
 
 # Quick Start
 
@@ -56,24 +59,10 @@ public @interface ApiDoc {
 ```
 3. run to generate docs
 
-**command line mode**
-
-(1) download the `jar` end with `all`. 
-(2) create a file name `docs.config`, the properties contains:
-
-```
-projectPath = your project root path（required）
-docsPath = the output docs path（not required，defualt ${projectPath}/apidocs）
-codeTplPath = the custom code template path (not required)
-mvcFramework = [spring, play, jfinal, generic](not required，JApiDocs will try to find which framework you are using, but sometimes it may not work, so you can set this to let it know).
-```
-
-**java code mode**
-
 (1) add dependencies below:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.2.3'
+compile 'io.github.yedaxia:japidocs:1.2.4'
 ```
 
 (2) one line simple java code:
@@ -81,6 +70,18 @@ compile 'io.github.yedaxia:japidocs:1.2.3'
 ```
 Docs.buildHtmlDocs(DocsConfig config);
 ```
+
+config attributes:
+
+```
+projectPath: project directory Windows users should use double slash '\\' or backslash '/'
+docsPath: Document output directory (not required, default is ${projectPath}/apidocs)
+codeTplPath: Code template directory (not required, if you need custom generated code will be used.)
+mvcFramework:[spring, play, jfinal, generic] (not required, the code has internal judgment, if there is a misjudgment, you can use this to force the specified)
+javaSrcPaths: (not required) Multi-module projects currently support maven and gradle. If not resolved, the source directory can be added via the `addJavaSrcPath` method.
+Plugins: (not required) custom implementation plugin
+```
+
 
 4. custom java or object-c code:
 

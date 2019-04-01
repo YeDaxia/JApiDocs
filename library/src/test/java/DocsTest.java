@@ -1,4 +1,5 @@
 import io.github.yedaxia.apidocs.Docs;
+import io.github.yedaxia.apidocs.DocsConfig;
 import io.github.yedaxia.apidocs.IResponseWrapper;
 import io.github.yedaxia.apidocs.Resources;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
@@ -42,8 +43,8 @@ public class DocsTest {
         Docs.buildHtmlDocs(getDocsConfig("/Users/yeguozhong/Desktop/svnLibrary/jap"));
     }
 
-    private Docs.DocsConfig getDocsConfig(String projectPath){
-        Docs.DocsConfig config = new Docs.DocsConfig();
+    private DocsConfig getDocsConfig(String projectPath){
+        DocsConfig config = new DocsConfig();
         config.setProjectPath(projectPath);
         //config.setRapProjectId("1");
         //config.setRapHost("http://rap.yedaxia.me");

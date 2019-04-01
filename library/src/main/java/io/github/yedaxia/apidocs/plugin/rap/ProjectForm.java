@@ -1,4 +1,4 @@
-package io.github.yedaxia.apidocs.ext.rap;
+package io.github.yedaxia.apidocs.plugin.rap;
 
 /**
  * @author yeguozhong yedaxia.github.com
