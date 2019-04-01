@@ -122,7 +122,7 @@ plugins：（非必须）自定义实现插件
 ![code template files](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_apidocs-code-tpls.png)
 
 
-## 如何实现实现自定义插件
+## 如何实现自定义插件
 
 第一步：实现 `IPluginSupport` 接口
 
