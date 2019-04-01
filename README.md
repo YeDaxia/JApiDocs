@@ -27,12 +27,12 @@ JApiDocs 是一个符合 Java 编程习惯的 Api 文档生成工具。最大程
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.2</version>
+  <version>1.2.4</version>
 </dependency>
 ```
 
 ```
-compile 'io.github.yedaxia:japidocs:1.2.3'
+compile 'io.github.yedaxia:japidocs:1.2.4'
 ```
 
 # 快速使用
@@ -120,6 +120,29 @@ plugins：（非必须）自定义实现插件
 
 你可以把工程里面相关的代码模板文件拷贝出来，然后在配置参数声明好该路径即可，具体的模板文件如下：
 ![code template files](http://ohb4y25jk.bkt.clouddn.com/darcy_blog_apidocs-code-tpls.png)
+
+
+## 如何实现实现自定义插件
+
+第一步：实现 `IPluginSupport` 接口
+
+```java
+
+public class CustomPlugin implements IPluginSupport{
+    
+    @Override
+    public void execute(List<ControllerNode> controllerNodeList){
+        // 实现你自己的功能需求
+    }
+}
+
+```
+
+第二步：添加插件:
+
+```
+ config.addPlugin(IPluginSupport plugin);
+```
 
 ## 如何集成到 RAP 进行接口测试：
 
