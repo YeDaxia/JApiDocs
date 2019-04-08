@@ -189,6 +189,5 @@ tips：可以通过 `@Ignore` 注解忽略字段来解决这个问题。
 
 # License
 
-JApiDocs is available under the Apache 2 License. Please see the [Licensing section](http://docs.hazelcast.org/docs/latest-dev/manual/html-single/index.html#licensing) for more information.
-
+[Anti-996 License](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
