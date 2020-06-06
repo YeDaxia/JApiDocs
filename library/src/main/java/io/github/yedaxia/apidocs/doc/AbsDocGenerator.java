@@ -3,15 +3,18 @@ package io.github.yedaxia.apidocs.doc;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.LogUtils;
 import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.codegenerator.ios.ModelCodeGenerator;
+import io.github.yedaxia.apidocs.codegenerator.java.JavaCodeGenerator;
 import io.github.yedaxia.apidocs.parser.AbsControllerParser;
 import io.github.yedaxia.apidocs.parser.ControllerNode;
+import io.github.yedaxia.apidocs.parser.RequestNode;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbsDocGenerator{
+public abstract class AbsDocGenerator {
 
     private AbsControllerParser controllerParser;
     private IControllerDocBuilder controllerDocBuilder;
@@ -26,44 +29,52 @@ public abstract class AbsDocGenerator{
     /**
      * generate api Docs
      */
-    public void generateDocs(){
+    public void generateDocs() {
         LogUtils.info("generate api docs start...");
         generateControllersDocs();
         generateIndex(docFileLinkList);
         LogUtils.info("generate api docs done !!!");
     }
 
-    private void generateControllersDocs(){
+    private void generateControllersDocs() {
         File[] controllerFiles = DocContext.getControllerFiles();
-        final String docsPathName = "docs";
-        File docPath = new File(DocContext.getDocPath(),docsPathName);
-        if(!docPath.exists()){
-            docPath.mkdirs();
-        }
+        File docPath = new File(DocContext.getDocPath());
+
         for (File controllerFile : controllerFiles) {
+            LogUtils.info("start to parse controller file : %s", controllerFile.getName());
+            ControllerNode controllerNode = controllerParser.parse(controllerFile);
+            if (controllerNode.getRequestNodes().isEmpty()) {
+                continue;
+            }
+
+            controllerNode.setSrcFileName(controllerFile.getAbsolutePath());
+            final String docFileName = String.format("%s_%s.html", controllerNode.getPackageName().replace(".", "_"), controllerNode.getClassName());
+            controllerNode.setDocFileName(docFileName);
+            for (RequestNode requestNode : controllerNode.getRequestNodes()) {
+                requestNode.setCodeFileUrl(String.format("%s#%s", docFileName, requestNode.getMethodName()));
+            }
+
+            controllerNodeList.add(controllerNode);
+            LogUtils.info("success to parse controller file : %s", controllerFile.getName());
+        }
+
+        for (ControllerNode controllerNode : controllerNodeList) {
             try {
-                LogUtils.info("start to parse controller file : %s", controllerFile.getName());
-                ControllerNode controllerNode = controllerParser.parse(controllerFile);
-                if(controllerNode.getRequestNodes().isEmpty()){
-                    continue;
-                }
-                controllerNodeList.add(controllerNode);
-                LogUtils.info("start to generate docs for controller file : %s", controllerFile.getName());
+                controllerNode.setControllerNodes(controllerNodeList);
+                LogUtils.info("start to generate docs for controller file : %s", controllerNode.getSrcFileName());
                 final String controllerDocs = controllerDocBuilder.buildDoc(controllerNode);
-                final String docName = String.format("%s_%s.html", controllerNode.getPackageName().replace(".","_"), controllerNode.getClassName());
-                docFileLinkList.add(new Link(controllerNode.getDescription(), String.format("%s/%s", docsPathName, docName)));
-                Utils.writeToDisk(new File(docPath, docName),controllerDocs);
-                LogUtils.info("success to generate docs for controller file : %s", controllerFile.getName());
+                docFileLinkList.add(new Link(controllerNode.getDescription(), String.format("%s", controllerNode.getDocFileName())));
+                Utils.writeToDisk(new File(docPath, controllerNode.getDocFileName()), controllerDocs);
+                LogUtils.info("success to generate docs for controller file : %s", controllerNode.getSrcFileName());
             } catch (IOException e) {
-                LogUtils.error("generate docs for controller file : "+controllerFile.getName()+" fail", e);
+                LogUtils.error("generate docs for controller file : " + controllerNode.getSrcFileName() + " fail", e);
             }
         }
-
     }
 
-    public List<ControllerNode> getControllerNodeList(){
+    public List<ControllerNode> getControllerNodeList() {
         return controllerNodeList;
     }
 
-	abstract void generateIndex(List<Link> docFileLinkList);
+    abstract void generateIndex(List<Link> docFileLinkList);
 }

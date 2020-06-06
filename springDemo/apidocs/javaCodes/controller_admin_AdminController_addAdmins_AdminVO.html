@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>AdminVO</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
 <link href="../style.css" rel="stylesheet" />
 </head>
 <body onload="PR.prettyPrint()">
@@ -15,32 +14,26 @@ public class AdminVO implements Serializable{
     private String userName; //用户名
     private String password; //密码
 
-    @JSONField(name="userId")
     public String getUserId(){
         return userId;
     }
 
-    @JSONField(name="userId")
     public void setUserId(String userId){
         this.userId = userId;
     }
 
-    @JSONField(name="userName")
     public String getUserName(){
         return userName;
     }
 
-    @JSONField(name="userName")
     public void setUserName(String userName){
         this.userName = userName;
     }
 
-    @JSONField(name="password")
     public String getPassword(){
         return password;
     }
 
-    @JSONField(name="password")
     public void setPassword(String password){
         this.password = password;
     }
@@ -50,5 +43,6 @@ public class AdminVO implements Serializable{
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
 </body>
 </html>

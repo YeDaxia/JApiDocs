@@ -37,7 +37,7 @@ public class UserController {
      */
     @ApiDoc(UserVO[].class)
     @RequestMapping(path = "/u/list", method = {RequestMethod.GET,  RequestMethod.OPTIONS}  )
-    public void list(@RequestParam(value="page", required = true) Integer page, int pageSize){
+    public void list(@RequestParam(value="page", required = true) Integer page, Integer pageSize){
 
     }
 
@@ -46,8 +46,8 @@ public class UserController {
      * @param userId 用户id
      */
     @ApiDoc(UserVO.class)
-    @GetMapping(path = "/u/info")
-    public void userInfo(@RequestParam String userId, @PathVariable("Hello") Integer hello){
+    @GetMapping(path = "/u/info/{userId}")
+    public void userInfo(@PathVariable String userId){
 
     }
 

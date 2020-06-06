@@ -14,7 +14,7 @@ public abstract class CodeGenerator {
 	private ResponseNode responseNode;
 	private File codePath;
 	private String codeRelativePath;
-	
+
 	public CodeGenerator(ResponseNode responseNode){
 		this.responseNode = responseNode;
 		this.codeRelativePath = getRelativeCodeDir();
@@ -23,11 +23,11 @@ public abstract class CodeGenerator {
 			this.codePath.mkdirs();
 		}
 	}
-	
+
 	/**
 	 * 生成代码
 	 * @return 返回代码的相对目录
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public String generateCode() throws IOException{
 		if (responseNode.getChildNodes() == null || responseNode.getChildNodes().isEmpty()) {
@@ -42,9 +42,9 @@ public abstract class CodeGenerator {
 				responseNode.getRequestNode().getControllerNode().getClassName(),
 				responseNode.getRequestNode().getMethodName(), responseNode.getClassName());
 		Utils.writeToDisk(new File(codePath, javaFileName), codeBuilder.build());
-		return String.format("../%s/%s", codeRelativePath, javaFileName);
+		return String.format("%s/%s", codeRelativePath, javaFileName);
 	}
-	
+
 	private void generateCodeForBuilder(ClassNode rootNode, StringBuilder codeBodyBuilder) throws IOException{
 		codeBodyBuilder.append(generateNodeCode((ResponseNode)rootNode));
 		codeBodyBuilder.append('\n');
@@ -54,7 +54,7 @@ public abstract class CodeGenerator {
 			}
 		}
 	}
-	
+
 	/***
 	 * 产生单个ResponseNode节点的Code
 	 * @param respNode
@@ -62,13 +62,13 @@ public abstract class CodeGenerator {
 	 * @throws IOException
 	 */
 	public abstract String generateNodeCode(ResponseNode respNode) throws IOException;
-	
+
 	/**
 	 * 获取代码的写入的相对目录
 	 * @return
 	 */
 	public abstract String getRelativeCodeDir();
-	
+
 	/**
 	 * 获取最终的代码模板
 	 * @return

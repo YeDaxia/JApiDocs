@@ -28,6 +28,8 @@ public class ParseUtils {
      */
     private static final String TYPE_MODEL = "unkown";
 
+    private static final Set<String> classNodeSet = new HashSet<>();
+
     /**
      * search File of className in the java file
      *
@@ -231,28 +233,31 @@ public class ParseUtils {
      * @param classNode
      */
     public static void parseClassNode(File modelJavaFile, ClassNode classNode){
-        String resultClassName = classNode.getClassName();
+        innerParseClassNode(modelJavaFile, classNode);
+    }
 
+    private static void innerParseClassNode(File modelJavaFile, ClassNode classNode){
+        String resultClassName = classNode.getClassName();
         ParseUtils.compilationUnit(modelJavaFile).
                 getChildNodesByType(ClassOrInterfaceDeclaration.class).
                 stream().filter(f -> resultClassName.endsWith(f.getNameAsString())).findFirst().ifPresent(cl -> {
 
-                    //handle generic type
-                    NodeList<TypeParameter> typeParameters = cl.getTypeParameters();
-                    if(typeParameters.isNonEmpty() && classNode.getGenericNodes().size() == typeParameters.size()){
-                        for(int i = 0, len = typeParameters.size(); i != len; i++){
-                            classNode.getGenericNode(i).setPlaceholder(typeParameters.get(i).getName().getIdentifier());
-                        }
-                    }
+            //handle generic type
+            NodeList<TypeParameter> typeParameters = cl.getTypeParameters();
+            if(typeParameters.isNonEmpty() && classNode.getGenericNodes().size() == typeParameters.size()){
+                for(int i = 0, len = typeParameters.size(); i != len; i++){
+                    classNode.getGenericNode(i).setPlaceholder(typeParameters.get(i).getName().getIdentifier());
+                }
+            }
 
-                    NodeList<ClassOrInterfaceType> exClassTypeList =  cl.getExtendedTypes();
-                    if(!exClassTypeList.isEmpty()){
-                        String extendClassName = exClassTypeList.get(0).getNameAsString();
-                        classNode.setClassName(extendClassName);
-                        parseClassNode(ParseUtils.searchJavaFile(modelJavaFile, extendClassName), classNode);
-                    }
+            NodeList<ClassOrInterfaceType> exClassTypeList =  cl.getExtendedTypes();
+            if(!exClassTypeList.isEmpty()){
+                String extendClassName = exClassTypeList.get(0).getNameAsString();
+                classNode.setClassName(extendClassName);
+                innerParseClassNode(ParseUtils.searchJavaFile(modelJavaFile, extendClassName), classNode);
+            }
 
-                    cl.getChildNodesByType(FieldDeclaration.class)
+            cl.getChildNodesByType(FieldDeclaration.class)
                     .stream().filter(fd -> !fd.getModifiers().contains(Modifier.STATIC))
                     .forEach(fd -> {
 

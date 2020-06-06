@@ -56,6 +56,7 @@ public class Utils {
 	 * @throws IOException
 	 */
 	public static void writeToDisk(File f,String content) throws IOException{
+		mkdirsForFile(f);
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f),"utf-8"));
 		writer.write(content);
 		writer.close();
@@ -391,4 +392,15 @@ public class Utils {
 
 	    return moduleNames;
     }
+
+	/**
+	 * create dirs for file
+	 *
+	 * @param file
+	 */
+	public static void mkdirsForFile(File file){
+		if(file.isFile() && !file.getParentFile().exists()){
+			file.getParentFile().mkdirs();
+		}
+	}
 }

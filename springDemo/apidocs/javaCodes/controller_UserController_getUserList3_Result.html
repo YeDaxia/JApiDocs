@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Result</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
 <link href="../style.css" rel="stylesheet" />
 </head>
 <body onload="PR.prettyPrint()">
@@ -14,22 +13,18 @@ public class Result implements Serializable{
     private Object message; //消息
     private Object[] list; //列表
 
-    @JSONField(name="message")
     public Object getMessage(){
         return message;
     }
 
-    @JSONField(name="message")
     public void setMessage(Object message){
         this.message = message;
     }
 
-    @JSONField(name="list")
     public Object[] getList(){
         return list;
     }
 
-    @JSONField(name="list")
     public void setList(Object[] list){
         this.list = list;
     }
@@ -41,5 +36,6 @@ public class Result implements Serializable{
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 package io.github.yedaxia.apidocs;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+
+import java.io.*;
 
 /**
  * @author yeguozhong yedaxia.github.com
@@ -11,7 +11,6 @@ import java.io.InputStream;
 public class Resources {
 
     private static boolean isDebug = false;
-
     private static String sResourcePath;
     private static String sUserCodeTplPath;
 
@@ -50,6 +49,24 @@ public class Resources {
             return getTemplateFile(fileName);
         }
     }
+
+    /**
+     * get freemarker template
+     *
+     * @param fileName
+     * @return
+     * @throws IOException
+     */
+    public static Template getFreemarkerTemplate(String fileName) throws IOException {
+        Configuration conf = new Configuration(Configuration.VERSION_2_3_30);
+        if(isDebug){
+            conf.setDirectoryForTemplateLoading(new File(sResourcePath));
+        }else{
+            conf.setClassForTemplateLoading(Resources.class, "/");
+        }
+        return conf.getTemplate(fileName);
+    }
+
 
     public static void setDebug(){
         isDebug = true;

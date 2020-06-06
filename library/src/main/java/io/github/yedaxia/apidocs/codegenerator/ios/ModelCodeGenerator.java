@@ -22,7 +22,7 @@ public class ModelCodeGenerator extends CodeGenerator{
 	private static String sFieldTemplate;
 	private static String sModelTemplate;
 	private static String sCodeTemplate;
-	
+
 	static{
 		ModelTemplateProvider resourceTemplateProvider = new ModelTemplateProvider();
 		try {

@@ -53,6 +53,9 @@ public abstract class AbsControllerParser {
             controllerNode.setPackageName(pd.getNameAsString());
         });
 
+        boolean generateDocs = c.getAnnotationByName("ApiDoc").isPresent();
+        controllerNode.setGenerateDocs(generateDocs);
+
         c.getJavadoc().ifPresent( d -> {
             String description = d.getDescription().toText();
             controllerNode.setDescription(Utils.isNotEmpty(description)? description: c.getNameAsString());

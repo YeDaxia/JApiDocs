@@ -1,5 +1,10 @@
 package io.github.yedaxia.apidocs.doc;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.Version;
+import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.parser.ParamNode;
 import io.github.yedaxia.apidocs.Resources;
 import io.github.yedaxia.apidocs.Utils;
@@ -8,123 +13,46 @@ import io.github.yedaxia.apidocs.codegenerator.java.JavaCodeGenerator;
 import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.RequestNode;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
- *
  * build html api docs for a controller
  *
  * @author yeguozhong yedaxia.github.com
  */
-public class HtmlControllerDocBuilder implements IControllerDocBuilder{
+public class HtmlControllerDocBuilder implements IControllerDocBuilder {
 
     @Override
-    public String buildDoc(ControllerNode controllerNode) throws IOException{
-
-        final String ctrlTemplate = getControllerTpl();
-
-        String ctrlDoc = ctrlTemplate;
-
-        if (Utils.isNotEmpty(controllerNode.getDescription())) {
-            ctrlDoc = ctrlDoc.replace("${CONTROLLER_DESCRIPTION}", controllerNode.getDescription());
-        }
-
-        final String actionTemplate = getActionTpl();
-
-        StringBuilder actionsBuilder = new StringBuilder();
-        StringBuilder tocBuilder = new StringBuilder();
-        String actionDoc;
+    public String buildDoc(ControllerNode controllerNode) throws IOException {
         for (RequestNode requestNode : controllerNode.getRequestNodes()) {
-            actionDoc = actionTemplate;
-            if (Utils.isNotEmpty(requestNode.getDescription())) {
-                String descriptionHtml = requestNode.getDeprecated() ? String.format("<STRIKE>%s</STRIKE>", requestNode.getDescription()) : requestNode.getDescription();
-                actionDoc = actionDoc.replace("${ACTION_DESCRIPTION}", descriptionHtml);
-                String tocActionHtml = requestNode.getDeprecated() ? "<li><a href=\"#%s\"><STRIKE>%s</STRIKE></a></li>" : "<li><a href=\"#%s\">%s</a></li>";
-                tocBuilder.append(String.format(tocActionHtml, requestNode.getDescription(),
-                        requestNode.getDescription()));
+            if (requestNode.getResponseNode() != null && !requestNode.getResponseNode().getChildNodes().isEmpty()) {
+                JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
+                final String javaSrcUrl = javaCodeGenerator.generateCode();
+                requestNode.setAndroidCodePath(javaSrcUrl);
+                ModelCodeGenerator iosCodeGenerator = new ModelCodeGenerator(requestNode.getResponseNode());
+                final String iosSrcUrl = iosCodeGenerator.generateCode();
+                requestNode.setIosCodePath(iosSrcUrl);
             }
-            String methonStr = Arrays.toString(requestNode.getMethod().toArray());
-            actionDoc = actionDoc.replace("${METHOD}", methonStr.substring(1, methonStr.length() - 1));
-
-            if (Utils.isNotEmpty(requestNode.getUrl())) {
-                actionDoc = actionDoc.replace("${APIURL}", controllerNode.getBaseUrl() + requestNode.getUrl());
-            }
-            if (requestNode.getParamNodes() != null) {
-                boolean isJsonBody = false;
-                String paramHtmlBody = "";
-
-                for (ParamNode paramNode : requestNode.getParamNodes()) {
-                    if(paramNode.isJsonBody()){
-                        paramHtmlBody = buildParamJsonCode(paramNode);
-                        isJsonBody = true;
-                        break;
-                    }
-                }
-
-                if(!isJsonBody){
-                    paramHtmlBody = buildParamTable(requestNode.getParamNodes());
-                }
-
-                actionDoc = actionDoc.replace("${PARAM_BODY}", paramHtmlBody);
-            }
-
-            if (requestNode.getResponseNode() != null) {
-                actionDoc = actionDoc.replace("${RESPONSE}", requestNode.getResponseNode().toJsonApi());
-                if(requestNode.getResponseNode().getChildNodes().isEmpty()){
-                    actionDoc = actionDoc.replace("${IOS_CODE}", "#");
-                    actionDoc = actionDoc.replace("${ANDROID_CODE}", "#");
-                }else{
-                    JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
-                    String javaSrcUrl = javaCodeGenerator.generateCode();
-                    actionDoc = actionDoc.replace("${ANDROID_CODE}", javaSrcUrl);
-                    ModelCodeGenerator iosCodeGenerator = new ModelCodeGenerator(requestNode.getResponseNode());
-                    String iosSrcUrl = iosCodeGenerator.generateCode();
-                    actionDoc = actionDoc.replace("${IOS_CODE}", iosSrcUrl);
-                }
-            }else{
-                actionDoc = actionDoc.replace("${RESPONSE}", "");
-                actionDoc = actionDoc.replace("${IOS_CODE}", "#");
-                actionDoc = actionDoc.replace("${ANDROID_CODE}", "#");
-            }
-            actionsBuilder.append(actionDoc);
         }
-        ctrlDoc = ctrlDoc.replace("${TOC}", tocBuilder.toString());
-        ctrlDoc = ctrlDoc.replace("${ACTION_LIST}", actionsBuilder.toString());
-        return ctrlDoc;
-    }
 
-    private String buildParamJsonCode(ParamNode paramNode){
-        StringBuilder codeBuilder = new StringBuilder();
-        codeBuilder.append("<pre class=\"prettyprint lang-json\">");
-        codeBuilder.append('\n');
-        codeBuilder.append(paramNode.getDescription());
-        codeBuilder.append('\n');
-        codeBuilder.append("</pre>");
-        return codeBuilder.toString();
-    }
-
-    private String buildParamTable(List<ParamNode> paramNodeList){
-        StringBuilder paramTableBuilder = new StringBuilder();
-        paramTableBuilder.append("<table>");
-        paramTableBuilder.append("<tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr>");
-        for (ParamNode paramNode : paramNodeList) {
-            paramTableBuilder.append("<tr>");
-            paramTableBuilder.append(String.format("<td>%s</td><td>%s</td><td>%s</td><td>%s</td>",
-                    paramNode.name, paramNode.type, paramNode.required, paramNode.description));
-            paramTableBuilder.append("</tr>");
+        final Template ctrlTemplate = getControllerTpl();
+        final File docFile = new File(DocContext.getDocPath(), controllerNode.getDocFileName());
+        FileWriter docFileWriter = new FileWriter(docFile);
+        try {
+            ctrlTemplate.process(controllerNode, docFileWriter);
+        } catch (TemplateException ex) {
+            ex.printStackTrace();
+        } finally {
+            Utils.closeSilently(docFileWriter);
         }
-        paramTableBuilder.append("</table>");
-        return paramTableBuilder.toString();
+        return Utils.streamToString(new FileInputStream(docFile));
     }
 
-    private String getControllerTpl() throws IOException{
-        return Utils.streamToString(Resources.getTemplateFile("api-controller.html.tpl"));
+    private Template getControllerTpl() throws IOException {
+        return Resources.getFreemarkerTemplate("api-controller.html.ftl");
     }
 
-    private String getActionTpl() throws IOException{
-        return Utils.streamToString(Resources.getTemplateFile("api-action.html.tpl"));
-    }
 }

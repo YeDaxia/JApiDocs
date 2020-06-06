@@ -23,6 +23,17 @@ public class RequestNode {
     private Boolean deprecated = Boolean.FALSE;
     private ResponseNode responseNode;
     private ControllerNode controllerNode;
+    private String androidCodePath;
+    private String iosCodePath;
+    private String codeFileUrl;
+
+    public String getCodeFileUrl() {
+        return codeFileUrl;
+    }
+
+    public void setCodeFileUrl(String codeFileUrl) {
+        this.codeFileUrl = codeFileUrl;
+    }
 
     public List<String> getMethod() {
         if(method == null || (method != null && method.size() == 0)) {
@@ -123,5 +134,21 @@ public class RequestNode {
             }
         }
         return null;
+    }
+
+    public String getAndroidCodePath() {
+        return androidCodePath;
+    }
+
+    public void setAndroidCodePath(String androidCodePath) {
+        this.androidCodePath = androidCodePath;
+    }
+
+    public String getIosCodePath() {
+        return iosCodePath;
+    }
+
+    public void setIosCodePath(String iosCodePath) {
+        this.iosCodePath = iosCodePath;
     }
 }

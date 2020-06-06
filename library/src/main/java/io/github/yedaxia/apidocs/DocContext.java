@@ -238,7 +238,9 @@ public class DocContext {
     }
 
     private static void setProjectPath(String projectPath) {
-        DocContext.projectPath = new File(projectPath).getAbsolutePath() + "/";
+        if(projectPath != null){
+            DocContext.projectPath = new File(projectPath).getAbsolutePath() + "/";
+        }
     }
 
     /**

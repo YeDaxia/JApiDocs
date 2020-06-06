@@ -15,16 +15,43 @@ public class ControllerNode {
     private String baseUrl;
     private String className;
     private String packageName;
+    private Boolean generateDocs = Boolean.FALSE;
+    private List<RequestNode> requestNodes = new ArrayList<>();
+    private List<ControllerNode> controllerNodes = new ArrayList<>();
+    private String srcFileName;
+    private String docFileName;
 
     public String getPackageName() {
         return packageName;
     }
 
+    public String getSrcFileName() {
+        return srcFileName;
+    }
+
+    public void setSrcFileName(String srcFileName) {
+        this.srcFileName = srcFileName;
+    }
+
+    public Boolean getGenerateDocs() {
+        return generateDocs;
+    }
+
+    public void setGenerateDocs(Boolean generateDocs) {
+        this.generateDocs = generateDocs;
+    }
+
+    public String getDocFileName() {
+        return docFileName;
+    }
+
+    public void setDocFileName(String docFileName) {
+        this.docFileName = docFileName;
+    }
+
     public void setPackageName(String packageName) {
         this.packageName = packageName;
     }
-
-    private List<RequestNode> requestNodes = new ArrayList<>();
 
     public String getAuthor() {
         return author;
@@ -68,5 +95,13 @@ public class ControllerNode {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public List<ControllerNode> getControllerNodes() {
+        return controllerNodes;
+    }
+
+    public void setControllerNodes(List<ControllerNode> controllerNodes) {
+        this.controllerNodes = controllerNodes;
     }
 }

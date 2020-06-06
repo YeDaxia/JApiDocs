@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Projects {
 
-    private static String ROOT_PATH;
+    public static String ROOT_PATH;
 
     static{
         ROOT_PATH = new File(System.getProperty("user.dir")).getParent() + "/";

@@ -149,11 +149,12 @@ body, html {
 }
 
 .catalog-item{
-    padding: 8px 15px;
-    margin-left: 15px;
+    padding: 14px;
+    margin: 0 10px;
+    font-size: 14px;
     color: #555555;
     border-bottom: solid #EEE 1px;
-    display: block;
+    cursor: pointer;
 }
 
 .catalog-item:hover{
@@ -246,6 +247,8 @@ pre.prettyprint, code.prettyprint {
 }  /*  background is black (well, just a tad less dark )  */
 
 pre.prettyprint {
+    width: 95%;
+    margin: 1em auto;
     padding: 1em;
     white-space: pre-wrap;
 }
