@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import result.GenericResult;
 import result.ResultVO;
+import result.Student;
 
 import java.io.File;
 
@@ -54,8 +55,8 @@ public class ParseUtilsTest {
     @Test
     public void test_parseClassNode(){
         ResponseNode responseNode = new ResponseNode();
-        responseNode.setClassName("ResultVO");
-        File resultJavaFile = Projects.getTestJavaFile(ResultVO.class);
+        responseNode.setClassName("Student");
+        File resultJavaFile = Projects.getTestJavaFile(Student.class);
         ParseUtils.parseClassNode(resultJavaFile, responseNode);
         System.out.println(responseNode.toJsonApi());
     }
@@ -67,7 +68,6 @@ public class ParseUtilsTest {
         ParseUtils.compilationUnit(resultJavaFile).getChildNodesByType(MethodDeclaration.class).forEach(md->{
              md.getType();
         });
-
 
         ParseUtils.compilationUnit(resultJavaFile).getClassByName("GenericResult")
                 .ifPresent(classDeclaration -> {

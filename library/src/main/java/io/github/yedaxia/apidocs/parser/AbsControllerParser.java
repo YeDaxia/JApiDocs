@@ -75,7 +75,7 @@ public abstract class AbsControllerParser {
     }
 
     private void parseMethodDocs(ClassOrInterfaceDeclaration c){
-        c.getChildNodesByType(MethodDeclaration.class).stream()
+        c.findAll(MethodDeclaration.class).stream()
                 .filter(m -> m.getModifiers().contains(Modifier.PUBLIC) && m.getAnnotationByName("ApiDoc").isPresent())
                 .forEach(m -> {
                     m.getAnnotationByName("ApiDoc").ifPresent(an -> {

@@ -46,7 +46,7 @@ public abstract class CodeGenerator {
 	}
 
 	private void generateCodeForBuilder(ClassNode rootNode, StringBuilder codeBodyBuilder) throws IOException{
-		codeBodyBuilder.append(generateNodeCode((ResponseNode)rootNode));
+		codeBodyBuilder.append(generateNodeCode(rootNode));
 		codeBodyBuilder.append('\n');
 		for (FieldNode recordNode : rootNode.getChildNodes()) {
 			if (recordNode.getChildNode()!= null) {
@@ -57,11 +57,11 @@ public abstract class CodeGenerator {
 
 	/***
 	 * 产生单个ResponseNode节点的Code
-	 * @param respNode
+	 * @param classNode
 	 * @return
 	 * @throws IOException
 	 */
-	public abstract String generateNodeCode(ResponseNode respNode) throws IOException;
+	public abstract String generateNodeCode(ClassNode classNode) throws IOException;
 
 	/**
 	 * 获取代码的写入的相对目录

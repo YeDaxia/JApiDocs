@@ -20,6 +20,15 @@ public class ClassNode {
     private List<FieldNode> childNodes = new ArrayList<>();
     private List<GenericNode> genericNodes = new ArrayList<>();
 
+    /**
+     * class ParentNode{ //parentNode;
+     *    ClassNode node;
+     * }
+     */
+    private ClassNode parentNode; //包含了该类节点的节点
+
+    private String classFileName;
+
     public String getDescription() {
         return description;
     }
@@ -72,6 +81,22 @@ public class ClassNode {
         return genericNodes.get(index);
     }
 
+    public String getClassFileName() {
+        return classFileName;
+    }
+
+    public void setClassFileName(String classFileName) {
+        this.classFileName = classFileName;
+    }
+
+    public ClassNode getParentNode() {
+        return parentNode;
+    }
+
+    public void setParentNode(ClassNode parentNode) {
+        this.parentNode = parentNode;
+    }
+
     public GenericNode getGenericNode(String  type){
         for(GenericNode genericNode : genericNodes){
             if(genericNode.getPlaceholder().equals(type)){
@@ -86,8 +111,8 @@ public class ClassNode {
             return isList? className + "[]": className + "{}";
         }
         Map<String, Object> jsonRootMap = new LinkedHashMap<>();
-        for (FieldNode recordNode : childNodes) {
-            toJsonApiMap(recordNode,jsonRootMap);
+        for (FieldNode fieldNode : childNodes) {
+            toJsonApiMap(fieldNode,jsonRootMap);
         }
         if(isList){
             return Utils.toPrettyJson(new Map[]{jsonRootMap});
@@ -96,32 +121,39 @@ public class ClassNode {
         }
     }
 
-    public void toJsonApiMap(FieldNode recordNode, Map<String, Object> map){
-        ClassNode childResponseNode = recordNode.getChildResponseNode();
-        if(childResponseNode != null){
+    public void toJsonApiMap(FieldNode fieldNode, Map<String, Object> map){
+
+        if(fieldNode.getLoopNode()){
+            map.put(fieldNode.getName(), getFieldDesc(fieldNode));
+            return;
+        }
+
+        ClassNode thisFieldNode = fieldNode.getChildNode();
+        if(thisFieldNode != null){
             Map<String, Object> childMap = new LinkedHashMap<>();
-            for (FieldNode childNode : childResponseNode.getChildNodes()) {
-                if(childNode.getChildResponseNode() != null){
-                    toJsonApiMap(childNode,childMap);
+            for (FieldNode childFieldNode : thisFieldNode.getChildNodes()) {
+                if(childFieldNode.getChildNode() != null){
+                    toJsonApiMap(childFieldNode,childMap);
                 }else{
-                    childMap.put(childNode.getName(), getRecordDescp(childNode));
+                    childMap.put(childFieldNode.getName(), getFieldDesc(childFieldNode));
                 }
             }
-            if(recordNode.getType().endsWith("[]")){
-                map.put(recordNode.getName(), childMap.isEmpty()? new Map[]{}: new Map[]{childMap});
+            if(fieldNode.getType().endsWith("[]")){
+                map.put(fieldNode.getName(), childMap.isEmpty()? new Map[]{}: new Map[]{childMap});
             }else{
-                map.put(recordNode.getName(), childMap);
+                map.put(fieldNode.getName(), childMap);
             }
         }else{
-            map.put(recordNode.getName(), getRecordDescp(recordNode));
+            map.put(fieldNode.getName(), getFieldDesc(fieldNode));
         }
     }
 
-    private String getRecordDescp(FieldNode recordNode){
-        if(Utils.isNotEmpty(recordNode.getDescription())){
-            return String.format("%s //%s", recordNode.getType(),recordNode.getDescription());
+    private String getFieldDesc(FieldNode fieldNode){
+        final String fieldType = fieldNode.getLoopNode()? fieldNode.getChildNode().getClassName() + "{}": fieldNode.getType();
+        if(Utils.isNotEmpty(fieldNode.getDescription())){
+            return String.format("%s //%s", fieldType,fieldNode.getDescription());
         }else{
-            return recordNode.getType();
+            return fieldType;
         }
     }
 

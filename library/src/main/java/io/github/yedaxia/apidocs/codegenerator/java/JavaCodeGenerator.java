@@ -1,5 +1,6 @@
 package io.github.yedaxia.apidocs.codegenerator.java;
 
+import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 import io.github.yedaxia.apidocs.codegenerator.CodeGenerator;
 import io.github.yedaxia.apidocs.codegenerator.IFieldProvider;
@@ -45,7 +46,7 @@ public class JavaCodeGenerator extends CodeGenerator{
 	}
 	
 	@Override
-	public String generateNodeCode(ResponseNode respNode) throws IOException {
+	public String generateNodeCode(ClassNode respNode) throws IOException {
 		String className = respNode.getClassName();
 
 		IFieldProvider entryProvider = ProviderFactory.createProvider();

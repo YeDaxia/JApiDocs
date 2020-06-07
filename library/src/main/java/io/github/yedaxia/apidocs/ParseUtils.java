@@ -146,10 +146,10 @@ public class ParseUtils {
      * @return
      */
     private static Optional<TypeDeclaration> getInnerClassNode(CompilationUnit compilationUnit , String className){
-        return compilationUnit.getChildNodesByType(TypeDeclaration.class)
+        return compilationUnit.findAll(TypeDeclaration.class)
                 .stream()
                 .filter( c -> c instanceof ClassOrInterfaceDeclaration ||  c instanceof EnumDeclaration)
-                .filter( c -> className.endsWith(c.getNameAsString()))
+                .filter( c -> className.equals(c.getNameAsString()))
                 .findFirst();
     }
 
@@ -219,7 +219,9 @@ public class ParseUtils {
 
                 String className = ((ClassOrInterfaceType)classType).getName().getIdentifier();
                 rootClassNode.setClassName(className);
-                parseClassNode(searchJavaFile(inJavaFile, className), rootClassNode);
+                File modelJavaFile = searchJavaFile(inJavaFile, className);
+                rootClassNode.setClassFileName(modelJavaFile.getAbsolutePath());
+                parseClassNode(modelJavaFile, rootClassNode);
             }
         }else{
             rootClassNode.setClassName(unifyClassType);
@@ -239,7 +241,7 @@ public class ParseUtils {
     private static void innerParseClassNode(File modelJavaFile, ClassNode classNode){
         String resultClassName = classNode.getClassName();
         ParseUtils.compilationUnit(modelJavaFile).
-                getChildNodesByType(ClassOrInterfaceDeclaration.class).
+                findAll(ClassOrInterfaceDeclaration.class).
                 stream().filter(f -> resultClassName.endsWith(f.getNameAsString())).findFirst().ifPresent(cl -> {
 
             //handle generic type
@@ -257,13 +259,13 @@ public class ParseUtils {
                 innerParseClassNode(ParseUtils.searchJavaFile(modelJavaFile, extendClassName), classNode);
             }
 
-            cl.getChildNodesByType(FieldDeclaration.class)
+            cl.findAll(FieldDeclaration.class)
                     .stream().filter(fd -> !fd.getModifiers().contains(Modifier.STATIC))
                     .forEach(fd -> {
 
                         //内部类字段也会读取到，这里特殊处理
                         ClassOrInterfaceDeclaration cClDeclaration = (ClassOrInterfaceDeclaration)fd.getParentNode().get();
-                        if(!resultClassName.endsWith(cClDeclaration.getNameAsString())){
+                        if(!resultClassName.equals(cClDeclaration.getNameAsString())){
                             return;
                         }
 
@@ -409,11 +411,13 @@ public class ParseUtils {
 
         if(TYPE_MODEL.equals(unifyType)){
 
-            ResponseNode childClassNode = new ResponseNode();
-            fieldNode.setChildResponseNode(childClassNode);
-            childClassNode.setList(isList);
+            ClassNode childNode = new ClassNode();
+            childNode.setParentNode(fieldNode.getClassNode());
+            childNode.setList(isList);
+            childNode.setClassName(fieldClassType);
+
+            fieldNode.setChildNode(childNode);
             fieldNode.setType(isList ? fieldClassType + "[]" : fieldClassType);
-            childClassNode.setClassName(fieldClassType);
 
             final File childJavaFile = inJavaFile;
             ((ClassOrInterfaceType)fieldType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
@@ -433,12 +437,17 @@ public class ParseUtils {
 
                 childClassGenericNode.setClassType(argType);
                 childClassGenericNode.setFromJavaFile(childJavaFile);
-                childClassNode.addGenericNode(childClassGenericNode);
+                childNode.addGenericNode(childClassGenericNode);
             }));
 
             try{
                 File childNodeJavaFile = searchJavaFile(inJavaFile, fieldClassType);
-                parseClassNode(childNodeJavaFile, childClassNode);
+                childNode.setClassFileName(childNodeJavaFile.getAbsolutePath());
+                if(!inClassDependencyTree(fieldNode, fieldNode.getClassNode())){
+                    parseClassNode(childNodeJavaFile, childNode);
+                }else {
+                    fieldNode.setLoopNode(Boolean.TRUE);
+                }
             }catch (JavaFileNotFoundException ex){
                 LogUtils.warn(ex.getMessage()+", we cannot found more information of it, you've better to make it a JavaBean");
                 fieldNode.setType(isList? "Object[]": "Object");
@@ -446,6 +455,35 @@ public class ParseUtils {
         } else {
             fieldNode.setType(isList ? unifyType + "[]" : unifyType);
         }
+    }
+
+    /**
+     * 判断本节点是否处在依赖树中，防止出现循环引用
+     *
+     * @param fieldNode
+     * @return
+     */
+    private static boolean inClassDependencyTree(FieldNode fieldNode, ClassNode parentClassNode){
+
+        if(fieldNode.getChildNode().getClassFileName().equals(parentClassNode.getClassFileName())){
+            return true;
+        }
+
+//        for(FieldNode peerNode: parentClassNode.getChildNodes()){
+//            if(peerNode != fieldNode){
+//                if(peerNode.getChildNode() != null){
+//                    if(peerNode.getChildNode().getClassFileName().equals(fieldNode.getChildNode().getClassFileName())){
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+
+        if(parentClassNode.getParentNode() == null){
+            return false;
+        }
+
+        return inClassDependencyTree(fieldNode, parentClassNode.getParentNode());
     }
 
     /**

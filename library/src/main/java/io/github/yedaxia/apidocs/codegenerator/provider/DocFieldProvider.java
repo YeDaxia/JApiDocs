@@ -1,6 +1,7 @@
 package io.github.yedaxia.apidocs.codegenerator.provider;
 
 
+import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.FieldNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 import io.github.yedaxia.apidocs.Utils;
@@ -14,7 +15,7 @@ import java.util.List;
 public class DocFieldProvider implements IFieldProvider {
 
 	@Override
-	public List<FieldModel> provideFields(ResponseNode respNode) {
+	public List<FieldModel> provideFields(ClassNode respNode) {
 		List<FieldNode>recordNodes = respNode.getChildNodes();
 		if(recordNodes == null || recordNodes.isEmpty()){
 			return null;

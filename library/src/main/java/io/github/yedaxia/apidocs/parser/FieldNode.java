@@ -10,9 +10,17 @@ public class FieldNode {
     private String type;
     private String description;
     private MockNode mockNode;
-    private ClassNode childNode;
+    private ClassNode childNode; // 表示该field持有的对象类
+    private ClassNode classNode; // 该field所在的类
+    private Boolean loopNode = Boolean.FALSE; // 有循环引用的类
 
-    private ClassNode classNode; //field node at this class node
+    public Boolean getLoopNode() {
+        return loopNode;
+    }
+
+    public void setLoopNode(Boolean loopNode) {
+        this.loopNode = loopNode;
+    }
 
     public String getName() {
         return name;
@@ -46,21 +54,12 @@ public class FieldNode {
         this.mockNode = mockNode;
     }
 
-    /**
-     * @see #getChildNode
-     * @return
-     */
-    @Deprecated
-    public ClassNode getChildResponseNode() {
-        return childNode;
-    }
-
     public ClassNode getChildNode(){
         return childNode;
     }
 
-    public void setChildResponseNode(ResponseNode childResponseNode) {
-        this.childNode = childResponseNode;
+    public void setChildNode(ClassNode childNode) {
+        this.childNode = childNode;
     }
 
     public ClassNode getClassNode() {
@@ -70,4 +69,5 @@ public class FieldNode {
     public void setClassNode(ClassNode classNode) {
         this.classNode = classNode;
     }
+
 }

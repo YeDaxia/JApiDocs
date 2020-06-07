@@ -1,5 +1,6 @@
 package io.github.yedaxia.apidocs.codegenerator;
 
+import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
 import io.github.yedaxia.apidocs.codegenerator.model.FieldModel;
 
@@ -11,5 +12,5 @@ public interface IFieldProvider {
 	 * @param respNode
 	 * @return
 	 */
-	List<FieldModel> provideFields(ResponseNode respNode);
+	List<FieldModel> provideFields(ClassNode respNode);
 }

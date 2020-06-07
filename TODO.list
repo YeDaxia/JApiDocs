@@ -12,4 +12,4 @@
 4. 集成到eclipse和idea Task。
 5. 支持导出markdown，发布到代码仓库可以在网页上看。
 6. 支持@ApiDoc类级声明
-
+7. 支持不同API文档版本
