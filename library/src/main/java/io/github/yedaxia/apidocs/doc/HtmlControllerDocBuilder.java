@@ -14,9 +14,7 @@ import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.RequestNode;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * build html api docs for a controller
@@ -41,8 +39,13 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder {
         final Template ctrlTemplate = getControllerTpl();
         final File docFile = new File(DocContext.getDocPath(), controllerNode.getDocFileName());
         FileWriter docFileWriter = new FileWriter(docFile);
+        Map<String, Object> data = new HashMap<>();
+        data.put("controller", controllerNode);
+        data.put("currentApiVersion", DocContext.getCurrentApiVersion());
+        data.put("apiVersionList", DocContext.getApiVersionList());
+        data.put("projectName", DocContext.getDocsConfig().getProjectName());
         try {
-            ctrlTemplate.process(controllerNode, docFileWriter);
+            ctrlTemplate.process(data, docFileWriter);
         } catch (TemplateException ex) {
             ex.printStackTrace();
         } finally {

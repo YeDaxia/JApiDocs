@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>**项目API文档</title>
+    <title>${projectName}API接口文档</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="PR.prettyPrint()">
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                JApiDocs
+            <a class="navbar-brand" href="index.html">
+                ${projectName}
             </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">GitHub</a></li>
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">版本 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${currentApiVersion}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <#list apiVersionList as version>
+                            <#if version != currentApiVersion>
+                                <li><a href="../${version}/index.html">${version}</a></li>
+                            </#if>
+                        </#list>
                     </ul>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </div>
 </nav>
 <div class="book with-summary">
@@ -37,21 +40,22 @@
             <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div id="accordion2" class="catalog">
-            <div class="panel">
-                <div id="heading0" data-parent="#accordion2" class="catalog-title" data-toggle="collapse"
-                     aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
-                    <i class="glyphicon glyphicon-align-justify"></i> 第 1 部分: 高阶音阶
+        <div id="accordion" class="catalog">
+            <#list controllerNodeList as ctrolNode>
+                <div class="panel">
+                    <div id="heading${ctrolNode?index}" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                         aria-expanded="true" data-target="#collapse${ctrolNode?index}" aria-controls="collapse${ctrolNode?index}">
+                        <i class="glyphicon glyphicon-align-justify"></i> ${ctrolNode.description}
+                    </div>
+                    <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode?index == 0>in </#if>" aria-labelledby="heading${ctrolNode?index}">
+                        <#list ctrolNode.requestNodes as reqNode>
+                            <a class="catalog-item" href="${reqNode.codeFileUrl}">
+                                ${reqNode.description}
+                            </a>
+                        </#list>
+                    </div>
                 </div>
-                <div id="collapse0" class="collapse in" aria-labelledby="heading0">
-                    <a class="catalog-item" data-try="true" href="#">
-                        第 1 课: 大七和弦简介与大七和弦相关曲目
-                    </a>
-                    <a class="catalog-item" data-try="true" href="#">
-                        第 1 课: 大七和弦简介与大七和弦相关曲目
-                    </a>
-                </div>
-            </div>
+            </#list>
         </div>
     </div>
     <div class="book-body">
@@ -59,7 +63,7 @@
             <div class="book-header">
                 <div class="d-flex justify-content-between">
                     <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
-                            class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                                class="glyphicon glyphicon-align-justify"></i> 目录</a>
                 </div>
             </div>
             <div class="page-wrapper">
@@ -67,12 +71,10 @@
                     <div class="main-content">
                         <img src="http://static.nowait.xin/pic/japidocs-logo.png" width="200" height="200">
                         <h4 style="margin: 20px">本文档由JApiDocs生成</h4>
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">Cras justo odio</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
+                        <div class="list-group" style="min-width: 200px">
+                            <#list controllerNodeList as ctrolNode>
+                                <a href="${ctrolNode.docFileName}" class="list-group-item">${ctrolNode.description}</a>
+                            </#list>
                         </div>
                     </div>
                 </div>
@@ -83,13 +85,18 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
 <script>
 
     var search_source_data = [
-        {id: 1, name: '七和弦', url: ''},
-        {id: 2, name: '五和弦', url: ''},
-        {id: 2, name: '三和弦', url: ''},
+        <#list controllerNodes as ctrolNode>
+        <#list ctrolNode.requestNodes as reqNode>
+        {name: '${ctrolNode.description}.${reqNode.description}', url: '${reqNode.codeFileUrl}'},
+        </#list>
+        </#list>
     ];
+
+
 
     $('.toggle-catalog').click(function () {
         $('.book').toggleClass('with-summary');
@@ -114,7 +121,7 @@
             }
         }
     ]).on('autocomplete:selected', function (event, suggestion, dataset, context) {
-        console.log(event, suggestion, dataset, context);
+        self.location = suggestion.url;
     });
 </script>
 </body>

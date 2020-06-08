@@ -13,6 +13,8 @@ public class DocsConfig {
     String docsPath; // default equals projectPath
     String codeTplPath; // if empty, use the default resources
     String mvcFramework; //spring, play, jfinal, generic, can be empty
+    String apiVersion; // this api version
+    String projectName; //project name
 
     String rapHost;
     String rapLoginCookie;
@@ -115,6 +117,22 @@ public class DocsConfig {
 
     public List<String> getJavaSrcPaths() {
         return javaSrcPaths;
+    }
+
+    public String getApiVersion() {
+        return apiVersion;
+    }
+
+    public void setApiVersion(String apiVersion) {
+        this.apiVersion = apiVersion;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     /**

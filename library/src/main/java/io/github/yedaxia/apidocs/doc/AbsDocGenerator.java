@@ -32,7 +32,7 @@ public abstract class AbsDocGenerator {
     public void generateDocs() {
         LogUtils.info("generate api docs start...");
         generateControllersDocs();
-        generateIndex(docFileLinkList);
+        generateIndex(controllerNodeList);
         LogUtils.info("generate api docs done !!!");
     }
 
@@ -76,5 +76,5 @@ public abstract class AbsDocGenerator {
         return controllerNodeList;
     }
 
-    abstract void generateIndex(List<Link> docFileLinkList);
+    abstract void generateIndex(List<ControllerNode> controllerNodeList);
 }

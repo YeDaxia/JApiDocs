@@ -1,5 +1,7 @@
 package io.github.yedaxia.apidocs.doc;
 
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.LogUtils;
 import io.github.yedaxia.apidocs.Resources;
@@ -8,10 +10,13 @@ import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.AbsControllerParser;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Html Api docs generator
@@ -25,36 +30,39 @@ public class HtmlDocGenerator extends AbsDocGenerator {
     }
 
     @Override
-    void generateIndex(List<Link> docFileNameList) {
-
-        if(docFileNameList.isEmpty()){
-            return;
-        }
-
+    void generateIndex(List<ControllerNode> controllerNodeList) {
+        FileWriter docFileWriter = null;
         try {
-            InputStream tplIndexSteam = Resources.getTemplateFile("api-index.html.tpl");
-            String indexTemplate = Utils.streamToString(tplIndexSteam);
-            StringBuilder indexBuilder = new StringBuilder();
-            for (Link link : docFileNameList) {
-                indexBuilder.append(String.format("<li><a href=\"%s\">%s</a></li>",link.getUrl(), link.getName()));
-            }
-            indexTemplate = indexTemplate.replace("${API_LIST}", indexBuilder.toString());
-            Utils.writeToDisk(new File(DocContext.getDocPath(), "index.html"), indexTemplate);
-        } catch (IOException e) {
-            LogUtils.error("generate index html fail. ",e);
+            final Template ctrlTemplate = getIndexTpl();
+            final File docFile = new File(DocContext.getDocPath(), "index.html");
+            docFileWriter = new FileWriter(docFile);
+            Map<String, Object> data = new HashMap<>();
+            data.put("controllerNodeList", controllerNodeList);
+            data.put("currentApiVersion", DocContext.getCurrentApiVersion());
+            data.put("apiVersionList", DocContext.getApiVersionList());
+            data.put("projectName", DocContext.getDocsConfig().getProjectName());
+            ctrlTemplate.process(data, docFileWriter);
+        } catch (TemplateException | IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            Utils.closeSilently(docFileWriter);
         }
-
         copyCssStyle();
     }
 
-    private void copyCssStyle(){
-        try{
+    private void copyCssStyle() {
+        try {
             String cssFileName = "style.css";
             File cssFile = new File(DocContext.getDocPath(), cssFileName);
-            Utils.writeToDisk(cssFile, Utils.streamToString(Resources.getTemplateFile(cssFileName)));;
-        }catch (IOException  e){
-            LogUtils.error("copyCssStyle fail",e);
+            Utils.writeToDisk(cssFile, Utils.streamToString(Resources.getTemplateFile(cssFileName)));
+            ;
+        } catch (IOException e) {
+            LogUtils.error("copyCssStyle fail", e);
         }
 
+    }
+
+    private Template getIndexTpl() throws IOException {
+        return Resources.getFreemarkerTemplate("api-index.html.ftl");
     }
 }

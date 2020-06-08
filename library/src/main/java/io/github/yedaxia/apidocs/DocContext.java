@@ -25,16 +25,30 @@ public class DocContext {
     private static IResponseWrapper responseWrapper;
     private static DocsConfig config;
 
-    public static void init(DocsConfig config) {
-        DocContext.config = config;
-        setProjectPath(config.projectPath);
-        setDocPath(config.docsPath);
-        Resources.setUserCodeTplPath(config.codeTplPath);
+    private static String currentApiVersion;
+    private static List<String> apiVersionList = new ArrayList<>();
 
+    public static void init(DocsConfig config) {
         if(config.projectPath == null || !new File(config.projectPath).exists()){
             LogUtils.error("projectDir doesn't exists. %s", projectPath);
             return;
         }
+
+        if(config.getApiVersion() == null){
+            LogUtils.error("api version cannot be null");
+            return;
+        }
+
+        if(config.getProjectName() == null){
+            config.setProjectName("JApiDocs");
+        }
+
+        DocContext.config = config;
+        DocContext.currentApiVersion = config.getApiVersion();
+        setProjectPath(config.projectPath);
+        setDocPath(config);
+        initApiVersions();
+        Resources.setUserCodeTplPath(config.codeTplPath);
 
         File logFile = getLogFile();
         if (logFile.exists()) {
@@ -69,6 +83,17 @@ public class DocContext {
         if(javaSrcPaths.isEmpty()){
             String javaSrcPath = findModuleSrcPath(projectDir);
             javaSrcPaths.add(javaSrcPath);
+        }
+    }
+
+    /**
+     * 获取文档目录下所有api版本
+     */
+    private static void initApiVersions(){
+        File docDir = new File(docPath).getParentFile();
+        String[] diffVersionApiDirs = docDir.list((dir, name) -> dir.isDirectory() && !name.startsWith("."));
+        if(diffVersionApiDirs != null){
+            Collections.addAll(DocContext.apiVersionList,  diffVersionApiDirs);
         }
     }
 
@@ -252,17 +277,16 @@ public class DocContext {
         return docPath;
     }
 
-    private static void setDocPath(String docPath) {
-
-        if (docPath == null || docPath.isEmpty()) {
-            docPath = projectPath + "apidocs";
+    private static void setDocPath(DocsConfig config) {
+        if (config.docsPath == null || config.docsPath.isEmpty()) {
+            config.docsPath = projectPath + "apidocs";
         }
 
-        File docDir = new File(docPath);
+        File docDir = new File(config.docsPath, config.apiVersion);
         if (!docDir.exists()) {
             docDir.mkdirs();
         }
-        DocContext.docPath = docPath;
+        DocContext.docPath = docDir.getAbsolutePath();
     }
 
     /**
@@ -311,6 +335,14 @@ public class DocContext {
 
     public static DocsConfig getDocsConfig() {
         return DocContext.config;
+    }
+
+    public static String getCurrentApiVersion() {
+        return currentApiVersion;
+    }
+
+    public static List<String> getApiVersionList() {
+        return apiVersionList;
     }
 
     static void setResponseWrapper(IResponseWrapper responseWrapper) {

@@ -1,36 +1,36 @@
-六月 07, 2020 6:42:29 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/]
-六月 07, 2020 6:42:29 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: project type not set, try to figure out...
-六月 07, 2020 6:42:29 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-六月 07, 2020 6:42:29 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : UserController.java
-六月 07, 2020 6:42:29 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : AdminController.java
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs start...
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:09 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : UserController.java
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think M should not be an enum type
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils warn
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/user/Result.java, className : M, we cannot found more information of it, you've better to make it a JavaBean
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils warn
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/user/Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : UserController.java
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : AdminController.java
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : AdminController.java
-六月 07, 2020 6:42:30 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:10 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
-六月 07, 2020 6:42:31 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:11 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
-六月 07, 2020 6:42:31 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:11 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
-六月 07, 2020 6:42:31 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:11 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
-六月 07, 2020 6:42:31 下午 io.github.yedaxia.apidocs.LogUtils info
+六月 08, 2020 8:25:11 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs done !!!

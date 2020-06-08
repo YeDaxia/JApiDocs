@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>${description}</title>
+    <title>${controller.description}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="PR.prettyPrint()">
-<nav class="navbar navbar-default">
+<nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-                JApiDocs
+            <a class="navbar-brand" href="index.html">
+                ${projectName}
             </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${currentApiVersion}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <#list apiVersionList as version>
+                            <#if version != currentApiVersion>
+                            <li><a href="../${version}/index.html">${version}</a></li>
+                            </#if>
+                        </#list>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -25,13 +41,13 @@
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
         </div>
         <div id="accordion" class="catalog">
-            <#list controllerNodes as ctrolNode>
+            <#list controller.controllerNodes as ctrolNode>
             <div class="panel">
                 <div id="heading${ctrolNode?index}" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                      aria-expanded="true" data-target="#collapse${ctrolNode?index}" aria-controls="collapse${ctrolNode?index}">
                     <i class="glyphicon glyphicon-align-justify"></i> ${ctrolNode.description}
                 </div>
-                <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode.docFileName == docFileName>in </#if>" aria-labelledby="heading${ctrolNode?index}">
+                <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode.docFileName == controller.docFileName>in </#if>" aria-labelledby="heading${ctrolNode?index}">
                     <#list ctrolNode.requestNodes as reqNode>
                         <a class="catalog-item" href="${reqNode.codeFileUrl}">
                             ${reqNode.description}
@@ -53,9 +69,9 @@
             <div class="page-wrapper">
                 <div class="page-inner">
                     <div class="action-list">
-                        <#list requestNodes as reqNode>
+                        <#list controller.requestNodes as reqNode>
                         <div class="action-item">
-                            <h2 id="${reqNode.methodName}"><a href="${reqNode.methodName}">${reqNode.description} <#if reqNode.deprecated><span class="badge">过期</span></#if></a></h2>
+                            <h2 id="${reqNode.methodName}"><a href="#">${reqNode.description} <#if reqNode.deprecated><span class="badge">过期</span></#if></a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
                                 <code>${reqNode.url}</code>
@@ -96,8 +112,8 @@
                                 <pre class="prettyprint lang-json">${reqNode.responseNode.toJsonApi()}</pre>
                                 <#if reqNode.androidCodePath??>
                                     <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.androidCodePath}">Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.iosCodePath}">iOS Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.androidCodePath}"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.iosCodePath}"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
                                     </div>
                                 </#if>
                             </#if>
@@ -117,7 +133,7 @@
 <script>
 
     var search_source_data = [
-        <#list controllerNodes as ctrolNode>
+        <#list controller.controllerNodes as ctrolNode>
             <#list ctrolNode.requestNodes as reqNode>
             {name: '${ctrolNode.description}.${reqNode.description}', url: '${reqNode.codeFileUrl}'},
             </#list>

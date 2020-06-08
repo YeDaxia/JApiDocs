@@ -46,6 +46,8 @@ public class DocsTest {
     private DocsConfig getDocsConfig(String projectPath){
         DocsConfig config = new DocsConfig();
         config.setProjectPath(projectPath);
+        config.setApiVersion("V2.0");
+        config.setProjectName("ProjectName");
         //config.setRapProjectId("1");
         //config.setRapHost("http://rap.yedaxia.me");
         //config.setRapAccount("***");
