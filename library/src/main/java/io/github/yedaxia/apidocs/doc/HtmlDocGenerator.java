@@ -41,6 +41,7 @@ public class HtmlDocGenerator extends AbsDocGenerator {
             data.put("currentApiVersion", DocContext.getCurrentApiVersion());
             data.put("apiVersionList", DocContext.getApiVersionList());
             data.put("projectName", DocContext.getDocsConfig().getProjectName());
+            data.put("i18n", DocContext.getI18n());
             ctrlTemplate.process(data, docFileWriter);
         } catch (TemplateException | IOException ex) {
             ex.printStackTrace();

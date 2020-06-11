@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>${projectName}API接口文档</title>
+    <title>${projectName}API Documentation</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
@@ -37,7 +37,7 @@
 <div class="book with-summary">
     <div class="book-summary">
         <div class="search-box form-group">
-            <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
+            <input type="text" class="form-control" id="inputSearch" placeholder="${i18n.getMessage('searchPlaceholder')}">
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
         </div>
         <div id="accordion" class="catalog">
@@ -63,14 +63,14 @@
             <div class="book-header">
                 <div class="d-flex justify-content-between">
                     <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
-                                class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                                class="glyphicon glyphicon-align-justify"></i> ${i18n.getMessage('catalog')}</a>
                 </div>
             </div>
             <div class="page-wrapper">
                 <div class="page-inner">
                     <div class="main-content">
                         <img src="http://static.nowait.xin/pic/japidocs-logo.png" width="200" height="200">
-                        <h4 style="margin: 20px">本文档由JApiDocs生成</h4>
+                        <h4 style="margin: 20px">${i18n.getMessage('doc.generate.tip')}</h4>
                         <div class="list-group" style="min-width: 200px">
                             <#list controllerNodeList as ctrolNode>
                                 <a href="${ctrolNode.docFileName}" class="list-group-item">${ctrolNode.description}</a>
@@ -89,13 +89,12 @@
 <script>
 
     var search_source_data = [
-        <#list controllerNodes as ctrolNode>
+        <#list controllerNodeList as ctrolNode>
         <#list ctrolNode.requestNodes as reqNode>
         {name: '${ctrolNode.description}.${reqNode.description}', url: '${reqNode.codeFileUrl}'},
         </#list>
         </#list>
     ];
-
 
 
     $('.toggle-catalog').click(function () {

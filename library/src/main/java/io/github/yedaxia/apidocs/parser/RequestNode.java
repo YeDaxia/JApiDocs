@@ -36,7 +36,7 @@ public class RequestNode {
     }
 
     public List<String> getMethod() {
-        if(method == null || (method != null && method.size() == 0)) {
+        if (method == null || (method != null && method.size() == 0)) {
             return Arrays.asList(RequestMethod.GET.name(), RequestMethod.POST.name());
         }
         return method;
@@ -51,9 +51,7 @@ public class RequestNode {
     }
 
     public void setUrl(String url) {
-        if(this.url == null || this.url.isEmpty()){
-            this.url = url;
-        }
+        this.url = url;
     }
 
     public String getDescription() {
@@ -105,17 +103,17 @@ public class RequestNode {
     }
 
     public void addMethod(String method) {
-        if(this.method.contains(method)){
+        if (this.method.contains(method)) {
             return;
         }
         this.method.add(method);
     }
 
-    public void addHeaderNode(HeaderNode headerNode){
+    public void addHeaderNode(HeaderNode headerNode) {
         header.add(headerNode);
     }
 
-    public void addParamNode(ParamNode paramNode){
+    public void addParamNode(ParamNode paramNode) {
         paramNodes.add(paramNode);
     }
 
@@ -127,9 +125,9 @@ public class RequestNode {
         this.controllerNode = controllerNode;
     }
 
-    public ParamNode getParamNodeByName(String name){
-        for(ParamNode node : paramNodes){
-            if(node.getName().equals(name)){
+    public ParamNode getParamNodeByName(String name) {
+        for (ParamNode node : paramNodes) {
+            if (node.getName().equals(name)) {
                 return node;
             }
         }

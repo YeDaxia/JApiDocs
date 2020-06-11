@@ -1,12 +1,21 @@
 package form;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class UserForm<T, M> {
-    private List<T> pictures; //照片
-    private M model; //模型
-
+public class UserForm{
+    private Long id; // 用户ID
+    @NotBlank
+    private String name; //用户名
+    @NotNull
+    private Long phone; //电话
+    @NotEmpty
+    private String avatar; // 头像
+    private Byte gender; //性别
 }

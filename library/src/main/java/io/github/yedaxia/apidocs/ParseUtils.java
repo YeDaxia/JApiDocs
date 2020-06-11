@@ -274,8 +274,11 @@ public class ParseUtils {
                             return;
                         }
 
+                        final boolean notNull = isFieldNotNull(fd);
+
                         fd.getVariables().forEach(field -> {
                             FieldNode fieldNode = new FieldNode();
+                            fieldNode.setNotNull(notNull);
                             fieldNode.setClassNode(classNode);
 
                             classNode.addChildNode(fieldNode);
@@ -316,6 +319,12 @@ public class ParseUtils {
 
         //恢复原来的名称
         classNode.setClassName(resultClassName);
+    }
+
+    private static boolean isFieldNotNull(FieldDeclaration fd){
+        return fd.getAnnotationByName("NotNull").isPresent()
+                || fd.getAnnotationByName("NotBlank").isPresent()
+                || fd.getAnnotationByName("NotEmpty").isPresent();
     }
 
     private static void parseFieldNode(FieldNode fieldNode, File inJavaFile, Type fieldType){

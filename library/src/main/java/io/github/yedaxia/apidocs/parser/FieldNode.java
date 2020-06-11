@@ -13,13 +13,21 @@ public class FieldNode {
     private ClassNode childNode; // 表示该field持有的对象类
     private ClassNode classNode; // 该field所在的类
     private Boolean loopNode = Boolean.FALSE; // 有循环引用的类
-
+    private Boolean notNull;
     public Boolean getLoopNode() {
         return loopNode;
     }
 
     public void setLoopNode(Boolean loopNode) {
         this.loopNode = loopNode;
+    }
+
+    public Boolean getNotNull() {
+        return notNull;
+    }
+
+    public void setNotNull(Boolean notNull) {
+        this.notNull = notNull;
     }
 
     public String getName() {

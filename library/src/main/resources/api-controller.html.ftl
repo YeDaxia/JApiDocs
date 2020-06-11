@@ -37,7 +37,7 @@
 <div class="book with-summary">
     <div class="book-summary">
         <div class="search-box form-group">
-            <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
+            <input type="text" class="form-control" id="inputSearch" placeholder="${i18n.getMessage('searchPlaceholder')}">
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
         </div>
         <div id="accordion" class="catalog">
@@ -63,7 +63,7 @@
             <div class="book-header">
                 <div class="d-flex justify-content-between">
                     <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
-                            class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                            class="glyphicon glyphicon-align-justify"></i> ${i18n.getMessage('catalog')}</a>
                 </div>
             </div>
             <div class="page-wrapper">
@@ -71,8 +71,8 @@
                     <div class="action-list">
                         <#list controller.requestNodes as reqNode>
                         <div class="action-item">
-                            <h2 id="${reqNode.methodName}"><a href="#">${reqNode.description} <#if reqNode.deprecated><span class="badge">过期</span></#if></a></h2>
-                            <p><strong>请求URL</strong></p>
+                            <h2 id="${reqNode.methodName}"><a href="#">${reqNode.description} <#if reqNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
+                            <p><strong>${i18n.getMessage('requestUrl')}</strong></p>
                             <p>
                                 <code>${reqNode.url}</code>
                                 <#list reqNode.method as method>
@@ -80,7 +80,7 @@
                                 </#list>
                             </p>
                             <#if reqNode.paramNodes?size != 0>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>${i18n.getMessage('requestParameters')}</strong></p>
                             <#assign isJsonReqBody = false/>
                             <#list reqNode.paramNodes as paramNode>
                                 <#if paramNode.jsonBody>
@@ -91,16 +91,16 @@
                             <#if !isJsonReqBody>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>参数名</th>
-                                        <th>类型</th>
-                                        <th>必须</th>
-                                        <th>描述</th>
+                                        <th>${i18n.getMessage('parameterName')}</th>
+                                        <th>${i18n.getMessage('parameterType')}</th>
+                                        <th>${i18n.getMessage('parameterNeed')}</th>
+                                        <th>${i18n.getMessage('description')}</th>
                                     </tr>
                                     <#list reqNode.paramNodes as paramNode>
                                     <tr>
                                         <td>${paramNode.name}</td>
                                         <td>${paramNode.type}</td>
-                                        <td>${paramNode.required?string('是','否')}</td>
+                                        <td>${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}</td>
                                         <td>${paramNode.description}</td>
                                     </tr>
                                     </#list>
@@ -108,7 +108,7 @@
                             </#if>
                             </#if>
                             <#if reqNode.responseNode??>
-                                <p><strong>返回结果</strong></p>
+                                <p><strong>${i18n.getMessage('responseResult')}</strong></p>
                                 <pre class="prettyprint lang-json">${reqNode.responseNode.toJsonApi()}</pre>
                                 <#if reqNode.androidCodePath??>
                                     <div class="form-group">

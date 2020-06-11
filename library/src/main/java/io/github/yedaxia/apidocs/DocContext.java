@@ -3,6 +3,7 @@ package io.github.yedaxia.apidocs;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import io.github.yedaxia.apidocs.exception.ConfigException;
 import io.github.yedaxia.apidocs.parser.*;
 
 import javax.rmi.CORBA.Util;
@@ -24,19 +25,18 @@ public class DocContext {
     private static List<File> controllerFiles;
     private static IResponseWrapper responseWrapper;
     private static DocsConfig config;
+    private static I18n i18n;
 
     private static String currentApiVersion;
     private static List<String> apiVersionList = new ArrayList<>();
 
     public static void init(DocsConfig config) {
         if(config.projectPath == null || !new File(config.projectPath).exists()){
-            LogUtils.error("projectDir doesn't exists. %s", projectPath);
-            return;
+            throw new ConfigException(String.format("projectDir doesn't exists. %s", projectPath));
         }
 
         if(config.getApiVersion() == null){
-            LogUtils.error("api version cannot be null");
-            return;
+            throw  new ConfigException("api version cannot be null");
         }
 
         if(config.getProjectName() == null){
@@ -44,6 +44,7 @@ public class DocContext {
         }
 
         DocContext.config = config;
+        i18n = new I18n(config.getLocale());
         DocContext.currentApiVersion = config.getApiVersion();
         setProjectPath(config.projectPath);
         setDocPath(config);
@@ -343,6 +344,10 @@ public class DocContext {
 
     public static List<String> getApiVersionList() {
         return apiVersionList;
+    }
+
+    public static I18n getI18n() {
+        return i18n;
     }
 
     static void setResponseWrapper(IResponseWrapper responseWrapper) {

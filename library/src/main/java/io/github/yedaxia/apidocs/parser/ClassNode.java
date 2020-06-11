@@ -29,6 +29,8 @@ public class ClassNode {
 
     private String classFileName;
 
+    private Boolean showFieldNotNull = Boolean.FALSE;
+
     public String getDescription() {
         return description;
     }
@@ -97,6 +99,14 @@ public class ClassNode {
         this.parentNode = parentNode;
     }
 
+    public Boolean getShowFieldNotNull() {
+        return showFieldNotNull;
+    }
+
+    public void setShowFieldNotNull(Boolean showFieldNotNull) {
+        this.showFieldNotNull = showFieldNotNull;
+    }
+
     public GenericNode getGenericNode(String  type){
         for(GenericNode genericNode : genericNodes){
             if(genericNode.getPlaceholder().equals(type)){
@@ -121,7 +131,7 @@ public class ClassNode {
         }
     }
 
-    public void toJsonApiMap(FieldNode fieldNode, Map<String, Object> map){
+    private void toJsonApiMap(FieldNode fieldNode, Map<String, Object> map){
 
         if(fieldNode.getLoopNode()){
             map.put(fieldNode.getName(), getFieldDesc(fieldNode));
@@ -150,11 +160,16 @@ public class ClassNode {
 
     private String getFieldDesc(FieldNode fieldNode){
         final String fieldType = fieldNode.getLoopNode()? fieldNode.getChildNode().getClassName() + "{}": fieldNode.getType();
+        String fieldDesc = "";
         if(Utils.isNotEmpty(fieldNode.getDescription())){
-            return String.format("%s //%s", fieldType,fieldNode.getDescription());
+            fieldDesc = String.format("%s //%s", fieldType, fieldNode.getDescription());
         }else{
-            return fieldType;
+            fieldDesc = fieldType;
         }
+        if(showFieldNotNull && fieldNode.getNotNull()){
+            fieldDesc =  fieldDesc + "【必须】";
+        }
+        return fieldDesc;
     }
 
 

@@ -2,6 +2,7 @@ package io.github.yedaxia.apidocs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author yeguozhong yedaxia.github.com
@@ -15,6 +16,8 @@ public class DocsConfig {
     String mvcFramework; //spring, play, jfinal, generic, can be empty
     String apiVersion; // this api version
     String projectName; //project name
+    Boolean autoGenerate = Boolean.FALSE; // 自动生成所有Controller的接口文档，不需要@ApiDoc注解
+    Locale locale = Locale.getDefault();
 
     String rapHost;
     String rapLoginCookie;
@@ -127,12 +130,28 @@ public class DocsConfig {
         this.apiVersion = apiVersion;
     }
 
+    public Boolean getAutoGenerate() {
+        return autoGenerate;
+    }
+
+    public void setAutoGenerate(Boolean autoGenerate) {
+        this.autoGenerate = autoGenerate;
+    }
+
     public String getProjectName() {
         return projectName;
     }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
     /**

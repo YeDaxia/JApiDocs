@@ -172,7 +172,7 @@ class Project {
             for (RequestNode requestNode : controllerNode.getRequestNodes()) {
                 Action action = Action.newAction();
                 action.setName(requestNode.getDescription());
-                String requestUrl = controllerNode.getBaseUrl() == null ? requestNode.getUrl() : controllerNode.getBaseUrl() + requestNode.getUrl();
+                String requestUrl = requestNode.getUrl();
                 action.setRequestUrl(supportRestfulUrl(requestUrl));
 
                 List<String> methods = requestNode.getMethod();

@@ -40,41 +40,43 @@
             <div class="panel">
                 <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                      aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
-                    <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+                    <i class="glyphicon glyphicon-align-justify"></i> 图书接口
                 </div>
                 <div id="collapse0" class="collapse " aria-labelledby="heading0">
-                        <a class="catalog-item" href="controller_UserController.html#follow">
-                            关注用户
+                        <a class="catalog-item" href="controller_BookController.html#getBookList">
+                            图书列表
                         </a>
-                        <a class="catalog-item" href="controller_UserController.html#list">
-                            用户列表
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#userInfo">
-                            用户信息
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#favoriteBook">
-                            收藏图书
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#saveUser">
-                            保存用户
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getUserList">
-                            获取用户列表2
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getUserList3">
-                            获取用户列表[无类型信息]
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getMessage">
-                            消息列表
+                        <a class="catalog-item" href="controller_BookController.html#getBookDetail">
+                            图书详情
                         </a>
                 </div>
             </div>
             <div class="panel">
                 <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                      aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                    <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+                </div>
+                <div id="collapse1" class="collapse " aria-labelledby="heading1">
+                        <a class="catalog-item" href="controller_UserController.html#list">
+                            用户列表
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#userInfo">
+                            用户信息
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#saveUser">
+                            保存用户
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#deleteUser">
+                            删除用户
+                        </a>
+                </div>
+            </div>
+            <div class="panel">
+                <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                     aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
                     <i class="glyphicon glyphicon-align-justify"></i> 管理员接口
                 </div>
-                <div id="collapse1" class="collapse in " aria-labelledby="heading1">
+                <div id="collapse2" class="collapse in " aria-labelledby="heading2">
                         <a class="catalog-item" href="controller_admin_AdminController.html#login">
                             管理员登录
                         </a>
@@ -106,11 +108,11 @@
                             <h2 id="login"><a href="#">管理员登录 </a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
-                                <code>/api/v1/admin/login2</code>
+                                <code>/api/v1/admin/login</code>
                                     <span class="label label-default">post</span>
                                     <span class="label label-default">GET</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>参数名</th>
@@ -150,7 +152,7 @@
                                 <code>/api/v1/admin/emailLogin</code>
                                     <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>参数名</th>
@@ -190,7 +192,7 @@
                                 <code>/api/v1/admin/add</code>
                                     <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                     <pre class="prettyprint lang-json">{
   "name": "string //名字",
   "password": "string //密码"
@@ -214,7 +216,7 @@
                                 <code>/api/v1/admin/addMany</code>
                                     <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                     <pre class="prettyprint lang-json">[
   {
     "name": "string //名字",
@@ -248,14 +250,12 @@
 <script>
 
     var search_source_data = [
-            {name: '用户接口.关注用户', url: 'controller_UserController.html#follow'},
+            {name: '图书接口.图书列表', url: 'controller_BookController.html#getBookList'},
+            {name: '图书接口.图书详情', url: 'controller_BookController.html#getBookDetail'},
             {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
             {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
-            {name: '用户接口.收藏图书', url: 'controller_UserController.html#favoriteBook'},
             {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},
-            {name: '用户接口.获取用户列表2', url: 'controller_UserController.html#getUserList'},
-            {name: '用户接口.获取用户列表[无类型信息]', url: 'controller_UserController.html#getUserList3'},
-            {name: '用户接口.消息列表', url: 'controller_UserController.html#getMessage'},
+            {name: '用户接口.删除用户', url: 'controller_UserController.html#deleteUser'},
             {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},
             {name: '管理员接口.邮箱登录', url: 'controller_admin_AdminController.html#emailLogin'},
             {name: '管理员接口.添加管理员', url: 'controller_admin_AdminController.html#addAdmin'},

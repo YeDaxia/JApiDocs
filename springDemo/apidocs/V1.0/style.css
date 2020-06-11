@@ -36,7 +36,7 @@ body, html {
     left: 0;
     bottom: 0;
     overflow-y: auto;
-    color: #000;
+    color: #333;
     background: #fff;
     -webkit-transition: left 250ms ease;
     -moz-transition: left 250ms ease;
@@ -72,7 +72,7 @@ body, html {
 
 .book-header a.header-menu:hover{
     text-decoration: none;
-    color: #8CC7B5;
+    color: #5cb85c;
 }
 
 .page-wrapper {
@@ -131,6 +131,24 @@ body, html {
     }
 }
 
+.navbar{
+    background: #5cb85c;
+    color: #FFF;
+}
+
+.navbar a{
+    color: #FFF;
+}
+.navbar-brand{
+    font-weight: 600;
+}
+
+@media (min-width: 768px){
+    .navbar {
+        border-radius: 0;
+    }
+}
+
 .catalog .panel{
     margin-bottom: 0;
     border-radius: 0;
@@ -144,35 +162,25 @@ body, html {
     padding: 1rem 1.25rem;
     background: rgba(0, 0, 0, .03);
     cursor: pointer;
-    color: #555555;
-    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .catalog-item{
     padding: 8px 15px;
     margin-left: 15px;
-    color: #555555;
+    color: #888;
     border-bottom: solid #EEE 1px;
     display: block;
 }
 
-.catalog-item:hover{
-    background: #EEE;
+.action-item h2 a{
+    color: #5cb85c;
 }
 
-.catalog-item-title .fa-circle{
-    color: #8CC7B5;
-}
-
-.catalog-item.active{
-    color: #8CC7B5;
-}
-
-.catalog-panel-title{
-    background: #8CC7B5;
-    text-align: center;
-    padding: 20px 0;
-    color: #FFF;
+a:hover{
+    color: #449d44;
 }
 
 .search-box{
@@ -184,6 +192,16 @@ body, html {
     margin-bottom: 0;
 }
 
+.main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/**third part*/
+
 .algolia-autocomplete {
     width: 100%;
 }
@@ -191,12 +209,12 @@ body, html {
     width: 100%;
 }
 .algolia-autocomplete .aa-hint {
-    color: #999;
+    color: #888;
 }
 .algolia-autocomplete .aa-dropdown-menu {
     width: 100%;
     background-color: #fff;
-    border: 1px solid #999;
+    border: 1px solid #EEE;
     border-top: none;
 }
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
@@ -204,7 +222,8 @@ body, html {
     padding: 5px 4px;
 }
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #B2D7FF;
+    background-color: #449d44;
+    color: #FFF;
 }
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
     font-weight: bold;

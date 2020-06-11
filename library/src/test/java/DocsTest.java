@@ -6,6 +6,7 @@ import io.github.yedaxia.apidocs.parser.ResponseNode;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -46,6 +47,8 @@ public class DocsTest {
     private DocsConfig getDocsConfig(String projectPath){
         DocsConfig config = new DocsConfig();
         config.setProjectPath(projectPath);
+        config.setAutoGenerate(Boolean.TRUE);
+        config.setLocale(Locale.SIMPLIFIED_CHINESE);
         config.setApiVersion("V2.0");
         config.setProjectName("ProjectName");
         //config.setRapProjectId("1");

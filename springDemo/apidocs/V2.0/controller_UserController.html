@@ -40,41 +40,43 @@
             <div class="panel">
                 <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                      aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
-                    <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+                    <i class="glyphicon glyphicon-align-justify"></i> 图书接口
                 </div>
-                <div id="collapse0" class="collapse in " aria-labelledby="heading0">
-                        <a class="catalog-item" href="controller_UserController.html#follow">
-                            关注用户
+                <div id="collapse0" class="collapse " aria-labelledby="heading0">
+                        <a class="catalog-item" href="controller_BookController.html#getBookList">
+                            图书列表
                         </a>
-                        <a class="catalog-item" href="controller_UserController.html#list">
-                            用户列表
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#userInfo">
-                            用户信息
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#favoriteBook">
-                            收藏图书
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#saveUser">
-                            保存用户
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getUserList">
-                            获取用户列表2
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getUserList3">
-                            获取用户列表[无类型信息]
-                        </a>
-                        <a class="catalog-item" href="controller_UserController.html#getMessage">
-                            消息列表
+                        <a class="catalog-item" href="controller_BookController.html#getBookDetail">
+                            图书详情
                         </a>
                 </div>
             </div>
             <div class="panel">
                 <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                      aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                    <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+                </div>
+                <div id="collapse1" class="collapse in " aria-labelledby="heading1">
+                        <a class="catalog-item" href="controller_UserController.html#list">
+                            用户列表
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#userInfo">
+                            用户信息
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#saveUser">
+                            保存用户
+                        </a>
+                        <a class="catalog-item" href="controller_UserController.html#deleteUser">
+                            删除用户
+                        </a>
+                </div>
+            </div>
+            <div class="panel">
+                <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                     aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
                     <i class="glyphicon glyphicon-align-justify"></i> 管理员接口
                 </div>
-                <div id="collapse1" class="collapse " aria-labelledby="heading1">
+                <div id="collapse2" class="collapse " aria-labelledby="heading2">
                         <a class="catalog-item" href="controller_admin_AdminController.html#login">
                             管理员登录
                         </a>
@@ -103,72 +105,14 @@
                 <div class="page-inner">
                     <div class="action-list">
                         <div class="action-item">
-                            <h2 id="follow"><a href="#">关注用户 </a></h2>
-                            <p><strong>请求URL</strong></p>
-                            <p>
-                                <code>/u/follow</code>
-                                    <span class="label label-default">POST</span>
-                            </p>
-                            <p><strong>参数列表</strong></p>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>参数名</th>
-                                        <th>类型</th>
-                                        <th>必须</th>
-                                        <th>描述</th>
-                                    </tr>
-                                    <tr>
-                                        <td>pictures</td>
-                                        <td>string[]</td>
-                                        <td>否</td>
-                                        <td>照片</td>
-                                    </tr>
-                                    <tr>
-                                        <td>model.name</td>
-                                        <td>string</td>
-                                        <td>否</td>
-                                        <td>名字</td>
-                                    </tr>
-                                    <tr>
-                                        <td>model.password</td>
-                                        <td>string</td>
-                                        <td>否</td>
-                                        <td>密码</td>
-                                    </tr>
-                                </table>
-                                <p><strong>返回结果</strong></p>
-                                <pre class="prettyprint lang-json">{
-  "userId": "string //用户id",
-  "userName": "string //用户名",
-  "friends": [
-    {
-      "userId": "string //用户id",
-      "userName": "string //用户名"
-    }
-  ],
-  "readBooks": [
-    {
-      "bookId": "long //图书id",
-      "bookName": "string //图书名称"
-    }
-  ],
-  "isFollow": "boolean //是否关注"
-}</pre>
-                                    <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_follow_UserVO.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_follow_UserVO.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
-                                    </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
                             <h2 id="list"><a href="#">用户列表 </a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
-                                <code>/u/list</code>
+                                <code>/api/user/list</code>
                                     <span class="label label-default">GET</span>
-                                    <span class="label label-default">OPTIONS</span>
+                                    <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>参数名</th>
@@ -179,39 +123,68 @@
                                     <tr>
                                         <td>page</td>
                                         <td>int</td>
-                                        <td>是</td>
+                                        <td>否</td>
                                         <td>页数</td>
                                     </tr>
                                     <tr>
-                                        <td>pageSize</td>
+                                        <td>limit</td>
                                         <td>int</td>
                                         <td>否</td>
                                         <td>每页条数</td>
                                     </tr>
+                                    <tr>
+                                        <td>sort</td>
+                                        <td>string</td>
+                                        <td>否</td>
+                                        <td>排序</td>
+                                    </tr>
+                                    <tr>
+                                        <td>status</td>
+                                        <td>int</td>
+                                        <td>否</td>
+                                        <td>用户状态</td>
+                                    </tr>
+                                    <tr>
+                                        <td>name</td>
+                                        <td>string</td>
+                                        <td>是</td>
+                                        <td>用户名</td>
+                                    </tr>
                                 </table>
                                 <p><strong>返回结果</strong></p>
-                                <pre class="prettyprint lang-json">[
-  {
-    "userId": "string //用户id",
-    "userName": "string //用户名",
-    "friends": [
+                                <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "total": "int //总记录数",
+    "pageCount": "int //页数",
+    "currentPage": "int //当前页",
+    "pageSize": "int //每页记录数",
+    "list": [
       {
         "userId": "string //用户id",
-        "userName": "string //用户名"
+        "userName": "string //用户名",
+        "friends": [
+          {
+            "userId": "string //用户id",
+            "userName": "string //用户名"
+          }
+        ],
+        "readBooks": [
+          {
+            "bookId": "long //图书id",
+            "bookName": "string //图书名称"
+          }
+        ],
+        "isFollow": "boolean //是否关注"
       }
     ],
-    "readBooks": [
-      {
-        "bookId": "long //图书id",
-        "bookName": "string //图书名称"
-      }
-    ],
-    "isFollow": "boolean //是否关注"
+    "hasMore": "boolean //是否还有更多"
   }
-]</pre>
+}</pre>
                                     <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_list_UserVO.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_list_UserVO.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_list_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_list_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
                                     </div>
                         </div>
                         <hr>
@@ -219,10 +192,10 @@
                             <h2 id="userInfo"><a href="#">用户信息 </a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
-                                <code>/u/info/{userId}</code>
+                                <code>/api/user/user-info/{userId}</code>
                                     <span class="label label-default">GET</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>参数名</th>
@@ -232,64 +205,16 @@
                                     </tr>
                                     <tr>
                                         <td>userId</td>
-                                        <td>string</td>
+                                        <td>long</td>
                                         <td>是</td>
                                         <td>用户id</td>
                                     </tr>
                                 </table>
                                 <p><strong>返回结果</strong></p>
                                 <pre class="prettyprint lang-json">{
-  "userId": "string //用户id",
-  "userName": "string //用户名",
-  "friends": [
-    {
-      "userId": "string //用户id",
-      "userName": "string //用户名"
-    }
-  ],
-  "readBooks": [
-    {
-      "bookId": "long //图书id",
-      "bookName": "string //图书名称"
-    }
-  ],
-  "isFollow": "boolean //是否关注"
-}</pre>
-                                    <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_userInfo_UserVO.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_userInfo_UserVO.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
-                                    </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-                            <h2 id="favoriteBook"><a href="#">收藏图书 </a></h2>
-                            <p><strong>请求URL</strong></p>
-                            <p>
-                                <code>/u/favorite</code>
-                                    <span class="label label-default">POST</span>
-                            </p>
-                            <p><strong>参数列表</strong></p>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>参数名</th>
-                                        <th>类型</th>
-                                        <th>必须</th>
-                                        <th>描述</th>
-                                    </tr>
-                                    <tr>
-                                        <td>bookId</td>
-                                        <td>string</td>
-                                        <td>是</td>
-                                        <td>图书id</td>
-                                    </tr>
-                                </table>
-                                <p><strong>返回结果</strong></p>
-                                <pre class="prettyprint lang-json">{
-  "bookId": "long //图书id",
-  "bookName": "string //图书名称",
-  "storeCount": "int //馆藏数量",
-  "pictures": "string[] //图片",
-  "owner": {
+  "code": "int",
+  "errMsg": "string",
+  "data": {
     "userId": "string //用户id",
     "userName": "string //用户名",
     "friends": [
@@ -308,8 +233,8 @@
   }
 }</pre>
                                     <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_favoriteBook_BookDetailVO.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_favoriteBook_BookDetailVO.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_userInfo_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_userInfo_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
                                     </div>
                         </div>
                         <hr>
@@ -317,23 +242,22 @@
                             <h2 id="saveUser"><a href="#">保存用户 </a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
-                                <code>/u/saveUser</code>
+                                <code>/api/user/save</code>
                                     <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                     <pre class="prettyprint lang-json">{
-  "pictures": "string[] //照片",
-  "model": {
-    "name": "string //名字"
-  }
+  "id": "long //用户ID",
+  "name": "string //用户名【必须】",
+  "phone": "long //电话【必须】",
+  "avatar": "string //头像【必须】",
+  "gender": "byte //性别"
 }</pre>
                                 <p><strong>返回结果</strong></p>
                                 <pre class="prettyprint lang-json">{
-  "bookId": "long //图书id",
-  "bookName": "string //图书名称",
-  "storeCount": "int //馆藏数量",
-  "pictures": "string[] //图片",
-  "owner": {
+  "code": "int",
+  "errMsg": "string",
+  "data": {
     "userId": "string //用户id",
     "userName": "string //用户名",
     "friends": [
@@ -352,19 +276,19 @@
   }
 }</pre>
                                     <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_saveUser_BookDetailVO.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_saveUser_BookDetailVO.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_saveUser_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_saveUser_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
                                     </div>
                         </div>
                         <hr>
                         <div class="action-item">
-                            <h2 id="getUserList"><a href="#">获取用户列表2 </a></h2>
+                            <h2 id="deleteUser"><a href="#">删除用户 </a></h2>
                             <p><strong>请求URL</strong></p>
                             <p>
-                                <code>/u/list-new</code>
+                                <code>/api/user/delete</code>
                                     <span class="label label-default">POST</span>
                             </p>
-                            <p><strong>参数列表</strong></p>
+                            <p><strong>请求参数</strong></p>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>参数名</th>
@@ -373,83 +297,22 @@
                                         <th>描述</th>
                                     </tr>
                                     <tr>
-                                        <td>page</td>
-                                        <td>int</td>
-                                        <td>否</td>
-                                        <td>页数</td>
+                                        <td>userId</td>
+                                        <td>long</td>
+                                        <td>是</td>
+                                        <td>用户ID</td>
                                     </tr>
                                 </table>
                                 <p><strong>返回结果</strong></p>
                                 <pre class="prettyprint lang-json">{
-  "message": "string //消息",
-  "list": [
-    {
-      "userId": "string //用户id",
-      "userName": "string //用户名",
-      "friends": [
-        {
-          "userId": "string //用户id",
-          "userName": "string //用户名"
-        }
-      ],
-      "readBooks": [
-        {
-          "bookId": "long //图书id",
-          "bookName": "string //图书名称"
-        }
-      ],
-      "isFollow": "boolean //是否关注"
-    }
-  ]
+  "code": "int",
+  "errMsg": "string",
+  "data": {}
 }</pre>
                                     <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_getUserList_Result.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_getUserList_Result.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_deleteUser_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_deleteUser_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
                                     </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-                            <h2 id="getUserList3"><a href="#">获取用户列表[无类型信息] </a></h2>
-                            <p><strong>请求URL</strong></p>
-                            <p>
-                                <code>/u/list-new-notype</code>
-                                    <span class="label label-default">POST</span>
-                            </p>
-                            <p><strong>参数列表</strong></p>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>参数名</th>
-                                        <th>类型</th>
-                                        <th>必须</th>
-                                        <th>描述</th>
-                                    </tr>
-                                    <tr>
-                                        <td>page</td>
-                                        <td>int</td>
-                                        <td>否</td>
-                                        <td>页数</td>
-                                    </tr>
-                                </table>
-                                <p><strong>返回结果</strong></p>
-                                <pre class="prettyprint lang-json">{
-  "message": {},
-  "list": []
-}</pre>
-                                    <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_getUserList3_Result.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_getUserList3_Result.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
-                                    </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-                            <h2 id="getMessage"><a href="#">消息列表 </a></h2>
-                            <p><strong>请求URL</strong></p>
-                            <p>
-                                <code>/u/message-list</code>
-                                    <span class="label label-default">POST</span>
-                            </p>
-                                <p><strong>返回结果</strong></p>
-                                <pre class="prettyprint lang-json">string[]</pre>
                         </div>
                         <hr>
                     </div>
@@ -465,14 +328,12 @@
 <script>
 
     var search_source_data = [
-            {name: '用户接口.关注用户', url: 'controller_UserController.html#follow'},
+            {name: '图书接口.图书列表', url: 'controller_BookController.html#getBookList'},
+            {name: '图书接口.图书详情', url: 'controller_BookController.html#getBookDetail'},
             {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
             {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
-            {name: '用户接口.收藏图书', url: 'controller_UserController.html#favoriteBook'},
             {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},
-            {name: '用户接口.获取用户列表2', url: 'controller_UserController.html#getUserList'},
-            {name: '用户接口.获取用户列表[无类型信息]', url: 'controller_UserController.html#getUserList3'},
-            {name: '用户接口.消息列表', url: 'controller_UserController.html#getMessage'},
+            {name: '用户接口.删除用户', url: 'controller_UserController.html#deleteUser'},
             {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},
             {name: '管理员接口.邮箱登录', url: 'controller_admin_AdminController.html#emailLogin'},
             {name: '管理员接口.添加管理员', url: 'controller_admin_AdminController.html#addAdmin'},

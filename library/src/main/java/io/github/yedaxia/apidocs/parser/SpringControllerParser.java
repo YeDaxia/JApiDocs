@@ -26,7 +26,7 @@ public class SpringControllerParser extends AbsControllerParser {
     };
 
     @Override
-    protected void afterHandleController(ControllerNode controllerNode, ClassOrInterfaceDeclaration clazz) {
+    protected void beforeHandleController(ControllerNode controllerNode, ClassOrInterfaceDeclaration clazz) {
         clazz.getAnnotationByName("RequestMapping").ifPresent(a -> {
             if (a instanceof SingleMemberAnnotationExpr) {
                 String baseUrl = ((SingleMemberAnnotationExpr) a).getMemberValue().toString();
@@ -42,7 +42,6 @@ public class SpringControllerParser extends AbsControllerParser {
                         });
             }
         });
-
     }
 
     @Override
@@ -89,12 +88,13 @@ public class SpringControllerParser extends AbsControllerParser {
                         }
                     });
                 }
+
                 if (an instanceof SingleMemberAnnotationExpr) {
                     String url = ((SingleMemberAnnotationExpr) an).getMemberValue().toString();
                     requestNode.setUrl(Utils.removeQuotations(url));
-                    return;
                 }
 
+                requestNode.setUrl(Utils.getActionUrl(getControllerNode().getBaseUrl(), requestNode.getUrl()));
             }
         });
 
@@ -156,6 +156,7 @@ public class SpringControllerParser extends AbsControllerParser {
             ClassNode classNode = new ClassNode();
             ParseUtils.parseClassNodeByType(getControllerFile(), classNode, paramType);
             paramNode.setJsonBody(true);
+            classNode.setShowFieldNotNull(Boolean.TRUE);
             paramNode.setDescription(classNode.toJsonApi());
         }
     }
@@ -169,6 +170,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 paramNode.setName(parentName + filedNode.getName());
                 paramNode.setType(filedNode.getType());
                 paramNode.setDescription(filedNode.getDescription());
+                paramNode.setRequired(filedNode.getNotNull());
                 paramNodeList.add(paramNode);
             }
         });

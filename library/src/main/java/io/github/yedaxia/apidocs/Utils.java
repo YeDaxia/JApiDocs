@@ -121,6 +121,29 @@ public class Utils {
 		return content.replace("*","").replace("\n", "").trim();
 	}
 
+	/**
+	 * get url with base url
+	 * @param baseUrl
+	 * @param relativeUrl
+	 * @return
+	 */
+	public static String getActionUrl(String baseUrl, String relativeUrl){
+
+		if(baseUrl == null){
+			return relativeUrl;
+		}
+
+		if(baseUrl.endsWith("/")){
+			baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
+		}
+
+		if(!relativeUrl.startsWith("/")){
+			relativeUrl = "/" + relativeUrl;
+		}
+
+		return baseUrl + relativeUrl;
+	}
+
     /**
      * make first word lower case
      * @param name

@@ -9,7 +9,9 @@ import result.user.AdminVO;
 import java.util.List;
 
 /**
- * 管理员接口
+ * 演示一些比较特殊的声明方法
+ *
+ * @description 管理员接口
  * @author yeguozhong yedaxia.github.com
  */
 @Controller
