@@ -2,5 +2,7 @@
 
 > A magical api documentation generator without annotation for springboot.
 
-[GitHub](https://github.com/YeDaxia/JApiDocs)
+- Learn in 5 minutes
+
 [Example](http://oss.agilestudio.cn/apidocs/V2.0/index.html)
+[Getting Started](zh-cn/?id=getting-started)

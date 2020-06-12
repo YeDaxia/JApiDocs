@@ -37,7 +37,7 @@ Docs.buildHtmlDocs(config); // execute to generate
 ```
 If there is no accident, after executing the above code, you can see the generated documents in the configured directory.
 
-## Coding Standards
+## Code Style Requirements
 
 JApiDocs is implemented by parsing Java source code. To make JApiDocs work correctly, you need to follow certain coding standards in the writing of `Controller` in the project.
 
@@ -188,6 +188,19 @@ ex：
 
 ```java
 @ApiDoc(result = AdminVO.class, url = "/api/v1/admin/login2", method = "post")
+```
+
+## @Ignore
+
+If you don’t want to export a field in the object, you can add `@Ignore` annotation to this field, so that JApiDocs will automatically ignore it when exporting the document:
+
+ex:
+ 
+ ```java
+public class UserForm{
+    @Ignore
+    private Byte gender;
+}
 ```
 
 ## Custom Code Templates

@@ -173,7 +173,7 @@ public ApiResult<UserVO> saveUser(@RequestBody UserForm userForm){
 
 # 高级配置
 
-## @ApiDoc注解
+## @ApiDoc
 
 JApiDocs 默认只导出声明了`@ApiDoc`的接口，我们前面通过设置 `config.setAutoGenerate(Boolean.TRUE)` 来解除了这个限制。
 
@@ -189,6 +189,19 @@ JApiDocs 默认只导出声明了`@ApiDoc`的接口，我们前面通过设置 `
 
 ```java
 @ApiDoc(result = AdminVO.class, url = "/api/v1/admin/login2", method = "post")
+```
+
+## @Ignore
+
+ 如果你不想导出对象里面的某个字段，可以给这个字段加上`@Ignore`注解，这样JApiDocs导出文档的时候就会自动忽略掉了：
+ 
+例子:
+ 
+ ```java
+public class UserForm{
+    @Ignore
+    private Byte gender; //性别
+}
 ```
 
 ## 自定义代码模板

@@ -234,3 +234,6 @@ public class CustomPlugin implements IPluginSupport{
  config.addPlugin(new CustomPlugin());
 ```
 
+# License
+
+[Apache License](https://github.com/YeDaxia/JApiDocs/blob/master/LICENSE)
