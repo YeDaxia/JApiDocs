@@ -9,7 +9,7 @@ import result.user.UserVO;
 
 /**
  * 用户接口
- * @author yeguozhong yedaxia.github.com
+ * @author yeguozhong
  */
 @RequestMapping("/api/user/")
 @RestController
@@ -19,6 +19,7 @@ public class UserController {
     /**
      * 用户列表
      * @param listForm
+     * @author yedaxia
      */
     @RequestMapping(path = "list", method = {RequestMethod.GET,  RequestMethod.POST}  )
     public ApiResult<PageResult<UserVO>> list(UserListForm listForm){
@@ -28,6 +29,7 @@ public class UserController {
     /**
      * 用户信息
      * @param userId 用户id
+     * @author 周杰伦
      */
     @GetMapping("user-info/{userId}")
     public ApiResult<UserVO> userInfo(@PathVariable Long userId){
@@ -37,6 +39,7 @@ public class UserController {
     /**
      * 保存用户
      * @param userForm
+     * @return
      */
     @PostMapping(path = "save")
     public ApiResult<UserVO> saveUser(@RequestBody UserForm userForm){

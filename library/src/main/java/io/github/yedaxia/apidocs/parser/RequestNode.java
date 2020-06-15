@@ -26,6 +26,7 @@ public class RequestNode {
     private String androidCodePath;
     private String iosCodePath;
     private String codeFileUrl;
+    private String author;
 
     public String getCodeFileUrl() {
         return codeFileUrl;
@@ -148,5 +149,13 @@ public class RequestNode {
 
     public void setIosCodePath(String iosCodePath) {
         this.iosCodePath = iosCodePath;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

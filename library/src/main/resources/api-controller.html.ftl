@@ -72,6 +72,9 @@
                         <#list controller.requestNodes as reqNode>
                         <div class="action-item">
                             <h2 id="${reqNode.methodName}"><a href="#">${reqNode.description} <#if reqNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
+                            <#if reqNode.author??>
+                                <p class="text-muted"><em>${i18n.getMessage('author')}: ${reqNode.author}</em></p>
+                            </#if>
                             <p><strong>${i18n.getMessage('requestUrl')}</strong></p>
                             <p>
                                 <code>${reqNode.url}</code>

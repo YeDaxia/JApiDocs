@@ -94,6 +94,7 @@ public abstract class AbsControllerParser {
 
                     RequestNode requestNode = new RequestNode();
                     requestNode.setControllerNode(controllerNode);
+                    requestNode.setAuthor(controllerNode.getAuthor());
                     requestNode.setMethodName(m.getNameAsString());
                     m.getAnnotationByClass(Deprecated.class).ifPresent(f -> {
                         requestNode.setDeprecated(true);
@@ -102,14 +103,18 @@ public abstract class AbsControllerParser {
                     m.getJavadoc().ifPresent(d -> {
                         String description = d.getDescription().toText();
                         requestNode.setDescription(description);
-                        d.getBlockTags().stream()
-                                .filter(t -> t.getTagName().equals("param"))
-                                .forEach(t -> {
-                                    ParamNode paramNode = new ParamNode();
-                                    paramNode.setName(t.getName().get());
-                                    paramNode.setDescription(t.getContent().toText());
-                                    requestNode.addParamNode(paramNode);
-                                });
+
+                        List<JavadocBlockTag> blockTagList = d.getBlockTags();
+                        for(JavadocBlockTag blockTag: blockTagList){
+                            if(blockTag.getTagName().equals("param")){
+                                ParamNode paramNode = new ParamNode();
+                                paramNode.setName(blockTag.getName().get());
+                                paramNode.setDescription(blockTag.getContent().toText());
+                                requestNode.addParamNode(paramNode);
+                            }else if(blockTag.getTagName().equals("author")){
+                                requestNode.setAuthor(blockTag.getContent().toText());
+                            }
+                        }
                     });
 
                     m.getParameters().forEach(p -> {
