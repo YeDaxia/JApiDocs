@@ -11,7 +11,10 @@ import java.util.List;
  * @author yeguozhong yedaxia.github.com
  */
 public class UserForm{
-    private Long id; // 用户ID
+    /**
+     *  用户ID
+     */
+    private Long id;
     @NotBlank
     private String name; //用户名
     @NotNull

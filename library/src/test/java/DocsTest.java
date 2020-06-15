@@ -3,6 +3,7 @@ import io.github.yedaxia.apidocs.DocsConfig;
 import io.github.yedaxia.apidocs.IResponseWrapper;
 import io.github.yedaxia.apidocs.Resources;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
+import io.github.yedaxia.apidocs.plugin.markdown.MarkdownDocPlugin;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -51,6 +52,7 @@ public class DocsTest {
         config.setLocale(Locale.SIMPLIFIED_CHINESE);
         config.setApiVersion("V2.0");
         config.setProjectName("ProjectName");
+        config.addPlugin(new MarkdownDocPlugin());
         //config.setRapProjectId("1");
         //config.setRapHost("http://rap.yedaxia.me");
         //config.setRapAccount("***");
