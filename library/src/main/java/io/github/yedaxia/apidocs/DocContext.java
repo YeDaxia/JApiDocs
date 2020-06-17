@@ -73,7 +73,6 @@ public class DocContext {
         File projectDir = new File(projectPath);
 
         //module name maybe:
-        //include 'auth'
         //include 'auth:auth-redis'
         List<String> moduleNames = Utils.getModuleNames(projectDir);
         if (!moduleNames.isEmpty()) {
