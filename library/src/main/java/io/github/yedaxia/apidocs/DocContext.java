@@ -72,10 +72,14 @@ public class DocContext {
         //try to find javaSrcPaths
         File projectDir = new File(projectPath);
 
+        //module name maybe:
+        //include 'auth'
+        //include 'auth:auth-redis'
         List<String> moduleNames = Utils.getModuleNames(projectDir);
-        if (moduleNames != null && !moduleNames.isEmpty()) {
+        if (!moduleNames.isEmpty()) {
             for(String moduleName : moduleNames){
-                String javaSrcPath = findModuleSrcPath(new File(projectDir, moduleName));
+                final String moduleRelativePath = moduleName.replace(":","/");
+                String javaSrcPath = findModuleSrcPath(new File(projectDir, moduleRelativePath));
                 javaSrcPaths.add(javaSrcPath);
             }
         }
