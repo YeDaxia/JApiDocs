@@ -50,7 +50,7 @@
                     <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode?index == 0>in </#if>" aria-labelledby="heading${ctrolNode?index}">
                         <#list ctrolNode.requestNodes as reqNode>
                             <a class="catalog-item" href="${reqNode.codeFileUrl}">
-                                ${reqNode.description}
+                                ${(reqNode.description)!''}
                             </a>
                         </#list>
                     </div>
@@ -91,7 +91,7 @@
     var search_source_data = [
         <#list controllerNodeList as ctrolNode>
         <#list ctrolNode.requestNodes as reqNode>
-        {name: '${ctrolNode.description}.${reqNode.description}', url: '${reqNode.codeFileUrl}'},
+        {name: '${ctrolNode.description}.${(reqNode.description)!''}', url: '${reqNode.codeFileUrl}'},
         </#list>
         </#list>
     ];

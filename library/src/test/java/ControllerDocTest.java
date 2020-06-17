@@ -25,6 +25,8 @@ public class ControllerDocTest {
         DocsConfig config = new DocsConfig();
         config.setProjectPath(Projects.SpringProject);
         config.setDocsPath(Projects.ROOT_PATH + "ApiTestDocs");
+        config.setApiVersion("V1.0");
+        config.setAutoGenerate(true);
         DocContext.init(config);
     }
 

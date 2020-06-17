@@ -573,4 +573,16 @@ public class ParseUtils {
             return false;
         }
     }
+
+    /**
+     * like HttpServletRequest, HttpServletSession should be auto ignore
+     * @param param
+     * @return
+     */
+    public static boolean isExcludeParam(Parameter param){
+        final String type =  param.getTypeAsString();
+        return type.equals("HttpServletRequest")
+                || type.equals("HttpServletResponse")
+                || type.equals("HttpSession");
+    }
 }

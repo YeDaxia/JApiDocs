@@ -96,6 +96,9 @@ public abstract class AbsControllerParser {
                     requestNode.setControllerNode(controllerNode);
                     requestNode.setAuthor(controllerNode.getAuthor());
                     requestNode.setMethodName(m.getNameAsString());
+                    requestNode.setUrl(requestNode.getMethodName());
+                    requestNode.setDescription(requestNode.getMethodName());
+
                     m.getAnnotationByClass(Deprecated.class).ifPresent(f -> {
                         requestNode.setDeprecated(true);
                     });
@@ -120,6 +123,12 @@ public abstract class AbsControllerParser {
                     m.getParameters().forEach(p -> {
                         String paraName = p.getName().asString();
                         ParamNode paramNode = requestNode.getParamNodeByName(paraName);
+
+                        if(paramNode != null && ParseUtils.isExcludeParam(p)){
+                            requestNode.getParamNodes().remove(paramNode);
+                            return;
+                        }
+
                         if (paramNode != null) {
                             paramNode.setType(ParseUtils.unifyType(p.getType().asString()));
                         }

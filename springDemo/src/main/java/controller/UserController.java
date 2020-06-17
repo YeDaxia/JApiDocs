@@ -7,6 +7,9 @@ import result.ApiResult;
 import result.PageResult;
 import result.user.UserVO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 用户接口
  * @author yeguozhong
@@ -38,11 +41,12 @@ public class UserController {
 
     /**
      * 保存用户
+     * @param req
      * @param userForm
      * @return
      */
     @PostMapping(path = "save")
-    public ApiResult<UserVO> saveUser(@RequestBody UserForm userForm){
+    public ApiResult<UserVO> saveUser(HttpServletResponse req, @RequestBody UserForm userForm){
         return null;
     }
 
@@ -52,6 +56,10 @@ public class UserController {
      */
     @PostMapping("delete")
     public ApiResult deleteUser(@RequestParam Long userId){
+        return null;
+    }
+
+    public ApiResult hello(){
         return null;
     }
 }

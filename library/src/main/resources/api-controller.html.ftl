@@ -50,7 +50,7 @@
                 <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode.docFileName == controller.docFileName>in </#if>" aria-labelledby="heading${ctrolNode?index}">
                     <#list ctrolNode.requestNodes as reqNode>
                         <a class="catalog-item" href="${reqNode.codeFileUrl}">
-                            ${reqNode.description}
+                            ${(reqNode.description)!''}
                         </a>
                     </#list>
                 </div>
@@ -71,7 +71,7 @@
                     <div class="action-list">
                         <#list controller.requestNodes as reqNode>
                         <div class="action-item">
-                            <h2 id="${reqNode.methodName}"><a href="#">${reqNode.description} <#if reqNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
+                            <h2 id="${reqNode.methodName}"><a href="#">${(reqNode.description)!''} <#if reqNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
                             <#if reqNode.author??>
                                 <p class="text-muted"><em>${i18n.getMessage('author')}: ${reqNode.author}</em></p>
                             </#if>
@@ -138,7 +138,7 @@
     var search_source_data = [
         <#list controller.controllerNodes as ctrolNode>
             <#list ctrolNode.requestNodes as reqNode>
-            {name: '${ctrolNode.description}.${reqNode.description}', url: '${reqNode.codeFileUrl}'},
+            {name: '${ctrolNode.description}.${(reqNode.description)!''}', url: '${reqNode.codeFileUrl}'},
             </#list>
         </#list>
     ];
