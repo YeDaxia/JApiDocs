@@ -2,6 +2,7 @@ package io.github.yedaxia.apidocs;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.github.yedaxia.apidocs.parser.ControllerNode;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class Utils {
 

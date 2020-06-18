@@ -29,6 +29,7 @@ public class Docs {
         DocContext.init(config);
         HtmlDocGenerator docGenerator = new HtmlDocGenerator();
         docGenerator.generateDocs();
+        CacheUtils.saveControllerNodes(docGenerator.getControllerNodeList());
         DocsConfig docsConfig = DocContext.getDocsConfig();
         if(docsConfig.getRapProjectId() != null && docsConfig.getRapHost() != null){
             IPluginSupport rapPlugin = new RapSupportPlugin();

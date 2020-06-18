@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author yeguozhong yedaxia.github.com
  */
-public class ResponseNode extends ClassNode{
+public class ResponseNode extends ClassNode {
 
     private RequestNode requestNode;
 

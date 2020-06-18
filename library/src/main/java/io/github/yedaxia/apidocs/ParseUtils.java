@@ -537,7 +537,7 @@ public class ParseUtils {
         }else if("String".equalsIgnoreCase(rawType)){
             return "string";
         } else if("date".equalsIgnoreCase(rawType)
-                || "ZonedDateTime".equalsIgnoreCase(rawType)){
+                || "ZonedDateTime".equalsIgnoreCase(rawType) || "LocalDateTime".equals(rawType)){
             return "date";
         } else if("file".equalsIgnoreCase(rawType)){
             return "file";

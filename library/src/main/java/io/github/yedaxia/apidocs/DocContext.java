@@ -220,7 +220,7 @@ public class DocContext {
         Utils.wideSearchFile(moduleDir, new FilenameFilter() {
             @Override
             public boolean accept(File file, String name) {
-                if (name.endsWith(".java")) {
+                if (name.endsWith(".java") && file.getAbsolutePath().contains("src")) {
                     Optional<PackageDeclaration> opPackageDeclaration = ParseUtils.compilationUnit(file).getPackageDeclaration();
                     if (opPackageDeclaration.isPresent()) {
                         String packageName = opPackageDeclaration.get().getNameAsString();

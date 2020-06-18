@@ -35,4 +35,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.github.javaparser:javaparser-core:3.6.16'
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+    compile group: 'org.docx4j', name: 'docx4j', version: '6.1.2'
 }
