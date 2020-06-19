@@ -1,6 +1,7 @@
 package io.github.yedaxia.apidocs.parser;
 
 import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.consts.ChangeFlag;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +28,8 @@ public class RequestNode {
     private String iosCodePath;
     private String codeFileUrl;
     private String author;
+    private Byte changeFlag = ChangeFlag.SAME; // 0: same, 1: new, 2: modify
+    private RequestNode lastRequestNode;
 
     public String getCodeFileUrl() {
         return codeFileUrl;
@@ -34,6 +37,14 @@ public class RequestNode {
 
     public void setCodeFileUrl(String codeFileUrl) {
         this.codeFileUrl = codeFileUrl;
+    }
+
+    public RequestNode getLastRequestNode() {
+        return lastRequestNode;
+    }
+
+    public void setLastRequestNode(RequestNode lastRequestNode) {
+        this.lastRequestNode = lastRequestNode;
     }
 
     public List<String> getMethod() {
@@ -157,5 +168,13 @@ public class RequestNode {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public byte getChangeFlag() {
+        return changeFlag;
+    }
+
+    public void setChangeFlag(Byte changeFlag) {
+        this.changeFlag = changeFlag;
     }
 }

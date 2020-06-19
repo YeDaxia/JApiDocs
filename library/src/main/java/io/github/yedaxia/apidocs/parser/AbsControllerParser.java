@@ -10,8 +10,10 @@ import com.github.javaparser.javadoc.JavadocBlockTag;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.consts.ChangeFlag;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,7 +50,7 @@ public abstract class AbsControllerParser {
         return javaFile;
     }
 
-    ControllerNode getControllerNode(){
+    ControllerNode getControllerNode() {
         return controllerNode;
     }
 
@@ -70,7 +72,7 @@ public abstract class AbsControllerParser {
                     if ("author".equalsIgnoreCase(blockTag.getTagName())) {
                         controllerNode.setAuthor(blockTag.getContent().toText());
                     }
-                    if("description".equalsIgnoreCase(blockTag.getTagName())){
+                    if ("description".equalsIgnoreCase(blockTag.getTagName())) {
                         controllerNode.setDescription(blockTag.getContent().toText());
                     }
                 }
@@ -88,7 +90,7 @@ public abstract class AbsControllerParser {
                 .forEach(m -> {
 
                     boolean existsApiDoc = m.getAnnotationByName("ApiDoc").isPresent();
-                    if(!existsApiDoc && !controllerNode.getGenerateDocs() && !DocContext.getDocsConfig().getAutoGenerate()){
+                    if (!existsApiDoc && !controllerNode.getGenerateDocs() && !DocContext.getDocsConfig().getAutoGenerate()) {
                         return;
                     }
 
@@ -108,13 +110,13 @@ public abstract class AbsControllerParser {
                         requestNode.setDescription(description);
 
                         List<JavadocBlockTag> blockTagList = d.getBlockTags();
-                        for(JavadocBlockTag blockTag: blockTagList){
-                            if(blockTag.getTagName().equals("param")){
+                        for (JavadocBlockTag blockTag : blockTagList) {
+                            if (blockTag.getTagName().equals("param")) {
                                 ParamNode paramNode = new ParamNode();
                                 paramNode.setName(blockTag.getName().get());
                                 paramNode.setDescription(blockTag.getContent().toText());
                                 requestNode.addParamNode(paramNode);
-                            }else if(blockTag.getTagName().equals("author")){
+                            } else if (blockTag.getTagName().equals("author")) {
                                 requestNode.setAuthor(blockTag.getContent().toText());
                             }
                         }
@@ -124,7 +126,7 @@ public abstract class AbsControllerParser {
                         String paraName = p.getName().asString();
                         ParamNode paramNode = requestNode.getParamNodeByName(paraName);
 
-                        if(paramNode != null && ParseUtils.isExcludeParam(p)){
+                        if (paramNode != null && ParseUtils.isExcludeParam(p)) {
                             requestNode.getParamNodes().remove(paramNode);
                             return;
                         }
@@ -135,7 +137,7 @@ public abstract class AbsControllerParser {
                     });
 
                     com.github.javaparser.ast.type.Type resultClassType = null;
-                    if(existsApiDoc){
+                    if (existsApiDoc) {
                         AnnotationExpr an = m.getAnnotationByName("ApiDoc").get();
                         if (an instanceof SingleMemberAnnotationExpr) {
                             resultClassType = ((ClassExpr) ((SingleMemberAnnotationExpr) an).getMemberValue()).getType();
@@ -166,8 +168,8 @@ public abstract class AbsControllerParser {
                     responseNode.setRequestNode(requestNode);
                     ParseUtils.parseClassNodeByType(javaFile, responseNode, resultClassType.getElementType());
                     requestNode.setResponseNode(responseNode);
+                    setRequestNodeChangeFlag(requestNode);
                     controllerNode.addRequestNode(requestNode);
-
                 });
     }
 
@@ -191,5 +193,38 @@ public abstract class AbsControllerParser {
      * called after request method node has handled
      */
     protected void afterHandleMethod(RequestNode requestNode, MethodDeclaration md) {
+    }
+
+
+    private void setRequestNodeChangeFlag(RequestNode requestNode) {
+        List<ControllerNode> lastControllerNodeList = DocContext.getLastVersionControllerNodes();
+        if (lastControllerNodeList == null || lastControllerNodeList.isEmpty()) {
+            return;
+        }
+
+        for (ControllerNode lastControllerNode : lastControllerNodeList) {
+            for (RequestNode lastRequestNode : lastControllerNode.getRequestNodes()) {
+                if (lastRequestNode.getUrl().equals(requestNode.getUrl())) {
+                    requestNode.setLastRequestNode(lastRequestNode);
+                    requestNode.setChangeFlag(isSameRequestNodes(requestNode, lastRequestNode) ? ChangeFlag.SAME : ChangeFlag.MODIFY);
+                    return;
+                }
+            }
+        }
+
+        requestNode.setChangeFlag(ChangeFlag.NEW);
+    }
+
+    private boolean isSameRequestNodes(RequestNode requestNode, RequestNode lastRequestNode) {
+
+        for (String lastMethod : lastRequestNode.getMethod()) {
+            if (!requestNode.getMethod().contains(lastMethod)) {
+                return false;
+            }
+        }
+
+        return Utils.toJson(requestNode.getParamNodes()).equals(Utils.toJson(lastRequestNode.getParamNodes()))
+                && Utils.toJson(requestNode.getHeader()).equals(Utils.toJson(lastRequestNode.getHeader()))
+                && requestNode.getResponseNode().toJsonApi().equals(lastRequestNode.getResponseNode().toJsonApi());
     }
 }

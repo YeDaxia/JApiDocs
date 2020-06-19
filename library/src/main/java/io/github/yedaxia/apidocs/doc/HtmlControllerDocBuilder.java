@@ -13,6 +13,7 @@ import io.github.yedaxia.apidocs.codegenerator.java.JavaCodeGenerator;
 import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.RequestNode;
 
+import javax.print.Doc;
 import java.io.*;
 import java.util.*;
 
@@ -40,6 +41,7 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder {
         final File docFile = new File(DocContext.getDocPath(), controllerNode.getDocFileName());
         FileWriter docFileWriter = new FileWriter(docFile);
         Map<String, Object> data = new HashMap<>();
+        data.put("controllerNodeList", DocContext.getControllerNodeList());
         data.put("controller", controllerNode);
         data.put("currentApiVersion", DocContext.getCurrentApiVersion());
         data.put("apiVersionList", DocContext.getApiVersionList());

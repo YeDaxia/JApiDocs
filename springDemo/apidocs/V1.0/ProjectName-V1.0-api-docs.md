@@ -49,7 +49,7 @@ sort|string|否|排序
 
 参数名|类型|必须|描述
 --:|:--:|:--:|:--
-id|long|是|图书ID
+bookId|long|是|图书ID
 **返回结果**
 
 ```json
@@ -78,31 +78,6 @@ id|long|是|图书ID
       ],
       "isFollow": "boolean //是否关注"
     }
-  }
-}
-```
-## 删除图书
-
-*作者: yeguozhong yedaxia.github.com*
-
-**请求URL**
-
-/api/book/del-book `GET` 
-
-**请求参数**
-
-参数名|类型|必须|描述
---:|:--:|:--:|:--
-bookId|long|是|图书ID
-**返回结果**
-
-```json
-{
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "bookId": "long //图书id",
-    "bookName": "string //图书名称"
   }
 }
 ```

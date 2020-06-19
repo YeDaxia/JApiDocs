@@ -31,11 +31,21 @@ public class BookController {
 
     /**
      * 图书详情
-     * @param bookId 图书ID
+     * @param id 图书ID
      * @return
      */
     @GetMapping("book-detail")
-    public ApiResult<BookDetailVO> getBookDetail(@RequestParam Long bookId){
+    public ApiResult<BookDetailVO> getBookDetail(@RequestParam Long id){
+        return null;
+    }
+
+    /**
+     * 删除图书
+     * @param bookId 图书ID
+     * @return
+     */
+    @GetMapping("del-book")
+    public ApiResult<BookVO> delBook(@RequestParam  Long bookId){
         return null;
     }
 }

@@ -28,6 +28,7 @@ public class Docs {
     public static void buildHtmlDocs(DocsConfig config){
         DocContext.init(config);
         HtmlDocGenerator docGenerator = new HtmlDocGenerator();
+        DocContext.setControllerNodeList(docGenerator.getControllerNodeList());
         docGenerator.generateDocs();
         CacheUtils.saveControllerNodes(docGenerator.getControllerNodeList());
         DocsConfig docsConfig = DocContext.getDocsConfig();

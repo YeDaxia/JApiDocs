@@ -45,16 +45,6 @@ public class DocsTest {
         Docs.buildHtmlDocs(getDocsConfig("/Users/yeguozhong/Desktop/svnLibrary/jap"));
     }
 
-    @Test
-    public void test_Mvn(){
-        DocsConfig config = new DocsConfig();
-        config.setProjectPath("/Users/yeguozhong/Downloads/test_JApiDocs"); // 项目根目录
-        config.setProjectName("test_JApiDocs"); // 项目名称
-        config.setApiVersion("V1.0");       // 声明该API的版本
-        config.setAutoGenerate(Boolean.TRUE);  // 配置自动生成
-        Docs.buildHtmlDocs(config); // 执行生成文档
-    }
-
     private DocsConfig getDocsConfig(String projectPath){
         DocsConfig config = new DocsConfig();
         config.setProjectPath(projectPath);

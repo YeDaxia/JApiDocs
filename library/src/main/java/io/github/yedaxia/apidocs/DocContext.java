@@ -5,6 +5,8 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import io.github.yedaxia.apidocs.exception.ConfigException;
 import io.github.yedaxia.apidocs.parser.*;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.rmi.CORBA.Util;
 import java.io.*;
@@ -29,6 +31,8 @@ public class DocContext {
 
     private static String currentApiVersion;
     private static List<String> apiVersionList = new ArrayList<>();
+    private static List<ControllerNode> lastVersionControllerNodes;
+    private static List<ControllerNode> controllerNodeList;
 
     public static void init(DocsConfig config) {
         if(config.projectPath == null || !new File(config.projectPath).exists()){
@@ -66,6 +70,24 @@ public class DocContext {
 
         ProjectType projectType = findOutProjectType();
         findOutControllers(projectType);
+        initLastVersionControllerNodes();
+    }
+
+    private static void initLastVersionControllerNodes(){
+        File docDir = new File(docPath).getParentFile();
+        File[] childDirs = docDir.listFiles();
+        if(childDirs != null && childDirs.length != 0){
+            File lastVerDocDir = null;
+            for(File childDir: childDirs){
+                if(childDir.isDirectory() && !StringUtils.equals(childDir.getName(), currentApiVersion)
+                        && (lastVerDocDir == null || childDir.lastModified() > lastVerDocDir.lastModified())){
+                    lastVerDocDir = childDir;
+                }
+            }
+            if(lastVerDocDir != null){
+                lastVersionControllerNodes = CacheUtils.getControllerNodes(lastVerDocDir.getName());
+            }
+        }
     }
 
     private static void findOutJavaSrcPaths() {
@@ -337,6 +359,14 @@ public class DocContext {
         return responseWrapper;
     }
 
+    public static List<ControllerNode> getControllerNodeList() {
+        return controllerNodeList;
+    }
+
+    static void setControllerNodeList(List<ControllerNode> controllerNodeList) {
+        DocContext.controllerNodeList = controllerNodeList;
+    }
+
     public static DocsConfig getDocsConfig() {
         return DocContext.config;
     }
@@ -347,6 +377,10 @@ public class DocContext {
 
     public static List<String> getApiVersionList() {
         return apiVersionList;
+    }
+
+    public static List<ControllerNode> getLastVersionControllerNodes() {
+        return lastVersionControllerNodes;
     }
 
     public static I18n getI18n() {

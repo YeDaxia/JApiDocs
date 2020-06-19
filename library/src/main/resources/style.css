@@ -200,6 +200,10 @@ a:hover{
     margin-top: 20px;
 }
 
+.text-bold{
+    font-weight: bold;
+}
+
 /**third part*/
 
 .algolia-autocomplete {

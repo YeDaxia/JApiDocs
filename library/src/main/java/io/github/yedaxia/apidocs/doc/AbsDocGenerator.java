@@ -21,9 +21,10 @@ public abstract class AbsDocGenerator {
     private List<Link> docFileLinkList = new ArrayList<>();
     private List<ControllerNode> controllerNodeList = new ArrayList<>();
 
-    public AbsDocGenerator(AbsControllerParser controllerParser, IControllerDocBuilder controllerDocBuilder) {
+     AbsDocGenerator(AbsControllerParser controllerParser, IControllerDocBuilder controllerDocBuilder) {
         this.controllerParser = controllerParser;
         this.controllerDocBuilder = controllerDocBuilder;
+        this.initControllerNodes();
     }
 
     /**
@@ -36,10 +37,8 @@ public abstract class AbsDocGenerator {
         LogUtils.info("generate api docs done !!!");
     }
 
-    private void generateControllersDocs() {
+    private void initControllerNodes(){
         File[] controllerFiles = DocContext.getControllerFiles();
-        File docPath = new File(DocContext.getDocPath());
-
         for (File controllerFile : controllerFiles) {
             LogUtils.info("start to parse controller file : %s", controllerFile.getName());
             ControllerNode controllerNode = controllerParser.parse(controllerFile);
@@ -57,10 +56,12 @@ public abstract class AbsDocGenerator {
             controllerNodeList.add(controllerNode);
             LogUtils.info("success to parse controller file : %s", controllerFile.getName());
         }
+    }
 
+    private void generateControllersDocs() {
+        File docPath = new File(DocContext.getDocPath());
         for (ControllerNode controllerNode : controllerNodeList) {
             try {
-                controllerNode.setControllerNodes(controllerNodeList);
                 LogUtils.info("start to generate docs for controller file : %s", controllerNode.getSrcFileName());
                 final String controllerDocs = controllerDocBuilder.buildDoc(controllerNode);
                 docFileLinkList.add(new Link(controllerNode.getDescription(), String.format("%s", controllerNode.getDocFileName())));

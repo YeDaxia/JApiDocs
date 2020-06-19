@@ -36,27 +36,7 @@
 </nav>
 <div class="book with-summary">
     <div class="book-summary">
-        <div class="search-box form-group">
-            <input type="text" class="form-control" id="inputSearch" placeholder="${i18n.getMessage('searchPlaceholder')}">
-            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <div id="accordion" class="catalog">
-            <#list controller.controllerNodes as ctrolNode>
-            <div class="panel">
-                <div id="heading${ctrolNode?index}" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                     aria-expanded="true" data-target="#collapse${ctrolNode?index}" aria-controls="collapse${ctrolNode?index}">
-                    <i class="glyphicon glyphicon-align-justify"></i> ${ctrolNode.description}
-                </div>
-                <div id="collapse${ctrolNode?index}" class="collapse <#if ctrolNode.docFileName == controller.docFileName>in </#if>" aria-labelledby="heading${ctrolNode?index}">
-                    <#list ctrolNode.requestNodes as reqNode>
-                        <a class="catalog-item" href="${reqNode.codeFileUrl}">
-                            ${(reqNode.description)!''}
-                        </a>
-                    </#list>
-                </div>
-            </div>
-            </#list>
-        </div>
+        <#include "api-common-catalog.html.ftl"/>
     </div>
     <div class="book-body">
         <div class="body-inner">
@@ -71,55 +51,24 @@
                     <div class="action-list">
                         <#list controller.requestNodes as reqNode>
                         <div class="action-item">
-                            <h2 id="${reqNode.methodName}"><a href="#">${(reqNode.description)!''} <#if reqNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
-                            <#if reqNode.author??>
-                                <p class="text-muted"><em>${i18n.getMessage('author')}: ${reqNode.author}</em></p>
-                            </#if>
-                            <p><strong>${i18n.getMessage('requestUrl')}</strong></p>
-                            <p>
-                                <code>${reqNode.url}</code>
-                                <#list reqNode.method as method>
-                                    <span class="label label-default">${method}</span>
-                                </#list>
-                            </p>
-                            <#if reqNode.paramNodes?size != 0>
-                            <p><strong>${i18n.getMessage('requestParameters')}</strong></p>
-                            <#assign isJsonReqBody = false/>
-                            <#list reqNode.paramNodes as paramNode>
-                                <#if paramNode.jsonBody>
-                                    <pre class="prettyprint lang-json">${paramNode.description}</pre>
-                                    <#assign isJsonReqBody = true/>
-                                </#if>
-                            </#list>
-                            <#if !isJsonReqBody>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>${i18n.getMessage('parameterName')}</th>
-                                        <th>${i18n.getMessage('parameterType')}</th>
-                                        <th>${i18n.getMessage('parameterNeed')}</th>
-                                        <th>${i18n.getMessage('description')}</th>
-                                    </tr>
-                                    <#list reqNode.paramNodes as paramNode>
-                                    <tr>
-                                        <td>${paramNode.name}</td>
-                                        <td>${paramNode.type}</td>
-                                        <td>${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}</td>
-                                        <td>${paramNode.description}</td>
-                                    </tr>
-                                    </#list>
-                                </table>
-                            </#if>
-                            </#if>
-                            <#if reqNode.responseNode??>
-                                <p><strong>${i18n.getMessage('responseResult')}</strong></p>
-                                <pre class="prettyprint lang-json">${reqNode.responseNode.toJsonApi()}</pre>
-                                <#if reqNode.androidCodePath??>
-                                    <div class="form-group">
-                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.androidCodePath}"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-                                        <a type="button" class="btn btn-sm btn-default" href="${reqNode.iosCodePath}"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
-                                    </div>
-                                </#if>
-                            </#if>
+                        <#assign requestNode = reqNode/>
+                        <#if reqNode.lastRequestNode?? && reqNode.changeFlag == 2>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#current" aria-controls="current" role="tab" data-toggle="tab">${i18n.getMessage('currentVersion')}</a></li>
+                                <li role="presentation"><a href="#last" aria-controls="last" role="tab" data-toggle="tab">${i18n.getMessage('lastVersion')}</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="current">
+                                    <#include "api-request-node.html.ftl"/>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="last">
+                                    <#assign requestNode = reqNode.lastRequestNode/>
+                                    <#include "api-request-node.html.ftl"/>
+                                </div>
+                            </div>
+                         <#else>
+                            <#include "api-request-node.html.ftl"/>
+                        </#if>
                         </div>
                         <hr>
                         </#list>
@@ -136,7 +85,7 @@
 <script>
 
     var search_source_data = [
-        <#list controller.controllerNodes as ctrolNode>
+        <#list controllerNodeList as ctrolNode>
             <#list ctrolNode.requestNodes as reqNode>
             {name: '${ctrolNode.description}.${(reqNode.description)!''}', url: '${reqNode.codeFileUrl}'},
             </#list>

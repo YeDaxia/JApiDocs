@@ -17,7 +17,6 @@ public class ControllerNode {
     private String packageName;
     private Boolean generateDocs = Boolean.FALSE;
     private List<RequestNode> requestNodes = new ArrayList<>();
-    private List<ControllerNode> controllerNodes = new ArrayList<>();
     private String srcFileName;
     private String docFileName;
 
@@ -95,13 +94,5 @@ public class ControllerNode {
 
     public void setClassName(String className) {
         this.className = className;
-    }
-
-    public List<ControllerNode> getControllerNodes() {
-        return controllerNodes;
-    }
-
-    public void setControllerNodes(List<ControllerNode> controllerNodes) {
-        this.controllerNodes = controllerNodes;
     }
 }

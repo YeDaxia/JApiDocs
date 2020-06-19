@@ -27,9 +27,9 @@ public class CacheUtils {
     public static void saveControllerNodes(List<ControllerNode> controllerNodes) {
         try {
             controllerNodes.forEach(controllerNode -> {
-                controllerNode.setControllerNodes(null);
                 controllerNode.getRequestNodes().forEach(requestNode -> {
                     requestNode.setControllerNode(null);
+                    requestNode.setLastRequestNode(null);
                     ResponseNode responseNode = requestNode.getResponseNode();
                     responseNode.setRequestNode(null);
                     removeLoopNode(responseNode);

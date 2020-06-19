@@ -33,6 +33,7 @@ public class HtmlDocGenerator extends AbsDocGenerator {
     void generateIndex(List<ControllerNode> controllerNodeList) {
         FileWriter docFileWriter = null;
         try {
+            LogUtils.info("generate index start !!!");
             final Template ctrlTemplate = getIndexTpl();
             final File docFile = new File(DocContext.getDocPath(), "index.html");
             docFileWriter = new FileWriter(docFile);
@@ -43,8 +44,9 @@ public class HtmlDocGenerator extends AbsDocGenerator {
             data.put("projectName", DocContext.getDocsConfig().getProjectName());
             data.put("i18n", DocContext.getI18n());
             ctrlTemplate.process(data, docFileWriter);
+            LogUtils.info("generate index done !!!");
         } catch (TemplateException | IOException ex) {
-            ex.printStackTrace();
+            LogUtils.error("generate index fail !!!", ex);
         } finally {
             Utils.closeSilently(docFileWriter);
         }
@@ -56,7 +58,6 @@ public class HtmlDocGenerator extends AbsDocGenerator {
             String cssFileName = "style.css";
             File cssFile = new File(DocContext.getDocPath(), cssFileName);
             Utils.writeToDisk(cssFile, Utils.streamToString(Resources.getTemplateFile(cssFileName)));
-            ;
         } catch (IOException e) {
             LogUtils.error("copyCssStyle fail", e);
         }
