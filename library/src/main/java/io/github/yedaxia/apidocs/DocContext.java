@@ -5,10 +5,7 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import io.github.yedaxia.apidocs.exception.ConfigException;
 import io.github.yedaxia.apidocs.parser.*;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.rmi.CORBA.Util;
 import java.io.*;
 import java.util.*;
 
@@ -79,7 +76,7 @@ public class DocContext {
         if(childDirs != null && childDirs.length != 0){
             File lastVerDocDir = null;
             for(File childDir: childDirs){
-                if(childDir.isDirectory() && !StringUtils.equals(childDir.getName(), currentApiVersion)
+                if(childDir.isDirectory() && !currentApiVersion.equals(childDir.getName())
                         && (lastVerDocDir == null || childDir.lastModified() > lastVerDocDir.lastModified())){
                     lastVerDocDir = childDir;
                 }

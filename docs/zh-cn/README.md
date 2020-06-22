@@ -12,14 +12,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.3'
+compile 'io.github.yedaxia:japidocs:1.4'
 ```
 
 ### 第二步：配置参数
@@ -203,6 +203,18 @@ public class UserForm{
     private Byte gender; //性别
 }
 ```
+
+## 导出更多格式
+
+### 导出markdown
+
+```java
+config.addPlugin(new MarkdownDocPlugin());
+```
+
+### 导出 pdf 或者 word
+
+你可以通过 [pandoc](https://pandoc.org/) 把 markdown 格式转成 pdf 或者 word 格式。
 
 ## 自定义代码模板
 

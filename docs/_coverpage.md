@@ -4,5 +4,5 @@
 
 - Learn in 5 minutes
 
-[Example](http://oss.agilestudio.cn/apidocs/V2.0/index.html)
+[Example](https://japidocs.agilestudio.cn/demo-en/V2.0/index.html)
 [Getting Started](zh-cn/?id=getting-started)

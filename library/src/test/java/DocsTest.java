@@ -49,7 +49,7 @@ public class DocsTest {
         DocsConfig config = new DocsConfig();
         config.setProjectPath(projectPath);
         config.setAutoGenerate(Boolean.TRUE);
-        config.setLocale(Locale.SIMPLIFIED_CHINESE);
+        config.setLocale(Locale.ENGLISH);
         config.setApiVersion("V2.0");
         config.setProjectName("ProjectName");
         config.addPlugin(new MarkdownDocPlugin());

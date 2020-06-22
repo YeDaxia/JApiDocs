@@ -12,14 +12,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.3'
+compile 'io.github.yedaxia:japidocs:1.4'
 ```
 
 ### Step Two：Configuration
@@ -202,6 +202,18 @@ public class UserForm{
     private Byte gender;
 }
 ```
+
+## Export More Format
+
+### Export Markdown
+
+```java
+config.addPlugin(new MarkdownDocPlugin());
+```
+
+### Export Pdf Or Word
+
+You can use [pandoc](https://pandoc.org/) convert markdown to pdf or word.
 
 ## Custom Code Templates
 

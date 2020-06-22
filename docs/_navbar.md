@@ -6,7 +6,7 @@
   * [Support](support.md)
   * [Contact](contact.md)
 
-* Language
+* Lang
 
     * [English](/)
     * [中文](/zh-cn/)

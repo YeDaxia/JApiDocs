@@ -15,14 +15,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.3</version>
+  <version>1.4</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.3'
+compile 'io.github.yedaxia:japidocs:1.4'
 ```
 
 ### Step Two：Configuration
@@ -40,7 +40,7 @@ Docs.buildHtmlDocs(config); // execute to generate
 ```
 If there is no accident, after executing the above code, you can see the generated documents in the configured directory.
 
-## Coding Standards
+## Code Style Requirements
 
 JApiDocs is implemented by parsing Java source code. To make JApiDocs work correctly, you need to follow certain coding standards in the writing of `Controller` in the project.
 
@@ -192,6 +192,31 @@ ex：
 ```java
 @ApiDoc(result = AdminVO.class, url = "/api/v1/admin/login2", method = "post")
 ```
+
+## @Ignore
+
+If you don’t want to export a field in the object, you can add `@Ignore` annotation to this field, so that JApiDocs will automatically ignore it when exporting the document:
+
+ex:
+ 
+ ```java
+public class UserForm{
+    @Ignore
+    private Byte gender;
+}
+```
+
+## Export More Format
+
+### Export Markdown
+
+```java
+config.addPlugin(new MarkdownDocPlugin());
+```
+
+### Export Pdf Or Word
+
+You can use [pandoc](https://pandoc.org/) convert markdown to pdf or word.
 
 ## Custom Code Templates
 

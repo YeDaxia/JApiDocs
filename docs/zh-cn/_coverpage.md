@@ -4,5 +4,5 @@
 
 - 5分钟轻松掌握
 
-[示例](http://oss.agilestudio.cn/apidocs/V2.0/index.html)
+[示例](https://japidocs.agilestudio.cn/demo-zh/V2.0/index.html)
 [快速使用](zh-cn/?id=入门)

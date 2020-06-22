@@ -1,6 +1,5 @@
 package io.github.yedaxia.apidocs;
 
-import com.google.common.collect.Lists;
 import io.github.yedaxia.apidocs.parser.ClassNode;
 import io.github.yedaxia.apidocs.parser.ControllerNode;
 import io.github.yedaxia.apidocs.parser.ResponseNode;
@@ -8,6 +7,7 @@ import io.github.yedaxia.apidocs.parser.ResponseNode;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -69,7 +69,7 @@ public class CacheUtils {
         }
         try {
             ControllerNode[] controllerNodes = Utils.jsonToObject(Utils.streamToString(new FileInputStream(cacheFile)), ControllerNode[].class);
-            return Lists.newArrayList(controllerNodes);
+            return Arrays.asList(controllerNodes);
         } catch (IOException ex) {
             LogUtils.error("get ControllerNodes error!!!", ex);
             return null;

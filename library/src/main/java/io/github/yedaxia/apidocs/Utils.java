@@ -132,6 +132,10 @@ public class Utils {
 	 */
 	public static String getActionUrl(String baseUrl, String relativeUrl){
 
+		if(relativeUrl == null){
+			return "";
+		}
+
 		if(baseUrl == null){
 			return relativeUrl;
 		}

@@ -1,23 +1,6 @@
-# 2018-03-16
 
-1. 不支持类型声明为Object。
-2. 泛型支持。
-3. 提供代码模板，接口文档样式，第三方文档接口平台扩展接口。
+# TODO
 
-# V1.3
-
-1. 更好的使用文档说明和示例
-2. 更美观和编辑的文档页面
-3. 循环引用处理，如果出现循环引用则声明为该类类型
-4. 支持@ApiDoc类级声明
-5. 支持不同API文档版本
-6. 支持参数验证对@NotNull @NotBlank @NotEmpty 注解必传提示
-7. 支持生成英文API文档
-
-# V2.0
-
-1. 支持 markdown 和 PDF 导出
-2. 生成前端接口代码（Java，Js，ObjectC, Dart）
-3. 自动分析和上一版本比较有变化的接口
-4. 接口作者
-5. 自动忽略掉HttpServletRequest，HttpSession等一些内部对象
+1. 生成前端接口代码（Java，Js，ObjectC, Dart）
+2. 对于不在源码的对象，使用反射获取字段信息
+3. 支持部署到[easymock](https://github.com/easy-mock/easy-mock)和[rap2](https://github.com/thx/rap2-delos)
