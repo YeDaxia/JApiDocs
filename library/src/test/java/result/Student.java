@@ -12,6 +12,6 @@ public class Student {
     private InnerStudent innerStudent;
 
     public static class InnerStudent{
-
+        private String school;
     }
 }

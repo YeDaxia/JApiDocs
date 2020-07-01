@@ -45,6 +45,7 @@
             <div id="collapse0" class="collapse in " aria-labelledby="heading0">
                     <a class="catalog-item" href="controller_BookController.html#getBookList">
                         图书列表
+                            <span class="label label-warning">修改</span>
                     </a>
                     <a class="catalog-item" href="controller_BookController.html#getBookDetail">
                         图书详情
@@ -64,12 +65,19 @@
             <div id="collapse1" class="collapse " aria-labelledby="heading1">
                     <a class="catalog-item" href="controller_UserController.html#list">
                         用户列表
+                            <span class="label label-warning">修改</span>
                     </a>
                     <a class="catalog-item" href="controller_UserController.html#userInfo">
                         用户信息
+                            <span class="label label-warning">修改</span>
                     </a>
                     <a class="catalog-item" href="controller_UserController.html#saveUser">
                         保存用户
+                            <span class="label label-warning">修改</span>
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#modifyUser">
+                        修改用户信息
+                            <span class="label label-success">新增</span>
                     </a>
                     <a class="catalog-item" href="controller_UserController.html#deleteUser">
                         删除用户
@@ -112,6 +120,75 @@
                 <div class="page-inner">
                     <div class="action-list">
                         <div class="action-item">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#current" aria-controls="current" role="tab" data-toggle="tab">当前版本</a></li>
+                                <li role="presentation"><a href="#last" aria-controls="last" role="tab" data-toggle="tab">上一版本</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="current">
+<h2 id="getBookList"><a href="#">图书列表 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/list</code>
+        <span class="label label-default">GET</span>
+        <span class="label label-warning">修改</span>
+</p>
+    <p><strong>请求参数</strong></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                <tr>
+                    <td>page</td>
+                    <td>int</td>
+                    <td>否</td>
+                    <td>页数</td>
+                </tr>
+                <tr>
+                    <td>limit</td>
+                    <td>int</td>
+                    <td>否</td>
+                    <td>每页条数</td>
+                </tr>
+                <tr>
+                    <td>sort</td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>排序</td>
+                </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "total": "int //总记录数",
+    "pageCount": "int //页数",
+    "currentPage": "int //当前页",
+    "pageSize": "int //每页记录数",
+    "list": [
+      {
+        "bookId": "long //图书id",
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
+      }
+    ],
+    "hasMore": "boolean //是否还有更多"
+  }
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="last">
 <h2 id="getBookList"><a href="#">图书列表 </a></h2>
     <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
 <p><strong>请求URL</strong></p>
@@ -168,6 +245,8 @@
             <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
             <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
         </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
                         <div class="action-item">
@@ -207,6 +286,10 @@
   "data": {
     "bookId": "long //图书id",
     "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    },
     "storeCount": "int //馆藏数量",
     "pictures": "string[] //图片",
     "owner": {
@@ -221,7 +304,11 @@
       "readBooks": [
         {
           "bookId": "long //图书id",
-          "bookName": "string //图书名称"
+          "bookName": "string //图书名称",
+          "price": {
+            "price": "double //价格",
+            "country": "int //国家"
+          }
         }
       ],
       "isFollow": "boolean //是否关注"
@@ -322,7 +409,11 @@
   "errMsg": "string",
   "data": {
     "bookId": "long //图书id",
-    "bookName": "string //图书名称"
+    "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    }
   }
 }</pre>
         <div class="form-group">
@@ -350,6 +441,7 @@
             {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
             {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
             {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},
+            {name: '用户接口.修改用户信息', url: 'controller_UserController.html#modifyUser'},
             {name: '用户接口.删除用户', url: 'controller_UserController.html#deleteUser'},
             {name: '用户接口.hello', url: 'controller_UserController.html#hello'},
             {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},

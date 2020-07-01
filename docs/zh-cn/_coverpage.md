@@ -1,4 +1,4 @@
-# JApiDocs <small>1.3</small>
+# JApiDocs <small>1.4</small>
 
 > 无需额外注解的 SpringBoot API文档生成工具
 

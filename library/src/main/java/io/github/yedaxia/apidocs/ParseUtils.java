@@ -29,8 +29,6 @@ public class ParseUtils {
      */
     private static final String TYPE_MODEL = "unkown";
 
-    private static final Set<String> classNodeSet = new HashSet<>();
-
     /**
      * search File of className in the java file
      *
@@ -38,7 +36,7 @@ public class ParseUtils {
      * @param className
      * @return
      */
-    public static File searchJavaFile(File inJavaFile, String className){
+    public static File searchJavaFile(File inJavaFile, String className) {
        File file = null;
 
        for(String javaSrcPath : DocContext.getJavaSrcPaths()){
@@ -71,7 +69,7 @@ public class ParseUtils {
             return backTraceJavaFileByName(javaSrcPath, cPaths);
         }
 
-        //inner class
+        //inner class in this file
         if(getInnerClassNode(compilationUnit, className).isPresent()){
             return inJavaFile;
         }
@@ -133,6 +131,18 @@ public class ParseUtils {
                         break;
                     }
                 }
+            }
+        }
+
+        // inner class in other package
+        if(cPaths.length > 1){
+            try{
+                File innerClassFile = searchJavaFile(inJavaFile, cPaths[cPaths.length - 2]);
+                if(getInnerClassNode(compilationUnit(innerClassFile), cPaths[cPaths.length - 1]).isPresent()){
+                    return innerClassFile;
+                }
+            }catch (JavaFileNotFoundException ex){
+                // just ignore
             }
         }
 
@@ -266,7 +276,8 @@ public class ParseUtils {
 
                         //内部类字段也会读取到，这里特殊处理
                         ClassOrInterfaceDeclaration cClDeclaration = (ClassOrInterfaceDeclaration)fd.getParentNode().get();
-                        if(!resultClassName.equals(cClDeclaration.getNameAsString())){
+                        if(!(resultClassName.equals(cClDeclaration.getNameAsString())
+                                || resultClassName.endsWith("." + cClDeclaration.getNameAsString()))){
                             return;
                         }
 
@@ -475,7 +486,9 @@ public class ParseUtils {
      */
     private static boolean inClassDependencyTree(FieldNode fieldNode, ClassNode parentClassNode){
 
-        if(fieldNode.getChildNode().getClassFileName().equals(parentClassNode.getClassFileName())){
+        if(fieldNode.getChildNode().getClassFileName()
+                .equals(parentClassNode.getClassFileName())
+                && fieldNode.getChildNode().getClassName().equals(parentClassNode.getClassName())){
             return true;
         }
 

@@ -30,7 +30,11 @@ sort|string|否|排序
     "list": [
       {
         "bookId": "long //图书id",
-        "bookName": "string //图书名称"
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
       }
     ],
     "hasMore": "boolean //是否还有更多"
@@ -59,6 +63,10 @@ id|long|是|图书ID
   "data": {
     "bookId": "long //图书id",
     "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    },
     "storeCount": "int //馆藏数量",
     "pictures": "string[] //图片",
     "owner": {
@@ -73,7 +81,11 @@ id|long|是|图书ID
       "readBooks": [
         {
           "bookId": "long //图书id",
-          "bookName": "string //图书名称"
+          "bookName": "string //图书名称",
+          "price": {
+            "price": "double //价格",
+            "country": "int //国家"
+          }
         }
       ],
       "isFollow": "boolean //是否关注"
@@ -102,7 +114,11 @@ bookId|long|是|图书ID
   "errMsg": "string",
   "data": {
     "bookId": "long //图书id",
-    "bookName": "string //图书名称"
+    "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    }
   }
 }
 ```
@@ -148,7 +164,11 @@ name|string|是|用户名
         "readBooks": [
           {
             "bookId": "long //图书id",
-            "bookName": "string //图书名称"
+            "bookName": "string //图书名称",
+            "price": {
+              "price": "double //价格",
+              "country": "int //国家"
+            }
           }
         ],
         "isFollow": "boolean //是否关注"
@@ -189,7 +209,11 @@ userId|long|是|用户id
     "readBooks": [
       {
         "bookId": "long //图书id",
-        "bookName": "string //图书名称"
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
       }
     ],
     "isFollow": "boolean //是否关注"
@@ -233,7 +257,57 @@ userId|long|是|用户id
     "readBooks": [
       {
         "bookId": "long //图书id",
-        "bookName": "string //图书名称"
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
+      }
+    ],
+    "isFollow": "boolean //是否关注"
+  }
+}
+```
+## 修改用户信息
+
+*作者: yeguozhong*
+
+**请求URL**
+
+/api/user/modify `POST` 
+
+**请求参数**
+
+参数名|类型|必须|描述
+--:|:--:|:--:|:--
+id|long|否|用户ID
+name|string|是|用户名
+phone|long|是|电话
+avatar|string|是|头像
+gender|byte|否|性别
+**返回结果**
+
+```json
+{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "userId": "string //用户id",
+    "userName": "string //用户名",
+    "friends": [
+      {
+        "userId": "string //用户id",
+        "userName": "string //用户名"
+      }
+    ],
+    "readBooks": [
+      {
+        "bookId": "long //图书id",
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
       }
     ],
     "isFollow": "boolean //是否关注"

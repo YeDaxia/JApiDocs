@@ -50,6 +50,17 @@ public class UserController {
         return null;
     }
 
+
+    /**
+     * 修改用户信息
+     * @param userForm
+     * @return
+     */
+    @PostMapping("modify")
+    public ApiResult<UserVO> modifyUser(UserForm userForm){
+        return null;
+    }
+
     /**
      * 删除用户
      * @param userId 用户ID

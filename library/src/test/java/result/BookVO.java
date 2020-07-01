@@ -1,4 +1,4 @@
-package result.book;
+package result;
 
 import java.math.BigDecimal;
 
