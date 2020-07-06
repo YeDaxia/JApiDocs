@@ -105,6 +105,13 @@ public class SpringControllerParser extends AbsControllerParser {
 
                 p.getAnnotations().forEach(an -> {
                     String name = an.getNameAsString();
+
+                    // @NotNull, @NotBlank, @NotEmpty
+                    if("NotNull".equals(name) || "NotBlank".equals(name) || "NotEmpty".equals(name)){
+                        paramNode.setRequired(true);
+                        return;
+                    }
+
                     if (!"RequestParam".equals(name) && !"RequestBody".equals(name) && !"PathVariable".equals(name)) {
                         return;
                     }
@@ -113,16 +120,19 @@ public class SpringControllerParser extends AbsControllerParser {
                         setRequestBody(paramNode, p.getType());
                     }
 
+                    // @RequestParam String name
                     if (an instanceof MarkerAnnotationExpr) {
                         paramNode.setRequired(true);
                         return;
                     }
 
+                   //  @RequestParam("email") String email
                     if(an instanceof SingleMemberAnnotationExpr){
                         paramNode.setName(((StringLiteralExpr) ((SingleMemberAnnotationExpr) an).getMemberValue()).getValue());
                         return;
                     }
 
+                    // @RequestParam(name = "email", required = true)
                     if (an instanceof NormalAnnotationExpr) {
                         ((NormalAnnotationExpr) an).getPairs().forEach(pair -> {
                             String exprName = pair.getNameAsString();

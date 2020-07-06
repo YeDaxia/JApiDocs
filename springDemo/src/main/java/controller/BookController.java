@@ -1,14 +1,15 @@
 package controller;
 
 import form.PageForm;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.bind.annotation.*;
 import result.ApiResult;
 import result.PageResult;
 import result.book.BookDetailVO;
 import result.book.BookVO;
+
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * 图书接口
@@ -45,7 +46,17 @@ public class BookController {
      * @return
      */
     @GetMapping("del-book")
-    public ApiResult<BookVO> delBook(@RequestParam  Long bookId){
+    public ApiResult<BookVO> delBook(@NotNull Long bookId){
+        return null;
+    }
+
+    /**
+     * 批量删除图书
+     * @param bookIds
+     * @return
+     */
+    @DeleteMapping("del-books")
+    public ApiResult deleteBooks(List<Long> bookIds){
         return null;
     }
 }

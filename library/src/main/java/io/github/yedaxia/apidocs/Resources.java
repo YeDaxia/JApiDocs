@@ -59,6 +59,7 @@ public class Resources {
      */
     public static Template getFreemarkerTemplate(String fileName) throws IOException {
         Configuration conf = new Configuration(Configuration.VERSION_2_3_0);
+        conf.setDefaultEncoding("utf-8");
         if(isDebug){
             conf.setDirectoryForTemplateLoading(new File(sResourcePath));
         }else{

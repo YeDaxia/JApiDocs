@@ -40,6 +40,14 @@ public class ParseUtilsTest {
     }
 
     @Test
+    public void test_searchJavaFile1(){
+        final String javaSrcPath = "H:/koushare/ks-user/src";
+        DocContext.getJavaSrcPaths().add(javaSrcPath);
+        File javaFile = ParseUtils.searchJavaFile(new File("UserController所在目录"), "UserRGMVO");
+        Assert.assertNotNull(javaFile);
+    }
+
+    @Test
     public void test_parseClassNode_InnerClass1() {
         ClassNode classNode = new ClassNode();
         classNode.setClassName("Student.InnerStudent");

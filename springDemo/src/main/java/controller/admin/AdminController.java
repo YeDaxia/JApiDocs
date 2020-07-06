@@ -37,7 +37,7 @@ public class AdminController {
     @RequestMapping(path = "/api/v1/admin/emailLogin", method = RequestMethod.POST)
     @ApiDoc(AdminVO.class)
     @Deprecated
-    public void emailLogin(@RequestParam String email, String password){
+    public void emailLogin(@RequestParam(name = "email", required = true) String email, String password){
 
     }
 

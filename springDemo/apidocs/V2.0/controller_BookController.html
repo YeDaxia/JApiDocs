@@ -55,6 +55,10 @@
                         删除图书
                             <span class="label label-success">新增</span>
                     </a>
+                    <a class="catalog-item" href="controller_BookController.html#deleteBooks">
+                        批量删除图书
+                            <span class="label label-success">新增</span>
+                    </a>
             </div>
         </div>
         <div class="panel">
@@ -422,6 +426,27 @@
         </div>
                         </div>
                         <hr>
+                        <div class="action-item">
+<h2 id="deleteBooks"><a href="#">批量删除图书 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/del-books</code>
+        <span class="label label-default">DELETE</span>
+        <span class="label label-success">新增</span>
+</p>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_deleteBooks_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_deleteBooks_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
                     </div>
                 </div>
             </div>
@@ -438,6 +463,7 @@
             {name: '图书接口.图书列表', url: 'controller_BookController.html#getBookList'},
             {name: '图书接口.图书详情', url: 'controller_BookController.html#getBookDetail'},
             {name: '图书接口.删除图书', url: 'controller_BookController.html#delBook'},
+            {name: '图书接口.批量删除图书', url: 'controller_BookController.html#deleteBooks'},
             {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
             {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
             {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},

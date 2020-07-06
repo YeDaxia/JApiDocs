@@ -122,6 +122,23 @@ bookId|long|是|图书ID
   }
 }
 ```
+## 批量删除图书
+
+*作者: yeguozhong yedaxia.github.com*
+
+**请求URL**
+
+/api/book/del-books `DELETE` 
+
+**返回结果**
+
+```json
+{
+  "code": "int",
+  "errMsg": "string",
+  "data": {}
+}
+```
 # 用户接口
 ## 用户列表
 
