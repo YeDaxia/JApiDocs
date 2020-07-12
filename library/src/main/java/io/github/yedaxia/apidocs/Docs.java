@@ -70,7 +70,7 @@ public class Docs {
             }
 
             config.docsPath = properties.getProperty("docsPath", null);
-            config.codeTplPath = properties.getProperty("codeTplPath", null);
+            config.resourcePath = properties.getProperty("resourcePath", null);
             config.mvcFramework = properties.getProperty("mvcFramework", "");
             return config;
         }catch (IOException e){

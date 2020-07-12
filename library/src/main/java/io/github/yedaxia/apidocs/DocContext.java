@@ -50,7 +50,6 @@ public class DocContext {
         setProjectPath(config.projectPath);
         setDocPath(config);
         initApiVersions();
-        Resources.setUserCodeTplPath(config.codeTplPath);
 
         File logFile = getLogFile();
         if (logFile.exists()) {

@@ -16,4 +16,14 @@ public class Test {
         Docs.buildHtmlDocs(docsConfig);
     }
 
+    @org.junit.Test
+    public void test_gDocsWithResource(){
+        DocsConfig docsConfig = new DocsConfig();
+        docsConfig.setProjectPath("/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo");
+        docsConfig.setApiVersion("V1.0");
+        docsConfig.setAutoGenerate(Boolean.TRUE);
+        docsConfig.setResourcePath("/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources");
+        docsConfig.setDocsPath("/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/apidocs");
+        Docs.buildHtmlDocs(docsConfig);
+    }
 }

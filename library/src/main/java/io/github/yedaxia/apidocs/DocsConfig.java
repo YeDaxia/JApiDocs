@@ -12,7 +12,7 @@ public class DocsConfig {
     String projectPath; // must set
     List<String> javaSrcPaths = new ArrayList<>(); //multi modules support
     String docsPath; // default equals projectPath
-    String codeTplPath; // if empty, use the default resources
+    String resourcePath; // if empty, use the default resources
     String mvcFramework; //spring, play, jfinal, generic, can be empty
     String apiVersion; // this api version
     String projectName; //project name
@@ -64,58 +64,8 @@ public class DocsConfig {
         this.docsPath = docsPath;
     }
 
-    public void setCodeTplPath(String codeTplPath) {
-        this.codeTplPath = codeTplPath;
-    }
-
     public void setMvcFramework(String mvcFramework) {
         this.mvcFramework = mvcFramework;
-    }
-
-    public String getRapHost() {
-        return rapHost;
-    }
-
-    public void setRapHost(String rapHost) {
-        this.rapHost = rapHost;
-    }
-
-    public String getRapLoginCookie() {
-        return rapLoginCookie;
-    }
-
-    /**
-     * use http://rap.yedaxia.me , just set account and password would be better
-     *
-     * @param rapLoginCookie
-     */
-    @Deprecated
-    public void setRapLoginCookie(String rapLoginCookie) {
-        this.rapLoginCookie = rapLoginCookie;
-    }
-
-    public String getRapProjectId() {
-        return rapProjectId;
-    }
-
-    public void setRapProjectId(String rapProjectId) {
-        this.rapProjectId = rapProjectId;
-    }
-
-    public String getRapAccount() {
-        return rapAccount;
-    }
-
-    public void setRapAccount(String rapAccount) {
-        this.rapAccount = rapAccount;
-    }
-
-    public String getRapPassword() {
-        return rapPassword;
-    }
-
-    public void setRapPassword(String rapPassword) {
-        this.rapPassword = rapPassword;
     }
 
     public List<String> getJavaSrcPaths() {
@@ -154,6 +104,14 @@ public class DocsConfig {
         this.locale = locale;
     }
 
+    public String getResourcePath() {
+        return resourcePath;
+    }
+
+    public void setResourcePath(String resourcePath) {
+        this.resourcePath = resourcePath;
+    }
+
     /**
      * if cannot find the java file from other module, you can try to config the java src path yourself.
      *
@@ -161,5 +119,26 @@ public class DocsConfig {
      */
     public void addJavaSrcPath(String javaSrcPath){
         javaSrcPaths.add(javaSrcPath);
+    }
+
+
+    public String getRapHost() {
+        return rapHost;
+    }
+
+    public String getRapLoginCookie() {
+        return rapLoginCookie;
+    }
+
+    public String getRapProjectId() {
+        return rapProjectId;
+    }
+
+    public String getRapAccount() {
+        return rapAccount;
+    }
+
+    public String getRapPassword() {
+        return rapPassword;
     }
 }

@@ -26,6 +26,7 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder {
 
     @Override
     public String buildDoc(ControllerNode controllerNode) throws IOException {
+
         for (RequestNode requestNode : controllerNode.getRequestNodes()) {
             if (requestNode.getResponseNode() != null && !requestNode.getResponseNode().getChildNodes().isEmpty()) {
                 JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(requestNode.getResponseNode());
@@ -47,6 +48,7 @@ public class HtmlControllerDocBuilder implements IControllerDocBuilder {
         data.put("apiVersionList", DocContext.getApiVersionList());
         data.put("projectName", DocContext.getDocsConfig().getProjectName());
         data.put("i18n", DocContext.getI18n());
+
         try {
             ctrlTemplate.process(data, docFileWriter);
         } catch (TemplateException ex) {

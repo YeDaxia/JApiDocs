@@ -53,10 +53,6 @@ public class DocsTest {
         config.setApiVersion("V2.0");
         config.setProjectName("ProjectName");
         config.addPlugin(new MarkdownDocPlugin());
-        //config.setRapProjectId("1");
-        //config.setRapHost("http://rap.yedaxia.me");
-        //config.setRapAccount("***");
-        //config.setRapPassword("123456");
         return config;
     }
 }
