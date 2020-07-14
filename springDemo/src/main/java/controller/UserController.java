@@ -3,12 +3,14 @@ package controller;
 import form.UserForm;
 import form.UserListForm;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import result.ApiResult;
 import result.PageResult;
 import result.user.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 
 /**
  * 用户接口
@@ -50,6 +52,16 @@ public class UserController {
         return null;
     }
 
+    /**
+     * 上传头像
+     *
+     * @param avatar
+     * @return
+     */
+    @PostMapping("upload-avatar")
+    public ApiResult uploadAvatar(MultipartFile avatar){
+        return null;
+    }
 
     /**
      * 修改用户信息

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>图书接口</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="PR.prettyPrint()">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                ProjectName
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V2.0<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="book with-summary">
+    <div class="book-summary">
+<div class="search-box form-group">
+    <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
+    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+</div>
+<div id="accordion" class="catalog">
+        <div class="panel">
+            <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
+                <i class="glyphicon glyphicon-align-justify"></i> 图书接口
+            </div>
+            <div id="collapse0" class="collapse in " aria-labelledby="heading0">
+                    <a class="catalog-item" href="controller_BookController.html#getBookList">
+                        图书列表
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#getBookDetail">
+                        图书详情
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#delBook">
+                        删除图书
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#deleteBooks">
+                        批量删除图书
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+            </div>
+            <div id="collapse1" class="collapse " aria-labelledby="heading1">
+                    <a class="catalog-item" href="controller_UserController.html#list">
+                        用户列表
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#userInfo">
+                        用户信息
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#saveUser">
+                        保存用户
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#uploadAvatar">
+                        上传头像
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#modifyUser">
+                        修改用户信息
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#deleteUser">
+                        删除用户
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#hello">
+                        hello
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
+                <i class="glyphicon glyphicon-align-justify"></i> 管理员接口
+            </div>
+            <div id="collapse2" class="collapse " aria-labelledby="heading2">
+                    <a class="catalog-item" href="controller_admin_AdminController.html#login">
+                        管理员登录
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#emailLogin">
+                        邮箱登录
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#addAdmin">
+                        添加管理员
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#addAdmins">
+                        添加多个管理员
+                    </a>
+            </div>
+        </div>
+</div>    </div>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+                <div class="d-flex justify-content-between">
+                    <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
+                            class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="page-inner">
+                    <div class="action-list">
+                        <div class="action-item">
+<h2 id="getBookList"><a href="#">图书列表 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/list</code>
+        <span class="label label-default">GET</span>
+</p>
+    <p><strong>请求参数</strong></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                <tr>
+                    <td>page</td>
+                    <td>int</td>
+                    <td>否</td>
+                    <td>页数</td>
+                </tr>
+                <tr>
+                    <td>limit</td>
+                    <td>int</td>
+                    <td>否</td>
+                    <td>每页条数</td>
+                </tr>
+                <tr>
+                    <td>sort</td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>排序</td>
+                </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "total": "int //总记录数",
+    "pageCount": "int //页数",
+    "currentPage": "int //当前页",
+    "pageSize": "int //每页记录数",
+    "list": [
+      {
+        "bookId": "long //图书id",
+        "bookName": "string //图书名称",
+        "price": {
+          "price": "double //价格",
+          "country": "int //国家"
+        }
+      }
+    ],
+    "hasMore": "boolean //是否还有更多"
+  }
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_getBookList_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="getBookDetail"><a href="#">图书详情 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/book-detail</code>
+        <span class="label label-default">GET</span>
+</p>
+    <p><strong>请求参数</strong></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                <tr>
+                    <td>id</td>
+                    <td>long</td>
+                    <td>是</td>
+                    <td>图书ID</td>
+                </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "bookId": "long //图书id",
+    "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    },
+    "storeCount": "int //馆藏数量",
+    "pictures": "string[] //图片",
+    "owner": {
+      "userId": "string //用户id",
+      "userName": "string //用户名",
+      "friends": [
+        {
+          "userId": "string //用户id",
+          "userName": "string //用户名"
+        }
+      ],
+      "readBooks": [
+        {
+          "bookId": "long //图书id",
+          "bookName": "string //图书名称",
+          "price": {
+            "price": "double //价格",
+            "country": "int //国家"
+          }
+        }
+      ],
+      "isFollow": "boolean //是否关注"
+    }
+  }
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_getBookDetail_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_getBookDetail_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="delBook"><a href="#">删除图书 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/del-book</code>
+        <span class="label label-default">GET</span>
+</p>
+    <p><strong>请求参数</strong></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                <tr>
+                    <td>bookId</td>
+                    <td>long</td>
+                    <td>是</td>
+                    <td>图书ID</td>
+                </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {
+    "bookId": "long //图书id",
+    "bookName": "string //图书名称",
+    "price": {
+      "price": "double //价格",
+      "country": "int //国家"
+    }
+  }
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_delBook_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_delBook_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="deleteBooks"><a href="#">批量删除图书 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/book/del-books</code>
+        <span class="label label-default">DELETE</span>
+</p>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+  "code": "int",
+  "errMsg": "string",
+  "data": {}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_BookController_deleteBooks_ApiResult.html"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_BookController_deleteBooks_ApiResult.html"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+<script>
+
+    var search_source_data = [
+            {name: '图书接口.图书列表', url: 'controller_BookController.html#getBookList'},
+            {name: '图书接口.图书详情', url: 'controller_BookController.html#getBookDetail'},
+            {name: '图书接口.删除图书', url: 'controller_BookController.html#delBook'},
+            {name: '图书接口.批量删除图书', url: 'controller_BookController.html#deleteBooks'},
+            {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
+            {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
+            {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},
+            {name: '用户接口.上传头像', url: 'controller_UserController.html#uploadAvatar'},
+            {name: '用户接口.修改用户信息', url: 'controller_UserController.html#modifyUser'},
+            {name: '用户接口.删除用户', url: 'controller_UserController.html#deleteUser'},
+            {name: '用户接口.hello', url: 'controller_UserController.html#hello'},
+            {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},
+            {name: '管理员接口.邮箱登录', url: 'controller_admin_AdminController.html#emailLogin'},
+            {name: '管理员接口.添加管理员', url: 'controller_admin_AdminController.html#addAdmin'},
+            {name: '管理员接口.添加多个管理员', url: 'controller_admin_AdminController.html#addAdmins'},
+    ];
+
+
+
+    $('.toggle-catalog').click(function () {
+        $('.book').toggleClass('with-summary');
+    });
+
+    $('#inputSearch').autocomplete({hint: false}, [
+        {
+            source: function (query, callback) {
+                var result = [];
+                for(var i = 0; i !== search_source_data.length; i++){
+                    if(search_source_data[i].name.indexOf(query) !== -1){
+                        result.push(search_source_data[i]);
+                    }
+                }
+                callback(result);
+            },
+            displayKey: 'name',
+            templates: {
+                suggestion: function (suggestion) {
+                    return suggestion.name;
+                }
+            }
+        }
+    ]).on('autocomplete:selected', function (event, suggestion, dataset, context) {
+        self.location = suggestion.url;
+    });
+</script>
+</body>
+</html>

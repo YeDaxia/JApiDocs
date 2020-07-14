@@ -552,7 +552,7 @@ public class ParseUtils {
         } else if("date".equalsIgnoreCase(rawType)
                 || "ZonedDateTime".equalsIgnoreCase(rawType) || "LocalDateTime".equals(rawType)){
             return "date";
-        } else if("file".equalsIgnoreCase(rawType)){
+        } else if("file".equalsIgnoreCase(rawType) || "MultipartFile".equalsIgnoreCase(rawType)){
             return "file";
         } else{
             return TYPE_MODEL;
