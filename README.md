@@ -15,14 +15,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.4</version>
+  <version>1.4.1</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.4'
+compile 'io.github.yedaxia:japidocs:1.4.1'
 ```
 
 ### Step Two：Configuration

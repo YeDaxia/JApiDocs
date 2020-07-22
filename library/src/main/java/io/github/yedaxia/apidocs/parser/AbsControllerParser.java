@@ -13,7 +13,6 @@ import io.github.yedaxia.apidocs.Utils;
 import io.github.yedaxia.apidocs.consts.ChangeFlag;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -195,7 +194,6 @@ public abstract class AbsControllerParser {
      * @param responseNode
      * @param resultType
      * @param controllerFile
-     * @return
      */
     protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType, File controllerFile){
         ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);

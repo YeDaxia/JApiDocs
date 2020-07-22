@@ -13,6 +13,16 @@ public class Resources {
     private static boolean isDebug = false;
     private static String debugResourcePath;
 
+    static {
+        try {
+            if(!isDebug){
+                freemarker.log.Logger.selectLoggerLibrary(freemarker.log.Logger.LIBRARY_NONE);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * get template file
      * @param fileName

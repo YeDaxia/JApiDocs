@@ -8,3 +8,7 @@
 
 # V1.4.1
 
+1. support ResponseEntity in SpringBoot
+2. use reflection when JavaBean without java source code
+3. fix some bugs
+
