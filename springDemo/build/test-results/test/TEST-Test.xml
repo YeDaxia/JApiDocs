@@ -1,129 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-12T13:54:29" hostname="yeguozhongdeMacBook-Pro.local" time="2.515">
+<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-22T12:37:44" hostname="yeguozhongdeMacBook-Pro.local" time="24.038">
   <properties/>
-  <testcase name="test_gDocsWithResource" classname="Test" time="2.515"/>
-  <system-out><![CDATA[21:54:30.834 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:30.841 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
-21:54:30.845 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
-21:54:30.846 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
-21:54:30.847 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-controller.html.ftl"
-21:54:31.075 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.076 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
-21:54:31.076 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
-21:54:31.076 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
-21:54:31.076 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-common-catalog.html.ftl"
-21:54:31.220 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.221 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
-21:54:31.221 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
-21:54:31.221 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
-21:54:31.221 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-request-node.html.ftl"
-21:54:31.242 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.244 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.246 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.296 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.296 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
-21:54:31.296 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
-21:54:31.296 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
-21:54:31.297 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-controller.html.ftl"
-21:54:31.308 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.309 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
-21:54:31.309 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
-21:54:31.311 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
-21:54:31.312 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-common-catalog.html.ftl"
-21:54:31.318 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.318 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
-21:54:31.319 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
-21:54:31.319 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
-21:54:31.320 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-request-node.html.ftl"
-21:54:31.330 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.339 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.344 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.401 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.405 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.425 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.425 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
-21:54:31.425 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
-21:54:31.426 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
-21:54:31.426 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-controller.html.ftl"
-21:54:31.433 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.433 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
-21:54:31.433 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
-21:54:31.434 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
-21:54:31.434 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-common-catalog.html.ftl"
-21:54:31.440 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.440 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
-21:54:31.440 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
-21:54:31.440 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
-21:54:31.440 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-request-node.html.ftl"
-21:54:31.446 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.447 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.448 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
-21:54:31.455 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-index.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.456 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html_zh_CN.ftl"): Not found
-21:54:31.456 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html_zh.ftl"): Not found
-21:54:31.457 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html.ftl"): Found
-21:54:31.457 [Test worker] DEBUG freemarker.cache - Loading template for "api-index.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-index.html.ftl"
-21:54:31.463 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
-21:54:31.463 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
-21:54:31.463 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
-21:54:31.464 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
-21:54:31.464 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/main/resources/api-common-catalog.html.ftl"
+  <testcase name="test_gDocs" classname="Test" time="24.038"/>
+  <system-out><![CDATA[20:38:08.287 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.292 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
+20:38:08.294 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
+20:38:08.295 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
+20:38:08.295 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-controller.html.ftl"
+20:38:08.479 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.479 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
+20:38:08.479 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
+20:38:08.481 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
+20:38:08.481 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-common-catalog.html.ftl"
+20:38:08.566 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.566 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
+20:38:08.567 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
+20:38:08.569 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
+20:38:08.570 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-request-node.html.ftl"
+20:38:08.586 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.588 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.589 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.591 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.592 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.617 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.618 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
+20:38:08.618 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
+20:38:08.620 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
+20:38:08.620 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-controller.html.ftl"
+20:38:08.629 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.630 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
+20:38:08.631 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
+20:38:08.632 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
+20:38:08.633 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-common-catalog.html.ftl"
+20:38:08.640 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.641 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
+20:38:08.642 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
+20:38:08.643 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
+20:38:08.645 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-request-node.html.ftl"
+20:38:08.653 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.661 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.663 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.669 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.681 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.688 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.708 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-controller.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.709 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh_CN.ftl"): Not found
+20:38:08.710 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html_zh.ftl"): Not found
+20:38:08.710 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-controller.html.ftl"): Found
+20:38:08.710 [Test worker] DEBUG freemarker.cache - Loading template for "api-controller.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-controller.html.ftl"
+20:38:08.719 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.719 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
+20:38:08.721 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
+20:38:08.722 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
+20:38:08.722 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-common-catalog.html.ftl"
+20:38:08.727 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-request-node.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.727 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh_CN.ftl"): Not found
+20:38:08.729 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html_zh.ftl"): Not found
+20:38:08.729 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-request-node.html.ftl"): Found
+20:38:08.730 [Test worker] DEBUG freemarker.cache - Loading template for "api-request-node.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-request-node.html.ftl"
+20:38:08.739 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.741 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.744 [Test worker] DEBUG freemarker.cache - "api-request-node.html.ftl"("zh_CN", utf-8, parsed) cached copy not yet stale; using cached.
+20:38:08.755 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-index.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.757 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html_zh_CN.ftl"): Not found
+20:38:08.757 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html_zh.ftl"): Not found
+20:38:08.758 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-index.html.ftl"): Found
+20:38:08.758 [Test worker] DEBUG freemarker.cache - Loading template for "api-index.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-index.html.ftl"
+20:38:08.764 [Test worker] DEBUG freemarker.cache - Couldn't find template in cache for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed); will try to load it.
+20:38:08.765 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh_CN.ftl"): Not found
+20:38:08.765 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html_zh.ftl"): Not found
+20:38:08.765 [Test worker] DEBUG freemarker.cache - TemplateLoader.findTemplateSource("api-common-catalog.html.ftl"): Found
+20:38:08.766 [Test worker] DEBUG freemarker.cache - Loading template for "api-common-catalog.html.ftl"("zh_CN", utf-8, parsed) from "jar:file:/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/build/libs/io.github.yedaxia.apidocs-1.4-min.jar!/api-common-catalog.html.ftl"
 ]]></system-out>
-  <system-err><![CDATA[七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+  <system-err><![CDATA[七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/]
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: project type not set, try to figure out...
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : BookController.java
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : UserController.java
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: find controller file : AdminController.java
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : BookController.java
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils warn
+七月 22, 2020 8:37:45 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : BookController.java
-七月 12, 2020 9:54:29 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : UserController.java
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils warn
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: we think T should not be an enum type
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils warn
+七月 22, 2020 8:38:07 下午 io.github.yedaxia.apidocs.LogUtils warn
 警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : UserController.java
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to parse controller file : AdminController.java
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to parse controller file : AdminController.java
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs start...
-七月 12, 2020 9:54:30 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/BookController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/BookController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate index start !!!
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate index done !!!
-七月 12, 2020 9:54:31 下午 io.github.yedaxia.apidocs.LogUtils info
+七月 22, 2020 8:38:08 下午 io.github.yedaxia.apidocs.LogUtils info
 信息: info: generate api docs done !!!
 ]]></system-err>
 </testsuite>

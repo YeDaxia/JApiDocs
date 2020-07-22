@@ -166,7 +166,7 @@ public abstract class AbsControllerParser {
 
                     ResponseNode responseNode = new ResponseNode();
                     responseNode.setRequestNode(requestNode);
-                    ParseUtils.parseClassNodeByType(javaFile, responseNode, resultClassType.getElementType());
+                    handleResponseNode(responseNode, resultClassType.getElementType(), javaFile);
                     requestNode.setResponseNode(responseNode);
                     setRequestNodeChangeFlag(requestNode);
                     controllerNode.addRequestNode(requestNode);
@@ -187,6 +187,18 @@ public abstract class AbsControllerParser {
      * @param clazz
      */
     protected void afterHandleController(ControllerNode controllerNode, ClassOrInterfaceDeclaration clazz) {
+    }
+
+    /**
+     * handle response object
+     *
+     * @param responseNode
+     * @param resultType
+     * @param controllerFile
+     * @return
+     */
+    protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType, File controllerFile){
+        ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);
     }
 
     /**

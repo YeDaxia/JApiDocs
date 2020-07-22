@@ -32,7 +32,8 @@ shadowJar {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'com.google.code.gson:gson:2.8.0'
+
+    compile 'com.alibaba:fastjson:1.2.70'
     compile 'com.github.javaparser:javaparser-core:3.6.16'
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
 }

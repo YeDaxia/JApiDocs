@@ -5,13 +5,19 @@ import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
+import io.github.yedaxia.apidocs.LogUtils;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
 
+import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * use for spring mvc
@@ -107,7 +113,7 @@ public class SpringControllerParser extends AbsControllerParser {
                     String name = an.getNameAsString();
 
                     // @NotNull, @NotBlank, @NotEmpty
-                    if("NotNull".equals(name) || "NotBlank".equals(name) || "NotEmpty".equals(name)){
+                    if(ParseUtils.isNotNullAnnotation(name)){
                         paramNode.setRequired(true);
                         return;
                     }
@@ -159,6 +165,26 @@ public class SpringControllerParser extends AbsControllerParser {
                 }
             }
         });
+    }
+
+    @Override
+    protected void handleResponseNode(ResponseNode responseNode, Type resultType, File controllerFile) {
+        if(resultType instanceof ClassOrInterfaceType) {
+            String className = ((ClassOrInterfaceType) resultType).getName().getIdentifier();
+            if("org.springframework.http.ResponseEntity".endsWith(className)){
+                Optional<NodeList<Type>> nodeListOptional = ((ClassOrInterfaceType) resultType).getTypeArguments();
+                if(nodeListOptional.isPresent()){
+                    NodeList<Type> typeNodeList = nodeListOptional.get();
+                    if(!typeNodeList.isEmpty()){
+                        resultType = typeNodeList.get(0).getElementType();
+                    }
+                }else{
+                    responseNode.setClassName(className);
+                    return;
+                }
+            }
+        }
+        super.handleResponseNode(responseNode, resultType, controllerFile);
     }
 
     private void setRequestBody(ParamNode paramNode, Type paramType) {

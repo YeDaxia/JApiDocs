@@ -1,11 +1,8 @@
 package io.github.yedaxia.apidocs;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import io.github.yedaxia.apidocs.parser.ControllerNode;
+import com.alibaba.fastjson.JSONObject;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
@@ -13,10 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class Utils {
 
@@ -26,8 +20,7 @@ public class Utils {
      * @return
      */
 	public static String toPrettyJson(Object map){
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(map);
+		return JSONObject.toJSONString(map, true);
 	}
 
     /**
@@ -36,8 +29,7 @@ public class Utils {
      * @return
      */
 	public static String toJson(Object map){
-        Gson gson = new Gson();
-        return gson.toJson(map);
+		return JSONObject.toJSONString(map);
     }
 
     /**
@@ -48,8 +40,7 @@ public class Utils {
      * @return
      */
 	public static<T> T jsonToObject(String json, Class<T> type){
-	    Gson gson = new Gson();
-	    return gson.fromJson(json, type);
+		return JSONObject.parseObject(json, type);
     }
 
 	/**

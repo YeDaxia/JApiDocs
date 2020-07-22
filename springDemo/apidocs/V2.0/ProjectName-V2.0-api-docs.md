@@ -20,25 +20,23 @@ sort|string|否|排序
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "total": "int //总记录数",
-    "pageCount": "int //页数",
-    "currentPage": "int //当前页",
-    "pageSize": "int //每页记录数",
-    "list": [
-      {
-        "bookId": "long //图书id",
-        "bookName": "string //图书名称",
-        "price": {
-          "price": "double //价格",
-          "country": "int //国家"
-        }
-      }
-    ],
-    "hasMore": "boolean //是否还有更多"
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"total":"int //总记录数",
+		"pageCount":"int //页数",
+		"currentPage":"int //当前页",
+		"pageSize":"int //每页记录数",
+		"list":[{
+			"bookId":"long //图书id",
+			"bookName":"string //图书名称",
+			"price":{
+				"price":"double //价格",
+				"country":"int //国家"
+			}
+		}],
+		"hasMore":"boolean //是否还有更多"
+	}
 }
 ```
 ## 图书详情
@@ -58,39 +56,25 @@ id|long|是|图书ID
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "bookId": "long //图书id",
-    "bookName": "string //图书名称",
-    "price": {
-      "price": "double //价格",
-      "country": "int //国家"
-    },
-    "storeCount": "int //馆藏数量",
-    "pictures": "string[] //图片",
-    "owner": {
-      "userId": "string //用户id",
-      "userName": "string //用户名",
-      "friends": [
-        {
-          "userId": "string //用户id",
-          "userName": "string //用户名"
-        }
-      ],
-      "readBooks": [
-        {
-          "bookId": "long //图书id",
-          "bookName": "string //图书名称",
-          "price": {
-            "price": "double //价格",
-            "country": "int //国家"
-          }
-        }
-      ],
-      "isFollow": "boolean //是否关注"
-    }
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"bookId":"long //图书id",
+		"bookName":"string //图书名称",
+		"price":{
+			"price":"double //价格",
+			"country":"int //国家"
+		},
+		"storeCount":"int //馆藏数量",
+		"pictures":"string[] //图片",
+		"owner":{
+			"userId":"string //用户id",
+			"userName":"string //用户名",
+			"friends":"SimpleUser{} //好友",
+			"readBooks":"BookVO{} //阅读图书",
+			"isFollow":"boolean //是否关注"
+		}
+	}
 }
 ```
 ## 删除图书
@@ -110,16 +94,16 @@ bookId|long|是|图书ID
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "bookId": "long //图书id",
-    "bookName": "string //图书名称",
-    "price": {
-      "price": "double //价格",
-      "country": "int //国家"
-    }
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"bookId":"long //图书id",
+		"bookName":"string //图书名称",
+		"price":{
+			"price":"double //价格",
+			"country":"int //国家"
+		}
+	}
 }
 ```
 ## 批量删除图书
@@ -134,9 +118,38 @@ bookId|long|是|图书ID
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {}
+	"code":"int",
+	"errMsg":"string",
+	"data":{}
+}
+```
+## 购买图书
+
+*作者: yeguozhong yedaxia.github.com*
+
+**请求URL**
+
+/api/book/buy-book `POST` 
+
+**请求参数**
+
+参数名|类型|必须|描述
+--:|:--:|:--:|:--
+bookId|long|否|
+**返回结果**
+
+```json
+{
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"bookId":"long //图书id",
+		"bookName":"string //图书名称",
+		"price":{
+			"price":"double //价格",
+			"country":"int //国家"
+		}
+	}
 }
 ```
 # 用户接口
@@ -161,38 +174,29 @@ name|string|是|用户名
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "total": "int //总记录数",
-    "pageCount": "int //页数",
-    "currentPage": "int //当前页",
-    "pageSize": "int //每页记录数",
-    "list": [
-      {
-        "userId": "string //用户id",
-        "userName": "string //用户名",
-        "friends": [
-          {
-            "userId": "string //用户id",
-            "userName": "string //用户名"
-          }
-        ],
-        "readBooks": [
-          {
-            "bookId": "long //图书id",
-            "bookName": "string //图书名称",
-            "price": {
-              "price": "double //价格",
-              "country": "int //国家"
-            }
-          }
-        ],
-        "isFollow": "boolean //是否关注"
-      }
-    ],
-    "hasMore": "boolean //是否还有更多"
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"total":"int //总记录数",
+		"pageCount":"int //页数",
+		"currentPage":"int //当前页",
+		"pageSize":"int //每页记录数",
+		"list":[{
+			"userId":"string //用户id",
+			"userName":"string //用户名",
+			"friends":"SimpleUser{} //好友",
+			"readBooks":[{
+				"bookId":"long //图书id",
+				"bookName":"string //图书名称",
+				"price":{
+					"price":"double //价格",
+					"country":"int //国家"
+				}
+			}],
+			"isFollow":"boolean //是否关注"
+		}],
+		"hasMore":"boolean //是否还有更多"
+	}
 }
 ```
 ## 用户信息
@@ -212,29 +216,22 @@ userId|long|是|用户id
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "userId": "string //用户id",
-    "userName": "string //用户名",
-    "friends": [
-      {
-        "userId": "string //用户id",
-        "userName": "string //用户名"
-      }
-    ],
-    "readBooks": [
-      {
-        "bookId": "long //图书id",
-        "bookName": "string //图书名称",
-        "price": {
-          "price": "double //价格",
-          "country": "int //国家"
-        }
-      }
-    ],
-    "isFollow": "boolean //是否关注"
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"userId":"string //用户id",
+		"userName":"string //用户名",
+		"friends":"SimpleUser{} //好友",
+		"readBooks":[{
+			"bookId":"long //图书id",
+			"bookName":"string //图书名称",
+			"price":{
+				"price":"double //价格",
+				"country":"int //国家"
+			}
+		}],
+		"isFollow":"boolean //是否关注"
+	}
 }
 ```
 ## 保存用户
@@ -249,40 +246,33 @@ userId|long|是|用户id
 
 ```json
     {
-  "id": "long //用户ID",
-  "name": "string //用户名【必须】",
-  "phone": "long //电话【必须】",
-  "avatar": "string //头像【必须】",
-  "gender": "byte //性别"
+	"id":"long //用户ID",
+	"name":"string //用户名【必须】",
+	"phone":"long //电话【必须】",
+	"avatar":"string //头像【必须】",
+	"gender":"byte //性别"
 }
 ```
 **返回结果**
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "userId": "string //用户id",
-    "userName": "string //用户名",
-    "friends": [
-      {
-        "userId": "string //用户id",
-        "userName": "string //用户名"
-      }
-    ],
-    "readBooks": [
-      {
-        "bookId": "long //图书id",
-        "bookName": "string //图书名称",
-        "price": {
-          "price": "double //价格",
-          "country": "int //国家"
-        }
-      }
-    ],
-    "isFollow": "boolean //是否关注"
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"userId":"string //用户id",
+		"userName":"string //用户名",
+		"friends":"SimpleUser{} //好友",
+		"readBooks":[{
+			"bookId":"long //图书id",
+			"bookName":"string //图书名称",
+			"price":{
+				"price":"double //价格",
+				"country":"int //国家"
+			}
+		}],
+		"isFollow":"boolean //是否关注"
+	}
 }
 ```
 ## 上传头像
@@ -302,9 +292,9 @@ avatar|file|否|
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {}
+	"code":"int",
+	"errMsg":"string",
+	"data":{}
 }
 ```
 ## 修改用户信息
@@ -328,29 +318,22 @@ gender|byte|否|性别
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {
-    "userId": "string //用户id",
-    "userName": "string //用户名",
-    "friends": [
-      {
-        "userId": "string //用户id",
-        "userName": "string //用户名"
-      }
-    ],
-    "readBooks": [
-      {
-        "bookId": "long //图书id",
-        "bookName": "string //图书名称",
-        "price": {
-          "price": "double //价格",
-          "country": "int //国家"
-        }
-      }
-    ],
-    "isFollow": "boolean //是否关注"
-  }
+	"code":"int",
+	"errMsg":"string",
+	"data":{
+		"userId":"string //用户id",
+		"userName":"string //用户名",
+		"friends":"SimpleUser{} //好友",
+		"readBooks":[{
+			"bookId":"long //图书id",
+			"bookName":"string //图书名称",
+			"price":{
+				"price":"double //价格",
+				"country":"int //国家"
+			}
+		}],
+		"isFollow":"boolean //是否关注"
+	}
 }
 ```
 ## 删除用户
@@ -370,9 +353,9 @@ userId|long|是|用户ID
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {}
+	"code":"int",
+	"errMsg":"string",
+	"data":{}
 }
 ```
 ## hello
@@ -387,9 +370,9 @@ hello `GET` `POST`
 
 ```json
 {
-  "code": "int",
-  "errMsg": "string",
-  "data": {}
+	"code":"int",
+	"errMsg":"string",
+	"data":{}
 }
 ```
 # 管理员接口
@@ -411,9 +394,9 @@ password|string|是|密码
 
 ```json
 {
-  "userId": "string //用户id",
-  "userName": "string //用户名",
-  "password": "string //密码"
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"password":"string //密码"
 }
 ```
 ## ~~邮箱登录~~
@@ -434,9 +417,9 @@ password|string|否|
 
 ```json
 {
-  "userId": "string //用户id",
-  "userName": "string //用户名",
-  "password": "string //密码"
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"password":"string //密码"
 }
 ```
 ## 添加管理员
@@ -451,17 +434,17 @@ password|string|否|
 
 ```json
     {
-  "name": "string //名字",
-  "password": "string //密码"
+	"name":"string //名字",
+	"password":"string //密码"
 }
 ```
 **返回结果**
 
 ```json
 {
-  "userId": "string //用户id",
-  "userName": "string //用户名",
-  "password": "string //密码"
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"password":"string //密码"
 }
 ```
 ## 添加多个管理员
@@ -475,21 +458,17 @@ password|string|否|
 **请求参数**
 
 ```json
-    [
-  {
-    "name": "string //名字",
-    "password": "string //密码"
-  }
-]
+    [{
+	"name":"string //名字",
+	"password":"string //密码"
+}]
 ```
 **返回结果**
 
 ```json
-[
-  {
-    "userId": "string //用户id",
-    "userName": "string //用户名",
-    "password": "string //密码"
-  }
-]
+[{
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"password":"string //密码"
+}]
 ```

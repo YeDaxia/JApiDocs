@@ -36,7 +36,7 @@ public class CacheUtils {
                 });
             });
             Utils.writeToDisk(new File(DocContext.getDocPath(), CACHE_FILE), Utils.toJson(controllerNodes));
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             LogUtils.error("saveControllerNodes error!!!", ex);
         }
     }

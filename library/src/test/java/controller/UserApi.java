@@ -1,7 +1,9 @@
 package controller;
 
+import result.ResponseEntity;
 import result.Student;
 
+import java.io.Reader;
 import java.util.List;
 
 /**
@@ -13,4 +15,7 @@ public class UserApi {
         return null;
     }
 
+    public ResponseEntity<Student> getResponseEntity(){
+        return null;
+    }
 }

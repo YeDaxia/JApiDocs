@@ -1,9 +1,11 @@
 package result;
 
+import java.util.List;
+
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class ResultVO extends SimpleResult{
+public class ResultVO<T> extends SimpleResult<Student>{
 
     /**
      * 性别
@@ -14,7 +16,19 @@ public class ResultVO extends SimpleResult{
 
     private String[] stringArray;
 
-    private GenericResult<Student[], Integer> result;
+    private List pList;
+
+    private List<T> list;
+
+    private List<? extends T> zlist;
+
+    private List<GenericResult<Student, Integer>> stuList;
+
+    private T body;
+
+    private GenericResult<Student, Student> result;
+
+    private GenericResult<Student, Integer>[] resultArray;
 
     public enum  Gender {
         MALE, FEMALE

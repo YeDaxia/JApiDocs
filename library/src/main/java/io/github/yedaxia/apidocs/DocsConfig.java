@@ -18,6 +18,7 @@ public class DocsConfig {
     String projectName; //project name
     Boolean autoGenerate = Boolean.FALSE; // 自动生成所有Controller的接口文档，不需要@ApiDoc注解
     Locale locale = Locale.getDefault();
+    Boolean openReflection = Boolean.TRUE; // 是否开放对象反射
 
     String rapHost;
     String rapLoginCookie;
@@ -121,7 +122,6 @@ public class DocsConfig {
         javaSrcPaths.add(javaSrcPath);
     }
 
-
     public String getRapHost() {
         return rapHost;
     }
@@ -140,5 +140,13 @@ public class DocsConfig {
 
     public String getRapPassword() {
         return rapPassword;
+    }
+
+    public Boolean getOpenReflection() {
+        return openReflection;
+    }
+
+    public void setOpenReflection(Boolean openReflection) {
+        this.openReflection = openReflection;
     }
 }

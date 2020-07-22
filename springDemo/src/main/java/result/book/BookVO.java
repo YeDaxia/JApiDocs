@@ -1,11 +1,12 @@
 package result.book;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class BookVO {
+public class BookVO extends HashMap {
     private Long bookId; //图书id
     private String bookName; //图书名称
     private BookPrice price;

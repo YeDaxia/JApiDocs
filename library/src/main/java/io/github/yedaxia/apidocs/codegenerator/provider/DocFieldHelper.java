@@ -21,6 +21,11 @@ public class DocFieldHelper {
     }
 
     public static String getPrefFieldType(String fieldType) {
+
+        if(fieldType == null){
+            return "unknow";
+        }
+
         if(fieldType.equalsIgnoreCase("int") || fieldType.equalsIgnoreCase("integer")){
             return "int";
         }else if(fieldType.equalsIgnoreCase("short")){

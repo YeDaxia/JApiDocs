@@ -1,0 +1,300 @@
+body, html {
+    height: 100%;
+}
+
+.book{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.book.with-summary .book-summary {
+    left: 0;
+}
+
+.book-summary {
+    position: absolute;
+    top: 0;
+    left: -300px;
+    bottom: 0;
+    z-index: 1;
+    overflow-y: auto;
+    width: 300px;
+    color: #364149;
+    background: #fafafa;
+    border-right: 1px solid rgba(0,0,0,.07);
+    -webkit-transition: left 250ms ease;
+    -moz-transition: left 250ms ease;
+    -o-transition: left 250ms ease;
+    transition: left 250ms ease;
+}
+
+.book-body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    color: #333;
+    background: #fff;
+    -webkit-transition: left 250ms ease;
+    -moz-transition: left 250ms ease;
+    -o-transition: left 250ms ease;
+    transition: left 250ms ease;
+}
+
+.book-body .body-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding-top: 10px;
+}
+
+.book-header {
+    overflow: visible;
+    height: 50px;
+    z-index: 2;
+    font-size: .85em;
+    color: #7e888b;
+    background: 0 0;
+}
+
+.book-header a.header-menu{
+    font-size: 18px;
+    color: #555555;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.book-header a.header-menu:hover{
+    text-decoration: none;
+    color: #5cb85c;
+}
+
+.page-wrapper {
+    position: relative;
+    outline: 0;
+}
+
+.book .book-body .page-wrapper .page-inner {
+    position: relative;
+    left: 0px;
+    transition: 300ms ease left;
+}
+
+.page-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 15px 40px 15px;
+}
+
+@media (min-width: 600px){
+    .book.with-summary .book-body {
+        left: 300px;
+    }
+}
+
+@media (max-width: 600px){
+    .book-summary {
+        width: calc(100% - 60px);
+        bottom: 0;
+        left: -100%;
+    }
+    .book.with-summary .book-body {
+        -webkit-transform: translate(calc(100% - 60px),0);
+        -moz-transform: translate(calc(100% - 60px),0);
+        -ms-transform: translate(calc(100% - 60px),0);
+        -o-transform: translate(calc(100% - 60px),0);
+        transform: translate(calc(100% - 60px),0);
+    }
+}
+
+@media (max-width: 1240px){
+    .book-body {
+        -webkit-transition: -webkit-transform 250ms ease;
+        -moz-transition: -moz-transform 250ms ease;
+        -o-transition: -o-transform 250ms ease;
+        transition: transform 250ms ease;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 1240px){
+    .book-body .body-inner {
+        position: static;
+        min-height: calc(100% - 50px);
+    }
+}
+
+.navbar{
+    background: #5cb85c;
+    color: #FFF;
+}
+
+.navbar a{
+    color: #FFF;
+}
+.navbar-brand{
+    font-weight: 600;
+}
+
+@media (min-width: 768px){
+    .navbar {
+        border-radius: 0;
+    }
+}
+
+.catalog .panel{
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.catalog .catalog-title {
+    border-bottom: 1px solid #EAEAEA;
+    padding: 1rem 1.25rem;
+    background: rgba(0, 0, 0, .03);
+    cursor: pointer;
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.catalog-item{
+    padding: 8px 15px;
+    margin-left: 15px;
+    color: #888;
+    border-bottom: solid #EEE 1px;
+    display: block;
+}
+
+.action-item h2 a{
+    color: #5cb85c;
+}
+
+a:hover{
+    color: #449d44;
+}
+
+.search-box{
+    position: relative;
+    margin: 10px;
+}
+
+.navbar{
+    margin-bottom: 0;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+/**third part*/
+
+.algolia-autocomplete {
+    width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+    color: #888;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #EEE;
+    border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #449d44;
+    color: #FFF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+/* Doxy pretty-printing styles. Used with prettify.js.  */
+
+pre .str, code .str { color: #fec243; } /* string  - eggyolk gold */
+pre .kwd, code .kwd { color: #8470FF; } /* keyword - light slate blue */
+pre .com, code .com { color: #32cd32; font-style: italic; } /* comment - green */
+pre .typ, code .typ { color: #6ecbcc; } /* type - turq green */
+pre .lit, code .lit { color: #d06; } /* literal - cherry red */
+pre .pun, code .pun { color: #8B8970;  } /* punctuation - lemon chiffon4  */
+pre .pln, code .pln { color: #f0f0f0; } /* plaintext - white */
+pre .tag, code .tag { color: #9c9cff; } /* html/xml tag  (bluey)  */
+pre .htm, code .htm { color: #dda0dd; } /* html tag  light purply*/
+pre .xsl, code .xsl { color: #d0a0d0; } /* xslt tag  light purply*/
+pre .atn, code .atn { color: #46eeee; font-weight: normal;} /* html/xml attribute name  - lt turquoise */
+pre .atv, code .atv { color: #EEB4B4; } /* html/xml attribute value - rosy brown2 */
+pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
+
+a {
+    text-decoration: none;
+}
+
+pre.prettyprint, code.prettyprint {
+    font-family:'Droid Sans Mono','CPMono_v07 Bold','Droid Sans';
+    font-weight: bold;
+    font-size: 11pt;
+    background-color: #0f0f0f;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}  /*  background is black (well, just a tad less dark )  */
+
+pre.prettyprint {
+    padding: 1em;
+    white-space: pre-wrap;
+}
+
+pre.prettyprint a, code.prettyprint a {
+    text-decoration:none;
+}
+/* Specify class=linenums on a pre to get line numbering; line numbers themselves are the same color as punctuation */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #8B8970; } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+/* print is mostly unchanged from default at present  */
+@media print {
+    pre.prettyprint, code.prettyprint { background-color: #fff;  }
+    pre .str, code .str { color: #088; }
+    pre .kwd, code .kwd { color: #006; font-weight: bold; }
+    pre .com, code .com { color: #oc3; font-style: italic; }
+    pre .typ, code .typ { color: #404; font-weight: bold; }
+    pre .lit, code .lit { color: #044; }
+    pre .pun, code .pun { color: #440; }
+    pre .pln, code .pln { color: #000; }
+    pre .tag, code .tag { color: #b66ff7; font-weight: bold; }
+    pre .htm, code .htm { color: #606; font-weight: bold; }
+    pre .xsl, code .xsl { color: #606; font-weight: bold; }
+    pre .atn, code .atn { color: #c71585;  font-weight: normal; }
+    pre .atv, code .atv { color: #088;  font-weight: normal; }
+}

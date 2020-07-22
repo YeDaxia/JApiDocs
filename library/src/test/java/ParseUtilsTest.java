@@ -1,6 +1,8 @@
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.type.TypeParameter;
 import com.github.javaparser.utils.Utils;
 import io.github.yedaxia.apidocs.DocContext;
@@ -85,5 +87,27 @@ public class ParseUtilsTest {
     @Test
     public void test_isCollectionType() {
         Assert.assertTrue(ParseUtils.isCollectionType("List<Demo1.Demo2>"));
+    }
+
+    @Test
+    public void test_parseClassNodeByType(){
+        ClassNode classNode = new ClassNode();
+        File inJavaFile = new File(javaSrcPath, "contoller/UserApi.java");
+        ClassOrInterfaceType modelType = new ClassOrInterfaceType("ResponseEntity");
+        ClassOrInterfaceType studentType = new ClassOrInterfaceType("Student");
+        modelType.setTypeArguments(studentType);
+        ParseUtils.parseClassNodeByType(inJavaFile, classNode, modelType);
+    }
+
+    @Test
+    public void test_parseClassNodeByReflection(){
+        ClassNode classNode = new ClassNode();
+        classNode.setModelClass(ResultVO.class);
+        ParseUtils.parseClassNodeByReflection(classNode);
+        System.out.println(classNode.toJsonApi());
+    }
+
+    public ResultVO<Student> getGenericMethod(){
+        return null;
     }
 }

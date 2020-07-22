@@ -15,6 +15,7 @@ import java.util.Map;
 public class ClassNode {
 
     private String className = "";
+    private Class modelClass; //for reflection
     private String description;
     private Boolean isList = Boolean.FALSE;
     private List<FieldNode> childNodes = new ArrayList<>();
@@ -107,6 +108,14 @@ public class ClassNode {
         this.showFieldNotNull = showFieldNotNull;
     }
 
+    public Class getModelClass() {
+        return modelClass;
+    }
+
+    public void setModelClass(Class modelClass) {
+        this.modelClass = modelClass;
+    }
+
     public GenericNode getGenericNode(String  type){
         for(GenericNode genericNode : genericNodes){
             if(genericNode.getPlaceholder().equals(type)){
@@ -148,7 +157,7 @@ public class ClassNode {
                     childMap.put(childFieldNode.getName(), getFieldDesc(childFieldNode));
                 }
             }
-            if(fieldNode.getType().endsWith("[]")){
+            if(fieldNode.getType() != null && fieldNode.getType().endsWith("[]")){
                 map.put(fieldNode.getName(), childMap.isEmpty()? new Map[]{}: new Map[]{childMap});
             }else{
                 map.put(fieldNode.getName(), childMap);
@@ -172,5 +181,8 @@ public class ClassNode {
         return fieldDesc;
     }
 
-
+    public void reset(){
+        this.childNodes.clear();
+        this.genericNodes.clear();
+    }
 }

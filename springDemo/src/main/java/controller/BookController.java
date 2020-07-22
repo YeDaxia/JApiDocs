@@ -2,6 +2,8 @@ package controller;
 
 import form.PageForm;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import result.ApiResult;
 import result.PageResult;
@@ -57,6 +59,17 @@ public class BookController {
      */
     @DeleteMapping("del-books")
     public ApiResult deleteBooks(List<Long> bookIds){
+        return null;
+    }
+
+    /**
+     * 购买图书
+     *
+     * @param bookId
+     * @return
+     */
+    @PostMapping("buy-book")
+    public ResponseEntity<HttpEntity<BookVO>> buyBook(Long bookId){
         return null;
     }
 }

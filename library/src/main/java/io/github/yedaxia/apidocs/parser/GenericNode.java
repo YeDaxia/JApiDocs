@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class GenericNode {
 
-    private Type classType;
+    private Type classType; // for source
+    private Class modelClass; //for reflection
     private String placeholder;
     private File fromJavaFile;
     private List<GenericNode> childGenericNode = new ArrayList<>();
@@ -56,5 +57,13 @@ public class GenericNode {
 
     public void setPlaceholder(String placeholder) {
         this.placeholder = placeholder;
+    }
+
+    public Class getModelClass() {
+        return modelClass;
+    }
+
+    public void setModelClass(Class modelClass) {
+        this.modelClass = modelClass;
     }
 }
