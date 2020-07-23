@@ -12,6 +12,7 @@ public class AdminVO implements Serializable{
 
     private String userId; //用户id
     private String userName; //用户名
+    private SimpleUser friend; //
     private String password; //密码
 
     public String getUserId(){
@@ -30,6 +31,14 @@ public class AdminVO implements Serializable{
         this.userName = userName;
     }
 
+    public SimpleUser getFriend(){
+        return friend;
+    }
+
+    public void setFriend(SimpleUser friend){
+        this.friend = friend;
+    }
+
     public String getPassword(){
         return password;
     }
@@ -40,6 +49,7 @@ public class AdminVO implements Serializable{
 
 }
 </pre>
+
 
 
 

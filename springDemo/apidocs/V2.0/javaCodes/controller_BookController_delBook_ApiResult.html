@@ -13,6 +13,7 @@ public class ApiResult implements Serializable{
     private int code; //
     private String errMsg; //
     private BookVO data; //
+    private enum errType; // [SUCCESS,WARN,ERROR]
 
     public int getCode(){
         return code;
@@ -36,6 +37,14 @@ public class ApiResult implements Serializable{
 
     public void setData(BookVO data){
         this.data = data;
+    }
+
+    public enum getErrType(){
+        return errType;
+    }
+
+    public void setErrType(enum errType){
+        this.errType = errType;
     }
 
 }

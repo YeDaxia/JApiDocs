@@ -1,16 +1,18 @@
 package io.github.yedaxia.apidocs;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.*;
 import com.github.javaparser.ast.Modifier;
-import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.*;
 import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
-import com.github.javaparser.ast.type.*;
+import com.github.javaparser.ast.type.ArrayType;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
+import com.github.javaparser.ast.type.TypeParameter;
 import io.github.yedaxia.apidocs.exception.JavaFileNotFoundException;
 import io.github.yedaxia.apidocs.parser.*;
 
@@ -19,7 +21,6 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
-import java.net.HttpCookie;
 import java.util.*;
 
 
@@ -203,7 +204,7 @@ public class ParseUtils {
      * parse class model java file
      *
      * @param inJavaFile
-     * @param classType
+     * @param classType 携带了类的泛型信息
      */
     public static void parseClassNodeByType(File inJavaFile,  ClassNode rootClassNode, Type classType){
 
@@ -232,82 +233,12 @@ public class ParseUtils {
                 String className = ((ClassOrInterfaceType)classType).getName().getIdentifier();
                 rootClassNode.setClassName(className);
 
-                ((ClassOrInterfaceType) classType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
-                    GenericNode rootGenericNode = new GenericNode();
-                    rootGenericNode.setFromJavaFile(inJavaFile);
-                    rootGenericNode.setClassType(argType);
-                    rootClassNode.addGenericNode(rootGenericNode);
-                }));
-
                 try{
                     File modelJavaFile = searchJavaFile(inJavaFile, className);
                     rootClassNode.setClassFileName(modelJavaFile.getAbsolutePath());
                     parseClassNode(modelJavaFile, rootClassNode);
                 }catch (JavaFileNotFoundException ex) {
-                    Class modelClass = getClassInJavaFile(inJavaFile, className);
-
-                    if(modelClass != null){
-
-                        if(rootClassNode instanceof ResponseNode){
-
-                            ResponseNode responseNode = (ResponseNode) rootClassNode;
-                            responseNode.reset();
-
-                            // 解析方法返回值泛型信息
-                            Class controllerClass = ParseUtils.getClassInJavaFile(inJavaFile, inJavaFile.getName().replace(".java",""));
-                            if(controllerClass != null){
-                                RequestNode requestNode = responseNode.getRequestNode();
-                                try{
-                                    // 获取该api对应的请求方法
-                                    Method apiMethod = null;
-
-                                    for(Method method : controllerClass.getDeclaredMethods()){
-                                        if(method.getName().equals(requestNode.getMethodName())){
-                                            if(method.getAnnotations() != null){
-                                                for(Annotation annotation: method.getAnnotations()){
-                                                    String reqUrl = requestNode.getUrl();
-                                                    if(reqUrl.contains("/")){
-                                                        reqUrl = reqUrl.substring(reqUrl.lastIndexOf("/") + 1);
-                                                    }
-                                                    if(annotation.toString().contains(reqUrl)){
-                                                        apiMethod = method;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    if(apiMethod != null){
-                                        java.lang.reflect.Type returnType = apiMethod.getGenericReturnType();
-                                        //如果是ResponseEntity, 则取里面一层
-                                        if(apiMethod.getReturnType().getName().equals("org.springframework.http.ResponseEntity")){
-                                           java.lang.reflect.Type[] responseEntityTypeArguments = ((ParameterizedType)apiMethod.getGenericReturnType()).getActualTypeArguments();
-                                           if(responseEntityTypeArguments.length == 1){
-                                               if( responseEntityTypeArguments[0] instanceof ParameterizedType){
-                                                   ParameterizedType parameterizedType = (ParameterizedType)responseEntityTypeArguments[0];
-                                                   if(parameterizedType.getRawType() instanceof Class){
-                                                       ParseUtils.parseGenericNodesInType((Class) parameterizedType.getRawType(), parameterizedType, responseNode.getGenericNodes());
-                                                   }
-                                               }
-                                           }
-                                        }else{
-                                            ParseUtils.parseGenericNodesInType(apiMethod.getReturnType(), returnType, responseNode.getGenericNodes());
-                                        }
-
-                                    }
-
-                                }catch (Exception e2){
-                                    LogUtils.error("get method error", e2);
-                                }
-                            }
-                        }
-
-                        // 使用反射解析字段
-                        if(DocContext.getDocsConfig().getOpenReflection()){
-                            rootClassNode.setModelClass(modelClass);
-                            parseClassNodeByReflection(rootClassNode);
-                        }
-                    }
+                    parseResponseNodeByReflection(inJavaFile, className, rootClassNode);
                 }
             }
         }else{
@@ -335,14 +266,35 @@ public class ParseUtils {
             NodeList<TypeParameter> typeParameters = cl.getTypeParameters();
             if(typeParameters.isNonEmpty() && classNode.getGenericNodes().size() == typeParameters.size()){
                 for(int i = 0, len = typeParameters.size(); i != len; i++){
+                    // <T> or  <T extends Serializable>
                     classNode.getGenericNode(i).setPlaceholder(typeParameters.get(i).getName().getIdentifier());
                 }
             }
 
-            NodeList<ClassOrInterfaceType> exClassTypeList =  cl.getExtendedTypes();
-            if(!exClassTypeList.isEmpty()){
-                // 继承类
-                ParseUtils.parseClassNodeByType(modelJavaFile, classNode, exClassTypeList.get(0));
+            NodeList<ClassOrInterfaceType> extendClassTypeList =  cl.getExtendedTypes();
+
+            // 解析继承类
+            if(!extendClassTypeList.isEmpty()){
+                // 子类传递泛型给父类的情形 class C<T> extends B<T> 或者 class C<T> extends B<Student>
+                ClassNode extendClassNode = new ClassNode();
+                List<GenericNode> extendGenericNodes = new ArrayList<>();
+                extendClassNode.setGenericNodes(extendGenericNodes); // 使用新的泛型列表
+                ClassOrInterfaceType extendClassType = extendClassTypeList.get(0);
+                extendClassType.getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+                    GenericNode extendGenericNode = new GenericNode();
+                    GenericNode thisGenericNode = classNode.getGenericNode(argType.asString());
+                    if(thisGenericNode != null){ // 拷贝一份，防止placeholder发生变化
+                        extendGenericNode.setFromJavaFile(thisGenericNode.getFromJavaFile());
+                        extendGenericNode.setClassType(thisGenericNode.getClassType());
+                    }else{
+                        extendGenericNode.setFromJavaFile(modelJavaFile);
+                        extendGenericNode.setClassType(argType);
+                    }
+                    extendGenericNodes.add(extendGenericNode);
+                }));
+                ParseUtils.parseClassNodeByType(modelJavaFile, extendClassNode, extendClassType);
+                // 把解析结果复制到子类
+                classNode.getChildNodes().addAll(extendClassNode.getChildNodes());
             }
 
             cl.findAll(FieldDeclaration.class)
@@ -350,10 +302,14 @@ public class ParseUtils {
                     .forEach(fd -> {
 
                         //内部类字段也会读取到，这里特殊处理
-                        ClassOrInterfaceDeclaration cClDeclaration = (ClassOrInterfaceDeclaration)fd.getParentNode().get();
-                        if(!(resultClassName.equals(cClDeclaration.getNameAsString())
-                                || resultClassName.endsWith("." + cClDeclaration.getNameAsString()))){
-                            return;
+                        Node cClNode = fd.getParentNode().get();
+
+                        if(cClNode instanceof TypeDeclaration){
+                            TypeDeclaration cClDeclaration = (TypeDeclaration)cClNode;
+                            if(!(resultClassName.equals(cClDeclaration.getNameAsString())
+                                    || resultClassName.endsWith("." + cClDeclaration.getNameAsString()))){
+                                return;
+                            }
                         }
 
                         //忽略字段
@@ -705,6 +661,75 @@ public class ParseUtils {
             // just ignore
         }
         return modelClass;
+    }
+
+
+    private static void parseResponseNodeByReflection(File inJavaFile, String className, ClassNode classNode){
+
+        Class modelClass = getClassInJavaFile(inJavaFile, className);
+
+        if(modelClass != null){
+
+            if(classNode instanceof ResponseNode){
+
+                ResponseNode responseNode = (ResponseNode) classNode;
+                responseNode.reset();
+
+                // 解析方法返回值泛型信息
+                Class controllerClass = ParseUtils.getClassInJavaFile(inJavaFile, inJavaFile.getName().replace(".java",""));
+                if(controllerClass != null){
+                    RequestNode requestNode = responseNode.getRequestNode();
+                    try{
+                        // 获取该api对应的请求方法
+                        Method apiMethod = null;
+
+                        for(Method method : controllerClass.getDeclaredMethods()){
+                            if(method.getName().equals(requestNode.getMethodName())){
+                                if(method.getAnnotations() != null){
+                                    for(Annotation annotation: method.getAnnotations()){
+                                        String reqUrl = requestNode.getUrl();
+                                        if(reqUrl.contains("/")){
+                                            reqUrl = reqUrl.substring(reqUrl.lastIndexOf("/") + 1);
+                                        }
+                                        if(annotation.toString().contains(reqUrl)){
+                                            apiMethod = method;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if(apiMethod != null){
+                            java.lang.reflect.Type returnType = apiMethod.getGenericReturnType();
+                            //如果是ResponseEntity, 则取里面一层
+                            if(apiMethod.getReturnType().getName().equals("org.springframework.http.ResponseEntity")){
+                                java.lang.reflect.Type[] responseEntityTypeArguments = ((ParameterizedType)apiMethod.getGenericReturnType()).getActualTypeArguments();
+                                if(responseEntityTypeArguments.length == 1){
+                                    if( responseEntityTypeArguments[0] instanceof ParameterizedType){
+                                        ParameterizedType parameterizedType = (ParameterizedType)responseEntityTypeArguments[0];
+                                        if(parameterizedType.getRawType() instanceof Class){
+                                            ParseUtils.parseGenericNodesInType((Class) parameterizedType.getRawType(), parameterizedType, responseNode.getGenericNodes());
+                                        }
+                                    }
+                                }
+                            }else{
+                                ParseUtils.parseGenericNodesInType(apiMethod.getReturnType(), returnType, responseNode.getGenericNodes());
+                            }
+
+                        }
+
+                    }catch (Exception e2){
+                        LogUtils.error("get method error", e2);
+                    }
+                }
+            }
+
+            // 使用反射解析字段
+            if(DocContext.getDocsConfig().getOpenReflection()){
+                classNode.setModelClass(modelClass);
+                parseClassNodeByReflection(classNode);
+            }
+        }
     }
 
     /**

@@ -1,0 +1,4 @@
+7月 24, 2020 2:04:06 上午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think Object should not be an enum type
+7月 24, 2020 2:04:06 上午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/library/src/test/java/result/Student.java, className : Object, we cannot found more information of it, you've better to make it a JavaBean

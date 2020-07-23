@@ -3,10 +3,12 @@ package result.user;
 import io.github.yedaxia.apidocs.Ignore;
 import io.github.yedaxia.apidocs.RapMock;
 
+import java.io.Serializable;
+
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class SimpleUser {
+public class SimpleUser implements Serializable {
 
     @RapMock(value="@ID")
     private String userId; //用户id
@@ -17,8 +19,7 @@ public class SimpleUser {
     @Ignore
     private String ignore; //忽略字段
 
-    @Ignore
-    private SimpleUser friend; //忽略字段
+    private SimpleUser friend;
 
     public SimpleUser getFriend() {
         return friend;

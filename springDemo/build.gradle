@@ -13,6 +13,10 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     compile project(":library")
     compile fileTree(include: ['*.jar'], dir: 'libs')

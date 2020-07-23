@@ -7,13 +7,10 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
-import io.github.yedaxia.apidocs.LogUtils;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
 
 import java.io.File;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -155,7 +152,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 });
 
                 //如果参数是个对象
-                if(!paramNode.isJsonBody() && ParseUtils.isModelType(p.getType().asString())){
+                if(!paramNode.isJsonBody() && ParseUtils.isModelType(paramNode.getType())){
                     ClassNode classNode = new ClassNode();
                     ParseUtils.parseClassNodeByType(getControllerFile(), classNode, p.getType());
                     List<ParamNode> paramNodeList = new ArrayList<>();

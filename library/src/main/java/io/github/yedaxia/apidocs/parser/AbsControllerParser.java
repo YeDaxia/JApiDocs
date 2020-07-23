@@ -6,6 +6,7 @@ import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
@@ -196,6 +197,13 @@ public abstract class AbsControllerParser {
      * @param controllerFile
      */
     protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType, File controllerFile){
+        // 解析方法返回类的泛型信息
+        ((ClassOrInterfaceType) resultType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+            GenericNode rootGenericNode = new GenericNode();
+            rootGenericNode.setFromJavaFile(controllerFile);
+            rootGenericNode.setClassType(argType);
+            responseNode.addGenericNode(rootGenericNode);
+        }));
         ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);
     }
 
@@ -206,6 +214,7 @@ public abstract class AbsControllerParser {
     }
 
 
+    // 设置接口的类型（新/修改/一样）
     private void setRequestNodeChangeFlag(RequestNode requestNode) {
         List<ControllerNode> lastControllerNodeList = DocContext.getLastVersionControllerNodes();
         if (lastControllerNodeList == null || lastControllerNodeList.isEmpty()) {

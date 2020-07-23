@@ -2,18 +2,14 @@ import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.type.TypeParameter;
-import com.github.javaparser.utils.Utils;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.parser.ClassNode;
-import io.github.yedaxia.apidocs.parser.ResponseNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import result.BookVO;
-import result.GenericResult;
 import result.ResultVO;
 import result.Student;
 
@@ -69,13 +65,13 @@ public class ParseUtilsTest {
 
     @Test
     public void test_parseGenericClassNode() {
-        File resultJavaFile = Projects.getTestJavaFile(GenericResult.class);
+        File resultJavaFile = Projects.getTestJavaFile(ResultVO.class);
 
         ParseUtils.compilationUnit(resultJavaFile).getChildNodesByType(MethodDeclaration.class).forEach(md -> {
             md.getType();
         });
 
-        ParseUtils.compilationUnit(resultJavaFile).getClassByName("GenericResult")
+        ParseUtils.compilationUnit(resultJavaFile).getClassByName("ResultVO")
                 .ifPresent(classDeclaration -> {
                     NodeList<TypeParameter> typeParameters = classDeclaration.getTypeParameters();
                     for (int i = 0, len = typeParameters.size(); i != len; i++) {
@@ -92,11 +88,10 @@ public class ParseUtilsTest {
     @Test
     public void test_parseClassNodeByType(){
         ClassNode classNode = new ClassNode();
-        File inJavaFile = new File(javaSrcPath, "contoller/UserApi.java");
-        ClassOrInterfaceType modelType = new ClassOrInterfaceType("ResponseEntity");
-        ClassOrInterfaceType studentType = new ClassOrInterfaceType("Student");
-        modelType.setTypeArguments(studentType);
-        ParseUtils.parseClassNodeByType(inJavaFile, classNode, modelType);
+        Class modelClass = Student.class;
+        ClassOrInterfaceType modelType = new ClassOrInterfaceType(modelClass.getSimpleName());
+        ParseUtils.parseClassNodeByType(Projects.getTestJavaFile(modelClass), classNode, modelType);
+        System.out.println(classNode.toJsonApi());
     }
 
     @Test
@@ -107,7 +102,13 @@ public class ParseUtilsTest {
         System.out.println(classNode.toJsonApi());
     }
 
+    private ClassOrInterfaceDeclaration getClassDeclarationByClass(Class clazz){
+        File modelJavaFile = Projects.getTestJavaFile(clazz);
+        return ParseUtils.compilationUnit(modelJavaFile).getClassByName(clazz.getSimpleName()).get();
+    }
+
     public ResultVO<Student> getGenericMethod(){
         return null;
     }
+
 }

@@ -1,7 +1,6 @@
 package result.user;
 
 import io.github.yedaxia.apidocs.RapMock;
-import result.book.BookDetailVO;
 import result.book.BookVO;
 
 import java.util.List;
@@ -17,6 +16,8 @@ public class UserVO extends SimpleUser {
     private List<BookVO> readBooks; //阅读图书
 
     private Boolean isFollow; //是否关注
+
+    private List<UserVO> follower;
 
     public SimpleUser[] getFriends() {
         return friends;

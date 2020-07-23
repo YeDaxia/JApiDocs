@@ -36,7 +36,8 @@ sort|string|否|排序
 			}
 		}],
 		"hasMore":"boolean //是否还有更多"
-	}
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 图书详情
@@ -70,11 +71,25 @@ id|long|是|图书ID
 		"owner":{
 			"userId":"string //用户id",
 			"userName":"string //用户名",
-			"friends":"SimpleUser{} //好友",
-			"readBooks":"BookVO{} //阅读图书",
-			"isFollow":"boolean //是否关注"
+			"friend":"SimpleUser{}",
+			"friends":[{
+				"userId":"string //用户id",
+				"userName":"string //用户名",
+				"friend":"SimpleUser{}"
+			}],
+			"readBooks":[{
+				"bookId":"long //图书id",
+				"bookName":"string //图书名称",
+				"price":{
+					"price":"double //价格",
+					"country":"int //国家"
+				}
+			}],
+			"isFollow":"boolean //是否关注",
+			"follower":"UserVO{}"
 		}
-	}
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 删除图书
@@ -103,7 +118,8 @@ bookId|long|是|图书ID
 			"price":"double //价格",
 			"country":"int //国家"
 		}
-	}
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 批量删除图书
@@ -120,7 +136,8 @@ bookId|long|是|图书ID
 {
 	"code":"int",
 	"errMsg":"string",
-	"data":{}
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 购买图书
@@ -139,18 +156,7 @@ bookId|long|否|
 **返回结果**
 
 ```json
-{
-	"code":"int",
-	"errMsg":"string",
-	"data":{
-		"bookId":"long //图书id",
-		"bookName":"string //图书名称",
-		"price":{
-			"price":"double //价格",
-			"country":"int //国家"
-		}
-	}
-}
+HttpEntity{}
 ```
 # 用户接口
 ## 用户列表
@@ -184,7 +190,12 @@ name|string|是|用户名
 		"list":[{
 			"userId":"string //用户id",
 			"userName":"string //用户名",
-			"friends":"SimpleUser{} //好友",
+			"friend":"SimpleUser{}",
+			"friends":[{
+				"userId":"string //用户id",
+				"userName":"string //用户名",
+				"friend":"SimpleUser{}"
+			}],
 			"readBooks":[{
 				"bookId":"long //图书id",
 				"bookName":"string //图书名称",
@@ -193,10 +204,12 @@ name|string|是|用户名
 					"country":"int //国家"
 				}
 			}],
-			"isFollow":"boolean //是否关注"
+			"isFollow":"boolean //是否关注",
+			"follower":"UserVO{}"
 		}],
 		"hasMore":"boolean //是否还有更多"
-	}
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 用户信息
@@ -221,7 +234,12 @@ userId|long|是|用户id
 	"data":{
 		"userId":"string //用户id",
 		"userName":"string //用户名",
-		"friends":"SimpleUser{} //好友",
+		"friend":"SimpleUser{}",
+		"friends":[{
+			"userId":"string //用户id",
+			"userName":"string //用户名",
+			"friend":"SimpleUser{}"
+		}],
 		"readBooks":[{
 			"bookId":"long //图书id",
 			"bookName":"string //图书名称",
@@ -230,8 +248,10 @@ userId|long|是|用户id
 				"country":"int //国家"
 			}
 		}],
-		"isFollow":"boolean //是否关注"
-	}
+		"isFollow":"boolean //是否关注",
+		"follower":"UserVO{}"
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 保存用户
@@ -262,7 +282,12 @@ userId|long|是|用户id
 	"data":{
 		"userId":"string //用户id",
 		"userName":"string //用户名",
-		"friends":"SimpleUser{} //好友",
+		"friend":"SimpleUser{}",
+		"friends":[{
+			"userId":"string //用户id",
+			"userName":"string //用户名",
+			"friend":"SimpleUser{}"
+		}],
 		"readBooks":[{
 			"bookId":"long //图书id",
 			"bookName":"string //图书名称",
@@ -271,8 +296,10 @@ userId|long|是|用户id
 				"country":"int //国家"
 			}
 		}],
-		"isFollow":"boolean //是否关注"
-	}
+		"isFollow":"boolean //是否关注",
+		"follower":"UserVO{}"
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 上传头像
@@ -294,7 +321,8 @@ avatar|file|否|
 {
 	"code":"int",
 	"errMsg":"string",
-	"data":{}
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 修改用户信息
@@ -323,7 +351,12 @@ gender|byte|否|性别
 	"data":{
 		"userId":"string //用户id",
 		"userName":"string //用户名",
-		"friends":"SimpleUser{} //好友",
+		"friend":"SimpleUser{}",
+		"friends":[{
+			"userId":"string //用户id",
+			"userName":"string //用户名",
+			"friend":"SimpleUser{}"
+		}],
 		"readBooks":[{
 			"bookId":"long //图书id",
 			"bookName":"string //图书名称",
@@ -332,8 +365,10 @@ gender|byte|否|性别
 				"country":"int //国家"
 			}
 		}],
-		"isFollow":"boolean //是否关注"
-	}
+		"isFollow":"boolean //是否关注",
+		"follower":"UserVO{}"
+	},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## 删除用户
@@ -355,7 +390,8 @@ userId|long|是|用户ID
 {
 	"code":"int",
 	"errMsg":"string",
-	"data":{}
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 ## hello
@@ -372,7 +408,8 @@ hello `GET` `POST`
 {
 	"code":"int",
 	"errMsg":"string",
-	"data":{}
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
 }
 ```
 # 管理员接口
@@ -396,6 +433,7 @@ password|string|是|密码
 {
 	"userId":"string //用户id",
 	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
 	"password":"string //密码"
 }
 ```
@@ -419,6 +457,7 @@ password|string|否|
 {
 	"userId":"string //用户id",
 	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
 	"password":"string //密码"
 }
 ```
@@ -444,6 +483,7 @@ password|string|否|
 {
 	"userId":"string //用户id",
 	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
 	"password":"string //密码"
 }
 ```
@@ -469,6 +509,7 @@ password|string|否|
 [{
 	"userId":"string //用户id",
 	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
 	"password":"string //密码"
 }]
 ```

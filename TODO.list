@@ -2,5 +2,8 @@
 # TODO
 
 1. 生成前端接口代码（Java，Js，ObjectC, Dart）
-2. 对于不在源码的对象，使用反射获取字段信息
+2. 对于不在源码的对象，使用反射获取字段信息【done】
 3. 支持部署到[easymock](https://github.com/easy-mock/easy-mock)和[rap2](https://github.com/thx/rap2-delos)
+4. 错误信息定位到出错的接口
+5. 公共参数设置
+7. 关联jar包的源码

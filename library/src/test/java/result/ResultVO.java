@@ -1,11 +1,12 @@
 package result;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class ResultVO<T> extends SimpleResult<Student>{
+public class ResultVO<T extends Serializable> extends SimpleResult<GenericResult<Student, Integer>>{
 
     /**
      * 性别

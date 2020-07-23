@@ -2,11 +2,55 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>BookVO</title>
+<title>ApiResult</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
 <link href="../style.css" rel="stylesheet" />
 </head>
 <body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ApiResult implements Serializable{
+
+    private int code; //
+    private String errMsg; //
+    private BookVO data; //
+    private enum errType; // [SUCCESS,WARN,ERROR]
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getErrMsg(){
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg){
+        this.errMsg = errMsg;
+    }
+
+    public BookVO getData(){
+        return data;
+    }
+
+    public void setData(BookVO data){
+        this.data = data;
+    }
+
+    public enum getErrType(){
+        return errType;
+    }
+
+    public void setErrType(enum errType){
+        this.errType = errType;
+    }
+
+}
+</pre>
+
+
 <pre class="prettyprint lang-java">
 public class BookVO implements Serializable{
 
