@@ -167,11 +167,11 @@ public ApiResult<UserVO> saveUser(@RequestBody UserForm userForm){
 
 If you don't like the *return* type, you can also use `@ApiDoc` in JApiDoc to declare the response type，you can refer the `@ApiDoc` chapter below.
 
-### 3. Api Java Beans Must In Source Code 
+### 3. Api Java Beans Should In Source Code 
 
-We know that there is no comment information in the compiled class bytecode. If JApiDocs is implemented by reflecting the class, it is inevitable to use runtime annotations, which will increase the cost of learning. 
-Considering this, JApiDocs has changed to use parsing the source code after the second version directly , as a result: All Form Bean (form) objects and return objects must be In the source code of the project, otherwise it cannot be parsed. 
-If the JavaBean object of your project depend on a jar package, unfortunately, JApiDocs will not be able to support it.
+We know that there is no comment information in the compiled class bytecode. For JApiDcos to work better, 
+your Form bean Class and return Class should be in the source code, otherwise the generated document will be missing description information.
+Anyway, in version 1.4.2, JApiDocs will try to parse the field information by reflection when can't find the source code (the dependent class is in the jar package).
 
 # Advanced Configuration
 
@@ -194,6 +194,32 @@ ex：
 ```
 
 ## @Ignore
+
+### Ignore Controller Class
+
+Add `@Ignore` at Controller, all of its method would ignore.
+
+```java
+
+@Ignore
+public class UserController { 
+ 
+}
+```
+
+### Ignore Method
+
+```java
+
+@Ignore
+@PostMapping("save")
+public ApiResult saveUser(){
+  return null;
+}
+
+```
+
+### Ignore Field
 
 If you don’t want to export a field in the object, you can add `@Ignore` annotation to this field, so that JApiDocs will automatically ignore it when exporting the document:
 
@@ -233,7 +259,7 @@ The symbol similar to "${CLASS_NAME}" in the template is a substitution variable
 Use `DocsConfig` to replace with new template:
 
 ```java
-docsConfig.setCodeTplPath("your new tempalte path");
+docsConfig.setResourcePath("your new tempalte path");
 ```
 
 ## More Custom Features
@@ -258,6 +284,14 @@ public class CustomPlugin implements IPluginSupport{
 ```java
  config.addPlugin(new CustomPlugin());
 ```
+
+# Contact
+
+You are welcome to post issues.
+
+Email：yedaxia#foxmail.com
+
+想加入反馈微信群，请添加个人微信: DarcyYe（注明来意） 
 
 # License
 

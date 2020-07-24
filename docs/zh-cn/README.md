@@ -166,10 +166,10 @@ public ApiResult<UserVO> saveUser(@RequestBody UserForm userForm){
 
 ### 3. 接口对象在源码中
 
-我们知道，经过编译后的 class 字节码中是没有注释信息的，如果要通过反射字节码的方式来实现，则不可避免要引入运行时注解，这样会增加使用成本，
-考虑到这一点，JApiDocs 从第二个版本之后就改成了使用解析源码的方式，而不是反射字节码的思路来实现了，但这样直接导致的缺陷就是：
-所有的 Form Bean (表单)对象和返回对象就必须在项目的源码中，否则就无法解析了，如果你们项目的JavaBean对象是通过jar包的形式提供的，
-那很遗憾，JApiDocs将无法支持。
+我们知道，经过编译后的 class 字节码中是没有注释信息的。所以为了让JApiDcos能更好地工作，你的表单Bean类和返回类最好在源码中，否则生成的文档将会缺失说明信息。
+在1.4.2版本中，JApiDocs在找不到源码的情况下（依赖类在jar包中）也会通过尝试反射的方式来解析字段信息，但这样就没有说明信息了。
+
+> 后续会计划通过关联源码的形式来解决这个问题。
 
 # 高级配置
 
@@ -193,7 +193,35 @@ JApiDocs 默认只导出声明了`@ApiDoc`的接口，我们前面通过设置 `
 
 ## @Ignore
 
- 如果你不想导出对象里面的某个字段，可以给这个字段加上`@Ignore`注解，这样JApiDocs导出文档的时候就会自动忽略掉了：
+### 忽略Controller
+
+你只需要在Controller类上添加该注解即可，这样，整个Controller的接口都会被忽略掉：
+
+```java
+
+@Ignore
+public class UserController { 
+ 
+}
+```
+
+### 忽略接口
+
+不难理解，就是在接口方法中添加@Ignore注解：
+
+```java
+
+@Ignore
+@PostMapping("save")
+public ApiResult saveUser(){
+  return null;
+}
+
+```
+
+### 忽略字段
+
+如果你不想导出对象里面的某个字段，可以给这个字段加上`@Ignore`注解，这样JApiDocs导出文档的时候就会自动忽略掉了：
  
 例子:
  
@@ -231,7 +259,7 @@ JApiDocs 除了支持文档导出，目前也支持生成了 Android 和 iOS 的
 通过`DocsConfig`配置模板路径替换成新的模板：
 
 ```java
-docsConfig.setCodeTplPath("模板路径");
+docsConfig.setResourcePath("模板路径");
 ```
 
 ## 添加更多功能
