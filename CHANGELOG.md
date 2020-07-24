@@ -12,3 +12,10 @@
 2. use reflection when JavaBean without java source code
 3. fix some bugs
 
+# V1.4.2
+
+1. @Ignore 支持类和接口方法
+2. 修复泛型继承bug
+3. 修复List<String>类型参数不显示bug
+4. 修复内部枚举类bug
+
