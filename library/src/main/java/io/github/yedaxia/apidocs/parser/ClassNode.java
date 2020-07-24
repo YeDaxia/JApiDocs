@@ -1,5 +1,6 @@
 package io.github.yedaxia.apidocs.parser;
 
+import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.Utils;
 
 import java.util.ArrayList;
@@ -168,15 +169,16 @@ public class ClassNode {
     }
 
     private String getFieldDesc(FieldNode fieldNode){
-        final String fieldType = fieldNode.getLoopNode()? fieldNode.getChildNode().getClassName() + "{}": fieldNode.getType();
-        String fieldDesc = "";
+        final String fieldType = fieldNode.getLoopNode()? fieldNode.getChildNode().getClassName()
+                + (fieldNode.getChildNode().isList()?"[]":"{}"): fieldNode.getType();
+        String fieldDesc;
         if(Utils.isNotEmpty(fieldNode.getDescription())){
             fieldDesc = String.format("%s //%s", fieldType, fieldNode.getDescription());
         }else{
             fieldDesc = fieldType;
         }
         if(showFieldNotNull && fieldNode.getNotNull()){
-            fieldDesc =  fieldDesc + "【必须】";
+            fieldDesc =  String.format("%s【%s】", fieldDesc, DocContext.getI18n().getMessage("parameterNeed"));
         }
         return fieldDesc;
     }
