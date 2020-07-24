@@ -313,7 +313,7 @@ public class ParseUtils {
                         }
 
                         //忽略字段
-                        if(fd.getAnnotationByName("Ignore").isPresent()){
+                        if(fd.getAnnotationByName(Ignore.class.getSimpleName()).isPresent()){
                             return;
                         }
 

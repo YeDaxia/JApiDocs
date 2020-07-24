@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
  * @author yeguozhong yedaxia.github.com
  */
 @Retention(RetentionPolicy.SOURCE)
-@Target({ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.TYPE, ElementType.METHOD})
 public @interface Ignore {
 }

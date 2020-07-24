@@ -10,9 +10,7 @@ import com.github.javaparser.ast.type.ArrayType;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.javadoc.JavadocBlockTag;
-import io.github.yedaxia.apidocs.DocContext;
-import io.github.yedaxia.apidocs.ParseUtils;
-import io.github.yedaxia.apidocs.Utils;
+import io.github.yedaxia.apidocs.*;
 import io.github.yedaxia.apidocs.consts.ChangeFlag;
 
 import java.io.File;
@@ -91,8 +89,12 @@ public abstract class AbsControllerParser {
                 .filter(m -> m.getModifiers().contains(Modifier.PUBLIC))
                 .forEach(m -> {
 
-                    boolean existsApiDoc = m.getAnnotationByName("ApiDoc").isPresent();
+                    boolean existsApiDoc = m.getAnnotationByName(ApiDoc.class.getSimpleName()).isPresent();
                     if (!existsApiDoc && !controllerNode.getGenerateDocs() && !DocContext.getDocsConfig().getAutoGenerate()) {
+                        return;
+                    }
+
+                    if(m.getAnnotationByName(Ignore.class.getSimpleName()).isPresent()){
                         return;
                     }
 

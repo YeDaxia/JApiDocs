@@ -197,32 +197,25 @@ public class DocContext {
                     break;
                 case SPRING:
                     controllerParser = new SpringControllerParser();
-                    Utils.wideSearchFile(javaSrcDir, new FilenameFilter() {
-                        @Override
-                        public boolean accept(File f, String name) {
-                            return f.getName().endsWith(".java") && ParseUtils.compilationUnit(f)
-                                    .getChildNodesByType(ClassOrInterfaceDeclaration.class)
-                                    .stream()
-                                    .anyMatch(cd -> cd.getAnnotationByName("Controller").isPresent() || cd.getAnnotationByName("RestController").isPresent());
-                        }
-                    }, result, false);
+                    Utils.wideSearchFile(javaSrcDir, (f, name) -> f.getName().endsWith(".java") && ParseUtils.compilationUnit(f)
+                            .getChildNodesByType(ClassOrInterfaceDeclaration.class)
+                            .stream()
+                            .anyMatch(cd -> (cd.getAnnotationByName("Controller").isPresent()
+                                    || cd.getAnnotationByName("RestController").isPresent())
+                                    && !cd.getAnnotationByName(Ignore.class.getSimpleName()).isPresent())
+                            , result, false);
                     controllerFiles.addAll(result);
                     break;
                 default:
                     controllerParser = new GenericControllerParser();
-                    Utils.wideSearchFile(javaSrcDir, new FilenameFilter() {
-                        @Override
-                        public boolean accept(File f, String name) {
-                            return f.getName().endsWith(".java") && ParseUtils.compilationUnit(f)
-                                    .getChildNodesByType(ClassOrInterfaceDeclaration.class)
-                                    .stream()
-                                    .anyMatch(cd -> {
-                                        return cd.getChildNodesByType(MethodDeclaration.class)
-                                                .stream()
-                                                .anyMatch(md -> md.getAnnotationByName("ApiDoc").isPresent());
-                                    });
-                        }
-                    }, result, false);
+                    Utils.wideSearchFile(javaSrcDir, (f, name) -> f.getName().endsWith(".java") && ParseUtils.compilationUnit(f)
+                            .getChildNodesByType(ClassOrInterfaceDeclaration.class)
+                            .stream()
+                            .anyMatch(cd ->
+                                 cd.getChildNodesByType(MethodDeclaration.class)
+                                        .stream()
+                                        .anyMatch(md -> md.getAnnotationByName("ApiDoc").isPresent())
+                            ), result, false);
                     controllerFiles.addAll(result);
                     break;
             }
