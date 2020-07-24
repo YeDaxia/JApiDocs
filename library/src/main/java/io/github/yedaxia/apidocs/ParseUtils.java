@@ -583,7 +583,9 @@ public class ParseUtils {
             return "date";
         } else if("file".equalsIgnoreCase(rawType) || "MultipartFile".equalsIgnoreCase(rawType)){
             return "file";
-        } else{
+        } else if("Object".equalsIgnoreCase(rawType)){
+            return "object";
+        }else{
             return TYPE_MODEL;
         }
     }

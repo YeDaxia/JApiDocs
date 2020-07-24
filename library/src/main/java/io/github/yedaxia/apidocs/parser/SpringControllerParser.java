@@ -148,7 +148,6 @@ public class SpringControllerParser extends AbsControllerParser {
                             }
                         });
                     }
-
                 });
 
                 //如果参数是个对象

@@ -1,12 +1,13 @@
 package result.book;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class BookVO extends HashMap {
+public class BookVO extends HashMap implements Serializable {
     private Long bookId; //图书id
     private String bookName; //图书名称
     private BookPrice price;

@@ -6,7 +6,9 @@ import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.type.ArrayType;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
@@ -132,7 +134,26 @@ public abstract class AbsControllerParser {
                         }
 
                         if (paramNode != null) {
-                            paramNode.setType(ParseUtils.unifyType(p.getType().asString()));
+                            Type pType = p.getType();
+                            boolean isList = false;
+                            if(pType instanceof ArrayType){
+                                isList = true;
+                                pType = ((ArrayType) pType).getComponentType();
+                            }else if(ParseUtils.isCollectionType(pType.asString())){
+                                List<ClassOrInterfaceType> collectionTypes = pType.getChildNodesByType(ClassOrInterfaceType.class);
+                                isList = true;
+                                if(!collectionTypes.isEmpty()){
+                                    pType = collectionTypes.get(0);
+                                }else{
+                                    paramNode.setType("Object[]");
+                                }
+                            }else{
+                                pType = p.getType();
+                            }
+                            if(paramNode.getType() == null){
+                                final String pUnifyType = ParseUtils.unifyType(pType.asString());
+                                paramNode.setType(isList ? pUnifyType + "[]": pUnifyType);
+                            }
                         }
                     });
 

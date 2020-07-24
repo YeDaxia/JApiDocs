@@ -1,9 +1,12 @@
 package result;
 
+import java.io.Serializable;
+
 /**
  * @author yeguozhong yedaxia.github.com
  */
-public class ApiResult<T> {
+public class ApiResult<T extends Serializable> extends BaseResult<T>{
+
     private Integer code;
     private String errMsg;
     private T data;

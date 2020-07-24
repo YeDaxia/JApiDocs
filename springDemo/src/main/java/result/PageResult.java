@@ -4,9 +4,10 @@ package result;
  * @author yeguozhong yedaxia.github.com
  */
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageResult<T> {
+public class PageResult<T> implements Serializable {
 
     private Integer total; //总记录数
     private Integer pageCount; //页数
