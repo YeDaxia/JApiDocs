@@ -220,14 +220,17 @@ public abstract class AbsControllerParser {
      * @param controllerFile
      */
     protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType, File controllerFile){
-        // 解析方法返回类的泛型信息
-        ((ClassOrInterfaceType) resultType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
-            GenericNode rootGenericNode = new GenericNode();
-            rootGenericNode.setFromJavaFile(controllerFile);
-            rootGenericNode.setClassType(argType);
-            responseNode.addGenericNode(rootGenericNode);
-        }));
-        ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);
+        // maybe void
+        if(resultType instanceof ClassOrInterfaceType){
+            // 解析方法返回类的泛型信息
+            ((ClassOrInterfaceType) resultType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+                GenericNode rootGenericNode = new GenericNode();
+                rootGenericNode.setFromJavaFile(controllerFile);
+                rootGenericNode.setClassType(argType);
+                responseNode.addGenericNode(rootGenericNode);
+            }));
+            ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);
+        }
     }
 
     /**

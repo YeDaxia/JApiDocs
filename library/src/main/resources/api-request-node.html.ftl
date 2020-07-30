@@ -1,4 +1,5 @@
-<h2 id="${requestNode.methodName}"><a href="#">${(requestNode.description)!''} <#if requestNode.deprecated><span class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
+<h2 id="${requestNode.methodName}"><a href="#">${(requestNode.description)!''} <#if requestNode.deprecated><span
+                class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
 <#if requestNode.author??>
     <p class="text-muted"><em>${i18n.getMessage('author')}: ${requestNode.author}</em></p>
 </#if>
@@ -15,15 +16,14 @@
     </#if>
 </p>
 <#if requestNode.paramNodes?size != 0>
-    <p><strong>${i18n.getMessage('requestParameters')}</strong></p>
-    <#assign isJsonReqBody = false/>
+    <#assign requestJsonBody = ''/>
     <#list requestNode.paramNodes as paramNode>
         <#if paramNode.jsonBody>
-            <pre class="prettyprint lang-json">${paramNode.description}</pre>
-            <#assign isJsonReqBody = true/>
+            <#assign requestJsonBody = paramNode.description/>
         </#if>
     </#list>
-    <#if !isJsonReqBody>
+    <#if requestJsonBody == '' || (requestJsonBody != '' && requestNode.paramNodes?size gt 1)>
+        <p><strong>${i18n.getMessage('requestParameters')}</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
         <table class="table table-bordered">
             <tr>
                 <th>${i18n.getMessage('parameterName')}</th>
@@ -32,14 +32,20 @@
                 <th>${i18n.getMessage('description')}</th>
             </tr>
             <#list requestNode.paramNodes as paramNode>
-                <tr>
-                    <td>${paramNode.name}</td>
-                    <td>${paramNode.type}</td>
-                    <td>${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}</td>
-                    <td>${(paramNode.description)!''}</td>
-                </tr>
+                <#if !(paramNode.jsonBody)>
+                    <tr>
+                        <td>${paramNode.name}</td>
+                        <td>${paramNode.type}</td>
+                        <td>${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}</td>
+                        <td>${(paramNode.description)!''}</td>
+                    </tr>
+                </#if>
             </#list>
         </table>
+    </#if>
+    <#if requestJsonBody != ''>
+        <p><strong>${i18n.getMessage('requestBody')}</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">${requestJsonBody}</pre>
     </#if>
 </#if>
 <#if requestNode.responseNode??>
@@ -47,8 +53,11 @@
     <pre class="prettyprint lang-json">${requestNode.responseNode.toJsonApi()}</pre>
     <#if requestNode.androidCodePath??>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="${requestNode.androidCodePath}"><i class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="${requestNode.iosCodePath}"><i class="fa fa-apple" aria-hidden="true"></i> iOS Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="${requestNode.androidCodePath}"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="${requestNode.iosCodePath}"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
         </div>
     </#if>
 </#if>
