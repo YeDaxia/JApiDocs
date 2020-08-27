@@ -12,14 +12,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.4.2'
+compile 'io.github.yedaxia:japidocs:1.4.3'
 ```
 
 ### 第二步：配置参数
@@ -182,6 +182,7 @@ JApiDocs 默认只导出声明了`@ApiDoc`的接口，我们前面通过设置 `
 当`@ApiDoc`声明在接口方法上的时候，它还拥有一些更灵活的设置，下面我们来看一下：
 
 - result: 这个可以直接声明返回的对象类型，如果你声明了，将会覆盖SpringBoot的返回对象
+- stringResult：返回字符串，在返回结果比较简单，而不想创建一个专门的返回类，则可以考虑使用这个属性。
 - url: 请求URL，扩展字段，用于支持非SpringBoot项目
 - method: 请求方法，扩展字段，用于支持非SpringBoot项目
 
@@ -189,6 +190,14 @@ JApiDocs 默认只导出声明了`@ApiDoc`的接口，我们前面通过设置 `
 
 ```java
 @ApiDoc(result = AdminVO.class, url = "/api/v1/admin/login2", method = "post")
+```
+
+`stringResult` 实例，在文档中将会自动格式化json字符串：
+
+```java
+@ApiDoc(stringResult = "{code: 0, data: 'success'}")
+@GetMapping(value = "custom-json")
+public Map customJsonResult(){}
 ```
 
 ## @Ignore
@@ -222,15 +231,49 @@ public ApiResult saveUser(){
 ### 忽略字段
 
 如果你不想导出对象里面的某个字段，可以给这个字段加上`@Ignore`注解，这样JApiDocs导出文档的时候就会自动忽略掉了：
- 
+
 例子:
- 
+
  ```java
 public class UserForm{
     @Ignore
     private Byte gender; //性别
 }
+ ```
+
+## @description
+
+### 在Controller类上使用
+
+在类上使用@description，将会作为该Controller在文档上的导航标题，而不会使用上面的注释内容。
+
+```java
+/**
+ * 演示一些比较特殊的声明方法
+ *
+ * @description 管理员接口
+ * @author yeguozhong yedaxia.github.com
+ */
+@Controller
+public class AdminController {
 ```
+
+### 在接口方法上使用
+
+在方法中使用，则可以在接口方法下面添加一行说明：
+
+```java
+/**
+  * 用户列表
+  * @description 这是一行说明
+  * @param listForm
+  * @author yedaxia
+  */
+  @RequestMapping(path = "list", method = {RequestMethod.GET,  RequestMethod.POST}  )
+  public ApiResult<PageResult<UserVO>> list(UserListForm listForm){}
+```
+
+
 
 ## 导出更多格式
 
@@ -283,3 +326,14 @@ public class CustomPlugin implements IPluginSupport{
 ```java
  config.addPlugin(new CustomPlugin());
 ```
+
+## 常见问题
+
+1、如何排查错误？
+
+关闭自动生成`config.setAutoGenerate(Boolean.FALSE)`，使用`@ApiDoc` 来一个个接口导出排查问题。
+
+2、多模块找不到相关类源码？
+
+如果源码路径没有全部识别出来，可以通过`config.addJavaSrcPath`来添加模块的源码路径，注意要添加到`src/main/java`这一级。
+

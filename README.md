@@ -1,6 +1,3 @@
-
-[English Docs](https://japidocs.agilestudio.cn/) | [中文文档](https://japidocs.agilestudio.cn/#/zh-cn/)
-
 # Getting Started
 
 Supported JDK：1.8+
@@ -15,14 +12,14 @@ maven:
 <dependency>
   <groupId>io.github.yedaxia</groupId>
   <artifactId>japidocs</artifactId>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
 </dependency>
 ```
 
 gradle:
 
 ```
-compile 'io.github.yedaxia:japidocs:1.4.2'
+compile 'io.github.yedaxia:japidocs:1.4.3'
 ```
 
 ### Step Two：Configuration
@@ -284,15 +281,3 @@ public class CustomPlugin implements IPluginSupport{
 ```java
  config.addPlugin(new CustomPlugin());
 ```
-
-# Contact
-
-You are welcome to post issues.
-
-Email：yedaxia#foxmail.com
-
-想加入反馈微信群，请添加个人微信: DarcyYe（注明来意） 
-
-# License
-
-[Apache License](https://github.com/YeDaxia/JApiDocs/blob/master/LICENSE)
