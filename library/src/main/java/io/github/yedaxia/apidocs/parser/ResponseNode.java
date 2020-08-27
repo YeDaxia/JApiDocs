@@ -1,13 +1,7 @@
 package io.github.yedaxia.apidocs.parser;
 
-import io.github.yedaxia.apidocs.DocContext;
+import com.alibaba.fastjson.JSONObject;
 import io.github.yedaxia.apidocs.Utils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * response node
@@ -18,6 +12,8 @@ public class ResponseNode extends ClassNode {
 
     private RequestNode requestNode;
 
+    private String stringResult;
+
     public RequestNode getRequestNode() {
         return requestNode;
     }
@@ -26,4 +22,24 @@ public class ResponseNode extends ClassNode {
         this.requestNode = requestNode;
     }
 
+    public String getStringResult() {
+        return stringResult;
+    }
+
+    public void setStringResult(String stringResult) {
+        this.stringResult = stringResult;
+    }
+
+    @Override
+    public String toJsonApi() {
+        if(stringResult != null){
+            try{
+                return Utils.toPrettyJson((JSONObject.parse(stringResult)));
+            }catch (Exception ex){
+                // do nothing
+                return stringResult;
+            }
+        }
+        return super.toJsonApi();
+    }
 }

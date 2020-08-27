@@ -1,11 +1,9 @@
 package io.github.yedaxia.apidocs.parser;
 
-import io.github.yedaxia.apidocs.Utils;
 import io.github.yedaxia.apidocs.consts.ChangeFlag;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +16,8 @@ public class RequestNode {
     private List<String> method = new ArrayList<>();
     private String url;
     private String methodName; //方法名
-    private String description;
+    private String description; //接口名
+    private String supplement; //补充说明，对应方法 @description
     private List<ParamNode> paramNodes = new ArrayList<>();
     private List<HeaderNode> header = new ArrayList<>();
     private Boolean deprecated = Boolean.FALSE;
@@ -30,6 +29,14 @@ public class RequestNode {
     private String author;
     private Byte changeFlag = ChangeFlag.SAME; // 0: same, 1: new, 2: modify
     private RequestNode lastRequestNode;
+
+    public String getSupplement() {
+        return supplement;
+    }
+
+    public void setSupplement(String supplement) {
+        this.supplement = supplement;
+    }
 
     public String getCodeFileUrl() {
         return codeFileUrl;

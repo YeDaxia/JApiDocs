@@ -94,7 +94,7 @@ public abstract class AbsControllerParser {
                         return;
                     }
 
-                    if(m.getAnnotationByName(Ignore.class.getSimpleName()).isPresent()){
+                    if(shouldIgnoreMethod(m)){
                         return;
                     }
 
@@ -115,13 +115,15 @@ public abstract class AbsControllerParser {
 
                         List<JavadocBlockTag> blockTagList = d.getBlockTags();
                         for (JavadocBlockTag blockTag : blockTagList) {
-                            if (blockTag.getTagName().equals("param")) {
+                            if (blockTag.getTagName().equalsIgnoreCase("param")) {
                                 ParamNode paramNode = new ParamNode();
                                 paramNode.setName(blockTag.getName().get());
                                 paramNode.setDescription(blockTag.getContent().toText());
                                 requestNode.addParamNode(paramNode);
-                            } else if (blockTag.getTagName().equals("author")) {
+                            } else if (blockTag.getTagName().equalsIgnoreCase("author")) {
                                 requestNode.setAuthor(blockTag.getContent().toText());
+                            } else if(blockTag.getTagName().equalsIgnoreCase("description")){
+                                requestNode.setSupplement(blockTag.getContent().toText());
                             }
                         }
                     });
@@ -153,13 +155,18 @@ public abstract class AbsControllerParser {
                                 pType = p.getType();
                             }
                             if(paramNode.getType() == null){
-                                final String pUnifyType = ParseUtils.unifyType(pType.asString());
-                                paramNode.setType(isList ? pUnifyType + "[]": pUnifyType);
+                                if(ParseUtils.isEnum(getControllerFile(), pType.asString())){
+                                    paramNode.setType(isList ? "enum[]": "enum");
+                                }else{
+                                    final String pUnifyType = ParseUtils.unifyType(pType.asString());
+                                    paramNode.setType(isList ? pUnifyType + "[]": pUnifyType);
+                                }
                             }
                         }
                     });
 
                     com.github.javaparser.ast.type.Type resultClassType = null;
+                    String stringResult = null;
                     if (existsApiDoc) {
                         AnnotationExpr an = m.getAnnotationByName("ApiDoc").get();
                         if (an instanceof SingleMemberAnnotationExpr) {
@@ -173,6 +180,8 @@ public abstract class AbsControllerParser {
                                     requestNode.setUrl(((StringLiteralExpr) pair.getValue()).getValue());
                                 } else if (pairName.equals("method")) {
                                     requestNode.addMethod(((StringLiteralExpr) pair.getValue()).getValue());
+                                } else if("stringResult".equals(pairName)){
+                                    stringResult = ((StringLiteralExpr)pair.getValue()).getValue();
                                 }
                             }
                         }
@@ -189,7 +198,11 @@ public abstract class AbsControllerParser {
 
                     ResponseNode responseNode = new ResponseNode();
                     responseNode.setRequestNode(requestNode);
-                    handleResponseNode(responseNode, resultClassType.getElementType(), javaFile);
+                    if(stringResult != null){
+                        responseNode.setStringResult(stringResult);
+                    }else{
+                        handleResponseNode(responseNode, resultClassType.getElementType(), javaFile);
+                    }
                     requestNode.setResponseNode(responseNode);
                     setRequestNodeChangeFlag(requestNode);
                     controllerNode.addRequestNode(requestNode);
@@ -210,6 +223,11 @@ public abstract class AbsControllerParser {
      * @param clazz
      */
     protected void afterHandleController(ControllerNode controllerNode, ClassOrInterfaceDeclaration clazz) {
+    }
+
+
+    protected boolean shouldIgnoreMethod(MethodDeclaration m){
+        return m.getAnnotationByName(Ignore.class.getSimpleName()).isPresent();
     }
 
     /**

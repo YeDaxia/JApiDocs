@@ -1,5 +1,6 @@
 import io.github.yedaxia.apidocs.Docs;
 import io.github.yedaxia.apidocs.DocsConfig;
+import io.github.yedaxia.apidocs.plugin.markdown.MarkdownDocPlugin;
 
 /**
  * @author yeguozhong yedaxia.github.com
@@ -13,6 +14,7 @@ public class Test {
         docsConfig.setApiVersion("V1.0");
         docsConfig.setAutoGenerate(Boolean.TRUE);
         docsConfig.setDocsPath("/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/apidocs");
+        docsConfig.addPlugin(new MarkdownDocPlugin());
         Docs.buildHtmlDocs(docsConfig);
     }
 

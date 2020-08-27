@@ -1,5 +1,8 @@
 <h2 id="${requestNode.methodName}"><a href="#">${(requestNode.description)!''} <#if requestNode.deprecated><span
                 class="badge">${i18n.getMessage('deprecated')}</span></#if></a></h2>
+<#if requestNode.supplement??>
+    <p class="text-muted">${requestNode.supplement}</p>
+</#if>
 <#if requestNode.author??>
     <p class="text-muted"><em>${i18n.getMessage('author')}: ${requestNode.author}</em></p>
 </#if>

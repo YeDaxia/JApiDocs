@@ -48,6 +48,23 @@ public class SpringControllerParser extends AbsControllerParser {
     }
 
     @Override
+    protected boolean shouldIgnoreMethod(MethodDeclaration m) {
+        boolean ignore = super.shouldIgnoreMethod(m);
+        if (ignore) {
+            return true;
+        }
+        // 没有 Mapping 注解的忽略
+        for (AnnotationExpr an : m.getAnnotations()) {
+            for (String mappingAn : MAPPING_ANNOTATIONS) {
+                if (mappingAn.contains(an.getNameAsString())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
     protected void afterHandleMethod(RequestNode requestNode, MethodDeclaration md) {
         md.getAnnotations().forEach(an -> {
             String name = an.getNameAsString();
@@ -110,7 +127,7 @@ public class SpringControllerParser extends AbsControllerParser {
                     String name = an.getNameAsString();
 
                     // @NotNull, @NotBlank, @NotEmpty
-                    if(ParseUtils.isNotNullAnnotation(name)){
+                    if (ParseUtils.isNotNullAnnotation(name)) {
                         paramNode.setRequired(true);
                         return;
                     }
@@ -129,8 +146,8 @@ public class SpringControllerParser extends AbsControllerParser {
                         return;
                     }
 
-                   //  @RequestParam("email") String email
-                    if(an instanceof SingleMemberAnnotationExpr){
+                    //  @RequestParam("email") String email
+                    if (an instanceof SingleMemberAnnotationExpr) {
                         paramNode.setName(((StringLiteralExpr) ((SingleMemberAnnotationExpr) an).getMemberValue()).getValue());
                         return;
                     }
@@ -139,10 +156,10 @@ public class SpringControllerParser extends AbsControllerParser {
                     if (an instanceof NormalAnnotationExpr) {
                         ((NormalAnnotationExpr) an).getPairs().forEach(pair -> {
                             String exprName = pair.getNameAsString();
-                            if("required".equals(exprName)){
+                            if ("required".equals(exprName)) {
                                 Boolean exprValue = ((BooleanLiteralExpr) pair.getValue()).getValue();
                                 paramNode.setRequired(Boolean.valueOf(exprValue));
-                            }else if("value".equals(exprName)){
+                            } else if ("value".equals(exprName)) {
                                 String exprValue = ((StringLiteralExpr) pair.getValue()).getValue();
                                 paramNode.setName(exprValue);
                             }
@@ -151,7 +168,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 });
 
                 //如果参数是个对象
-                if(!paramNode.isJsonBody() && ParseUtils.isModelType(paramNode.getType())){
+                if (!paramNode.isJsonBody() && ParseUtils.isModelType(paramNode.getType())) {
                     ClassNode classNode = new ClassNode();
                     ParseUtils.parseClassNodeByType(getControllerFile(), classNode, p.getType());
                     List<ParamNode> paramNodeList = new ArrayList<>();
@@ -165,16 +182,16 @@ public class SpringControllerParser extends AbsControllerParser {
 
     @Override
     protected void handleResponseNode(ResponseNode responseNode, Type resultType, File controllerFile) {
-        if(resultType instanceof ClassOrInterfaceType) {
+        if (resultType instanceof ClassOrInterfaceType) {
             String className = ((ClassOrInterfaceType) resultType).getName().getIdentifier();
-            if("org.springframework.http.ResponseEntity".endsWith(className)){
+            if ("org.springframework.http.ResponseEntity".endsWith(className)) {
                 Optional<NodeList<Type>> nodeListOptional = ((ClassOrInterfaceType) resultType).getTypeArguments();
-                if(nodeListOptional.isPresent()){
+                if (nodeListOptional.isPresent()) {
                     NodeList<Type> typeNodeList = nodeListOptional.get();
-                    if(!typeNodeList.isEmpty()){
+                    if (!typeNodeList.isEmpty()) {
                         resultType = typeNodeList.get(0).getElementType();
                     }
-                }else{
+                } else {
                     responseNode.setClassName(className);
                     return;
                 }
@@ -193,11 +210,11 @@ public class SpringControllerParser extends AbsControllerParser {
         }
     }
 
-    private void toParamNodeList( List<ParamNode> paramNodeList, ClassNode formNode, String parentName){
+    private void toParamNodeList(List<ParamNode> paramNodeList, ClassNode formNode, String parentName) {
         formNode.getChildNodes().forEach(filedNode -> {
-            if(filedNode.getChildNode() != null){
+            if (filedNode.getChildNode() != null) {
                 toParamNodeList(paramNodeList, filedNode.getChildNode(), filedNode.getName() + ".");
-            }else{
+            } else {
                 ParamNode paramNode = new ParamNode();
                 paramNode.setName(parentName + filedNode.getName());
                 paramNode.setType(filedNode.getType());

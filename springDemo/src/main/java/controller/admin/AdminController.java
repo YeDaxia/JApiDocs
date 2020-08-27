@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import result.user.AdminVO;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -61,5 +62,15 @@ public class AdminController {
     @ApiDoc(AdminVO[].class)
     public void addAdmins(@RequestBody List<AdminForm> adminForms){
 
+    }
+
+    /**
+     * 测试map
+     * @return
+     */
+    @ApiDoc
+    @RequestMapping("test-map")
+    public Map<String, Object> testMap(){
+        return null;
     }
 }

@@ -1,7 +1,10 @@
 package controller;
 
+import enums.UserType;
+import form.PageForm;
 import form.UserForm;
 import form.UserListForm;
+import io.github.yedaxia.apidocs.ApiDoc;
 import io.github.yedaxia.apidocs.Ignore;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +13,8 @@ import result.PageResult;
 import result.user.UserVO;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户接口
@@ -22,6 +27,7 @@ public class UserController {
 
     /**
      * 用户列表
+     * @description 这是一行说明
      * @param listForm
      * @author yedaxia
      */
@@ -33,10 +39,11 @@ public class UserController {
     /**
      * 用户信息
      * @param userId 用户id
+     * @param userForm
      * @author 周杰伦
      */
     @GetMapping("user-info/{userId}")
-    public ApiResult<UserVO> userInfo(@PathVariable Long userId){
+    public ApiResult<UserVO> userInfo(@PathVariable Long userId, @RequestBody UserForm userForm){
         return null;
     }
 
@@ -101,7 +108,28 @@ public class UserController {
      * @return
      */
     @GetMapping("list2")
-    public ApiResult<UserVO> list2(@RequestParam Long userId, @RequestBody UserForm user){
+    public ApiResult<ArrayList<UserVO>> list2(@RequestParam Long userId, @RequestBody UserForm user){
+        return null;
+    }
+
+    /**
+     * 用户列表3
+     * @param pageForm
+     * @return
+     */
+    @GetMapping("list3")
+    public List<UserVO> list3(PageForm pageForm){
+        return null;
+    }
+
+    /**
+     * 枚举参数测试
+     *
+     * @param userType
+     * @return
+     */
+    @GetMapping("getByUserType")
+    public ApiResult getByUserType(UserType userType){
         return null;
     }
 
@@ -112,6 +140,16 @@ public class UserController {
     @Ignore
     @PostMapping("ignore")
     public ApiResult ignore(){
+        return null;
+    }
+
+    /**
+     * 字符串结果
+     * @return
+     */
+    @ApiDoc(stringResult = "{code: 0, data: 'success'}")
+    @GetMapping(value = "custom-json")
+    public ApiResult customJsonResult(){
         return null;
     }
 }

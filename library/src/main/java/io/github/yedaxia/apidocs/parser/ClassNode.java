@@ -118,6 +118,9 @@ public class ClassNode {
     }
 
     public GenericNode getGenericNode(String  type){
+        if(genericNodes == null){
+            return null;
+        }
         for(GenericNode genericNode : genericNodes){
             if(genericNode.getPlaceholder().equals(type)){
                 return genericNode;

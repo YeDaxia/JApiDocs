@@ -216,6 +216,7 @@ public class ParseUtils {
             classType = ((ArrayType) classType).getComponentType();
         }else if(isCollectionType(classType.asString())){
             rootClassNode.setList(true);
+            rootClassNode.setGenericNodes(null);
             List<ClassOrInterfaceType> collectionType = classType.getChildNodesByType(ClassOrInterfaceType.class);
             if(collectionType.isEmpty()){
                 LogUtils.warn("We found Collection without specified Class Type, Please check ! java file : %s", inJavaFile.getName());
@@ -544,7 +545,24 @@ public class ParseUtils {
      * @return
      */
     public static boolean isModelType(String className){
+        if(className == null){
+            return false;
+        }
         return TYPE_MODEL.equals(unifyType(className));
+    }
+
+    /**
+     * 判断是否是枚举类型
+     *
+     * @return
+     */
+    public static boolean isEnum(File inJavaFile, String className){
+        try{
+            File javaFile = searchJavaFile(inJavaFile, className);
+            return compilationUnit(javaFile).getEnumByName(className).isPresent();
+        }catch (Exception ex){
+            return false;
+        }
     }
 
     /**
@@ -585,6 +603,8 @@ public class ParseUtils {
             return "file";
         } else if("Object".equalsIgnoreCase(rawType)){
             return "object";
+        }else if("enum".equalsIgnoreCase(rawType)){
+            return "enum";
         }else{
             return TYPE_MODEL;
         }

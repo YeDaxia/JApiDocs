@@ -21,6 +21,12 @@ public @interface ApiDoc {
 	Class<?> result() default Null.class;
 
     /**
+     * string result: for simple result
+     * @return
+     */
+	String stringResult() default "";
+
+    /**
      * request url
      */
 	String url() default "";
