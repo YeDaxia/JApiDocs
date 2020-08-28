@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ApiResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ApiResult implements Serializable{
+
+    private Object body; //
+    private int code; //
+    private String errMsg; //
+    private Object data; //
+    private enum errType; // [SUCCESS,WARN,ERROR]
+
+    public Object getBody(){
+        return body;
+    }
+
+    public void setBody(Object body){
+        this.body = body;
+    }
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getErrMsg(){
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg){
+        this.errMsg = errMsg;
+    }
+
+    public Object getData(){
+        return data;
+    }
+
+    public void setData(Object data){
+        this.data = data;
+    }
+
+    public enum getErrType(){
+        return errType;
+    }
+
+    public void setErrType(enum errType){
+        this.errType = errType;
+    }
+
+}
+</pre>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

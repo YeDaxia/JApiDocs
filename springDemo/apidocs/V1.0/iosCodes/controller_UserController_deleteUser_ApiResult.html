@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ApiResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ApiResult : NSObject
+
+//
+@property (nonatomic, strong) Object body;
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString errMsg;
+//
+@property (nonatomic, strong) Object data;
+// [SUCCESS,WARN,ERROR]
+@property (nonatomic, strong) enum errType;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

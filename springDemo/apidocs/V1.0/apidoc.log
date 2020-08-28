@@ -1,0 +1,78 @@
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [/Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/]
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : BookController.java
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : IgnoreController.java
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : UserController.java
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : AdminController.java
+8月 28, 2020 3:53:44 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : BookController.java
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : BookController.java
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : IgnoreController.java
+8月 28, 2020 3:53:45 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserController.java
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/result/ApiResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : UserController.java
+8月 28, 2020 3:53:47 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : AdminController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : AdminController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/BookController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/BookController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/UserController.java
+8月 28, 2020 3:53:48 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
+8月 28, 2020 3:53:49 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : /Users/yeguozhong/Desktop/gitLibrary/JApiDocs/springDemo/src/main/java/controller/admin/AdminController.java
+8月 28, 2020 3:53:49 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index start !!!
+8月 28, 2020 3:53:49 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index done !!!
+8月 28, 2020 3:53:49 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!

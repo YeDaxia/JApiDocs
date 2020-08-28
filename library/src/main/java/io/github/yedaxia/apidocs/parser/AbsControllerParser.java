@@ -117,7 +117,9 @@ public abstract class AbsControllerParser {
                         for (JavadocBlockTag blockTag : blockTagList) {
                             if (blockTag.getTagName().equalsIgnoreCase("param")) {
                                 ParamNode paramNode = new ParamNode();
-                                paramNode.setName(blockTag.getName().get());
+                                if(blockTag.getName().isPresent()){
+                                    paramNode.setName(blockTag.getName().get());
+                                }
                                 paramNode.setDescription(blockTag.getContent().toText());
                                 requestNode.addParamNode(paramNode);
                             } else if (blockTag.getTagName().equalsIgnoreCase("author")) {
@@ -230,8 +232,10 @@ public abstract class AbsControllerParser {
         return m.getAnnotationByName(Ignore.class.getSimpleName()).isPresent();
     }
 
+
     /**
      * handle response object
+     *
      *
      * @param responseNode
      * @param resultType

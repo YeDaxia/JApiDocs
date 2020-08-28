@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>管理员接口</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="PR.prettyPrint()">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                JApiDocs
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/YeDaxia/JApiDocs" target="_blank">GitHub</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">V1.0<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="book with-summary">
+    <div class="book-summary">
+<div class="search-box form-group">
+    <input type="text" class="form-control" id="inputSearch" placeholder="搜索接口">
+    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+</div>
+<div id="accordion" class="catalog">
+        <div class="panel">
+            <div id="heading0" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse0" aria-controls="collapse0">
+                <i class="glyphicon glyphicon-align-justify"></i> 图书接口
+            </div>
+            <div id="collapse0" class="collapse in " aria-labelledby="heading0">
+                    <a class="catalog-item" href="controller_BookController.html#getBookList">
+                        图书列表
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#getBookDetail">
+                        图书详情
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#delBook">
+                        删除图书
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#deleteBooks">
+                        批量删除图书
+                    </a>
+                    <a class="catalog-item" href="controller_BookController.html#buyBook">
+                        购买图书
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
+                <i class="glyphicon glyphicon-align-justify"></i> 用户接口
+            </div>
+            <div id="collapse1" class="collapse " aria-labelledby="heading1">
+                    <a class="catalog-item" href="controller_UserController.html#list">
+                        用户列表
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#userInfo">
+                        用户信息
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#saveUser">
+                        保存用户
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#uploadAvatar">
+                        上传头像
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#modifyUser">
+                        修改用户信息
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#deleteUser">
+                        删除用户
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#getImage">
+                        获取图片
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#list2">
+                        用户列表2
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#list3">
+                        用户列表3
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#getUserList">
+                        List测试
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#getByUserType">
+                        枚举参数测试
+                    </a>
+                    <a class="catalog-item" href="controller_UserController.html#customJsonResult">
+                        字符串结果
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
+                <i class="glyphicon glyphicon-align-justify"></i> 管理员接口
+            </div>
+            <div id="collapse2" class="collapse in " aria-labelledby="heading2">
+                    <a class="catalog-item" href="controller_admin_AdminController.html#login">
+                        管理员登录
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#emailLogin">
+                        邮箱登录
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#addAdmin">
+                        添加管理员
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#addAdmins">
+                        添加多个管理员
+                    </a>
+                    <a class="catalog-item" href="controller_admin_AdminController.html#testMap">
+                        测试map
+                    </a>
+            </div>
+        </div>
+</div>    </div>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+                <div class="d-flex justify-content-between">
+                    <a class="header-menu toggle-catalog" href="javascript:void(0)"><i
+                            class="glyphicon glyphicon-align-justify"></i> 目录</a>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="page-inner">
+                    <div class="action-list">
+                        <div class="action-item">
+<h2 id="login"><a href="#">管理员登录 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/v1/admin/login</code>
+        <span class="label label-default">post</span>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>string</td>
+                        <td>是</td>
+                        <td>登录名</td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td>string</td>
+                        <td>是</td>
+                        <td>密码</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
+	"password":"string //密码"
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_admin_AdminController_login_AdminVO.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_admin_AdminController_login_AdminVO.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="emailLogin"><a href="#">邮箱登录 <span
+                class="badge">过期</span></a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/v1/admin/emailLogin</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>string</td>
+                        <td>是</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td>string</td>
+                        <td>否</td>
+                        <td></td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
+	"password":"string //密码"
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_admin_AdminController_emailLogin_AdminVO.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_admin_AdminController_emailLogin_AdminVO.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="addAdmin"><a href="#">添加管理员 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/v1/admin/add</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"name":"string //名字",
+	"password":"string //密码"
+}</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
+	"password":"string //密码"
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_admin_AdminController_addAdmin_AdminVO.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_admin_AdminController_addAdmin_AdminVO.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="addAdmins"><a href="#">添加多个管理员 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/v1/admin/addMany</code>
+        <span class="label label-default">POST</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">[{
+	"name":"string //名字",
+	"password":"string //密码"
+}]</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">[{
+	"userId":"string //用户id",
+	"userName":"string //用户名",
+	"friend":"SimpleUser{}",
+	"password":"string //密码"
+}]</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_admin_AdminController_addAdmins_AdminVO.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_admin_AdminController_addAdmins_AdminVO.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="testMap"><a href="#">测试map </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong yedaxia.github.com</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/test-map</code>
+        <span class="label label-default">GET</span>
+        <span class="label label-default">POST</span>
+</p>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">Map{}</pre>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+<script>
+
+    var search_source_data = [
+            {name: '图书接口.图书列表', url: 'controller_BookController.html#getBookList'},
+            {name: '图书接口.图书详情', url: 'controller_BookController.html#getBookDetail'},
+            {name: '图书接口.删除图书', url: 'controller_BookController.html#delBook'},
+            {name: '图书接口.批量删除图书', url: 'controller_BookController.html#deleteBooks'},
+            {name: '图书接口.购买图书', url: 'controller_BookController.html#buyBook'},
+            {name: '用户接口.用户列表', url: 'controller_UserController.html#list'},
+            {name: '用户接口.用户信息', url: 'controller_UserController.html#userInfo'},
+            {name: '用户接口.保存用户', url: 'controller_UserController.html#saveUser'},
+            {name: '用户接口.上传头像', url: 'controller_UserController.html#uploadAvatar'},
+            {name: '用户接口.修改用户信息', url: 'controller_UserController.html#modifyUser'},
+            {name: '用户接口.删除用户', url: 'controller_UserController.html#deleteUser'},
+            {name: '用户接口.获取图片', url: 'controller_UserController.html#getImage'},
+            {name: '用户接口.用户列表2', url: 'controller_UserController.html#list2'},
+            {name: '用户接口.用户列表3', url: 'controller_UserController.html#list3'},
+            {name: '用户接口.List测试', url: 'controller_UserController.html#getUserList'},
+            {name: '用户接口.枚举参数测试', url: 'controller_UserController.html#getByUserType'},
+            {name: '用户接口.字符串结果', url: 'controller_UserController.html#customJsonResult'},
+            {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},
+            {name: '管理员接口.邮箱登录', url: 'controller_admin_AdminController.html#emailLogin'},
+            {name: '管理员接口.添加管理员', url: 'controller_admin_AdminController.html#addAdmin'},
+            {name: '管理员接口.添加多个管理员', url: 'controller_admin_AdminController.html#addAdmins'},
+            {name: '管理员接口.测试map', url: 'controller_admin_AdminController.html#testMap'},
+    ];
+
+
+
+    $('.toggle-catalog').click(function () {
+        $('.book').toggleClass('with-summary');
+    });
+
+    $('#inputSearch').autocomplete({hint: false}, [
+        {
+            source: function (query, callback) {
+                var result = [];
+                for(var i = 0; i !== search_source_data.length; i++){
+                    if(search_source_data[i].name.indexOf(query) !== -1){
+                        result.push(search_source_data[i]);
+                    }
+                }
+                callback(result);
+            },
+            displayKey: 'name',
+            templates: {
+                suggestion: function (suggestion) {
+                    return suggestion.name;
+                }
+            }
+        }
+    ]).on('autocomplete:selected', function (event, suggestion, dataset, context) {
+        self.location = suggestion.url;
+    });
+</script>
+</body>
+</html>

@@ -122,6 +122,17 @@ public class UserController {
         return null;
     }
 
+
+    /**
+     * List测试
+     * @param ids 用户id
+     * @return
+     */
+    @GetMapping("list-by-ids")
+    public ApiResult getUserList(List<Long> ids){
+        return null;
+    }
+
     /**
      * 枚举参数测试
      *

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ApiResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ApiResult implements Serializable{
+
+    private PageResult body; //
+    private int code; //
+    private String errMsg; //
+    private PageResult data; //
+    private enum errType; // [SUCCESS,WARN,ERROR]
+
+    public PageResult getBody(){
+        return body;
+    }
+
+    public void setBody(PageResult body){
+        this.body = body;
+    }
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getErrMsg(){
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg){
+        this.errMsg = errMsg;
+    }
+
+    public PageResult getData(){
+        return data;
+    }
+
+    public void setData(PageResult data){
+        this.data = data;
+    }
+
+    public enum getErrType(){
+        return errType;
+    }
+
+    public void setErrType(enum errType){
+        this.errType = errType;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class PageResult implements Serializable{
+
+    private int total; //总记录数
+    private int pageCount; //页数
+    private int currentPage; //当前页
+    private int pageSize; //每页记录数
+    private BookVO[] list; //列表数据
+    private boolean hasMore; //是否还有更多
+
+    public int getTotal(){
+        return total;
+    }
+
+    public void setTotal(int total){
+        this.total = total;
+    }
+
+    public int getPageCount(){
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount){
+        this.pageCount = pageCount;
+    }
+
+    public int getCurrentPage(){
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage){
+        this.currentPage = currentPage;
+    }
+
+    public int getPageSize(){
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize){
+        this.pageSize = pageSize;
+    }
+
+    public BookVO[] getList(){
+        return list;
+    }
+
+    public void setList(BookVO[] list){
+        this.list = list;
+    }
+
+    public boolean getHasMore(){
+        return hasMore;
+    }
+
+    public void setHasMore(boolean hasMore){
+        this.hasMore = hasMore;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookVO implements Serializable{
+
+    private long bookId; //图书id
+    private String bookName; //图书名称
+    private BookPrice price; //
+
+    public long getBookId(){
+        return bookId;
+    }
+
+    public void setBookId(long bookId){
+        this.bookId = bookId;
+    }
+
+    public String getBookName(){
+        return bookName;
+    }
+
+    public void setBookName(String bookName){
+        this.bookName = bookName;
+    }
+
+    public BookPrice getPrice(){
+        return price;
+    }
+
+    public void setPrice(BookPrice price){
+        this.price = price;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookPrice implements Serializable{
+
+    private double price; //价格
+    private int country; //国家
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public int getCountry(){
+        return country;
+    }
+
+    public void setCountry(int country){
+        this.country = country;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class PageResult implements Serializable{
+
+    private int total; //总记录数
+    private int pageCount; //页数
+    private int currentPage; //当前页
+    private int pageSize; //每页记录数
+    private BookVO[] list; //列表数据
+    private boolean hasMore; //是否还有更多
+
+    public int getTotal(){
+        return total;
+    }
+
+    public void setTotal(int total){
+        this.total = total;
+    }
+
+    public int getPageCount(){
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount){
+        this.pageCount = pageCount;
+    }
+
+    public int getCurrentPage(){
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage){
+        this.currentPage = currentPage;
+    }
+
+    public int getPageSize(){
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize){
+        this.pageSize = pageSize;
+    }
+
+    public BookVO[] getList(){
+        return list;
+    }
+
+    public void setList(BookVO[] list){
+        this.list = list;
+    }
+
+    public boolean getHasMore(){
+        return hasMore;
+    }
+
+    public void setHasMore(boolean hasMore){
+        this.hasMore = hasMore;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookVO implements Serializable{
+
+    private long bookId; //图书id
+    private String bookName; //图书名称
+    private BookPrice price; //
+
+    public long getBookId(){
+        return bookId;
+    }
+
+    public void setBookId(long bookId){
+        this.bookId = bookId;
+    }
+
+    public String getBookName(){
+        return bookName;
+    }
+
+    public void setBookName(String bookName){
+        this.bookName = bookName;
+    }
+
+    public BookPrice getPrice(){
+        return price;
+    }
+
+    public void setPrice(BookPrice price){
+        this.price = price;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookPrice implements Serializable{
+
+    private double price; //价格
+    private int country; //国家
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public int getCountry(){
+        return country;
+    }
+
+    public void setCountry(int country){
+        this.country = country;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

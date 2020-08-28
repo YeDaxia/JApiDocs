@@ -5,11 +5,11 @@ package io.github.yedaxia.apidocs.parser;
  */
 public class ParamNode {
 
-	public String name;
-	public String type;
-	public boolean required;
-	public String description;
-	public boolean jsonBody;// when true ,the json body set to description
+	private String name;
+	private String type;
+	private Boolean required = Boolean.FALSE;
+	private String description;
+	private Boolean jsonBody = Boolean.FALSE;// when true ,the json body set to description
 
 	public String getName() {
 		return name;
@@ -27,13 +27,6 @@ public class ParamNode {
 		this.type = type;
 	}
 
-	public boolean isRequired() {
-		return required;
-	}
-
-	public void setRequired(boolean required) {
-		this.required = required;
-	}
 
 	public String getDescription() {
 		return description;
@@ -43,11 +36,19 @@ public class ParamNode {
 		this.description = description;
 	}
 
-	public boolean isJsonBody() {
+	public Boolean getRequired() {
+		return required;
+	}
+
+	public void setRequired(Boolean required) {
+		this.required = required;
+	}
+
+	public Boolean getJsonBody() {
 		return jsonBody;
 	}
 
-	public void setJsonBody(boolean jsonBody) {
+	public void setJsonBody(Boolean jsonBody) {
 		this.jsonBody = jsonBody;
 	}
 }

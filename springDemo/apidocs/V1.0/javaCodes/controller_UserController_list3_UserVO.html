@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>UserVO</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class UserVO implements Serializable{
+
+    private String userId; //用户id
+    private String userName; //用户名
+    private SimpleUser friend; //
+    private SimpleUser[] friends; //好友
+    private BookVO[] readBooks; //阅读图书
+    private boolean isFollow; //是否关注
+    private UserVO[] follower; //
+
+    public String getUserId(){
+        return userId;
+    }
+
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public SimpleUser getFriend(){
+        return friend;
+    }
+
+    public void setFriend(SimpleUser friend){
+        this.friend = friend;
+    }
+
+    public SimpleUser[] getFriends(){
+        return friends;
+    }
+
+    public void setFriends(SimpleUser[] friends){
+        this.friends = friends;
+    }
+
+    public BookVO[] getReadBooks(){
+        return readBooks;
+    }
+
+    public void setReadBooks(BookVO[] readBooks){
+        this.readBooks = readBooks;
+    }
+
+    public boolean getIsFollow(){
+        return isFollow;
+    }
+
+    public void setIsFollow(boolean isFollow){
+        this.isFollow = isFollow;
+    }
+
+    public UserVO[] getFollower(){
+        return follower;
+    }
+
+    public void setFollower(UserVO[] follower){
+        this.follower = follower;
+    }
+
+}
+</pre>
+
+
+
+<pre class="prettyprint lang-java">
+public class SimpleUser implements Serializable{
+
+    private String userId; //用户id
+    private String userName; //用户名
+    private SimpleUser friend; //
+
+    public String getUserId(){
+        return userId;
+    }
+
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public SimpleUser getFriend(){
+        return friend;
+    }
+
+    public void setFriend(SimpleUser friend){
+        this.friend = friend;
+    }
+
+}
+</pre>
+
+
+
+<pre class="prettyprint lang-java">
+public class BookVO implements Serializable{
+
+    private long bookId; //图书id
+    private String bookName; //图书名称
+    private BookPrice price; //
+
+    public long getBookId(){
+        return bookId;
+    }
+
+    public void setBookId(long bookId){
+        this.bookId = bookId;
+    }
+
+    public String getBookName(){
+        return bookName;
+    }
+
+    public void setBookName(String bookName){
+        this.bookName = bookName;
+    }
+
+    public BookPrice getPrice(){
+        return price;
+    }
+
+    public void setPrice(BookPrice price){
+        this.price = price;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class BookPrice implements Serializable{
+
+    private double price; //价格
+    private int country; //国家
+
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public int getCountry(){
+        return country;
+    }
+
+    public void setCountry(int country){
+        this.country = country;
+    }
+
+}
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

@@ -168,7 +168,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 });
 
                 //如果参数是个对象
-                if (!paramNode.isJsonBody() && ParseUtils.isModelType(paramNode.getType())) {
+                if (!paramNode.getJsonBody() && ParseUtils.isModelType(paramNode.getType())) {
                     ClassNode classNode = new ClassNode();
                     ParseUtils.parseClassNodeByType(getControllerFile(), classNode, p.getType());
                     List<ParamNode> paramNodeList = new ArrayList<>();
