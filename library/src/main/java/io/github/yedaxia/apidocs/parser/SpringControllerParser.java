@@ -10,7 +10,6 @@ import com.github.javaparser.ast.type.Type;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.Utils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -170,7 +169,7 @@ public class SpringControllerParser extends AbsControllerParser {
                 //如果参数是个对象
                 if (!paramNode.getJsonBody() && ParseUtils.isModelType(paramNode.getType())) {
                     ClassNode classNode = new ClassNode();
-                    ParseUtils.parseClassNodeByType(getControllerFile(), classNode, p.getType());
+                    parseClassNodeByType(classNode, p.getType());
                     List<ParamNode> paramNodeList = new ArrayList<>();
                     toParamNodeList(paramNodeList, classNode, "");
                     requestNode.getParamNodes().remove(paramNode);
@@ -181,7 +180,7 @@ public class SpringControllerParser extends AbsControllerParser {
     }
 
     @Override
-    protected void handleResponseNode(ResponseNode responseNode, Type resultType, File controllerFile) {
+    protected void handleResponseNode(ResponseNode responseNode, Type resultType) {
         if (resultType instanceof ClassOrInterfaceType) {
             String className = ((ClassOrInterfaceType) resultType).getName().getIdentifier();
             if ("org.springframework.http.ResponseEntity".endsWith(className)) {
@@ -197,13 +196,13 @@ public class SpringControllerParser extends AbsControllerParser {
                 }
             }
         }
-        super.handleResponseNode(responseNode, resultType, controllerFile);
+        super.handleResponseNode(responseNode, resultType);
     }
 
     private void setRequestBody(ParamNode paramNode, Type paramType) {
         if (ParseUtils.isModelType(paramType.asString())) {
             ClassNode classNode = new ClassNode();
-            ParseUtils.parseClassNodeByType(getControllerFile(), classNode, paramType);
+            parseClassNodeByType(classNode, paramType);
             paramNode.setJsonBody(true);
             classNode.setShowFieldNotNull(Boolean.TRUE);
             paramNode.setDescription(classNode.toJsonApi());

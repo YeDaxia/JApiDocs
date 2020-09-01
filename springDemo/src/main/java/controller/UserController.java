@@ -1,6 +1,7 @@
 package controller;
 
 import enums.UserType;
+import form.GenericForm;
 import form.PageForm;
 import form.UserForm;
 import form.UserListForm;
@@ -161,6 +162,16 @@ public class UserController {
     @ApiDoc(stringResult = "{code: 0, data: 'success'}")
     @GetMapping(value = "custom-json")
     public ApiResult customJsonResult(){
+        return null;
+    }
+
+    /**
+     * 泛型参数
+     * @param user
+     * @return
+     */
+    @GetMapping(value = "generic-form")
+    public ApiResult testGenericForm(@RequestBody GenericForm<UserForm> user){
         return null;
     }
 }

@@ -101,6 +101,9 @@
                     <a class="catalog-item" href="controller_UserController.html#customJsonResult">
                         字符串结果
                     </a>
+                    <a class="catalog-item" href="controller_UserController.html#testGenericForm">
+                        泛型参数
+                    </a>
             </div>
         </div>
         <div class="panel">
@@ -853,6 +856,41 @@
 }</pre>
                         </div>
                         <hr>
+                        <div class="action-item">
+<h2 id="testGenericForm"><a href="#">泛型参数 </a></h2>
+    <p class="text-muted"><em>作者: yeguozhong</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/user/generic-form</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"form":{
+		"id":"long //用户ID",
+		"name":"string //用户名【必须】",
+		"phone":"long //电话【必须】",
+		"avatar":"string //头像【必须】",
+		"gender":"byte //性别"
+	}
+}</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"body":{},
+	"code":"int",
+	"errMsg":"string",
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/controller_UserController_testGenericForm_ApiResult.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/controller_UserController_testGenericForm_ApiResult.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
                     </div>
                 </div>
             </div>
@@ -883,6 +921,7 @@
             {name: '用户接口.List测试', url: 'controller_UserController.html#getUserList'},
             {name: '用户接口.枚举参数测试', url: 'controller_UserController.html#getByUserType'},
             {name: '用户接口.字符串结果', url: 'controller_UserController.html#customJsonResult'},
+            {name: '用户接口.泛型参数', url: 'controller_UserController.html#testGenericForm'},
             {name: '管理员接口.管理员登录', url: 'controller_admin_AdminController.html#login'},
             {name: '管理员接口.邮箱登录', url: 'controller_admin_AdminController.html#emailLogin'},
             {name: '管理员接口.添加管理员', url: 'controller_admin_AdminController.html#addAdmin'},

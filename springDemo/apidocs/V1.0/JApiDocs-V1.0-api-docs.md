@@ -771,6 +771,39 @@ userType|enum|否|
 	"data":"success"
 }
 ```
+## 泛型参数
+
+*作者: yeguozhong*
+
+**请求URL**
+
+/api/user/generic-form `GET` 
+
+**请求体**
+
+```json
+{
+	"form":{
+		"id":"long //用户ID",
+		"name":"string //用户名【必须】",
+		"phone":"long //电话【必须】",
+		"avatar":"string //头像【必须】",
+		"gender":"byte //性别"
+	}
+}
+```
+
+**返回结果**
+
+```json
+{
+	"body":{},
+	"code":"int",
+	"errMsg":"string",
+	"data":{},
+	"errType":"enum // [SUCCESS,WARN,ERROR]"
+}
+```
 # 管理员接口
 ## 管理员登录
 

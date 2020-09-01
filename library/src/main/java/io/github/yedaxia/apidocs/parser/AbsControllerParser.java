@@ -203,7 +203,7 @@ public abstract class AbsControllerParser {
                     if(stringResult != null){
                         responseNode.setStringResult(stringResult);
                     }else{
-                        handleResponseNode(responseNode, resultClassType.getElementType(), javaFile);
+                        handleResponseNode(responseNode, resultClassType.getElementType());
                     }
                     requestNode.setResponseNode(responseNode);
                     setRequestNodeChangeFlag(requestNode);
@@ -239,19 +239,22 @@ public abstract class AbsControllerParser {
      *
      * @param responseNode
      * @param resultType
-     * @param controllerFile
      */
-    protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType, File controllerFile){
+    protected void handleResponseNode(ResponseNode responseNode, com.github.javaparser.ast.type.Type resultType){
+        parseClassNodeByType(responseNode, resultType);
+    }
+
+    void parseClassNodeByType(ClassNode classNode, com.github.javaparser.ast.type.Type classType){
         // maybe void
-        if(resultType instanceof ClassOrInterfaceType){
+        if(classType instanceof ClassOrInterfaceType){
             // 解析方法返回类的泛型信息
-            ((ClassOrInterfaceType) resultType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+            ((ClassOrInterfaceType) classType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
                 GenericNode rootGenericNode = new GenericNode();
-                rootGenericNode.setFromJavaFile(controllerFile);
+                rootGenericNode.setFromJavaFile(javaFile);
                 rootGenericNode.setClassType(argType);
-                responseNode.addGenericNode(rootGenericNode);
+                classNode.addGenericNode(rootGenericNode);
             }));
-            ParseUtils.parseClassNodeByType(controllerFile, responseNode, resultType);
+            ParseUtils.parseClassNodeByType(javaFile, classNode, classType);
         }
     }
 
