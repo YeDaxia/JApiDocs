@@ -25,3 +25,8 @@
 2. 修复void方法bug
 3. 添加resultString自定义返回字符串
 4. 修复枚举类型参数bug
+
+# V1.4.4
+
+1. 修复LocateDate类型bug
+2. 修复反射模式下由于notNull引起的NullPoint异常

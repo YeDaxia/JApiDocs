@@ -14,6 +14,7 @@ import result.PageResult;
 import result.user.UserVO;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +53,11 @@ public class UserController {
      * 保存用户
      * @param req
      * @param userForm
+     * @param session
      * @return
      */
     @PostMapping(path = "save")
-    public ApiResult<UserVO> saveUser(HttpServletResponse req, @RequestBody UserForm userForm){
+    public ApiResult<UserVO> saveUser(HttpServletResponse req, @RequestBody UserForm userForm, HttpSession session){
         return null;
     }
 
