@@ -102,7 +102,7 @@ public abstract class AbsControllerParser {
                     requestNode.setControllerNode(controllerNode);
                     requestNode.setAuthor(controllerNode.getAuthor());
                     requestNode.setMethodName(m.getNameAsString());
-                    requestNode.setUrl(requestNode.getMethodName());
+                    requestNode.setUrl("");
                     requestNode.setDescription(requestNode.getMethodName());
 
                     m.getAnnotationByClass(Deprecated.class).ifPresent(f -> {

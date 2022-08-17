@@ -130,6 +130,10 @@ public class Utils {
 		if(baseUrl == null){
 			return relativeUrl;
 		}
+		//当注解没写url时会默认取方法名，这里改掉。
+		if("".equals(relativeUrl)){
+			return baseUrl;
+		}
 
 		if(baseUrl.endsWith("/")){
 			baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
