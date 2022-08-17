@@ -188,6 +188,8 @@ public class ClassNode {
 
     public void reset(){
         this.childNodes.clear();
-        this.genericNodes.clear();
+        if (this.genericNodes != null) {
+            this.genericNodes.clear();
+        }
     }
 }
