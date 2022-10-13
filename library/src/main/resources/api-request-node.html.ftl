@@ -38,7 +38,8 @@
                 <#if !(paramNode.jsonBody)>
                     <tr>
                         <td>${paramNode.name}</td>
-                        <td>${paramNode.type}</td>
+                        <#--<td>${paramNode.type}</td>-->
+                        <td><#if paramNode.type??>${paramNode.type}</#if></td>
                         <td>${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}</td>
                         <td>${(paramNode.description)!''}</td>
                     </tr>
