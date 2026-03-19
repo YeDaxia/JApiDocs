@@ -6,6 +6,7 @@ import com.github.javaparser.ast.type.TypeParameter;
 import io.github.yedaxia.apidocs.DocContext;
 import io.github.yedaxia.apidocs.ParseUtils;
 import io.github.yedaxia.apidocs.parser.ClassNode;
+import io.github.yedaxia.apidocs.parser.GenericNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -100,6 +101,18 @@ public class ParseUtilsTest {
         classNode.setModelClass(ResultVO.class);
         ParseUtils.parseClassNodeByReflection(classNode);
         System.out.println(classNode.toJsonApi());
+    }
+
+    @Test
+    public void test_getGenericNode_withNullPlaceholder(){
+        // Regression test: getGenericNode should not throw NPE when a GenericNode has null placeholder
+        // This was caused by wildcard generic types (e.g., Response<?>) creating GenericNodes without a placeholder
+        ClassNode classNode = new ClassNode();
+        GenericNode nodeWithNullPlaceholder = new GenericNode();
+        // do not set placeholder - it stays null
+        classNode.addGenericNode(nodeWithNullPlaceholder);
+        // should return null without throwing NullPointerException
+        Assert.assertNull(classNode.getGenericNode("T"));
     }
 
     private ClassOrInterfaceDeclaration getClassDeclarationByClass(Class clazz){
