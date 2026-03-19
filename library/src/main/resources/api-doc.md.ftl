@@ -25,7 +25,8 @@ ${i18n.getMessage('parameterName')}|${i18n.getMessage('parameterType')}|${i18n.g
 --:|:--:|:--:|:--
         <#list reqNode.paramNodes as paramNode>
             <#if !(paramNode.jsonBody)>
-${paramNode.name}|${paramNode.type}|${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}|${(paramNode.description)!''}
+<#--${paramNode.name}|${paramNode.type}|${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}|${(paramNode.description)!''}-->
+${paramNode.name}|<#if paramNode.type??>${paramNode.type}</#if>|${paramNode.required?string(i18n.getMessage('yes'),i18n.getMessage('no'))}|${(paramNode.description)!''}
             </#if>
         </#list>
     </#if>
