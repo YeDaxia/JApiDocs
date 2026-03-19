@@ -122,7 +122,7 @@ public class ClassNode {
             return null;
         }
         for(GenericNode genericNode : genericNodes){
-            if(genericNode.getPlaceholder().equals(type)){
+            if(type.equals(genericNode.getPlaceholder())){
                 return genericNode;
             }
         }

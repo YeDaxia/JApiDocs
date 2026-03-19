@@ -9,6 +9,7 @@ import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.type.ArrayType;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.Type;
+import com.github.javaparser.ast.type.WildcardType;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import io.github.yedaxia.apidocs.*;
 import io.github.yedaxia.apidocs.consts.ChangeFlag;
@@ -249,6 +250,9 @@ public abstract class AbsControllerParser {
         if(classType instanceof ClassOrInterfaceType){
             // 解析方法返回类的泛型信息
             ((ClassOrInterfaceType) classType).getTypeArguments().ifPresent(typeList->typeList.forEach(argType->{
+                if (argType instanceof WildcardType) {
+                    return;
+                }
                 GenericNode rootGenericNode = new GenericNode();
                 rootGenericNode.setFromJavaFile(javaFile);
                 rootGenericNode.setClassType(argType);

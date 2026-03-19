@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import result.ApiResult;
 import result.PageResult;
+import result.SimpleResult;
 import result.user.UserVO;
 
 import javax.servlet.http.HttpServletResponse;
@@ -174,6 +175,16 @@ public class UserController {
      */
     @GetMapping(value = "generic-form")
     public ApiResult testGenericForm(@RequestBody GenericForm<UserForm> user){
+        return null;
+    }
+
+    /**
+     * 通配符泛型参数测试 - 验证不抛出NullPointerException
+     * @param result 结果对象
+     * @return
+     */
+    @PostMapping(value = "wildcard-param")
+    public ApiResult<?> wildcardParam(SimpleResult<?> result){
         return null;
     }
 }
